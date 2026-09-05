@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier-runtime.invalid/schemas/runtime-receipt.schema.json",
+  "title": "Atelier Runtime V1 Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_schema_version", "request_id", "idempotency_key", "run_id", "run_attempt",
+    "repository", "requested_sha", "executed_sha", "profile", "profile_version",
+    "runtime_engine_version", "runtime_engine_sha", "environment", "stages",
+    "source_integrity", "result", "failure_stage", "failure_reason", "exit_code"
+  ],
+  "properties": {
+    "receipt_schema_version": { "const": 1 },
+    "request_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "idempotency_key": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "run_id": { "type": "string", "pattern": "^[0-9]+$" },
+    "run_attempt": { "type": "integer", "minimum": 1 },
+    "repository": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+    "requested_sha": { "$ref": "#/$defs/sha" },
+    "executed_sha": { "anyOf": [{ "$ref": "#/$defs/sha" }, { "type": "null" }] },
+    "profile": { "const": "NODE_WEB_VERIFY" },
+    "profile_version": { "const": 1 },
+    "runtime_engine_version": { "type": "string", "minLength": 1 },
+    "runtime_engine_sha": { "$ref": "#/$defs/sha" },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runner_image", "os", "arch", "node_version", "npm_version", "playwright_version", "chromium_version", "locale", "timezone"],
+      "properties": {
+        "runner_image": { "$ref": "#/$defs/nullableString" },
+        "os": { "$ref": "#/$defs/nullableString" },
+        "arch": { "$ref": "#/$defs/nullableString" },
+        "node_version": { "$ref": "#/$defs/nullableString" },
+        "npm_version": { "$ref": "#/$defs/nullableString" },
+        "playwright_version": { "$ref": "#/$defs/nullableString" },
+        "chromium_version": { "$ref": "#/$defs/nullableString" },
+        "locale": { "$ref": "#/$defs/nullableString" },
+        "timezone": { "$ref": "#/$defs/nullableString" }
+      }
+    },
+    "stages": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preflight", "install", "format", "lint", "typecheck", "build", "test", "integration", "dev_server", "http", "browser", "source_integrity", "receipt_finalize"],
+      "properties": {
+        "preflight": { "$ref": "#/$defs/stageState" },
+        "install": { "$ref": "#/$defs/stageState" },
+        "format": { "$ref": "#/$defs/stageState" },
+        "lint": { "$ref": "#/$defs/stageState" },
+        "typecheck": { "$ref": "#/$defs/stageState" },
+        "build": { "$ref": "#/$defs/stageState" },
+        "test": { "$ref": "#/$defs/stageState" },
+        "integration": { "$ref": "#/$defs/stageState" },
+        "dev_server": { "$ref": "#/$defs/stageState" },
+        "http": { "$ref": "#/$defs/stageState" },
+        "browser": { "$ref": "#/$defs/stageState" },
+        "source_integrity": { "$ref": "#/$defs/stageState" },
+        "receipt_finalize": { "$ref": "#/$defs/stageState" }
+      }
+    },
+    "source_integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tree_sha_before", "tree_sha_after", "tracked_source_mutation_detected", "remote_source_write_authority"],
+      "properties": {
+        "tree_sha_before": { "anyOf": [{ "$ref": "#/$defs/sha" }, { "type": "null" }] },
+        "tree_sha_after": { "anyOf": [{ "$ref": "#/$defs/sha" }, { "type": "null" }] },
+        "tracked_source_mutation_detected": { "type": "boolean" },
+        "remote_source_write_authority": { "const": "NONE" }
+      }
+    },
+    "result": { "enum": ["PASS", "BLOCKED", "APP_FAILURE", "INFRA_FAILURE", "TIMEOUT", "CANCELLED"] },
+    "failure_stage": { "type": ["string", "null"] },
+    "failure_reason": { "type": ["string", "null"] },
+    "exit_code": { "type": ["integer", "null"] }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "nullableString": { "type": ["string", "null"] },
+    "stageState": { "enum": ["NOT_RUN", "SKIPPED", "PASS", "FAIL", "BLOCKED", "TIMEOUT", "CANCELLED"] }
+  }
+}

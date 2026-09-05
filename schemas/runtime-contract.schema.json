@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier-runtime.invalid/schemas/runtime-contract.schema.json",
+  "title": "Atelier Runtime V1 Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile", "node_version", "package_manager", "scripts"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "profile": { "const": "NODE_WEB_VERIFY" },
+    "node_version": { "const": "22.13.0" },
+    "package_manager": { "const": "npm" },
+    "scripts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "format": { "$ref": "#/$defs/scriptName" },
+        "lint": { "$ref": "#/$defs/scriptName" },
+        "typecheck": { "$ref": "#/$defs/scriptName" },
+        "build": { "$ref": "#/$defs/scriptName" },
+        "test": { "$ref": "#/$defs/scriptName" },
+        "integration": { "$ref": "#/$defs/scriptName" },
+        "dev": { "$ref": "#/$defs/scriptName" },
+        "browser": { "$ref": "#/$defs/scriptName" }
+      }
+    },
+    "server": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["health_url", "startup_timeout_seconds"],
+      "properties": {
+        "health_url": { "type": "string", "pattern": "^http://127\\.0\\.0\\.1:[0-9]{1,5}/" },
+        "startup_timeout_seconds": { "type": "integer", "minimum": 1, "maximum": 60 }
+      }
+    },
+    "http_routes_file": { "const": ".atelier/routes.json" }
+  },
+  "allOf": [
+    {
+      "if": { "required": ["http_routes_file"] },
+      "then": { "required": ["server"] }
+    }
+  ],
+  "$defs": {
+    "scriptName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9:_-]+$"
+    }
+  }
+}
