@@ -1,0 +1,76 @@
+name: Atelier Runtime V1
+
+on:
+  workflow_call:
+    inputs:
+      request_id:
+        description: Stable caller request identifier
+        required: true
+        type: string
+      idempotency_key:
+        description: Stable overlap-control key
+        required: true
+        type: string
+      target_sha:
+        description: Exact lowercase 40-character target commit SHA
+        required: true
+        type: string
+      profile:
+        description: Runtime profile
+        required: true
+        type: string
+      profile_version:
+        description: Runtime profile version
+        required: true
+        type: number
+
+permissions:
+  contents: read
+
+concurrency:
+  group: atelier-runtime-${{ github.repository_id }}-${{ inputs.idempotency_key }}
+  cancel-in-progress: false
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Validate fixed request surface
+        shell: bash
+        env:
+          TARGET_SHA: ${{ inputs.target_sha }}
+          PROFILE: ${{ inputs.profile }}
+          PROFILE_VERSION: ${{ inputs.profile_version }}
+        run: |
+          [[ "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$PROFILE" == "NODE_WEB_VERIFY" ]]
+          [[ "$PROFILE_VERSION" == "1" ]]
+      - name: Checkout Runtime source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          repository: neoflowcore/atelier-runtime
+          ref: ${{ github.workflow_sha }}
+          path: runtime
+          persist-credentials: false
+      - name: Checkout exact target source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ inputs.target_sha }}
+          path: target
+          persist-credentials: false
+      - name: Set up fixed Node
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 22.13.0
+      - name: Verify bootstrap identities
+        shell: bash
+        env:
+          TARGET_SHA: ${{ inputs.target_sha }}
+          RUNTIME_SHA: ${{ github.workflow_sha }}
+        run: |
+          test "$(git -C runtime rev-parse HEAD)" = "$RUNTIME_SHA"
+          test "$(git -C target rev-parse HEAD)" = "$TARGET_SHA"
+          test -s runtime/VERSION
+          echo "G1_RUNTIME_BOOTSTRAP=PASS"
