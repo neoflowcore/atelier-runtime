@@ -84,3 +84,5 @@ jobs:
         run: node runtime/runtime/run-preflight.mjs target
       - name: Install and run declared stages
         run: node runtime/runtime/run-stages.mjs target
+      - name: Run temporary dev server and HTTP validation
+        run: node runtime/runtime/run-web.mjs target
