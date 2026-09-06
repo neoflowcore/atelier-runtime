@@ -1,6 +1,7 @@
 import { resolve } from "node:path";
 import { readJson, validateRuntimeContract } from "./preflight.mjs";
 import { executeWebHttpRuntime } from "./web-runtime.mjs";
+import { writeStageEvidence } from "./evidence.mjs";
 
 const targetDirectory = resolve(process.argv[2] ?? "target");
 const [contract, packageJson] = await Promise.all([
@@ -10,11 +11,14 @@ const [contract, packageJson] = await Promise.all([
 
 const preflight = validateRuntimeContract(contract, packageJson);
 if (!preflight.ok) {
+  await writeStageEvidence("web", { ...preflight, classification: "BLOCKED", failureStage: "PREFLIGHT", exitCode: 2 });
   for (const error of preflight.errors) console.error(`G5_PREFLIGHT_ERROR=${error}`);
   process.exit(2);
 }
 
 const result = await executeWebHttpRuntime(targetDirectory, contract);
+const evidence = { ...result, exitCode: result.ok ? 0 : result.classification === "BLOCKED" ? 2 : 1 };
+await writeStageEvidence("web", evidence);
 if (!result.ok) {
   for (const error of result.errors ?? []) console.error(`G5_PREFLIGHT_ERROR=${error}`);
   if (result.cleanup) console.error(`G5_CLEANUP=${result.cleanup}`);

@@ -39,6 +39,8 @@ jobs:
   bootstrap:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    env:
+      ATELIER_RUNTIME_EVIDENCE_DIR: runtime-evidence
     steps:
       - name: Validate fixed request surface
         shell: bash
@@ -80,11 +82,18 @@ jobs:
           test "$(git -C target rev-parse HEAD)" = "$TARGET_SHA"
           test -s runtime/VERSION
           echo "G2_RUNTIME_BOOTSTRAP=PASS"
+      - name: Initialize receipt source evidence
+        id: receipt_init
+        continue-on-error: true
+        run: node runtime/runtime/run-receipt-init.mjs target runtime
       - name: Validate target Runtime contract
+        id: preflight
         run: node runtime/runtime/run-preflight.mjs target
       - name: Install and run declared stages
+        id: stages
         run: node runtime/runtime/run-stages.mjs target
       - name: Run temporary dev server and HTTP validation
+        id: web
         run: node runtime/runtime/run-web.mjs target
       - name: Run Chromium and Playwright browser validation
         id: browser
@@ -99,3 +108,34 @@ jobs:
           path: |
             target/test-results
             target/playwright-report
+      - name: Finalize canonical Runtime receipt
+        id: receipt_finalize
+        if: always()
+        env:
+          ATELIER_REQUEST_ID: ${{ inputs.request_id }}
+          ATELIER_IDEMPOTENCY_KEY: ${{ inputs.idempotency_key }}
+          ATELIER_TARGET_SHA: ${{ inputs.target_sha }}
+          ATELIER_RUNTIME_SHA: ${{ inputs.runtime_sha }}
+          ATELIER_PROFILE: ${{ inputs.profile }}
+          ATELIER_PROFILE_VERSION: ${{ inputs.profile_version }}
+          ATELIER_RECEIPT_INIT_OUTCOME: ${{ steps.receipt_init.outcome }}
+          ATELIER_PREFLIGHT_OUTCOME: ${{ steps.preflight.outcome }}
+          ATELIER_STAGES_OUTCOME: ${{ steps.stages.outcome }}
+          ATELIER_WEB_OUTCOME: ${{ steps.web.outcome }}
+          ATELIER_BROWSER_OUTCOME: ${{ steps.browser.outcome }}
+        run: node runtime/runtime/run-receipt-finalize.mjs target runtime
+      - name: Upload canonical Runtime receipt
+        id: receipt_upload
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-receipt-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          retention-days: 7
+          path: runtime-evidence/runtime-receipt.json
+      - name: Enforce canonical G7 PASS
+        if: always()
+        env:
+          ATELIER_RECEIPT_FINALIZE_OUTCOME: ${{ steps.receipt_finalize.outcome }}
+          ATELIER_RECEIPT_UPLOAD_OUTCOME: ${{ steps.receipt_upload.outcome }}
+        run: node runtime/runtime/run-receipt-gate.mjs runtime-evidence/runtime-receipt.json
