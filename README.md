@@ -4,11 +4,18 @@ Atelier Runtime V1 is a thin, deterministic execution standard for verifying an 
 
 V1 exposes one profile, `NODE_WEB_VERIFY` (`profile_version: 1`). It accepts declarative npm script names and records machine-readable evidence. It does not provide a new compute platform, arbitrary shell access, persistent hosting, source editing, or GitHub source-write authority.
 
-Current phase: `G0_CONTRACT_LOCK=PASS`
+Current phase:
+
+```text
+G0_CONTRACT_LOCK=PASS
+G1_RUNTIME_BOOTSTRAP=PASS
+G2_DUAL_CHECKOUT=PASS
+G3_CONTRACT_PREFLIGHT=IN_PROGRESS
+```
 
 See:
 
 - [`docs/V1_SCOPE_LOCK.md`](docs/V1_SCOPE_LOCK.md)
 - [`docs/SECURITY_BOUNDARY.md`](docs/SECURITY_BOUNDARY.md)
 - [`docs/TARGET_REPO_INTEGRATION.md`](docs/TARGET_REPO_INTEGRATION.md)
-
+- [`docs/G3_CONTRACT_PREFLIGHT.md`](docs/G3_CONTRACT_PREFLIGHT.md)

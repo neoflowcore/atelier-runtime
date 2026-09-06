@@ -17,6 +17,11 @@ const valid = {
 test("valid contract passes", () => assert.equal(validateRuntimeContract(valid, packageJson).ok, true));
 test("arbitrary command field is blocked", () => assert.equal(validateRuntimeContract({ ...valid, command: "npm test" }, packageJson).ok, false));
 test("shell-like script is blocked", () => assert.equal(validateRuntimeContract({ ...valid, scripts: { test: "test && echo unsafe" } }, packageJson).ok, false));
+test("missing package script is blocked", () => {
+  const result = validateRuntimeContract({ ...valid, scripts: { test: "missing" } }, packageJson);
+  assert.equal(result.ok, false);
+  assert.deepEqual(result.errors, ["MISSING_PACKAGE_SCRIPT:missing"]);
+});
 test("unsupported profile and package manager are blocked", () => {
   assert.equal(validateRuntimeContract({ ...valid, profile: "OTHER" }, packageJson).ok, false);
   assert.equal(validateRuntimeContract({ ...valid, package_manager: "pnpm" }, packageJson).ok, false);
@@ -35,6 +40,6 @@ test("tracked source comparison ignores untracked output by construction", () =>
   assert.equal(trackedSourceChanged(state, { ...state }), false);
 });
 test("HTTP route contract stays declarative", () => {
-  assert.equal(validateRoutesDocument({ schema_version: 1, routes: [{ path: "/", status: 200 }] }).ok, true);
+  assert.equal(validateRoutesDocument({ schema_version: 1, routes: [{ path: "/", status: 200 }] }).ok, true));
   assert.equal(validateRoutesDocument({ schema_version: 1, routes: [{ path: "/", status: 200, command: "x" }] }).ok, false);
 });

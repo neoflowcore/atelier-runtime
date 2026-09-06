@@ -80,3 +80,5 @@ jobs:
           test "$(git -C target rev-parse HEAD)" = "$TARGET_SHA"
           test -s runtime/VERSION
           echo "G2_RUNTIME_BOOTSTRAP=PASS"
+      - name: Validate target Runtime contract
+        run: node runtime/runtime/run-preflight.mjs target
