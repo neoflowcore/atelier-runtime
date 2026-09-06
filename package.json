@@ -1,6 +1,6 @@
 {
   "name": "@neoflowcore/atelier-runtime",
-  "version": "1.0.0-dev",
+  "version": "1.0.0",
   "private": true,
   "description": "Thin deterministic Node/Web verification standard for GitHub Actions",
   "type": "module",
@@ -10,6 +10,7 @@
   "scripts": {
     "test": "node --test",
     "security:lint": "node scripts/security-lint.mjs",
-    "selftest": "npm run security:lint && npm test"
+    "release:gate": "node scripts/release-gate.mjs",
+    "selftest": "npm run security:lint && npm test && npm run release:gate"
   }
 }

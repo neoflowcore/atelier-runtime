@@ -50,10 +50,10 @@ jobs:
           PROFILE: ${{ inputs.profile }}
           PROFILE_VERSION: ${{ inputs.profile_version }}
         run: |
-          [[ "$RUNTIME_SHA" =~ ^[0-9a-f]{40}$ ]]
-          [[ "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]
-          [[ "$PROFILE" == "NODE_WEB_VERIFY" ]]
-          [[ "$PROFILE_VERSION" == "1" ]]
+          if ! [[ "$RUNTIME_SHA" =~ ^[0-9a-f]{40}$ ]]; then echo "G8_FAILURE_CLASS=BLOCKED"; echo "G8_FAILURE_STAGE=PREFLIGHT"; echo "G8_FAILURE_REASON=INVALID_RUNTIME_SHA"; exit 2; fi
+          if ! [[ "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]; then echo "G8_FAILURE_CLASS=BLOCKED"; echo "G8_FAILURE_STAGE=PREFLIGHT"; echo "G8_FAILURE_REASON=INVALID_TARGET_SHA"; exit 2; fi
+          if [[ "$PROFILE" != "NODE_WEB_VERIFY" ]]; then echo "G8_FAILURE_CLASS=BLOCKED"; echo "G8_FAILURE_STAGE=PREFLIGHT"; echo "G8_FAILURE_REASON=INVALID_PROFILE"; exit 2; fi
+          if [[ "$PROFILE_VERSION" != "1" ]]; then echo "G8_FAILURE_CLASS=BLOCKED"; echo "G8_FAILURE_STAGE=PREFLIGHT"; echo "G8_FAILURE_REASON=INVALID_PROFILE_VERSION"; exit 2; fi
       - name: Checkout Runtime source
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
