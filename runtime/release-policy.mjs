@@ -36,7 +36,7 @@ function exactArray(actual, expected) {
 }
 
 function actionUse(line) {
-  const match = line.match(/^\s*-\s*uses:\s*([^\s]+)(?:\s*#.*)?$/);
+  const match = line.match(/^\s*(?:-\s*)?uses:\s*([^\s]+)(?:\s*#.*)?$/);
   return match?.[1] ?? null;
 }
 

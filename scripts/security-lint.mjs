@@ -4,7 +4,7 @@ import { join } from "node:path";
 const workflowDir = ".github/workflows";
 const files = (await readdir(workflowDir)).filter((name) => /\.ya?ml$/.test(name));
 const failures = [];
-const fullShaUse = /^\s*-\s*uses:\s*[^\s@]+@[0-9a-f]{40}(?:\s*#.*)?$/;
+const fullShaUse = /^\s*(?:-\s*)?uses:\s*[^\s@]+@[0-9a-f]{40}(?:\s*#.*)?$/;
 const forbiddenInput = /^\s{6}(shell|command|args|env|secrets|repository|clone_url):\s*$/;
 
 for (const file of files) {
@@ -14,7 +14,7 @@ for (const file of files) {
   }
   if (/persist-credentials:\s*true/.test(text)) failures.push(`${file}: persisted credentials`);
   for (const line of text.split("\n")) {
-    if (/^\s*-\s*uses:/.test(line) && !fullShaUse.test(line)) failures.push(`${file}: floating action: ${line.trim()}`);
+    if (/^\s*(?:-\s*)?uses:/.test(line) && !fullShaUse.test(line)) failures.push(`${file}: floating action: ${line.trim()}`);
     if (forbiddenInput.test(line)) failures.push(`${file}: forbidden workflow input: ${line.trim()}`);
   }
 }
