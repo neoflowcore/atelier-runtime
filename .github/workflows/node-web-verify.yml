@@ -86,3 +86,16 @@ jobs:
         run: node runtime/runtime/run-stages.mjs target
       - name: Run temporary dev server and HTTP validation
         run: node runtime/runtime/run-web.mjs target
+      - name: Run Chromium and Playwright browser validation
+        id: browser
+        run: node runtime/runtime/run-browser.mjs target
+      - name: Upload browser failure evidence
+        if: failure() && steps.browser.outcome == 'failure'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: g6-browser-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: ignore
+          retention-days: 7
+          path: |
+            target/test-results
+            target/playwright-report
