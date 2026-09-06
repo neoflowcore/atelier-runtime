@@ -35,6 +35,11 @@ function exactArray(actual, expected) {
   return JSON.stringify([...actual].sort()) === JSON.stringify([...expected].sort());
 }
 
+function actionUse(line) {
+  const match = line.match(/^\s*-\s*uses:\s*([^\s]+)(?:\s*#.*)?$/);
+  return match?.[1] ?? null;
+}
+
 export function evaluateReleasePolicy({
   workflowText,
   versionText,
@@ -55,10 +60,10 @@ export function evaluateReleasePolicy({
   const inputs = workflowInputs(workflowText);
   if (!exactArray(inputs, EXPECTED_INPUTS)) errors.push(`REQUEST_INPUT_SURFACE:${inputs.join(",")}`);
 
-  const usesLines = workflowText.split("\n").filter((line) => /^\s*uses:\s*/.test(line));
-  if (usesLines.length === 0) errors.push("NO_ACTION_DEPENDENCIES");
-  for (const line of usesLines) {
-    if (!/^\s*uses:\s*[^\s@]+@[0-9a-f]{40}(?:\s*#.*)?$/.test(line)) errors.push(`FLOATING_ACTION:${line.trim()}`);
+  const uses = workflowText.split("\n").map(actionUse).filter(Boolean);
+  if (uses.length === 0) errors.push("NO_ACTION_DEPENDENCIES");
+  for (const use of uses) {
+    if (!/^[^\s@]+@[0-9a-f]{40}$/.test(use)) errors.push(`FLOATING_ACTION:${use}`);
   }
 
   const runtimeCheckout = [
