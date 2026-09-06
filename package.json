@@ -11,6 +11,10 @@
     "test": "node --test",
     "security:lint": "node scripts/security-lint.mjs",
     "release:gate": "node scripts/release-gate.mjs",
-    "selftest": "npm run security:lint && npm test && npm run release:gate"
+    "selftest": "npm run security:lint && npm test && npm run release:gate",
+    "builder:bridge": "node tools/pilote-builder-bridge/cli.mjs"
+  },
+  "dependencies": {
+    "yaml": "2.9.0"
   }
 }
