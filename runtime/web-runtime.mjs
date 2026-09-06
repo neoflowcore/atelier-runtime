@@ -193,8 +193,8 @@ export async function executeWebHttpRuntime(targetDirectory, contract) {
   } finally {
     const cleaned = await cleanupServer(child, contract.server.health_url);
     if (!cleaned) {
-      result = { ok: false, classification: "APP_FAILURE", failureStage: "DEV_SERVER", failureReason: "CLEANUP_FAILED" };
-    } else if (result?.ok) {
+      result = { ok: false, classification: "APP_FAILURE", failureStage: "DEV_SERVER", failureReason: "CLEANUP_FAILED", cleanup: "FAIL" };
+    } else if (result) {
       result.cleanup = "PASS";
     }
   }

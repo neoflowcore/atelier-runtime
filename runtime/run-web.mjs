@@ -17,6 +17,7 @@ if (!preflight.ok) {
 const result = await executeWebHttpRuntime(targetDirectory, contract);
 if (!result.ok) {
   for (const error of result.errors ?? []) console.error(`G5_PREFLIGHT_ERROR=${error}`);
+  if (result.cleanup) console.error(`G5_CLEANUP=${result.cleanup}`);
   if (result.failureReason) console.error(`G5_FAILURE_REASON=${result.failureReason}`);
   console.error(`G5_FAILURE_STAGE=${result.failureStage}`);
   process.exit(result.classification === "BLOCKED" ? 2 : 1);
