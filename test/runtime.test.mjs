@@ -40,6 +40,6 @@ test("tracked source comparison ignores untracked output by construction", () =>
   assert.equal(trackedSourceChanged(state, { ...state }), false);
 });
 test("HTTP route contract stays declarative", () => {
-  assert.equal(validateRoutesDocument({ schema_version: 1, routes: [{ path: "/", status: 200 }] }).ok, true));
+  assert.equal(validateRoutesDocument({ schema_version: 1, routes: [{ path: "/", status: 200 }] }).ok, true);
   assert.equal(validateRoutesDocument({ schema_version: 1, routes: [{ path: "/", status: 200, command: "x" }] }).ok, false);
 });
