@@ -1,0 +1,38 @@
+{
+  "policy_version": 1,
+  "baseline_operation_ids": [
+    "compareCommits",
+    "createApprovedBlob",
+    "createApprovedDraftPullRequest",
+    "createApprovedPiloteBranch",
+    "createApprovedTree",
+    "createGitCommit",
+    "getBranch",
+    "getCommit",
+    "getGitBlob",
+    "getGitCommit",
+    "getGitTree",
+    "getPullRequest",
+    "getRepository",
+    "getRepositoryContent",
+    "getWorkflowJob",
+    "getWorkflowRun",
+    "listPullRequests",
+    "listWorkflowRunAttemptJobs",
+    "listWorkflowRuns",
+    "updateApprovedPiloteBranch"
+  ],
+  "expected_added_operation_ids": [
+    "dispatchApprovedAtelierRuntimeCaller",
+    "getWorkflowArtifact",
+    "getWorkflowJobLogs",
+    "listWorkflowRunArtifacts"
+  ],
+  "expected_total": 24,
+  "expected_schema_sha256": "b06bd7b68915aea0481908592cbe71284401556087730831d6bcc1a895879709",
+  "allowed_dispatch": {
+    "method": "post",
+    "path": "/repos/{owner}/{repo}/actions/workflows/atelier-runtime-v1.yml/dispatches",
+    "operation_id": "dispatchApprovedAtelierRuntimeCaller"
+  }
+}
