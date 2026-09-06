@@ -27,6 +27,13 @@ on:
         description: Runtime profile version
         required: true
         type: number
+    secrets:
+      runtime_app_id:
+        description: GitHub App ID with read access to the private Runtime repository
+        required: true
+      runtime_app_private_key:
+        description: GitHub App private key used only to mint a short-lived read token
+        required: true
 
 permissions:
   contents: read
@@ -52,12 +59,22 @@ jobs:
           [[ "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]
           [[ "$PROFILE" == "NODE_WEB_VERIFY" ]]
           [[ "$PROFILE_VERSION" == "1" ]]
+      - name: Mint read-only Runtime token
+        id: runtime-token
+        uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+        with:
+          app-id: ${{ secrets.runtime_app_id }}
+          private-key: ${{ secrets.runtime_app_private_key }}
+          owner: neoflowcore
+          repositories: atelier-runtime
+          permission-contents: read
       - name: Checkout Runtime source
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           repository: neoflowcore/atelier-runtime
           ref: ${{ inputs.runtime_sha }}
           path: runtime
+          token: ${{ steps.runtime-token.outputs.token }}
           persist-credentials: false
       - name: Checkout exact target source
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
