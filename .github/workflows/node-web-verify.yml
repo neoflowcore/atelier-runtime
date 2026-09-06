@@ -82,3 +82,5 @@ jobs:
           echo "G2_RUNTIME_BOOTSTRAP=PASS"
       - name: Validate target Runtime contract
         run: node runtime/runtime/run-preflight.mjs target
+      - name: Install and run declared stages
+        run: node runtime/runtime/run-stages.mjs target

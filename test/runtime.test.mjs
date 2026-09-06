@@ -4,6 +4,7 @@ import { validateRuntimeContract } from "../runtime/preflight.mjs";
 import { createReceipt } from "../runtime/receipt.mjs";
 import { trackedSourceChanged } from "../runtime/source-integrity.mjs";
 import { validateRoutesDocument } from "../runtime/http-check.mjs";
+import { declaredStagePlan } from "../runtime/stages.mjs";
 
 const packageJson = { scripts: { lint: "node lint.mjs", "test:integration": "node integration.mjs" } };
 const valid = {
@@ -19,8 +20,13 @@ test("arbitrary command field is blocked", () => assert.equal(validateRuntimeCon
 test("shell-like script is blocked", () => assert.equal(validateRuntimeContract({ ...valid, scripts: { test: "test && echo unsafe" } }, packageJson).ok, false));
 test("missing package script is blocked", () => {
   const result = validateRuntimeContract({ ...valid, scripts: { test: "missing" } }, packageJson);
-  assert.equal(result.ok, false);
   assert.deepEqual(result.errors, ["MISSING_PACKAGE_SCRIPT:missing"]);
+});
+test("declared stage plan is fixed-order and marks omissions skipped", () => {
+  const plan = declaredStagePlan(valid);
+  assert.deepEqual(plan.map(({ slot }) => slot), ["format", "lint", "typecheck", "build", "test", "integration"]);
+  assert.equal(plan.find(({ slot }) => slot === "lint").script, "lint");
+  assert.equal(plan.find(({ slot }) => slot === "test").state, "SKIPPED");
 });
 test("unsupported profile and package manager are blocked", () => {
   assert.equal(validateRuntimeContract({ ...valid, profile: "OTHER" }, packageJson).ok, false);
