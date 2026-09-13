@@ -139,3 +139,20 @@ A local CLI simulation on Node `v22.16.0` intentionally produced a valid `INFRA_
 ## V1 preservation
 
 No existing Runtime V1 workflow, V1 runtime execution module, V1 schema, V1 security boundary, V1 release policy, or V1 receipt schema is changed by this Plan A candidate. The frozen V1 control remains independently recoverable.
+
+## Worker admission and attestation (A3 candidate)
+
+Before the exact target source is checked out, the self-hosted workflow now emits and gates a Runtime-owned worker attestation. This is an execution-resource check only; it does not interpret Pilote approval semantics and does not create a lease.
+
+```text
+WORKER_ATTESTATION_TYPE=RUNTIME_A_WORKER_ATTESTATION_V1
+ADMISSION_SCOPE=PLAN_A_FOUNDATION_PROBE_ONLY
+LEASE_STATE=NOT_IMPLEMENTED_PLAN_D
+REMOTE_SOURCE_WRITE_AUTHORITY=NONE
+```
+
+The attestation binds the requested/actual Runtime SHA, fixed backend ID, scheduler selector, observed `RUNNER_ENVIRONMENT`, `RUNNER_OS`, `RUNNER_ARCH`, `RUNNER_NAME`, exact Node version, and a deterministic SHA-256 worker fingerprint. Target checkout is skipped unless this admission gate passes.
+
+The `atelier-runtime-v1` label is enforced by the GitHub Actions `runs-on` selector. GitHub does not expose the complete matched runner-label set as a normal job environment variable, so the receipt records that selector as expected scheduler identity rather than falsely claiming runtime enumeration of every label.
+
+Lease allocation, lease ownership, renewal, expiry and multi-caller contention are intentionally absent. Those remain Plan D responsibilities under the validated Runtime workpack.

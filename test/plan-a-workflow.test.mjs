@@ -49,3 +49,23 @@ test("workflow consumes a fixed Task Contract path through the foundation runner
   assert.match(workflow, /run-plan-a-foundation\.mjs/);
   assert.match(workflow, /run-plan-a-foundation-gate\.mjs/);
 });
+
+
+test("worker admission gates target checkout and does not implement Plan D leases", () => {
+  const attest = workflow.indexOf("Build self-hosted worker attestation");
+  const workerGate = workflow.indexOf("Enforce self-hosted worker admission");
+  const targetCheckout = workflow.indexOf("Checkout exact target source");
+  assert.ok(attest >= 0 && workerGate > attest && targetCheckout > workerGate);
+  assert.match(workflow, /if: steps\.worker_gate\.outcome == 'success'\n        uses: actions\/checkout/);
+  assert.match(workflow, /run-plan-a-worker-attestation\.mjs/);
+  assert.match(workflow, /run-plan-a-worker-attestation-gate\.mjs/);
+  assert.doesNotMatch(workflow, /lease_id|lease_ttl|lease_owner|lease_expir/i);
+});
+
+test("Plan A workflow grants no secret or write authority to the self-hosted worker", () => {
+  assert.doesNotMatch(workflow, /^secrets:/m);
+  assert.doesNotMatch(workflow, /contents: write/);
+  assert.doesNotMatch(workflow, /pull-requests: write/);
+  assert.doesNotMatch(workflow, /actions: write/);
+  assert.equal((workflow.match(/persist-credentials: false/g) ?? []).length, 2);
+});

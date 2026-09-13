@@ -56,7 +56,31 @@ jobs:
           path: runtime
           persist-credentials: false
 
+      - name: Build self-hosted worker attestation
+        id: worker_attestation
+        continue-on-error: true
+        env:
+          ATELIER_REQUEST_ID: ${{ inputs.request_id }}
+          ATELIER_IDEMPOTENCY_KEY: ${{ inputs.idempotency_key }}
+          ATELIER_RUNTIME_SHA: ${{ inputs.runtime_sha }}
+        run: node runtime/runtime/run-plan-a-worker-attestation.mjs runtime runtime-evidence/runtime-a-worker-attestation.json
+
+      - name: Upload self-hosted worker attestation
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-a-worker-attestation-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          retention-days: 7
+          path: runtime-evidence/runtime-a-worker-attestation.json
+
+      - name: Enforce self-hosted worker admission
+        id: worker_gate
+        if: always()
+        run: node runtime/runtime/run-plan-a-worker-attestation-gate.mjs runtime-evidence/runtime-a-worker-attestation.json
+
       - name: Checkout exact target source
+        if: steps.worker_gate.outcome == 'success'
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           repository: ${{ github.repository }}
@@ -65,6 +89,7 @@ jobs:
           persist-credentials: false
 
       - name: Build self-hosted foundation receipt
+        if: steps.worker_gate.outcome == 'success'
         id: foundation_receipt
         continue-on-error: true
         env:
@@ -75,7 +100,7 @@ jobs:
         run: node runtime/runtime/run-plan-a-foundation.mjs target runtime runtime-evidence/runtime-a-foundation-receipt.json
 
       - name: Upload self-hosted foundation receipt
-        if: always()
+        if: always() && steps.worker_gate.outcome == 'success'
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: runtime-a-foundation-${{ github.run_id }}-${{ github.run_attempt }}
@@ -84,7 +109,7 @@ jobs:
           path: runtime-evidence/runtime-a-foundation-receipt.json
 
       - name: Enforce self-hosted foundation PASS
-        if: always()
+        if: always() && steps.worker_gate.outcome == 'success'
         run: node runtime/runtime/run-plan-a-foundation-gate.mjs runtime-evidence/runtime-a-foundation-receipt.json
 
       - name: Cleanup fixed workspace paths
