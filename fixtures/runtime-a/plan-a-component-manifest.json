@@ -1,0 +1,160 @@
+{
+  "manifest_version": 1,
+  "manifest_type": "RUNTIME_A_PLAN_A_COMPONENT_MANIFEST_V1",
+  "interface_version": "1.0.0",
+  "interface_manifest_sha256": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617",
+  "components": [
+    {
+      "path": ".github/workflows/runtime-a-self-hosted-foundation.yml",
+      "sha256": "a530535305d0038bc3a8fd703db5937366770dff8feda7969e598f590584ca13"
+    },
+    {
+      "path": "docs/RUNTIME_A_SELF_HOSTED_FOUNDATION.md",
+      "sha256": "1cd3b73d096a070cb13d6782f0eefccb1fc5fffeff4a00e21fe96f7118c8e153"
+    },
+    {
+      "path": "fixtures/runtime-a/interface-v1/CANONICALIZATION_VECTORS.json",
+      "sha256": "246e5516882329450e399fabf2f57abefe7c3f5efc7001e817e1f5827034c0bf"
+    },
+    {
+      "path": "fixtures/runtime-a/interface-v1/EXPECTED_RESULTS.json",
+      "sha256": "e8ba66b453380c771c431be1ea54f408315e259b001b55149e7638f9150f0005"
+    },
+    {
+      "path": "fixtures/runtime-a/interface-v1/SOURCE_BINDING.json",
+      "sha256": "cac1d9b72aa05b79ca74e18f9bcbe5676fec7a01f5a8b10d2ac238c2b55142b7"
+    },
+    {
+      "path": "fixtures/runtime-a/interface-v1/invalid_01_runtime_owned_backend_id.json",
+      "sha256": "d1ac279778fd8014604c86b8994f4b20c7aedaeafbe7d73eccf2f1784af4732e"
+    },
+    {
+      "path": "fixtures/runtime-a/interface-v1/invalid_02_granted_authority_field.json",
+      "sha256": "c40733fca606ee0aadf21a988f36b1417840260121601e65485ecde3226df6a3"
+    },
+    {
+      "path": "fixtures/runtime-a/interface-v1/invalid_03_effect_capability_mismatch.json",
+      "sha256": "16f1af657cddabbb91e0598a5e441be71a247208710e7b802f5568ca152ce8e9"
+    },
+    {
+      "path": "fixtures/runtime-a/interface-v1/task-contract-core.schema.json",
+      "sha256": "3bdbb85a7879c8cee2c7eb2f18c3936fac7a44389ec0ae61f0954b9c19660b65"
+    },
+    {
+      "path": "fixtures/runtime-a/interface-v1/valid_01_read_only.json",
+      "sha256": "90dd78005b030b93729fa77c1c154e9cc0ee7957b96d17cd0e1f06782ae8d3fb"
+    },
+    {
+      "path": "fixtures/runtime-a/interface-v1/valid_02_candidate_write_intent.json",
+      "sha256": "79ae4e71ca70f00ce9ad9f098d0e078900d6c784e95389c9fb8c217d3cec0c26"
+    },
+    {
+      "path": "fixtures/runtime-a/interface-v1/valid_03_oracle_evidence_only.json",
+      "sha256": "8684c38d544fcf7389215b427117fe9125d6fb1ae3ee07a0308859c3080ffd24"
+    },
+    {
+      "path": "fixtures/runtime-a/self_hosted_read_only.json",
+      "sha256": "8a210d55aae6e3f1be621e7efce1ed4a4590ab427bf8f795e5be7f0d4e807152"
+    },
+    {
+      "path": "runtime/backend-plan-a.mjs",
+      "sha256": "eba59ad17c93f01d40b472d5e92ec877d396fde431cedba4021d8102fc714b4b"
+    },
+    {
+      "path": "runtime/plan-a-closure.mjs",
+      "sha256": "fe9f85cade2130a0d289ce6dc142f3934219cbd8a687830387e5efb77887fe99"
+    },
+    {
+      "path": "runtime/plan-a-evidence-binding.mjs",
+      "sha256": "bbb4440b9c206173753cce9e976dd2cb006846c8529153b6574b3b13eac5803a"
+    },
+    {
+      "path": "runtime/plan-a-foundation.mjs",
+      "sha256": "d899b26cb4f28bb8e7c3c16290767f06624a76a282a24b55b95b66ad64162df3"
+    },
+    {
+      "path": "runtime/run-plan-a-closure-gate.mjs",
+      "sha256": "4c5a9f66ed565609a0f9022d629deebcc5a3fb9e055a51bafcd25ff383f016ed"
+    },
+    {
+      "path": "runtime/run-plan-a-closure.mjs",
+      "sha256": "29f2e690043cf07fd4750e88ec316a35f9d9e4ae255313853352f08a2e0257fc"
+    },
+    {
+      "path": "runtime/run-plan-a-evidence-binding-gate.mjs",
+      "sha256": "a346d4789d4d9b698ad3782952d6a6f152dfc57e74cf62350d5fff339f6440b3"
+    },
+    {
+      "path": "runtime/run-plan-a-evidence-binding.mjs",
+      "sha256": "7790dece39dc75052b46b88d3d8cea722fc870cf84eabb0c4ca0052e1235ec74"
+    },
+    {
+      "path": "runtime/run-plan-a-foundation-gate.mjs",
+      "sha256": "18aa74b8caf1238d6f37ec42381cc3bcbb65b49cf323753fa28ca3dbfa7f3224"
+    },
+    {
+      "path": "runtime/run-plan-a-foundation.mjs",
+      "sha256": "e1103dd5dc1717de69321c01b01b171fa9307368ae0e2ae84427eb649cc0ff4a"
+    },
+    {
+      "path": "runtime/run-plan-a-worker-attestation-gate.mjs",
+      "sha256": "8b5e871a3bdc9c7849f7eaf35ff55087aff3fdbfac76ae93721696f3d79fa9db"
+    },
+    {
+      "path": "runtime/run-plan-a-worker-attestation.mjs",
+      "sha256": "0c1637988d254e7b785f31adef35d31958609460e8d4b53c61c0d469aea21360"
+    },
+    {
+      "path": "runtime/task-contract-v1.mjs",
+      "sha256": "b2bcd527ccf1e2662689cdfb3336c915ac76dbc615b1d6dab68694cb88378bc4"
+    },
+    {
+      "path": "runtime/worker-attestation-plan-a.mjs",
+      "sha256": "b8654d7ed1f0cf22444d761fe20d376da6eaf4818f5e5e877a1e74496fdad1d3"
+    },
+    {
+      "path": "schemas/runtime-a-closure.schema.json",
+      "sha256": "be4968e8530cb912fa3cb976d436a34f84302443a59a3f53b3d8a5c28f99539a"
+    },
+    {
+      "path": "schemas/runtime-a-evidence-binding.schema.json",
+      "sha256": "2974303a1a22c92605d62097e8899de69ea5163259c6e4b17617ea9ea280d4b6"
+    },
+    {
+      "path": "schemas/runtime-a-foundation-receipt.schema.json",
+      "sha256": "1bb83441a0d6e4381f0ea98d4c83aae6f59350796ff13e5d3988fb74f3896e92"
+    },
+    {
+      "path": "schemas/runtime-a-worker-attestation.schema.json",
+      "sha256": "de3113f942a0b38c2740ffca70900415f8e197c3513c6192a3c213821ce9a136"
+    },
+    {
+      "path": "test/backend-plan-a.test.mjs",
+      "sha256": "3267c03b30e79f254566fbece71fc9a04dfaea983e2d49df2faf95595716811f"
+    },
+    {
+      "path": "test/plan-a-closure.test.mjs",
+      "sha256": "45e2cdafa6b083b22d68e93cd7c1b07a61bff2fdcdcd443d450863d148bdcdfa"
+    },
+    {
+      "path": "test/plan-a-evidence-binding.test.mjs",
+      "sha256": "71e468b8837c53a5eacc1c9fd24f36eb4c6dd55a5a3eaeac6fe1e11de19bd2b8"
+    },
+    {
+      "path": "test/plan-a-foundation.test.mjs",
+      "sha256": "d03e659e0213956395c4c6a1d3c04dd0da0edf8ae411929b7326e6a920a6b173"
+    },
+    {
+      "path": "test/plan-a-workflow.test.mjs",
+      "sha256": "f32ce0a4b0b8d840392fdf04c0d6d703edd98d0898c869225e611ba8b1114c95"
+    },
+    {
+      "path": "test/task-contract-v1.test.mjs",
+      "sha256": "d12fa3bc9998ddcfd7351cdfb39ee284484423be7ff06d0b85745429fddbe01d"
+    },
+    {
+      "path": "test/worker-attestation-plan-a.test.mjs",
+      "sha256": "6975491b093abc1dfd10c62d1b79c82609683fa0d46511f15629f1eec36abbe5"
+    }
+  ]
+}

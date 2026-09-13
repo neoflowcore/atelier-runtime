@@ -190,3 +190,20 @@ The evidence gate re-opens all three JSON files and independently recomputes bot
 ## V1 non-regression static proof
 
 Before this A4 candidate was assembled, fresh remote comparison from packaged `main=2f82365b7270fd7b4cb15dcf4f87fe7e0e05f4d9` to Runtime A3 `5d58262733544406f12619ebf9bfaece4daad7a4` reported `ahead_by=3`, `behind_by=0`; every changed path was an additive Runtime A workflow/module/schema/test/fixture/doc path. No pre-existing V1 workflow, schema, runtime execution module, release policy, security boundary or package file was modified. A4 continues the same rule and changes only Plan A-owned files plus the Plan A workflow/documentation.
+
+## A5 static closure and SYNC-2 handoff preparation
+
+Plan A closure is represented by `RUNTIME_A_PLAN_A_CLOSURE_V1`. The closure receipt is deliberately a **static compatible-final-candidate** receipt, not a Runtime A seal and not a live self-hosted execution claim.
+
+```text
+CANDIDATE_CLASS=COMPATIBLE_FINAL_CANDIDATE_STATIC
+RUNTIME_A_SEALED=NO
+LIVE_SELF_HOSTED_INVOCATION=NOT_RUN
+SYNC2_STATE=WAITING_A_REV42_SEALED_MANIFEST
+```
+
+The closure verifier binds the sealed SYNC-1 core hashes, the frozen Runtime V1 control, the current development base, the fixed Plan A backend identity, the complete Plan A-owned component manifest, the exact candidate SHA/tree supplied by fresh remote readback, the complete changed-path set relative to the development base, and observed Actions count.
+
+A PASS requires all changed paths to be in the explicit Plan A-owned path set. Any change to existing V1 runtime/workflow/schema/security/release files therefore blocks closure rather than being silently accepted. The closure also requires `behind_by=0` and zero observed workflow runs under Action Economy v2.
+
+This evidence is suitable for the Runtime side of the next cross-account gate only after the post-commit candidate SHA/tree are inserted from fresh remote readback. It does not assert `SYNC_2=PASS`; Developer A must still provide the sealed Rev4.2 interface manifest and fixtures, and the interface-manifest match must then be evaluated at SYNC-2.
