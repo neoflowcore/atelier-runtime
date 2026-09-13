@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier-runtime.invalid/schemas/runtime-a-evidence-binding.schema.json",
+  "title": "Atelier Runtime Plan A Evidence Binding Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_schema_version", "receipt_type", "request_id", "idempotency_key",
+    "interface_version", "interface_manifest_sha256", "task_contract_hash",
+    "requested_sha", "executed_sha", "requested_runtime_sha", "runtime_engine_sha",
+    "backend_id", "backend_kind", "expected_runner_labels",
+    "worker_attestation_sha256", "foundation_receipt_sha256", "worker_fingerprint_sha256",
+    "source_integrity", "lease_state", "remote_source_write_authority", "result", "failure_reason"
+  ],
+  "properties": {
+    "receipt_schema_version": { "const": 1 },
+    "receipt_type": { "const": "RUNTIME_A_EVIDENCE_BINDING_V1" },
+    "request_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "idempotency_key": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "interface_version": { "const": "1.0.0" },
+    "interface_manifest_sha256": { "const": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617" },
+    "task_contract_hash": { "anyOf": [{ "$ref": "#/$defs/sha256" }, { "type": "null" }] },
+    "requested_sha": { "$ref": "#/$defs/sha40" },
+    "executed_sha": { "anyOf": [{ "$ref": "#/$defs/sha40" }, { "type": "null" }] },
+    "requested_runtime_sha": { "$ref": "#/$defs/sha40" },
+    "runtime_engine_sha": { "$ref": "#/$defs/sha40" },
+    "backend_id": { "const": "SELF_HOSTED_LINUX_X64_V1" },
+    "backend_kind": { "const": "SELF_HOSTED" },
+    "expected_runner_labels": { "const": ["self-hosted", "linux", "x64", "atelier-runtime-v1"] },
+    "worker_attestation_sha256": { "$ref": "#/$defs/sha256" },
+    "foundation_receipt_sha256": { "$ref": "#/$defs/sha256" },
+    "worker_fingerprint_sha256": { "$ref": "#/$defs/sha256" },
+    "source_integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tree_sha_before", "tree_sha_after", "tracked_source_mutation_detected"],
+      "properties": {
+        "tree_sha_before": { "anyOf": [{ "$ref": "#/$defs/sha40" }, { "type": "null" }] },
+        "tree_sha_after": { "anyOf": [{ "$ref": "#/$defs/sha40" }, { "type": "null" }] },
+        "tracked_source_mutation_detected": { "type": "boolean" }
+      }
+    },
+    "lease_state": { "const": "NOT_IMPLEMENTED_PLAN_D" },
+    "remote_source_write_authority": { "const": "NONE" },
+    "result": { "enum": ["PASS", "BLOCKED", "APP_FAILURE", "INFRA_FAILURE"] },
+    "failure_reason": { "type": ["string", "null"] }
+  },
+  "$defs": {
+    "sha40": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

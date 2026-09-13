@@ -156,3 +156,37 @@ The attestation binds the requested/actual Runtime SHA, fixed backend ID, schedu
 The `atelier-runtime-v1` label is enforced by the GitHub Actions `runs-on` selector. GitHub does not expose the complete matched runner-label set as a normal job environment variable, so the receipt records that selector as expected scheduler identity rather than falsely claiming runtime enumeration of every label.
 
 Lease allocation, lease ownership, renewal, expiry and multi-caller contention are intentionally absent. Those remain Plan D responsibilities under the validated Runtime workpack.
+
+## A4 evidence cross-binding
+
+The Plan A closeout candidate adds a Runtime-owned evidence binding receipt. It does not change the Task Contract or interpret any new Pilote semantics.
+
+```text
+worker attestation bytes --sha256--+
+                                    +--> RUNTIME_A_EVIDENCE_BINDING_V1
+foundation receipt bytes --sha256--+
+```
+
+The binding fails closed unless both child receipts agree on request/idempotency identity, requested and actual Runtime SHA, fixed backend identity, expected runner labels, and observed runner environment/OS/architecture/Node version. The binding also carries the Task Contract hash, exact target SHA pair, worker fingerprint, source-integrity evidence and exact child-file SHA-256 digests.
+
+A binding `PASS` requires:
+
+```text
+WORKER_ATTESTATION=PASS
+FOUNDATION_RECEIPT=PASS
+REQUEST_ID_MATCH=PASS
+IDEMPOTENCY_KEY_MATCH=PASS
+RUNTIME_IDENTITY_MATCH=PASS
+BACKEND_IDENTITY_MATCH=PASS
+TARGET_REQUESTED_SHA==TARGET_EXECUTED_SHA
+TREE_SHA_BEFORE==TREE_SHA_AFTER
+TRACKED_SOURCE_MUTATION_DETECTED=false
+REMOTE_SOURCE_WRITE_AUTHORITY=NONE
+LEASE_STATE=NOT_IMPLEMENTED_PLAN_D
+```
+
+The evidence gate re-opens all three JSON files and independently recomputes both child-file SHA-256 digests before accepting the binding. A standalone binding JSON is therefore insufficient to establish PASS if its referenced evidence bytes have changed.
+
+## V1 non-regression static proof
+
+Before this A4 candidate was assembled, fresh remote comparison from packaged `main=2f82365b7270fd7b4cb15dcf4f87fe7e0e05f4d9` to Runtime A3 `5d58262733544406f12619ebf9bfaece4daad7a4` reported `ahead_by=3`, `behind_by=0`; every changed path was an additive Runtime A workflow/module/schema/test/fixture/doc path. No pre-existing V1 workflow, schema, runtime execution module, release policy, security boundary or package file was modified. A4 continues the same rule and changes only Plan A-owned files plus the Plan A workflow/documentation.

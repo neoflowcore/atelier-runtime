@@ -108,6 +108,26 @@ jobs:
           retention-days: 7
           path: runtime-evidence/runtime-a-foundation-receipt.json
 
+      - name: Build Plan A evidence cross-binding
+        id: evidence_binding
+        if: always() && steps.worker_gate.outcome == 'success' && steps.foundation_receipt.outcome == 'success'
+        continue-on-error: true
+        run: node runtime/runtime/run-plan-a-evidence-binding.mjs runtime-evidence/runtime-a-worker-attestation.json runtime-evidence/runtime-a-foundation-receipt.json runtime-evidence/runtime-a-evidence-binding.json
+
+      - name: Upload Plan A evidence cross-binding
+        if: always() && steps.worker_gate.outcome == 'success' && steps.foundation_receipt.outcome == 'success'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-a-evidence-binding-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          retention-days: 7
+          path: runtime-evidence/runtime-a-evidence-binding.json
+
+      - name: Enforce Plan A evidence cross-binding
+        id: evidence_gate
+        if: always() && steps.worker_gate.outcome == 'success' && steps.foundation_receipt.outcome == 'success'
+        run: node runtime/runtime/run-plan-a-evidence-binding-gate.mjs runtime-evidence/runtime-a-evidence-binding.json runtime-evidence/runtime-a-worker-attestation.json runtime-evidence/runtime-a-foundation-receipt.json
+
       - name: Enforce self-hosted foundation PASS
         if: always() && steps.worker_gate.outcome == 'success'
         run: node runtime/runtime/run-plan-a-foundation-gate.mjs runtime-evidence/runtime-a-foundation-receipt.json

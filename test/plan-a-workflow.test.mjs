@@ -43,7 +43,7 @@ test("all action dependencies are pinned to exact 40-hex SHAs", () => {
   for (const line of uses) assert.match(line, /uses:\s*[^\s@]+@[0-9a-f]{40}(?:\s*#.*)?$/);
 });
 
-test("workflow consumes a fixed Task Contract path through the foundation runner and emits only foundation receipt evidence", () => {
+test("workflow consumes a fixed Task Contract path through the foundation runner and emits foundation receipt evidence", () => {
   assert.match(foundationRunner, /join\(targetDirectory, "\.atelier", "task-contract\.json"\)/);
   assert.match(workflow, /runtime-a-foundation-receipt\.json/);
   assert.match(workflow, /run-plan-a-foundation\.mjs/);
@@ -68,4 +68,23 @@ test("Plan A workflow grants no secret or write authority to the self-hosted wor
   assert.doesNotMatch(workflow, /pull-requests: write/);
   assert.doesNotMatch(workflow, /actions: write/);
   assert.equal((workflow.match(/persist-credentials: false/g) ?? []).length, 2);
+});
+
+test("foundation evidence is cross-bound before final PASS enforcement", () => {
+  const workerGate = workflow.indexOf("Enforce self-hosted worker admission");
+  const foundationReceipt = workflow.indexOf("Build self-hosted foundation receipt");
+  const evidenceBinding = workflow.indexOf("Build Plan A evidence cross-binding");
+  const evidenceGate = workflow.indexOf("Enforce Plan A evidence cross-binding");
+  const foundationGate = workflow.indexOf("Enforce self-hosted foundation PASS");
+  assert.ok(workerGate >= 0 && foundationReceipt > workerGate);
+  assert.ok(evidenceBinding > foundationReceipt);
+  assert.ok(evidenceGate > evidenceBinding);
+  assert.ok(foundationGate > evidenceGate);
+  assert.match(workflow, /run-plan-a-evidence-binding\.mjs/);
+  assert.match(workflow, /run-plan-a-evidence-binding-gate\.mjs/);
+});
+
+test("evidence gate receives worker and foundation receipts and no Plan D lease input", () => {
+  assert.match(workflow, /run-plan-a-evidence-binding-gate\.mjs runtime-evidence\/runtime-a-evidence-binding\.json runtime-evidence\/runtime-a-worker-attestation\.json runtime-evidence\/runtime-a-foundation-receipt\.json/);
+  assert.doesNotMatch(workflow, /lease_id|lease_ttl|lease_owner|lease_expir/i);
 });
