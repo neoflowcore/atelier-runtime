@@ -1,14 +1,15 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { computeTaskContractHash } from "../runtime/task-contract-v1.mjs";
 import { PLAN_A_BACKEND, buildPlanABackendReceipt, compilePlanABackendBinding } from "../runtime/backend-plan-a.mjs";
 
-const fixtureRoot = process.env.SYNC1_FIXTURE_ROOT;
+const here = dirname(fileURLToPath(import.meta.url));
+const fixtureRoot = process.env.SYNC1_FIXTURE_ROOT ?? join(here, "..", "fixtures", "runtime-a", "interface-v1");
 
 async function fixture(name) {
-  if (!fixtureRoot) throw new Error("SYNC1_FIXTURE_ROOT is required");
   return JSON.parse(await readFile(join(fixtureRoot, name), "utf8"));
 }
 
@@ -55,6 +56,25 @@ test("candidate-write fixture is understood but blocked by Plan A fences", async
   assert.ok(plan.reasons.includes("REMOTE_MUTATION_INTENT:PLAN_A_SOURCE_WRITE_ZERO"));
   assert.ok(plan.reasons.includes("SECRET_CLASS:PLAN_A_SECRET_ISSUANCE_NOT_AVAILABLE"));
   assert.ok(plan.reasons.some((reason) => reason.includes("GIT_CANDIDATE_WRITE:PLAN_A_UNSUPPORTED")));
+});
+
+
+test("Plan A requires SOURCE_READ for Git source acquisition", async () => {
+  const contract = await selfHostedReadOnlyContract();
+  contract.CAPABILITY_REQUIREMENTS = [];
+  contract.TASK_CONTRACT_HASH = computeTaskContractHash(contract);
+  const plan = compilePlanABackendBinding(contract);
+  assert.equal(plan.ok, false);
+  assert.ok(plan.reasons.includes("CAPABILITY_REQUIREMENTS:SOURCE_READ_REQUIRED_FOR_GIT"));
+});
+
+test("Plan A blocks any non-read touch declaration in validation plane", async () => {
+  const contract = await selfHostedReadOnlyContract();
+  contract.TOUCH_SET = [{ PATH: "README.md", OPERATION: "UPDATE" }];
+  contract.TASK_CONTRACT_HASH = computeTaskContractHash(contract);
+  const plan = compilePlanABackendBinding(contract);
+  assert.equal(plan.ok, false);
+  assert.ok(plan.reasons.includes("TOUCH_SET:PLAN_A_READ_ONLY_REQUIRED"));
 });
 
 test("Plan A backend receipt binds interface, task hash and actual backend identity", async () => {

@@ -36,6 +36,10 @@ export function compilePlanABackendBinding(taskContract) {
     for (const capability of taskContract.CAPABILITY_REQUIREMENTS) {
       if (!SUPPORTED_CAPABILITIES.has(capability)) reasons.push(`CAPABILITY_REQUIREMENTS:${capability}:PLAN_A_UNSUPPORTED`);
     }
+    if (taskContract.SOURCE_IDENTITY.KIND === "GIT" && !taskContract.CAPABILITY_REQUIREMENTS.includes("SOURCE_READ")) {
+      reasons.push("CAPABILITY_REQUIREMENTS:SOURCE_READ_REQUIRED_FOR_GIT");
+    }
+    if (taskContract.TOUCH_SET.some((entry) => entry.OPERATION !== "READ")) reasons.push("TOUCH_SET:PLAN_A_READ_ONLY_REQUIRED");
 
     if (taskContract.NETWORK_CLASS !== "NONE") reasons.push("NETWORK_CLASS:PLAN_A_EGRESS_ENFORCEMENT_NOT_AVAILABLE");
     if (!SUPPORTED_DATA_ACCESS.has(taskContract.DATA_ACCESS_CLASS)) reasons.push("DATA_ACCESS_CLASS:PLAN_A_UNSUPPORTED");

@@ -1,0 +1,20 @@
+{
+  "PROFILE": "ATELIER_TASK_JCS_V1",
+  "VECTORS": [
+    {
+      "FILE": "valid_01_read_only.json",
+      "TASK_CONTRACT_HASH": "d2fb156b45cb2f78f97e1550b2c972ada5e739ae0477fdc2944cb8e5b23ddb66",
+      "CANONICAL_PAYLOAD_UTF8_SHA256": "d2fb156b45cb2f78f97e1550b2c972ada5e739ae0477fdc2944cb8e5b23ddb66"
+    },
+    {
+      "FILE": "valid_02_candidate_write_intent.json",
+      "TASK_CONTRACT_HASH": "64884427a6765376acf7de8ba6d17c2be41b19d8a98b8e428089ca6bd3283111",
+      "CANONICAL_PAYLOAD_UTF8_SHA256": "64884427a6765376acf7de8ba6d17c2be41b19d8a98b8e428089ca6bd3283111"
+    },
+    {
+      "FILE": "valid_03_oracle_evidence_only.json",
+      "TASK_CONTRACT_HASH": "d281869d6bd7725d2d53dabafe4a6d68c99fc97e656d221ae5b9e0e57b3c2d0a",
+      "CANONICAL_PAYLOAD_UTF8_SHA256": "d281869d6bd7725d2d53dabafe4a6d68c99fc97e656d221ae5b9e0e57b3c2d0a"
+    }
+  ]
+}

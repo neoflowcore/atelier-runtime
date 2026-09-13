@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   FROZEN_TASK_CONTRACT_FIELDS,
   INTERFACE_MANIFEST_SHA256,
@@ -12,10 +13,10 @@ import {
   validateTaskContractV1
 } from "../runtime/task-contract-v1.mjs";
 
-const fixtureRoot = process.env.SYNC1_FIXTURE_ROOT;
+const here = dirname(fileURLToPath(import.meta.url));
+const fixtureRoot = process.env.SYNC1_FIXTURE_ROOT ?? join(here, "..", "fixtures", "runtime-a", "interface-v1");
 
 async function fixture(name) {
-  if (!fixtureRoot) throw new Error("SYNC1_FIXTURE_ROOT is required");
   return JSON.parse(await readFile(join(fixtureRoot, name), "utf8"));
 }
 
@@ -25,6 +26,34 @@ test("frozen interface identities are exact SYNC-1 values", () => {
   assert.equal(TASK_CONTRACT_SCHEMA_SHA256, "6afcf7aa1b7d3d73b28d6195326db22c82774de308664ce85ba52e42fba640e8");
   assert.equal(TASK_CONTRACT_MACHINE_SCHEMA_SHA256, "3bdbb85a7879c8cee2c7eb2f18c3936fac7a44389ec0ae61f0954b9c19660b65");
   assert.equal(FROZEN_TASK_CONTRACT_FIELDS.length, 27);
+});
+
+test("embedded machine schema bytes are the sealed SYNC-1 machine schema", async () => {
+  const schemaBytes = await readFile(join(fixtureRoot, "task-contract-core.schema.json"));
+  const { createHash } = await import("node:crypto");
+  const digest = createHash("sha256").update(schemaBytes).digest("hex");
+  assert.equal(digest, TASK_CONTRACT_MACHINE_SCHEMA_SHA256);
+});
+
+
+test("embedded SYNC-1 fixture copies are hash-bound and canonicalization vectors reproduce exactly", async () => {
+  const { createHash } = await import("node:crypto");
+  const binding = JSON.parse(await readFile(join(fixtureRoot, "SOURCE_BINDING.json"), "utf8"));
+  assert.equal(binding.interface_version, INTERFACE_VERSION);
+  assert.equal(binding.interface_manifest_sha256, INTERFACE_MANIFEST_SHA256);
+  for (const entry of binding.files) {
+    const bytes = await readFile(join(fixtureRoot, entry.path));
+    const digest = createHash("sha256").update(bytes).digest("hex");
+    assert.equal(digest, entry.sha256, entry.path);
+  }
+
+  const vectors = JSON.parse(await readFile(join(fixtureRoot, "CANONICALIZATION_VECTORS.json"), "utf8"));
+  assert.equal(vectors.PROFILE, "ATELIER_TASK_JCS_V1");
+  for (const vector of vectors.VECTORS) {
+    const value = await fixture(vector.FILE);
+    assert.equal(computeTaskContractHash(value), vector.TASK_CONTRACT_HASH, vector.FILE);
+    assert.equal(value.TASK_CONTRACT_HASH, vector.TASK_CONTRACT_HASH, vector.FILE);
+  }
 });
 
 test("A-side valid fixtures validate and reproduce their contract hashes", async () => {

@@ -1,0 +1,413 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.invalid/interfaces/pilote-runtime/task-contract-core-v1.schema.json",
+  "title": "PILOTE_RUNTIME_TASK_CONTRACT_V1 CORE_FROZEN",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "TASK_ID",
+    "PROJECT_ID",
+    "PHASE_ID",
+    "TASK_CLASS",
+    "WORKLOAD_CLASS",
+    "SOURCE_IDENTITY",
+    "EXPECTED_HEAD",
+    "EFFECT_CLASSES",
+    "ALLOWED_SCOPE",
+    "TOUCH_SET",
+    "CAPABILITY_REQUIREMENTS",
+    "RESOURCE_REQUIREMENTS",
+    "NETWORK_CLASS",
+    "DATA_ACCESS_CLASS",
+    "SECRET_CLASS",
+    "REMOTE_MUTATION_INTENT",
+    "HOST_OPERATION_INTENT",
+    "ORACLE_REQUIREMENT",
+    "ACCEPTANCE_REQUIREMENTS",
+    "VERIFIER_REQUIREMENTS",
+    "ECONOMY_BUDGET",
+    "INTERVENTION_POLICY",
+    "REPLAN_BOUNDARY",
+    "EXPECTED_OUTPUTS",
+    "EXPECTED_EVIDENCE",
+    "CONTRACT_VERSION",
+    "TASK_CONTRACT_HASH"
+  ],
+  "properties": {
+    "TASK_ID": {
+      "$ref": "#/$defs/id"
+    },
+    "PROJECT_ID": {
+      "$ref": "#/$defs/id"
+    },
+    "PHASE_ID": {
+      "$ref": "#/$defs/id"
+    },
+    "TASK_CLASS": {
+      "$ref": "#/$defs/token"
+    },
+    "WORKLOAD_CLASS": {
+      "$ref": "#/$defs/token"
+    },
+    "SOURCE_IDENTITY": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "KIND",
+        "LOCATOR"
+      ],
+      "properties": {
+        "KIND": {
+          "enum": [
+            "GIT",
+            "ARTIFACT",
+            "BUNDLE",
+            "OPAQUE",
+            "NONE"
+          ]
+        },
+        "LOCATOR": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "IMMUTABLE_DIGEST": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "EXPECTED_HEAD": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        {
+          "const": "NONE"
+        }
+      ]
+    },
+    "EFFECT_CLASSES": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "READ_ONLY",
+          "LOCAL_COMPUTE",
+          "LOCAL_WORKSPACE_WRITE",
+          "REMOTE_SOURCE_WRITE",
+          "REMOTE_PROVIDER_MUTATION",
+          "MERGE_OR_TAG",
+          "PRODUCTION_CHANGE",
+          "HOST_PRIVILEGED_CHANGE",
+          "EXTERNAL_ORACLE"
+        ]
+      }
+    },
+    "ALLOWED_SCOPE": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 512,
+        "pattern": "^[a-z][a-z0-9_-]{0,31}:[^\\s]+$"
+      }
+    },
+    "TOUCH_SET": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/touch"
+      }
+    },
+    "CAPABILITY_REQUIREMENTS": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "SOURCE_READ",
+          "FILESYSTEM_READ",
+          "FILESYSTEM_WRITE",
+          "PROCESS_EXEC",
+          "NETWORK_EGRESS",
+          "PROVIDER_API_READ",
+          "PROVIDER_API_MUTATE",
+          "GIT_CANDIDATE_WRITE",
+          "BROWSER_AUTOMATION",
+          "HUMAN_ORACLE",
+          "DEVICE_ORACLE",
+          "HOST_PRIVILEGED"
+        ]
+      }
+    },
+    "RESOURCE_REQUIREMENTS": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "EXECUTION_CLASS",
+        "OS_CLASS",
+        "ARCH_CLASS",
+        "WORKSPACE_CLASS"
+      ],
+      "properties": {
+        "EXECUTION_CLASS": {
+          "enum": [
+            "RUNTIME_DEFAULT",
+            "HOSTED_ELIGIBLE",
+            "SELF_HOSTED_REQUIRED",
+            "HOST_LOCAL_REQUIRED"
+          ]
+        },
+        "OS_CLASS": {
+          "enum": [
+            "ANY",
+            "LINUX",
+            "WINDOWS",
+            "MACOS"
+          ]
+        },
+        "ARCH_CLASS": {
+          "enum": [
+            "ANY",
+            "X64",
+            "ARM64"
+          ]
+        },
+        "WORKSPACE_CLASS": {
+          "enum": [
+            "NONE",
+            "READ_ONLY",
+            "ISOLATED_WRITABLE"
+          ]
+        }
+      }
+    },
+    "NETWORK_CLASS": {
+      "enum": [
+        "NONE",
+        "LOOPBACK_ONLY",
+        "ALLOWLIST_READ",
+        "ALLOWLIST_MUTATE"
+      ]
+    },
+    "DATA_ACCESS_CLASS": {
+      "enum": [
+        "PUBLIC",
+        "PROJECT_INTERNAL",
+        "PRIVATE_SOURCE",
+        "PRODUCTION"
+      ]
+    },
+    "SECRET_CLASS": {
+      "enum": [
+        "NONE",
+        "SOURCE_READ",
+        "SOURCE_WRITE",
+        "PROVIDER_MUTATION",
+        "PRODUCTION_CONTROL"
+      ]
+    },
+    "REMOTE_MUTATION_INTENT": {
+      "enum": [
+        "NONE",
+        "DECLARED",
+        "EXACT_APPROVAL_REQUIRED"
+      ]
+    },
+    "HOST_OPERATION_INTENT": {
+      "enum": [
+        "NONE",
+        "DECLARED",
+        "EXACT_APPROVAL_REQUIRED"
+      ]
+    },
+    "ORACLE_REQUIREMENT": {
+      "enum": [
+        "NONE",
+        "OPTIONAL",
+        "REQUIRED"
+      ]
+    },
+    "ACCEPTANCE_REQUIREMENTS": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/requirement"
+      }
+    },
+    "VERIFIER_REQUIREMENTS": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/requirement"
+      }
+    },
+    "ECONOMY_BUDGET": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "MAX_EXECUTIONS",
+        "MAX_RETRIES",
+        "MAX_REPAIRS",
+        "MAX_PARALLELISM"
+      ],
+      "properties": {
+        "MAX_EXECUTIONS": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "MAX_RETRIES": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "MAX_REPAIRS": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "MAX_PARALLELISM": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1024
+        }
+      }
+    },
+    "INTERVENTION_POLICY": {
+      "$ref": "#/$defs/token"
+    },
+    "REPLAN_BOUNDARY": {
+      "$ref": "#/$defs/token"
+    },
+    "EXPECTED_OUTPUTS": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/requirement"
+      }
+    },
+    "EXPECTED_EVIDENCE": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/requirement"
+      }
+    },
+    "CONTRACT_VERSION": {
+      "const": "1.0.0"
+    },
+    "TASK_CONTRACT_HASH": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$"
+    },
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Z][A-Z0-9_.-]{0,63}$"
+    },
+    "touch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "PATH",
+        "OPERATION"
+      ],
+      "properties": {
+        "PATH": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"
+        },
+        "OPERATION": {
+          "enum": [
+            "READ",
+            "CREATE",
+            "UPDATE",
+            "DELETE",
+            "MOVE"
+          ]
+        },
+        "FROM_PATH": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "OPERATION": {
+                "const": "MOVE"
+              }
+            },
+            "required": [
+              "OPERATION"
+            ]
+          },
+          "then": {
+            "required": [
+              "FROM_PATH"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "OPERATION": {
+                "enum": [
+                  "READ",
+                  "CREATE",
+                  "UPDATE",
+                  "DELETE"
+                ]
+              }
+            },
+            "required": [
+              "OPERATION"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "FROM_PATH"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "requirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ID",
+        "TEXT"
+      ],
+      "properties": {
+        "ID": {
+          "$ref": "#/$defs/id"
+        },
+        "TEXT": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier-runtime.invalid/schemas/runtime-a-foundation-receipt.schema.json",
+  "title": "Atelier Runtime Plan A Self-Hosted Foundation Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_schema_version",
+    "receipt_type",
+    "request_id",
+    "idempotency_key",
+    "repository",
+    "requested_sha",
+    "executed_sha",
+    "requested_runtime_sha",
+    "runtime_engine_sha",
+    "interface_version",
+    "interface_manifest_sha256",
+    "task_contract_hash",
+    "backend_identity",
+    "source_integrity",
+    "probe_scope",
+    "result",
+    "failure_reason"
+  ],
+  "properties": {
+    "receipt_schema_version": {
+      "const": 1
+    },
+    "receipt_type": {
+      "const": "RUNTIME_A_SELF_HOSTED_FOUNDATION_V1"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "requested_sha": {
+      "$ref": "#/$defs/sha40"
+    },
+    "executed_sha": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/sha40"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "requested_runtime_sha": {
+      "$ref": "#/$defs/sha40"
+    },
+    "runtime_engine_sha": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/sha40"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "interface_version": {
+      "const": "1.0.0"
+    },
+    "interface_manifest_sha256": {
+      "const": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617"
+    },
+    "task_contract_hash": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/sha256"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "backend_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "backend_id",
+        "backend_kind",
+        "expected_runner_labels",
+        "runner_environment",
+        "runner_os",
+        "runner_arch",
+        "node_version",
+        "fallback_backend_id"
+      ],
+      "properties": {
+        "backend_id": {
+          "const": "SELF_HOSTED_LINUX_X64_V1"
+        },
+        "backend_kind": {
+          "const": "SELF_HOSTED"
+        },
+        "expected_runner_labels": {
+          "const": [
+            "self-hosted",
+            "linux",
+            "x64",
+            "atelier-runtime-v1"
+          ]
+        },
+        "runner_environment": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "runner_os": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "runner_arch": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "node_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fallback_backend_id": {
+          "type": "null"
+        }
+      }
+    },
+    "source_integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tree_sha_before",
+        "tree_sha_after",
+        "tracked_source_mutation_detected",
+        "remote_source_write_authority"
+      ],
+      "properties": {
+        "tree_sha_before": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/sha40"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tree_sha_after": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/sha40"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tracked_source_mutation_detected": {
+          "type": "boolean"
+        },
+        "remote_source_write_authority": {
+          "const": "NONE"
+        }
+      }
+    },
+    "probe_scope": {
+      "const": "BACKEND_FOUNDATION_READ_ONLY_PROBE"
+    },
+    "result": {
+      "enum": [
+        "PASS",
+        "BLOCKED",
+        "APP_FAILURE",
+        "INFRA_FAILURE"
+      ]
+    },
+    "failure_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "$defs": {
+    "sha40": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
