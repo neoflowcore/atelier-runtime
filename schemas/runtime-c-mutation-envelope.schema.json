@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-c-mutation-envelope.schema.json",
+  "title": "Atelier Runtime C Source Write Gateway Envelope V1",
+  "type": "object",
+  "required": ["envelope_type","operation","task_contract_hash","expected_head","touch_set_sha256","workspace_identity_sha256","dag_sha256","authority_evidence_sha256","repository","target","source_write_authority","merge_authority","final_merge_authority","force_push","lease_state","envelope_sha256"],
+  "properties": {
+    "envelope_type": {"const":"RUNTIME_C_SOURCE_WRITE_GATEWAY_ENVELOPE_V1"},
+    "operation": {"enum":["CANDIDATE_BRANCH_PUSH","DRAFT_PR_CREATE"]},
+    "source_write_authority": {"const":"GATEWAY_ONLY"},
+    "merge_authority": {"const":"NONE"},
+    "final_merge_authority": {"const":"HUMAN_ONLY"},
+    "force_push": {"const":false},
+    "lease_state": {"const":"NOT_IMPLEMENTED_PLAN_D"},
+    "envelope_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": true
+}

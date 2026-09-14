@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-c-dev-plane.schema.json",
+  "title": "Atelier Runtime C Development Plane V1",
+  "type": "object",
+  "required": ["receipt_type","interface_version","interface_manifest_sha256","task_contract_hash","runtime_b_seal_sha256","backend_id","execution_profile","workspace_class","workspace_identity_sha256","source_locator","expected_head","touch_set_sha256","remote_source_write_authority","validation_execution_source_write","lease_state","result","reasons"],
+  "properties": {
+    "receipt_type": {"const":"RUNTIME_C_DEV_PLANE_V1"},
+    "interface_version": {"const":"1.0.0"},
+    "workspace_class": {"const":"ISOLATED_WRITABLE"},
+    "backend_id": {"const":"SELF_HOSTED_LINUX_X64_V1"},
+    "execution_profile": {"const":"SELF_HOSTED_LINUX_X64_DEV_WORKSPACE_V1"},
+    "remote_source_write_authority": {"const":"GATEWAY_ONLY"},
+    "validation_execution_source_write": {"const":0},
+    "lease_state": {"const":"NOT_IMPLEMENTED_PLAN_D"},
+    "result": {"enum":["ELIGIBLE","BLOCKED"]},
+    "reasons": {"type":"array","items":{"type":"string"}}
+  },
+  "additionalProperties": true
+}
