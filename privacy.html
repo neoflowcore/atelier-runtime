@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Atelier Dev - Pilote Privacy Policy</title>
+  <meta name="description" content="Privacy Policy for Atelier Dev - Pilote GPT Actions.">
+  <style>
+    :root { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.65; }
+    body { max-width: 880px; margin: 0 auto; padding: 40px 20px 72px; }
+    h1 { line-height: 1.2; margin-bottom: .25rem; }
+    h2 { margin-top: 2rem; line-height: 1.35; }
+    h3 { margin-top: 1.4rem; }
+    .meta, .note { opacity: .78; }
+    .box { border: 1px solid currentColor; border-radius: 12px; padding: 16px 18px; margin: 18px 0; }
+    code { overflow-wrap: anywhere; }
+    a { color: inherit; }
+    hr { margin: 3rem 0; opacity: .35; }
+    ul { padding-left: 1.35rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Atelier Dev - Pilote 개인정보처리방침</h1>
+    <p class="meta"><strong>시행일:</strong> 2026-09-14 · <strong>최종 수정일:</strong> 2026-09-14</p>
+
+    <div class="box">
+      <strong>요약:</strong> Atelier Dev - Pilote는 사용자의 명시적 요청에 따라 ChatGPT의 GPT Action을 통해 GitHub API와 통신할 수 있습니다. Action 수행에 필요한 저장소·브랜치·커밋·파일·Pull Request·Workflow 관련 정보가 처리될 수 있습니다. 인증 비밀값을 응답에 노출하도록 설계하지 않았으며, 이 정적 개인정보처리방침 페이지 자체는 입력 폼·분석 스크립트·광고·쿠키를 사용하지 않습니다.
+    </div>
+
+    <h2>1. 적용 범위</h2>
+    <p>본 방침은 <strong>Atelier Dev - Pilote</strong> GPT의 GitHub Action 사용 및 이 개인정보처리방침 페이지에 적용됩니다. Pilote는 GitHub 계정/조직 <strong>neoflowcore</strong>에서 유지되는 관련 개발 자원과 연동될 수 있습니다. 본 문서는 기술적 데이터 처리 방침을 설명하며, 특정 국가에서 사업자 또는 개인정보처리자에게 추가로 요구되는 고지 의무가 있는 경우 해당 의무를 대체하지 않습니다.</p>
+
+    <h2>2. 처리될 수 있는 정보</h2>
+    <p>사용자가 GitHub 관련 작업을 명시적으로 요청하는 경우, 요청을 수행하는 데 필요한 범위에서 다음 정보가 처리될 수 있습니다.</p>
+    <ul>
+      <li>GitHub 저장소 소유자와 저장소 이름, 기본 브랜치 및 대상 브랜치/참조(ref)</li>
+      <li>commit, tree, blob SHA와 기타 Git 객체 식별자</li>
+      <li>파일 경로 및 사용자가 읽기·생성·변경을 요청한 파일 내용</li>
+      <li>Pull Request 번호, 상태, 제목, 본문 및 관련 메타데이터</li>
+      <li>GitHub Actions workflow, run, attempt, job, artifact 관련 식별자와 메타데이터</li>
+      <li>사용자가 Action 수행을 위해 제공한 요청 내용, 작업 범위, 승인 관련 식별정보</li>
+      <li>안전한 실행 확인에 필요한 readback, hash, evidence 및 오류 정보</li>
+    </ul>
+    <p>Pilote는 비밀번호, 개인 액세스 토큰(PAT), API key와 같은 인증 비밀값을 사용자가 대화에 붙여넣도록 요구하지 않습니다. 사용자는 대화나 파일에 비밀값을 직접 입력하지 않아야 합니다.</p>
+
+    <h2>3. 처리 목적</h2>
+    <ul>
+      <li>사용자가 요청한 GitHub 읽기 또는 승인된 변경 작업 수행</li>
+      <li>저장소·브랜치·커밋·파일 identity 확인 및 변경 후 readback</li>
+      <li>승인 범위, 작업 범위, 재시도/중복 실행 방지 등 안전 경계 적용</li>
+      <li>Runtime 또는 GitHub Actions 검증이 명시적으로 요청된 경우 해당 검증 수행</li>
+      <li>오류 진단, 일관성 확인, 감사 가능한 evidence 생성</li>
+    </ul>
+
+    <h2>4. 인증정보와 권한</h2>
+    <p>GPT Action 인증정보는 ChatGPT Builder의 Action 인증 설정에서 관리될 수 있습니다. Pilote는 인증 비밀값 자체를 일반 응답으로 출력하거나 사용자에게 공개하도록 설계되지 않았습니다. GitHub에 전달되는 인증 헤더와 권한 적용은 OpenAI의 GPT Action 실행 환경 및 GitHub의 인증 시스템을 통해 처리됩니다.</p>
+    <p><strong>중요:</strong> 운영자가 보유한 고정 Bearer/API-key 자격증명을 사용하는 구성은 공개 다중 사용자 서비스에 적합한 사용자별 권한 모델이 아닐 수 있습니다. 공개 배포 전에는 필요한 경우 사용자별 OAuth 또는 권한이 제한된 중계 계층을 적용하여 사용자가 운영자의 GitHub 권한을 간접적으로 공유하지 않도록 해야 합니다.</p>
+
+    <h2>5. 제3자 서비스</h2>
+    <p>Pilote Action을 사용할 때 데이터는 요청 수행에 필요한 범위에서 다음 서비스에 의해 처리될 수 있습니다.</p>
+    <ul>
+      <li><strong>OpenAI / ChatGPT:</strong> 대화, GPT 실행 및 Action 호출 처리</li>
+      <li><strong>GitHub:</strong> 저장소 API, Git 객체, Pull Request, Actions 및 관련 기록 처리</li>
+      <li><strong>GitHub Pages:</strong> 본 정적 개인정보처리방침 페이지 제공</li>
+    </ul>
+    <p>각 서비스의 데이터 처리는 해당 서비스의 약관과 개인정보처리방침이 함께 적용될 수 있습니다.</p>
+    <ul>
+      <li><a href="https://openai.com/policies/privacy-policy/" rel="noopener noreferrer">OpenAI Privacy Policy</a></li>
+      <li><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener noreferrer">GitHub General Privacy Statement</a></li>
+    </ul>
+
+    <h2>6. 저장 및 보존</h2>
+    <p>이 개인정보처리방침 웹페이지 자체는 입력 폼, 자체 분석 스크립트, 광고 SDK 또는 별도 사용자 데이터베이스를 운영하지 않습니다. 다만 Pilote를 통한 작업 기록은 다음 위치에 존재할 수 있습니다.</p>
+    <ul>
+      <li>사용자의 ChatGPT 대화 또는 사용자가 업로드한 파일</li>
+      <li>GitHub 저장소의 commit, branch, Pull Request, workflow 또는 audit/evidence 기록</li>
+      <li>사용자가 명시적으로 보존하도록 요청한 개발 산출물 또는 evidence package</li>
+    </ul>
+    <p>이러한 정보의 보존기간은 해당 서비스의 정책, 사용자의 계정 설정, 저장소 정책 및 프로젝트 운영 정책에 따릅니다. 운영자가 직접 통제하는 별도 evidence를 더 이상 필요로 하지 않는 경우, 보안·감사·법적 보존 의무가 없는 범위에서 삭제 또는 비식별화할 수 있습니다.</p>
+
+    <h2>7. 공유 및 판매</h2>
+    <p>Pilote 운영 목적상 사용자의 개인정보를 광고 목적으로 판매하거나 대여하는 별도 사업 모델을 운영하지 않습니다. 다만 사용자가 요청한 Action을 수행하기 위해 OpenAI와 GitHub 등 필요한 서비스 제공자에게 정보가 전달될 수 있습니다.</p>
+
+    <h2>8. 보안</h2>
+    <p>Pilote는 작업 범위를 제한하고, 가능한 경우 최소 권한, exact identity 확인, 승인 범위 결속, 비강제(non-force) 변경, readback 및 fail-closed 정책을 사용하도록 설계됩니다. 그러나 인터넷을 통한 데이터 전송 또는 제3자 서비스 사용에 절대적인 보안을 보장할 수는 없습니다.</p>
+
+    <h2>9. 사용자의 선택과 요청</h2>
+    <ul>
+      <li>GitHub Action 실행을 원하지 않으면 관련 요청을 하지 않을 수 있습니다.</li>
+      <li>대화에 비밀번호, PAT, API key, 개인용 secret을 입력하지 마십시오.</li>
+      <li>운영자가 직접 관리하는 GitHub 저장소나 evidence에 포함된 정보의 정정 또는 삭제 요청이 필요한 경우 아래 문의 경로를 이용할 수 있습니다.</li>
+      <li>OpenAI 또는 GitHub가 직접 보유하는 데이터에 대한 요청은 각 서비스의 개인정보 보호 절차를 이용해야 할 수 있습니다.</li>
+    </ul>
+
+    <h2>10. 국제적 처리</h2>
+    <p>OpenAI, GitHub 및 관련 인프라는 사용자가 거주하는 국가와 다른 국가에서 데이터를 처리할 수 있습니다. 국제 이전에 관한 사항은 각 서비스 제공자의 정책과 적용 법률에 따릅니다.</p>
+
+    <h2>11. 아동</h2>
+    <p>Pilote는 아동을 대상으로 특별히 설계된 서비스가 아닙니다. 적용되는 서비스 이용 연령 및 법적 요구사항을 준수해야 합니다.</p>
+
+    <h2>12. 방침 변경</h2>
+    <p>Action의 기능, 인증 방식, 데이터 처리 범위 또는 관련 법적 요구사항이 변경되는 경우 본 방침을 갱신할 수 있습니다. 중요한 변경이 있는 경우 이 페이지의 최종 수정일을 변경합니다.</p>
+
+    <h2>13. 문의</h2>
+    <p>본 방침 또는 운영자가 직접 관리하는 GitHub 데이터 처리에 관한 문의는 다음 공개 이슈 채널을 이용할 수 있습니다.</p>
+    <p><a href="https://github.com/neoflowcore/atelier-runtime/issues" rel="noopener noreferrer">https://github.com/neoflowcore/atelier-runtime/issues</a></p>
+    <p class="note">보안 취약점, 인증 비밀값, PAT/API key 또는 기타 민감한 정보는 공개 GitHub Issue에 게시하지 마십시오.</p>
+
+    <hr>
+
+    <h1 lang="en">Atelier Dev - Pilote Privacy Policy</h1>
+    <p class="meta" lang="en"><strong>Effective:</strong> September 14, 2026 · <strong>Last updated:</strong> September 14, 2026</p>
+
+    <div class="box" lang="en">
+      <strong>Summary:</strong> Atelier Dev - Pilote may communicate with the GitHub API through ChatGPT GPT Actions when explicitly requested by the user. Repository, branch, commit, file, pull-request, workflow, job, and artifact information may be processed as needed to perform the requested action. Authentication secrets are not intended to be exposed in assistant responses. This static policy page itself uses no input forms, analytics scripts, advertising, or application cookies.
+    </div>
+
+    <h2 lang="en">1. Scope</h2>
+    <p lang="en">This policy applies to GitHub Actions used by <strong>Atelier Dev - Pilote</strong> and to this privacy-policy page. Related development resources may be maintained under the GitHub account or organization <strong>neoflowcore</strong>. This document describes technical data-handling practices and does not replace any additional notices required by applicable law.</p>
+
+    <h2 lang="en">2. Data that may be processed</h2>
+    <ul lang="en">
+      <li>GitHub repository owner/name, branches, refs, and default-branch information;</li>
+      <li>commit, tree, blob SHAs and related Git identifiers;</li>
+      <li>file paths and file content the user asks to read, create, or modify;</li>
+      <li>pull-request metadata;</li>
+      <li>GitHub Actions workflow, run, attempt, job, and artifact metadata;</li>
+      <li>task scope, approval-bound identifiers, hashes, readback, evidence, and error information needed for safe execution.</li>
+    </ul>
+    <p lang="en">Pilote does not require users to paste passwords, personal access tokens, API keys, or other authentication secrets into the conversation. Users should not submit such secrets in prompts or files.</p>
+
+    <h2 lang="en">3. Purposes</h2>
+    <p lang="en">Data is processed to perform user-requested GitHub reads or approved mutations, verify exact source and target identities, apply execution and retry boundaries, perform explicitly requested Runtime/Actions verification, diagnose failures, and produce auditable readback or evidence.</p>
+
+    <h2 lang="en">4. Authentication and permissions</h2>
+    <p lang="en">Action credentials may be configured in the ChatGPT GPT Builder. Pilote is not designed to reveal those credentials in normal responses. Authentication headers and permission enforcement are handled through the GPT Action environment and GitHub.</p>
+    <p lang="en"><strong>Important:</strong> a fixed operator-held Bearer/API-key credential may not be an appropriate per-user authorization model for a public multi-user GPT. Before public deployment, per-user OAuth or a suitably bounded authorization proxy should be used where necessary so public users do not indirectly share the operator's GitHub privileges.</p>
+
+    <h2 lang="en">5. Third-party services</h2>
+    <p lang="en">OpenAI/ChatGPT, GitHub, and GitHub Pages may process data as necessary to provide the GPT, Action calls, repository functions, and this static policy page. Their own terms and privacy policies may apply.</p>
+
+    <h2 lang="en">6. Storage and retention</h2>
+    <p lang="en">This static page does not operate its own form, analytics script, advertising SDK, or separate user database. Records may nevertheless exist in ChatGPT conversations, user-uploaded files, GitHub commits/branches/pull requests/workflows/audit evidence, or development evidence packages the user explicitly asks to preserve. Retention is governed by the applicable service, account, repository, project, security, audit, and legal requirements.</p>
+
+    <h2 lang="en">7. Sale and sharing</h2>
+    <p lang="en">The Pilote operating model does not separately sell or rent user personal data for advertising. Information may be transmitted to OpenAI and GitHub as needed to perform the user-requested service.</p>
+
+    <h2 lang="en">8. Security</h2>
+    <p lang="en">Pilote is designed to use bounded scope, least privilege where available, exact identity checks, approval binding, non-force changes, readback, and fail-closed behavior. No internet-based system can guarantee absolute security.</p>
+
+    <h2 lang="en">9. User choices and requests</h2>
+    <p lang="en">Users may choose not to request GitHub Actions, should not submit secrets, and may request correction or deletion of operator-controlled records where applicable. Requests concerning data controlled directly by OpenAI or GitHub may need to be submitted through those providers' privacy processes.</p>
+
+    <h2 lang="en">10. International processing</h2>
+    <p lang="en">OpenAI, GitHub, and related infrastructure may process data in countries other than the user's country. Applicable provider policies and law govern such transfers.</p>
+
+    <h2 lang="en">11. Children</h2>
+    <p lang="en">Pilote is not specifically directed to children. Applicable service age requirements and law must be followed.</p>
+
+    <h2 lang="en">12. Changes</h2>
+    <p lang="en">This policy may be updated when Action capabilities, authentication, data handling, or legal requirements change. The last-updated date above will be revised for material changes.</p>
+
+    <h2 lang="en">13. Contact</h2>
+    <p lang="en">For questions about this policy or operator-controlled GitHub data, use the public issue channel:</p>
+    <p lang="en"><a href="https://github.com/neoflowcore/atelier-runtime/issues" rel="noopener noreferrer">https://github.com/neoflowcore/atelier-runtime/issues</a></p>
+    <p class="note" lang="en">Do not post security vulnerabilities, credentials, PATs/API keys, or other sensitive information in a public GitHub Issue.</p>
+  </main>
+</body>
+</html>
