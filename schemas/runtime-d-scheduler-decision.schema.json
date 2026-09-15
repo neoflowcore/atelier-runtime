@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-d-scheduler-decision.schema.json",
+  "title": "Runtime D Scheduler Decision V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decision_type","idempotency_key","caller_id","task_contract_hash","approval_id","dispatch_nonce","execution_id","generation","repository","branch","workspace_id","scope_sha256","operation_class","lease_id","runtime_c_source_write_gateway_required","source_write_authority","merge_authority","final_merge_authority","new_execution_created","completed","result","decision_sha256"],
+  "properties": {
+    "decision_type": {"const":"RUNTIME_D_SCHEDULER_DECISION_V1"},
+    "idempotency_key": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "caller_id": {"type":"string","minLength":1},
+    "task_contract_hash": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "approval_id": {"type":"string","minLength":1},
+    "dispatch_nonce": {"type":"string","minLength":1},
+    "execution_id": {"type":"string","minLength":1},
+    "generation": {"type":"integer","minimum":1},
+    "repository": {"type":"string","minLength":3},
+    "branch": {"type":"string","minLength":1},
+    "workspace_id": {"type":"string","minLength":1},
+    "scope_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "operation_class": {"enum":["READ_ONLY","CANDIDATE_WRITE"]},
+    "lease_id": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "runtime_c_source_write_gateway_required": {"type":"boolean"},
+    "source_write_authority": {"const":"NONE_FROM_SCHEDULER"},
+    "merge_authority": {"const":"NONE"},
+    "final_merge_authority": {"const":"HUMAN_ONLY"},
+    "new_execution_created": {"type":"boolean"},
+    "completed": {"type":"boolean"},
+    "result": {"enum":["SCHEDULED","IDEMPOTENT_REUSE","COMPLETED"]},
+    "decision_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"}
+  }
+}
