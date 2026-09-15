@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-e-sync4-final-gate-input.schema.json",
+  "title": "Runtime E SYNC-4 Final Gate Input V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "input_type",
+    "pilote_rev5_status",
+    "pilote_rev5_identity_sha256",
+    "pilote_rev5_package_sha256",
+    "interface_version",
+    "interface_manifest_sha256",
+    "task_contract_schema_sha256",
+    "task_contract_machine_schema_sha256",
+    "frozen_27_fields_mutation",
+    "pilote_semantic_reimplementation",
+    "runtime_semantic_reimplementation",
+    "runtime_e_head",
+    "runtime_e_tree",
+    "cross_stack_result",
+    "cross_stack_contradiction_count",
+    "runtime_production_merge_authority",
+    "final_merge_authority",
+    "promotion_acceptance_evidence_sha256",
+    "rollback_acceptance_evidence_sha256",
+    "bundle_evidence_sha256"
+  ],
+  "properties": {
+    "input_type": {
+      "const": "SYNC4_PILOTE_REV5_FINAL_GATE_V1"
+    },
+    "pilote_rev5_status": {
+      "const": "SEALED"
+    },
+    "pilote_rev5_identity_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "pilote_rev5_package_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "interface_version": {
+      "const": "1.0.0"
+    },
+    "interface_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "task_contract_schema_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "task_contract_machine_schema_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "frozen_27_fields_mutation": {
+      "const": 0
+    },
+    "pilote_semantic_reimplementation": {
+      "const": 0
+    },
+    "runtime_semantic_reimplementation": {
+      "const": 0
+    },
+    "runtime_e_head": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "runtime_e_tree": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "cross_stack_result": {
+      "const": "PASS"
+    },
+    "cross_stack_contradiction_count": {
+      "const": 0
+    },
+    "runtime_production_merge_authority": {
+      "const": "NONE"
+    },
+    "final_merge_authority": {
+      "const": "HUMAN_ONLY"
+    },
+    "promotion_acceptance_evidence_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "rollback_acceptance_evidence_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "bundle_evidence_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}
