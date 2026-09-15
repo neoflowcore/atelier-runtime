@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-e-governance-request.schema.json",
+  "title": "Runtime E Governance Request V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["request_id","repository","target_ref","expected_head","operation","desired_policy_sha256","authority_evidence_sha256","caller_id","change_ticket_id","readback_required"],
+  "properties": {
+    "request_id": {"type":"string","minLength":1},
+    "repository": {"type":"string","minLength":3},
+    "target_ref": {"type":"string","minLength":1},
+    "expected_head": {"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "operation": {"enum":["READ_PROVIDER_POLICY","APPLY_RULESET","APPLY_BRANCH_PROTECTION"]},
+    "desired_policy_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "authority_evidence_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "caller_id": {"type":"string","minLength":1},
+    "change_ticket_id": {"type":"string","minLength":1},
+    "readback_required": {"const":true}
+  }
+}
