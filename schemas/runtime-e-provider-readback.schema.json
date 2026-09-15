@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://atelier.local/schemas/runtime-e-provider-readback.schema.json",
+  "title":"Runtime E Provider Readback V1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["readback_type","provider_request_id","release_decision_sha256","observed_environment","observed_release_sha256","observed_artifact_sha256","observed_candidate_tag","provider_state_sha256","status"],
+  "properties":{
+    "readback_type":{"const":"RUNTIME_E_PROVIDER_READBACK_V1"},
+    "provider_request_id":{"type":"string","minLength":1},
+    "release_decision_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "observed_environment":{"type":"string","minLength":2},
+    "observed_release_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "observed_artifact_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "observed_candidate_tag":{"type":"string","minLength":1},
+    "provider_state_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "status":{"enum":["CONFIRMED","MISMATCH","PENDING"]}
+  }
+}
