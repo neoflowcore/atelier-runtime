@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-c-seal.schema.json",
+  "title": "Atelier Runtime C Seal Receipt V1",
+  "type": "object",
+  "required": ["receipt_type","interface_version","interface_manifest_sha256","runtime_c_candidate_sha","runtime_c_candidate_tree","runtime_c_snapshot_sha256","runtime_c_implementation","runtime_c_sealed","seal_decision","sync_3","phase_to_typed_tasks_to_receipts","live_provider_mutation","gateway_only_remote_source_write","validation_execution_source_write","merge_authority","final_merge_authority","lease_state","result","reasons"],
+  "properties": {
+    "receipt_type": {"const":"RUNTIME_C_SEAL_RECEIPT_V1"},
+    "interface_version": {"const":"1.0.0"},
+    "runtime_c_implementation": {"enum":["COMPLETE","BLOCKED"]},
+    "runtime_c_sealed": {"enum":["NO","YES"]},
+    "seal_decision": {"enum":["PENDING_FINAL_GATE","SEALED"]},
+    "sync_3": {"const":"NOT_EVALUATED"},
+    "phase_to_typed_tasks_to_receipts": {"const":"NOT_EVALUATED_UNTIL_SYNC_3"},
+    "live_provider_mutation": {"const":"NOT_RUN"},
+    "gateway_only_remote_source_write": {"const":"PASS"},
+    "validation_execution_source_write": {"const":0},
+    "merge_authority": {"const":"NONE"},
+    "final_merge_authority": {"const":"HUMAN_ONLY"},
+    "lease_state": {"const":"NOT_IMPLEMENTED_PLAN_D"},
+    "result": {"enum":["PASS","BLOCKED"]},
+    "reasons": {"type":"array","items":{"type":"string"}}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-b-authority-binding.schema.json",
+  "title": "Atelier Runtime B Opaque Authority Binding V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "binding_type",
+    "authority_evidence_class",
+    "authority_evidence_sha256",
+    "interface_version",
+    "interface_manifest_sha256",
+    "task_contract_schema_sha256",
+    "task_contract_machine_schema_sha256",
+    "task_contract_hash",
+    "backend_binding_sha256",
+    "backend_id",
+    "backend_kind",
+    "runtime_source_write_authority",
+    "authority_binding_sha256"
+  ],
+  "properties": {
+    "binding_type": { "const": "RUNTIME_B_AUTHORITY_BINDING_V1" },
+    "authority_evidence_class": { "const": "OPAQUE_EXTERNAL_AUTHORITY_EVIDENCE" },
+    "authority_evidence_sha256": { "$ref": "#/$defs/sha256" },
+    "interface_version": { "const": "1.0.0" },
+    "interface_manifest_sha256": { "const": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617" },
+    "task_contract_schema_sha256": { "const": "6afcf7aa1b7d3d73b28d6195326db22c82774de308664ce85ba52e42fba640e8" },
+    "task_contract_machine_schema_sha256": { "const": "3bdbb85a7879c8cee2c7eb2f18c3936fac7a44389ec0ae61f0954b9c19660b65" },
+    "task_contract_hash": { "$ref": "#/$defs/sha256" },
+    "backend_binding_sha256": { "$ref": "#/$defs/sha256" },
+    "backend_id": { "enum": ["GITHUB_HOSTED_NODE_WEB_VERIFY_V1", "SELF_HOSTED_LINUX_X64_V1"] },
+    "backend_kind": { "enum": ["GITHUB_HOSTED", "SELF_HOSTED"] },
+    "runtime_source_write_authority": { "const": "NONE" },
+    "authority_binding_sha256": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

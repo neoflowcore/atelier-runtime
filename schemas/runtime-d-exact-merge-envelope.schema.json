@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-d-exact-merge-envelope.schema.json",
+  "title": "Runtime D Exact Merge Envelope V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["envelope_type","task_contract_hash","approval_evidence_sha256","lease_id","scheduler_decision_sha256","repository","pr_number","base_ref","expected_base_head","head_ref","expected_head_sha","merge_method","safety_class","provider_readback_sha256","exact_subject_bound","provider_merge_mutation_authority","pilote_merge_authority","runtime_production_merge_authority","final_merge_authority","production_activation","result","envelope_sha256"],
+  "properties": {
+    "envelope_type": {"const":"RUNTIME_D_EXACT_MERGE_ENVELOPE_V1"},
+    "task_contract_hash": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "approval_evidence_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "lease_id": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "scheduler_decision_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "repository": {"type":"string","minLength":3},
+    "pr_number": {"type":"integer","minimum":1},
+    "base_ref": {"type":"string","minLength":1},
+    "expected_base_head": {"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "head_ref": {"type":"string","minLength":1},
+    "expected_head_sha": {"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "merge_method": {"enum":["MERGE","SQUASH","REBASE"]},
+    "safety_class": {"enum":["FIXTURE","SAFE_TARGET"]},
+    "provider_readback_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "exact_subject_bound": {"const":true},
+    "provider_merge_mutation_authority": {"const":"NONE_THROUGH_REV5"},
+    "pilote_merge_authority": {"const":"NONE"},
+    "runtime_production_merge_authority": {"const":"NONE"},
+    "final_merge_authority": {"const":"HUMAN_ONLY"},
+    "production_activation": {"const":"DEFERRED_THROUGH_REV5"},
+    "result": {"const":"PREPARED_DEFERRED"},
+    "envelope_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"}
+  }
+}

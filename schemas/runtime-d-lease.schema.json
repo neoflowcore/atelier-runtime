@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-d-lease.schema.json",
+  "title": "Runtime D Lease V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["lease_type","lease_id","task_contract_hash","approval_id","dispatch_nonce","execution_id","generation","caller_id","repository","branch","workspace_id","scope_sha256","mode","state","acquired_at_ms","expires_at_ms","source_write_authority"],
+  "properties": {
+    "lease_type": {"const": "RUNTIME_D_LEASE_V1"},
+    "lease_id": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "task_contract_hash": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "approval_id": {"type":"string","minLength":1},
+    "dispatch_nonce": {"type":"string","minLength":1},
+    "execution_id": {"type":"string","minLength":1},
+    "generation": {"type":"integer","minimum":1},
+    "caller_id": {"type":"string","minLength":1},
+    "repository": {"type":"string","minLength":3},
+    "branch": {"type":"string","minLength":1},
+    "workspace_id": {"type":"string","minLength":1},
+    "scope_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "mode": {"enum":["READ_SHARED","WRITE_EXCLUSIVE"]},
+    "state": {"enum":["ACTIVE","RELEASED","EXPIRED"]},
+    "acquired_at_ms": {"type":"integer","minimum":0},
+    "expires_at_ms": {"type":"integer","minimum":1},
+    "source_write_authority": {"const":"NONE_BY_LEASE"}
+  }
+}

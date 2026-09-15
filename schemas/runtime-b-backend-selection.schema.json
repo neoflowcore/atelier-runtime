@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-b-backend-selection.schema.json",
+  "title": "Atelier Runtime B Backend Selection Receipt V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_type",
+    "interface_version",
+    "interface_manifest_sha256",
+    "task_contract_schema_sha256",
+    "task_contract_machine_schema_sha256",
+    "task_contract_hash",
+    "execution_class",
+    "selected_backend",
+    "backend_binding",
+    "candidate_evaluations",
+    "fallback_used",
+    "runtime_source_write_authority",
+    "result",
+    "reasons"
+  ],
+  "properties": {
+    "receipt_type": { "const": "RUNTIME_B_BACKEND_SELECTION_V1" },
+    "interface_version": { "const": "1.0.0" },
+    "interface_manifest_sha256": { "const": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617" },
+    "task_contract_schema_sha256": { "const": "6afcf7aa1b7d3d73b28d6195326db22c82774de308664ce85ba52e42fba640e8" },
+    "task_contract_machine_schema_sha256": { "const": "3bdbb85a7879c8cee2c7eb2f18c3936fac7a44389ec0ae61f0954b9c19660b65" },
+    "task_contract_hash": { "anyOf": [{ "$ref": "#/$defs/sha256" }, { "type": "null" }] },
+    "execution_class": { "enum": ["RUNTIME_DEFAULT", "HOSTED_ELIGIBLE", "SELF_HOSTED_REQUIRED", "HOST_LOCAL_REQUIRED", null] },
+    "selected_backend": { "anyOf": [{ "$ref": "#/$defs/selectedBackend" }, { "type": "null" }] },
+    "backend_binding": { "anyOf": [{ "$ref": "#/$defs/backendBinding" }, { "type": "null" }] },
+    "candidate_evaluations": {
+      "type": "array",
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/evaluation" }
+    },
+    "fallback_used": { "const": false },
+    "runtime_source_write_authority": { "const": "NONE" },
+    "result": { "enum": ["SELECTED", "BLOCKED"] },
+    "reasons": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "selectedBackend": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "interface_version",
+        "interface_manifest_sha256",
+        "task_contract_hash",
+        "backend_id",
+        "backend_kind",
+        "os_class",
+        "arch_class",
+        "fallback_backend_id",
+        "target_source_write_authority"
+      ],
+      "properties": {
+        "interface_version": { "const": "1.0.0" },
+        "interface_manifest_sha256": { "const": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617" },
+        "task_contract_hash": { "$ref": "#/$defs/sha256" },
+        "backend_id": { "enum": ["GITHUB_HOSTED_NODE_WEB_VERIFY_V1", "SELF_HOSTED_LINUX_X64_V1"] },
+        "backend_kind": { "enum": ["GITHUB_HOSTED", "SELF_HOSTED"] },
+        "os_class": { "const": "LINUX" },
+        "arch_class": { "const": "X64" },
+        "profile": { "const": "NODE_WEB_VERIFY" },
+        "profile_version": { "const": 1 },
+        "runner_labels": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "fallback_backend_id": { "type": "null" },
+        "target_source_write_authority": { "const": "NONE" }
+      }
+    },
+    "backendBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "binding_type",
+        "interface_version",
+        "interface_manifest_sha256",
+        "task_contract_schema_sha256",
+        "task_contract_machine_schema_sha256",
+        "task_contract_hash",
+        "backend_id",
+        "backend_kind",
+        "target_source_write_authority",
+        "backend_binding_sha256"
+      ],
+      "properties": {
+        "binding_type": { "const": "RUNTIME_B_BACKEND_BINDING_V1" },
+        "interface_version": { "const": "1.0.0" },
+        "interface_manifest_sha256": { "const": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617" },
+        "task_contract_schema_sha256": { "const": "6afcf7aa1b7d3d73b28d6195326db22c82774de308664ce85ba52e42fba640e8" },
+        "task_contract_machine_schema_sha256": { "const": "3bdbb85a7879c8cee2c7eb2f18c3936fac7a44389ec0ae61f0954b9c19660b65" },
+        "task_contract_hash": { "$ref": "#/$defs/sha256" },
+        "backend_id": { "enum": ["GITHUB_HOSTED_NODE_WEB_VERIFY_V1", "SELF_HOSTED_LINUX_X64_V1"] },
+        "backend_kind": { "enum": ["GITHUB_HOSTED", "SELF_HOSTED"] },
+        "target_source_write_authority": { "const": "NONE" },
+        "backend_binding_sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["backend_id", "backend_kind", "result", "reasons"],
+      "properties": {
+        "backend_id": { "enum": ["GITHUB_HOSTED_NODE_WEB_VERIFY_V1", "SELF_HOSTED_LINUX_X64_V1"] },
+        "backend_kind": { "enum": ["GITHUB_HOSTED", "SELF_HOSTED"] },
+        "result": { "enum": ["ELIGIBLE", "BLOCKED"] },
+        "reasons": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

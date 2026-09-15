@@ -1,0 +1,69 @@
+{
+  "TASK_ID": "R42-FIXTURE-ORACLE-001",
+  "PROJECT_ID": "ATELIER-PILOTE",
+  "PHASE_ID": "R42-P2P3",
+  "TASK_CLASS": "VALIDATION",
+  "WORKLOAD_CLASS": "INTERACTIVE_ORACLE",
+  "SOURCE_IDENTITY": {
+    "KIND": "OPAQUE",
+    "LOCATOR": "device-or-human-oracle:external"
+  },
+  "EXPECTED_HEAD": "NONE",
+  "EFFECT_CLASSES": [
+    "EXTERNAL_ORACLE",
+    "READ_ONLY"
+  ],
+  "ALLOWED_SCOPE": [
+    "oracle:evidence-only"
+  ],
+  "TOUCH_SET": [],
+  "CAPABILITY_REQUIREMENTS": [
+    "HUMAN_ORACLE"
+  ],
+  "RESOURCE_REQUIREMENTS": {
+    "EXECUTION_CLASS": "RUNTIME_DEFAULT",
+    "OS_CLASS": "ANY",
+    "ARCH_CLASS": "ANY",
+    "WORKSPACE_CLASS": "NONE"
+  },
+  "NETWORK_CLASS": "NONE",
+  "DATA_ACCESS_CLASS": "PROJECT_INTERNAL",
+  "SECRET_CLASS": "NONE",
+  "REMOTE_MUTATION_INTENT": "NONE",
+  "HOST_OPERATION_INTENT": "NONE",
+  "ORACLE_REQUIREMENT": "REQUIRED",
+  "ACCEPTANCE_REQUIREMENTS": [
+    {
+      "ID": "A1",
+      "TEXT": "Oracle evidence is recorded without granting approval or mutation authority."
+    }
+  ],
+  "VERIFIER_REQUIREMENTS": [
+    {
+      "ID": "V1",
+      "TEXT": "Verify oracle output is evidence-only."
+    }
+  ],
+  "ECONOMY_BUDGET": {
+    "MAX_EXECUTIONS": 1,
+    "MAX_RETRIES": 0,
+    "MAX_REPAIRS": 0,
+    "MAX_PARALLELISM": 1
+  },
+  "INTERVENTION_POLICY": "BLOCK_ON_AMBIGUITY",
+  "REPLAN_BOUNDARY": "TASK_ONLY",
+  "EXPECTED_OUTPUTS": [
+    {
+      "ID": "O1",
+      "TEXT": "Oracle observation."
+    }
+  ],
+  "EXPECTED_EVIDENCE": [
+    {
+      "ID": "E1",
+      "TEXT": "Bound oracle evidence reference."
+    }
+  ],
+  "CONTRACT_VERSION": "1.0.0",
+  "TASK_CONTRACT_HASH": "d281869d6bd7725d2d53dabafe4a6d68c99fc97e656d221ae5b9e0e57b3c2d0a"
+}

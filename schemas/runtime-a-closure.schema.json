@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.invalid/schemas/runtime-a-closure.schema.json",
+  "title": "Runtime Plan A Closure Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_schema_version",
+    "receipt_type",
+    "candidate_class",
+    "repository",
+    "runtime_v1_control_sha",
+    "development_base_sha",
+    "development_base_tree",
+    "candidate_sha",
+    "candidate_tree",
+    "baseline_epoch_id",
+    "interface_version",
+    "interface_manifest_sha256",
+    "task_contract_schema_sha256",
+    "task_contract_machine_schema_sha256",
+    "backend_id",
+    "component_manifest_sha256",
+    "component_count",
+    "remote_snapshot_sha256",
+    "remote_component_binding",
+    "changed_paths_sha256",
+    "changed_file_count",
+    "observed_workflow_runs",
+    "v1_non_regression",
+    "interface_core_binding",
+    "live_self_hosted_invocation",
+    "runtime_a_sealed",
+    "sync2_state",
+    "lease_state",
+    "remote_source_write_authority",
+    "result",
+    "failure_reason"
+  ],
+  "properties": {
+    "receipt_schema_version": {
+      "const": 1
+    },
+    "receipt_type": {
+      "const": "RUNTIME_A_PLAN_A_CLOSURE_V1"
+    },
+    "candidate_class": {
+      "const": "COMPATIBLE_FINAL_CANDIDATE_STATIC"
+    },
+    "repository": {
+      "const": "neoflowcore/atelier-runtime"
+    },
+    "runtime_v1_control_sha": {
+      "const": "cee87103e61656f8ddae57caf7e5a500636df252"
+    },
+    "development_base_sha": {
+      "const": "2f82365b7270fd7b4cb15dcf4f87fe7e0e05f4d9"
+    },
+    "development_base_tree": {
+      "const": "4fc4081accb3ad2a649c90dc236f4284612e7f4f"
+    },
+    "candidate_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "candidate_tree": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "baseline_epoch_id": {
+      "const": "11cfb57b2cd0f4d36e6c064ee908ab198677d5309529c2054829cc9da7f103a3"
+    },
+    "interface_version": {
+      "const": "1.0.0"
+    },
+    "interface_manifest_sha256": {
+      "const": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617"
+    },
+    "task_contract_schema_sha256": {
+      "const": "6afcf7aa1b7d3d73b28d6195326db22c82774de308664ce85ba52e42fba640e8"
+    },
+    "task_contract_machine_schema_sha256": {
+      "const": "3bdbb85a7879c8cee2c7eb2f18c3936fac7a44389ec0ae61f0954b9c19660b65"
+    },
+    "backend_id": {
+      "const": "SELF_HOSTED_LINUX_X64_V1"
+    },
+    "component_manifest_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "component_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "changed_paths_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "changed_file_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "observed_workflow_runs": {
+      "const": 0
+    },
+    "v1_non_regression": {
+      "const": "PASS"
+    },
+    "interface_core_binding": {
+      "const": "PASS"
+    },
+    "live_self_hosted_invocation": {
+      "const": "NOT_RUN"
+    },
+    "runtime_a_sealed": {
+      "const": "NO"
+    },
+    "sync2_state": {
+      "const": "WAITING_A_REV42_SEALED_MANIFEST"
+    },
+    "lease_state": {
+      "const": "NOT_IMPLEMENTED_PLAN_D"
+    },
+    "remote_source_write_authority": {
+      "const": "NONE"
+    },
+    "result": {
+      "enum": [
+        "PASS",
+        "BLOCKED"
+      ]
+    },
+    "failure_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "remote_snapshot_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "remote_component_binding": {
+      "const": "PASS"
+    }
+  }
+}

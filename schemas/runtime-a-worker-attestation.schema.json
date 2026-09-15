@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier-runtime.invalid/schemas/runtime-a-worker-attestation.schema.json",
+  "title": "Atelier Runtime Plan A Worker Attestation Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_schema_version",
+    "receipt_type",
+    "request_id",
+    "idempotency_key",
+    "requested_runtime_sha",
+    "runtime_engine_sha",
+    "backend_id",
+    "backend_kind",
+    "expected_runner_labels",
+    "observed_worker",
+    "worker_fingerprint_sha256",
+    "admission_scope",
+    "lease_state",
+    "remote_source_write_authority",
+    "result",
+    "failure_reason"
+  ],
+  "properties": {
+    "receipt_schema_version": { "const": 1 },
+    "receipt_type": { "const": "RUNTIME_A_WORKER_ATTESTATION_V1" },
+    "request_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "idempotency_key": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "requested_runtime_sha": { "$ref": "#/$defs/sha40" },
+    "runtime_engine_sha": { "$ref": "#/$defs/sha40" },
+    "backend_id": { "const": "SELF_HOSTED_LINUX_X64_V1" },
+    "backend_kind": { "const": "SELF_HOSTED" },
+    "expected_runner_labels": { "const": ["self-hosted", "linux", "x64", "atelier-runtime-v1"] },
+    "observed_worker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runner_environment", "runner_os", "runner_arch", "runner_name", "node_version"],
+      "properties": {
+        "runner_environment": { "type": ["string", "null"] },
+        "runner_os": { "type": ["string", "null"] },
+        "runner_arch": { "type": ["string", "null"] },
+        "runner_name": { "type": ["string", "null"] },
+        "node_version": { "type": ["string", "null"] }
+      }
+    },
+    "worker_fingerprint_sha256": { "$ref": "#/$defs/sha256" },
+    "admission_scope": { "const": "PLAN_A_FOUNDATION_PROBE_ONLY" },
+    "lease_state": { "const": "NOT_IMPLEMENTED_PLAN_D" },
+    "remote_source_write_authority": { "const": "NONE" },
+    "result": { "enum": ["PASS", "BLOCKED", "INFRA_FAILURE"] },
+    "failure_reason": { "type": ["string", "null"] }
+  },
+  "$defs": {
+    "sha40": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

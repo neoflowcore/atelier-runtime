@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-b-closure.schema.json",
+  "title": "Atelier Runtime B Static Closure V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["receipt_type","candidate_class","interface_version","interface_manifest_sha256","task_contract_schema_sha256","task_contract_machine_schema_sha256","baseline_epoch_id","runtime_a_head","runtime_a_tree","runtime_b_candidate_sha","runtime_b_candidate_tree","component_manifest_sha256","remote_snapshot_sha256","sync_2","sync_3","approval_extension_state","runtime_b_sealed","seal_blocker","lease_state","validation_execution_source_write","remote_source_write_authority","result","reasons"],
+  "properties": {
+    "receipt_type": {"const":"RUNTIME_B_STATIC_CLOSURE_V1"},
+    "candidate_class": {"const":"COMPATIBLE_FINAL_CANDIDATE_STATIC"},
+    "interface_version": {"const":"1.0.0"},
+    "interface_manifest_sha256": {"const":"90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617"},
+    "task_contract_schema_sha256": {"const":"6afcf7aa1b7d3d73b28d6195326db22c82774de308664ce85ba52e42fba640e8"},
+    "task_contract_machine_schema_sha256": {"const":"3bdbb85a7879c8cee2c7eb2f18c3936fac7a44389ec0ae61f0954b9c19660b65"},
+    "baseline_epoch_id": {"const":"11cfb57b2cd0f4d36e6c064ee908ab198677d5309529c2054829cc9da7f103a3"},
+    "runtime_a_head": {"const":"c18800c0c8c2fe55c017e5a8c970a29daf42410f"},
+    "runtime_a_tree": {"const":"89bde4de3808d9715e002833f24c618cee52c440"},
+    "runtime_b_candidate_sha": {"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "runtime_b_candidate_tree": {"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "component_manifest_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "remote_snapshot_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "sync_2": {"const":"PASS"},
+    "sync_3": {"const":"NOT_EVALUATED"},
+    "approval_extension_state": {"const":"NOT_FROZEN_NOT_CONSUMED"},
+    "runtime_b_sealed": {"const":"NO"},
+    "seal_blocker": {"const":"APPROVAL_ENVELOPE_SEMANTICS_NOT_FROZEN"},
+    "lease_state": {"const":"NOT_IMPLEMENTED_PLAN_D"},
+    "validation_execution_source_write": {"const":0},
+    "remote_source_write_authority": {"const":"NONE"},
+    "result": {"enum":["PASS","BLOCKED"]},
+    "reasons": {"type":"array","items":{"type":"string"}}
+  }
+}

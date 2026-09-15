@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/runtime-d-candidate-tag-envelope.schema.json",
+  "title": "Runtime D Candidate Tag Envelope V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["envelope_type","task_contract_hash","approval_evidence_sha256","merge_envelope_sha256","repository","tag_name","target_commit_sha","candidate_ref","candidate_readback_sha256","exact_target_bound","provider_tag_mutation_authority","candidate_tag_does_not_imply_deploy","production_deploy_authority","production_release_authority","final_merge_authority","result","envelope_sha256"],
+  "properties": {
+    "envelope_type": {"const":"RUNTIME_D_CANDIDATE_TAG_ENVELOPE_V1"},
+    "task_contract_hash": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "approval_evidence_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "merge_envelope_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "repository": {"type":"string","minLength":3},
+    "tag_name": {"type":"string","minLength":1},
+    "target_commit_sha": {"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "candidate_ref": {"type":"string","minLength":1},
+    "candidate_readback_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "exact_target_bound": {"const":true},
+    "provider_tag_mutation_authority": {"const":"NONE_IN_D2_MECHANICS_TEST"},
+    "candidate_tag_does_not_imply_deploy": {"const":true},
+    "production_deploy_authority": {"const":"NONE"},
+    "production_release_authority": {"const":"NONE"},
+    "final_merge_authority": {"const":"HUMAN_ONLY"},
+    "result": {"const":"COORDINATED_DEFERRED"},
+    "envelope_sha256": {"type":"string","pattern":"^[0-9a-f]{64}$"}
+  }
+}

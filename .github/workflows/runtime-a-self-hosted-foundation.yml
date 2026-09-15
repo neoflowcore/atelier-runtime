@@ -1,0 +1,139 @@
+name: Atelier Runtime Plan A Self-Hosted Foundation
+
+on:
+  workflow_call:
+    inputs:
+      request_id:
+        description: Stable caller request identifier
+        required: true
+        type: string
+      idempotency_key:
+        description: Stable overlap-control key
+        required: true
+        type: string
+      runtime_sha:
+        description: Exact lowercase 40-character Runtime commit SHA
+        required: true
+        type: string
+      target_sha:
+        description: Exact lowercase 40-character target commit SHA
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: atelier-runtime-a-${{ github.repository_id }}-${{ inputs.idempotency_key }}
+  cancel-in-progress: false
+
+jobs:
+  foundation_probe:
+    runs-on: [self-hosted, linux, x64, atelier-runtime-v1]
+    timeout-minutes: 10
+    env:
+      ATELIER_RUNTIME_EVIDENCE_DIR: runtime-evidence
+    steps:
+      - name: Validate fixed request surface
+        shell: bash
+        env:
+          RUNTIME_SHA: ${{ inputs.runtime_sha }}
+          TARGET_SHA: ${{ inputs.target_sha }}
+        run: |
+          if ! [[ "$RUNTIME_SHA" =~ ^[0-9a-f]{40}$ ]]; then exit 2; fi
+          if ! [[ "$TARGET_SHA" =~ ^[0-9a-f]{40}$ ]]; then exit 2; fi
+
+      - name: Clean fixed workspace paths
+        shell: bash
+        run: |
+          rm -rf "$GITHUB_WORKSPACE/runtime" "$GITHUB_WORKSPACE/target" "$GITHUB_WORKSPACE/runtime-evidence"
+
+      - name: Checkout Runtime source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          repository: neoflowcore/atelier-runtime
+          ref: ${{ inputs.runtime_sha }}
+          path: runtime
+          persist-credentials: false
+
+      - name: Build self-hosted worker attestation
+        id: worker_attestation
+        continue-on-error: true
+        env:
+          ATELIER_REQUEST_ID: ${{ inputs.request_id }}
+          ATELIER_IDEMPOTENCY_KEY: ${{ inputs.idempotency_key }}
+          ATELIER_RUNTIME_SHA: ${{ inputs.runtime_sha }}
+        run: node runtime/runtime/run-plan-a-worker-attestation.mjs runtime runtime-evidence/runtime-a-worker-attestation.json
+
+      - name: Upload self-hosted worker attestation
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-a-worker-attestation-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          retention-days: 7
+          path: runtime-evidence/runtime-a-worker-attestation.json
+
+      - name: Enforce self-hosted worker admission
+        id: worker_gate
+        if: always()
+        run: node runtime/runtime/run-plan-a-worker-attestation-gate.mjs runtime-evidence/runtime-a-worker-attestation.json
+
+      - name: Checkout exact target source
+        if: steps.worker_gate.outcome == 'success'
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ inputs.target_sha }}
+          path: target
+          persist-credentials: false
+
+      - name: Build self-hosted foundation receipt
+        if: steps.worker_gate.outcome == 'success'
+        id: foundation_receipt
+        continue-on-error: true
+        env:
+          ATELIER_REQUEST_ID: ${{ inputs.request_id }}
+          ATELIER_IDEMPOTENCY_KEY: ${{ inputs.idempotency_key }}
+          ATELIER_TARGET_SHA: ${{ inputs.target_sha }}
+          ATELIER_RUNTIME_SHA: ${{ inputs.runtime_sha }}
+        run: node runtime/runtime/run-plan-a-foundation.mjs target runtime runtime-evidence/runtime-a-foundation-receipt.json
+
+      - name: Upload self-hosted foundation receipt
+        if: always() && steps.worker_gate.outcome == 'success'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-a-foundation-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          retention-days: 7
+          path: runtime-evidence/runtime-a-foundation-receipt.json
+
+      - name: Build Plan A evidence cross-binding
+        id: evidence_binding
+        if: always() && steps.worker_gate.outcome == 'success' && steps.foundation_receipt.outcome == 'success'
+        continue-on-error: true
+        run: node runtime/runtime/run-plan-a-evidence-binding.mjs runtime-evidence/runtime-a-worker-attestation.json runtime-evidence/runtime-a-foundation-receipt.json runtime-evidence/runtime-a-evidence-binding.json
+
+      - name: Upload Plan A evidence cross-binding
+        if: always() && steps.worker_gate.outcome == 'success' && steps.foundation_receipt.outcome == 'success'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: runtime-a-evidence-binding-${{ github.run_id }}-${{ github.run_attempt }}
+          if-no-files-found: error
+          retention-days: 7
+          path: runtime-evidence/runtime-a-evidence-binding.json
+
+      - name: Enforce Plan A evidence cross-binding
+        id: evidence_gate
+        if: always() && steps.worker_gate.outcome == 'success' && steps.foundation_receipt.outcome == 'success'
+        run: node runtime/runtime/run-plan-a-evidence-binding-gate.mjs runtime-evidence/runtime-a-evidence-binding.json runtime-evidence/runtime-a-worker-attestation.json runtime-evidence/runtime-a-foundation-receipt.json
+
+      - name: Enforce self-hosted foundation PASS
+        if: always() && steps.worker_gate.outcome == 'success'
+        run: node runtime/runtime/run-plan-a-foundation-gate.mjs runtime-evidence/runtime-a-foundation-receipt.json
+
+      - name: Cleanup fixed workspace paths
+        if: always()
+        shell: bash
+        run: |
+          rm -rf "$GITHUB_WORKSPACE/runtime" "$GITHUB_WORKSPACE/target" "$GITHUB_WORKSPACE/runtime-evidence"

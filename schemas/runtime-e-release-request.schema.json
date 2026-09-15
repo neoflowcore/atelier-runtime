@@ -1,0 +1,24 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://atelier.local/schemas/runtime-e-release-request.schema.json",
+  "title":"Runtime E Release Request V1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["request_type","request_id","operation","environment","candidate_tag","candidate_commit","artifact_sha256","expected_current_release_sha256","desired_release_sha256","governance_decision_sha256","security_decision_sha256","authority_evidence_sha256","change_ticket_id","readback_required"],
+  "properties":{
+    "request_type":{"const":"RUNTIME_E_RELEASE_REQUEST_V1"},
+    "request_id":{"type":"string","minLength":1},
+    "operation":{"enum":["PROMOTE","ROLLBACK"]},
+    "environment":{"type":"string","pattern":"^[A-Z][A-Z0-9_]{1,63}$"},
+    "candidate_tag":{"type":"string","minLength":1},
+    "candidate_commit":{"type":"string","pattern":"^[0-9a-f]{40}$"},
+    "artifact_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "expected_current_release_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "desired_release_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "governance_decision_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "security_decision_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "authority_evidence_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "change_ticket_id":{"type":"string","minLength":1},
+    "readback_required":{"const":true}
+  }
+}
