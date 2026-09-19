@@ -1,0 +1,78 @@
+{
+  "MANIFEST_TYPE": "R51_A2_PILOTE_EXECUTION_INTENT_AUTHORITATIVE_MANIFEST_V1",
+  "CONTRACT_SET_ID": "ATELIER_REV51_CONTRACT_SET_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "FILES": [
+    {
+      "PATH": "pilote/rev51/execution-intent-v1.mjs",
+      "BYTES": 12751,
+      "SHA256": "6a1f72abec13cb4b0b8b7ecd70c6ed8e1c9ca567f732ab8307ce868b042cec12"
+    },
+    {
+      "PATH": "pilote/rev51/canonicalize-execution-v1.mjs",
+      "BYTES": 1035,
+      "SHA256": "38d60939d28fa49f537706e09adc13a7715cd470c949782191d9e235b380dc01"
+    },
+    {
+      "PATH": "schemas/rev51/pilote-execution-intent-v1.schema.json",
+      "BYTES": 8045,
+      "SHA256": "31fd4c004726434c9b01614aa6f1d2b58409e58dd2af09d492a4a79f483bd82a"
+    },
+    {
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/valid-native-v1.json",
+      "BYTES": 1991,
+      "SHA256": "be18591562215048540161cbe20298cc84e8ffd9b446541dfd3e53bb2d30ec88"
+    },
+    {
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/task-contract-anchor-v1.json",
+      "BYTES": 1559,
+      "SHA256": "4c2912e392721013f3785c4e0b0c62c98bf539bb3461415abccd30852379ae73"
+    },
+    {
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/test-vector-set-v1.json",
+      "BYTES": 2227,
+      "SHA256": "9bde23ef29b9af96a741a3e49a0a4776760472430e393899f19383764730f6ad"
+    },
+    {
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/expected-results-v1.json",
+      "BYTES": 1293,
+      "SHA256": "584a728d6a2ea2222fd4596b8c25756d84577c3fb31d29c93a87c7a4403c2a5b"
+    },
+    {
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v001_valid_native_minimal.json",
+      "BYTES": 2263,
+      "SHA256": "612d27d6bf2107a7b012430b64e2726df1251a6b8e31ae73c99a7768bffb0922"
+    },
+    {
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v002_forbidden_provider_id.json",
+      "BYTES": 2266,
+      "SHA256": "fc0dc79730751bb757489e46f76ff30d5feada61cc26953fae1a272a4a8a9694"
+    },
+    {
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v003_forbidden_secret_value.json",
+      "BYTES": 2257,
+      "SHA256": "2db60e56c7ad65d61d82aa7bd44df9d99d3e1ab7ed19247cb8af65fa66df78f7"
+    },
+    {
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v004_legacy_mode_deny.json",
+      "BYTES": 2250,
+      "SHA256": "53485ce0755fa1988f7a19d188b921fc570fc095f77ff73361617927bbe65ab6"
+    },
+    {
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v005_contract_set_drift_deny.json",
+      "BYTES": 2231,
+      "SHA256": "a6baa9b9839ee8fbdde5110c85ce55a73b28341f38cc04eaa78d32fc8145ea51"
+    },
+    {
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v006_intent_tamper_deny.json",
+      "BYTES": 2240,
+      "SHA256": "524cafcc9ac15c4491d1f7f80f6a83ef831c5b1ff61654a436472630e30827ed"
+    },
+    {
+      "PATH": "docs/rev51/R51_A2_PILOTE_EXECUTION_INTENT_AUTHORITATIVE.md",
+      "BYTES": 1167,
+      "SHA256": "1d65f4011d5309ab437c88663007aea16f3e9ece150e553ea9f36ebf9cf85bf6"
+    }
+  ]
+}

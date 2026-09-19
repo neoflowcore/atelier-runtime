@@ -1,0 +1,46 @@
+{
+  "VECTOR_SET_ID": "PILOTE_EXECUTION_INTENT_V1_TEST_VECTOR_SET_V1",
+  "VECTOR_SET_VERSION": "1.0.0",
+  "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "CONTRACT_SET_ID": "ATELIER_REV51_CONTRACT_SET_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "TASK_CONTRACT_SHA256": "d2fb156b45cb2f78f97e1550b2c972ada5e739ae0477fdc2944cb8e5b23ddb66",
+  "VECTORS": [
+    {
+      "ID": "V001_VALID_NATIVE_MINIMAL",
+      "DESCRIPTION": "Sealed native intent validates without concrete infrastructure identity",
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v001_valid_native_minimal.json",
+      "SHA256": "612d27d6bf2107a7b012430b64e2726df1251a6b8e31ae73c99a7768bffb0922"
+    },
+    {
+      "ID": "V002_FORBIDDEN_PROVIDER_ID",
+      "DESCRIPTION": "Concrete provider identity is rejected",
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v002_forbidden_provider_id.json",
+      "SHA256": "fc0dc79730751bb757489e46f76ff30d5feada61cc26953fae1a272a4a8a9694"
+    },
+    {
+      "ID": "V003_FORBIDDEN_SECRET_VALUE",
+      "DESCRIPTION": "Secret value is rejected recursively",
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v003_forbidden_secret_value.json",
+      "SHA256": "2db60e56c7ad65d61d82aa7bd44df9d99d3e1ab7ed19247cb8af65fa66df78f7"
+    },
+    {
+      "ID": "V004_LEGACY_MODE_DENY",
+      "DESCRIPTION": "Native Rev5.1 intent cannot silently downgrade to legacy mode",
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v004_legacy_mode_deny.json",
+      "SHA256": "53485ce0755fa1988f7a19d188b921fc570fc095f77ff73361617927bbe65ab6"
+    },
+    {
+      "ID": "V005_CONTRACT_SET_DRIFT_DENY",
+      "DESCRIPTION": "Contract-set hash drift fails closed",
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v005_contract_set_drift_deny.json",
+      "SHA256": "a6baa9b9839ee8fbdde5110c85ce55a73b28341f38cc04eaa78d32fc8145ea51"
+    },
+    {
+      "ID": "V006_INTENT_TAMPER_DENY",
+      "DESCRIPTION": "Semantic tampering without rehash is detected",
+      "PATH": "fixtures/rev51/pilote-execution-intent-v1/v006_intent_tamper_deny.json",
+      "SHA256": "524cafcc9ac15c4491d1f7f80f6a83ef831c5b1ff61654a436472630e30827ed"
+    }
+  ]
+}
