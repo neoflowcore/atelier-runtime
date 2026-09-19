@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/operator-intervention-receipt-v1.schema.json",
+  "title": "OPERATOR_INTERVENTION_RECEIPT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["INTERVENTION_ID", "INTERACTION_CLASS", "AFFECTED_STATE", "AUTHORITY_EFFECT"],
+  "properties": {
+    "INTERVENTION_ID": { "type": "string", "minLength": 1 },
+    "INTERACTION_CLASS": { "enum": ["OBSERVE_ONLY", "STATE_AFFECTING", "PRIVILEGED_MUTATION", "RECOVERY_MUTATION"] },
+    "AFFECTED_STATE": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "AUTHORITY_EFFECT": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ATTESTATION_INVALIDATION", "FENCE_ADVANCE", "NEW_ATTEMPT_REQUIRED"],
+      "properties": {
+        "ATTESTATION_INVALIDATION": { "enum": ["YES", "NO"] },
+        "FENCE_ADVANCE": { "enum": ["YES", "NO"] },
+        "NEW_ATTEMPT_REQUIRED": { "enum": ["YES", "NO"] }
+      }
+    }
+  }
+}

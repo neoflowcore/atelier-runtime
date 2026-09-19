@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/execution-transport-v1.schema.json",
+  "title": "EXECUTION_TRANSPORT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["EXECUTION_TRANSPORT", "TRANSPORT_STATE", "WORKER_ID"],
+  "properties": {
+    "EXECUTION_TRANSPORT": { "enum": ["DIRECT_WORKER", "GITHUB_SELF_HOSTED_JIT"] },
+    "TRANSPORT_STATE": { "enum": ["PREPARING", "READY", "ACTIVE", "CLOSED", "FAILED", "OUTCOME_UNKNOWN"] },
+    "WORKER_ID": { "type": "string", "minLength": 1 }
+  }
+}

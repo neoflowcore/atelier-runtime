@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/compute-provider-conformance-v1.schema.json",
+  "title": "COMPUTE_PROVIDER_CONFORMANCE_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["COMPUTE_PROVIDER", "CONFORMANCE_RESULT"],
+  "properties": {
+    "COMPUTE_PROVIDER": { "enum": ["LOCAL", "VMWARE", "DIGITALOCEAN"] },
+    "CONFORMANCE_RESULT": { "enum": ["PASS", "FAIL", "BLOCKED"] }
+  }
+}
