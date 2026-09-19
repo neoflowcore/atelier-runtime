@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/approval-grant-v1.schema.json",
+  "title": "APPROVAL_GRANT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "APPROVAL_GRANT_ID",
+    "PLAN_HASH",
+    "ALLOWED_EFFECT_CLASSES",
+    "ALLOWED_SCOPE",
+    "MAX_COST",
+    "ISSUED_AT",
+    "EXPIRES_AT",
+    "ONE_SHOT",
+    "CONSUMED_AT",
+    "STATE"
+  ],
+  "properties": {
+    "APPROVAL_GRANT_ID": { "type": "string", "minLength": 1 },
+    "PLAN_HASH": { "$ref": "#/$defs/sha256" },
+    "ALLOWED_EFFECT_CLASSES": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true },
+    "ALLOWED_SCOPE": { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 1, "uniqueItems": true },
+    "MAX_COST": { "type": "integer", "minimum": 0 },
+    "ISSUED_AT": { "type": "string", "minLength": 1 },
+    "EXPIRES_AT": { "type": "string", "minLength": 1 },
+    "ONE_SHOT": { "type": "boolean" },
+    "CONSUMED_AT": { "type": ["string", "null"] },
+    "STATE": { "enum": ["AVAILABLE", "CLAIMED", "CONSUMED", "EXPIRED", "INVALID"] }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

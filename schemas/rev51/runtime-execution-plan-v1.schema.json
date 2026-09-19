@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/runtime-execution-plan-v1.schema.json",
+  "title": "RUNTIME_EXECUTION_PLAN_V1 Foundation",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "SCHEMA_ID",
+    "SCHEMA_VERSION",
+    "CANONICALIZATION_ID",
+    "UPSTREAM_OBJECT_SHA256",
+    "OBJECT_SHA256",
+    "COMPUTE_PROVIDER",
+    "EXECUTION_TRANSPORT",
+    "VERIFIER_POLICY",
+    "INPUT_MODE"
+  ],
+  "properties": {
+    "SCHEMA_ID": { "const": "RUNTIME_EXECUTION_PLAN_V1" },
+    "SCHEMA_VERSION": { "const": "1" },
+    "CANONICALIZATION_ID": { "type": "string", "minLength": 1 },
+    "UPSTREAM_OBJECT_SHA256": { "$ref": "#/$defs/sha256" },
+    "OBJECT_SHA256": { "$ref": "#/$defs/sha256" },
+    "COMPUTE_PROVIDER": { "enum": ["LOCAL", "VMWARE", "DIGITALOCEAN"] },
+    "EXECUTION_TRANSPORT": { "enum": ["DIRECT_WORKER", "GITHUB_SELF_HOSTED_JIT"] },
+    "VERIFIER_POLICY": { "enum": ["RUNTIME_REQUIRED", "PROJECT_CI_REQUIRED", "RUNTIME_PLUS_PROJECT_CI"] },
+    "INPUT_MODE": { "enum": ["LEGACY_COMPAT", "NATIVE_REV51"] },
+    "COMPAT_PROFILE_SHA256": { "$ref": "#/$defs/sha256" },
+    "EXECUTION_INTENT_SHA256": { "$ref": "#/$defs/sha256" }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}
