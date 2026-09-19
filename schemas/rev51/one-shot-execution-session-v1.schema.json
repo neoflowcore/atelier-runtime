@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/one-shot-execution-session-v1.schema.json",
+  "title": "ONE_SHOT_EXECUTION_SESSION_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "SESSION_ID",
+    "EXECUTION_PLAN_HASH",
+    "WORKER_JOB_HASH",
+    "WORKER_ID",
+    "ATTEMPT_ID",
+    "LEASE_GENERATION",
+    "FENCE_TOKEN",
+    "EXECUTION_TRANSPORT",
+    "ONE_SHOT",
+    "DURABLE_RUNTIME_OWNED"
+  ],
+  "properties": {
+    "SESSION_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "EXECUTION_PLAN_HASH": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "WORKER_JOB_HASH": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "WORKER_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ATTEMPT_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "LEASE_GENERATION": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "FENCE_TOKEN": {
+      "type": "string",
+      "minLength": 1
+    },
+    "EXECUTION_TRANSPORT": {
+      "enum": [
+        "DIRECT_WORKER",
+        "GITHUB_SELF_HOSTED_JIT"
+      ]
+    },
+    "ONE_SHOT": {
+      "const": true
+    },
+    "DURABLE_RUNTIME_OWNED": {
+      "const": true
+    }
+  }
+}
