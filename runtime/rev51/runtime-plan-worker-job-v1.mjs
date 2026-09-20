@@ -105,11 +105,11 @@ export function createWorkerJobV1(plan, runtimeAssignment) {
   const envelope = validateContractEnvelope(job, {
     schemaId: "WORKER_JOB_V1",
     schemaVersion: "1",
-    canonicalizationId: WORKER_JOB_CANNICALIZATION_ID,
+    canonicalizationId: WORKER_JOB_CANONICALIZATION_ID,
     upstreamObjectSha256: plan.OBJECT_SHA256
   });
   if (!envelope.ok) throw new Error(`WORKER_JOB_ENVELOPE_INVALID:${envelope.errors.join("|")}`);
-  if (job.EXECUTION_PLAN_HASH !== plan.OBJECT_SHA256) throw new Error("EXCUTION_PLAN_HASH_BINDING_MISMATCH");
+  if (job.EXECUTION_PLAN_HASH !== plan.OBJECT_SHA256) throw new Error("EXECUTION_PLAN_HASH_BINDING_MISMATCH");
 
   return job;
 }
