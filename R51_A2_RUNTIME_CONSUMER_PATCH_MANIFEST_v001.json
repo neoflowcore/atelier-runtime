@@ -1,0 +1,38 @@
+{
+  "manifest_type": "R51_A2_RUNTIME_CONSUMER_PATCH_MANIFEST_V1",
+  "base_repository": "neoflowcore/atelier-runtime",
+  "base_branch": "pilote-r51-a2-execution-intent",
+  "base_head": "53716039bb0df7d725bf8d8b791f376ee17d9551",
+  "base_tree": "071d6a4e08fe97d32775336eddaf703535fa6871",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "authoritative_intent_schema_sha256": "31fd4c004726434c9b01614aa6f1d2b58409e58dd2af09d492a4a79f483bd82a",
+  "files": [
+    {
+      "path": "runtime/rev51/pilote-execution-intent-consumer-v1.mjs",
+      "bytes": 6682,
+      "sha256": "0765e4fd9912268306cfaf38d992e2b7040aceb1e3b052f819acbb6d60220293"
+    },
+    {
+      "path": "test/rev51-pilote-execution-intent-consumer-v1.test.mjs",
+      "bytes": 4599,
+      "sha256": "224a561862937b88c94d918b4ee5a329e4351002d842e169e6c4e4f05fd9cdce"
+    },
+    {
+      "path": "docs/rev51/R51_A2_RUNTIME_CONSUMER_BINDING.md",
+      "bytes": 1310,
+      "sha256": "2d50283e1aba87100eaaf8f076312835ac5752ab0a7fc3182e0cf1cfefd1d21c"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "node_tests": "8/8 PASS",
+    "remote_mutation": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDSEIGN": 0
+  }
+}
