@@ -1,0 +1,63 @@
+{
+  "manifest_type": "R51_A2_RUNTIME_PLAN_TO_WORKER_JOB_PATCH_MANIFEST_V2",
+  "recovery_generation": "A2DOWN-002",
+  "predecessor_wt": "WT-RUNTIME-R51-A2DOWN-001",
+  "predecessor_reuse": "DENY_EXACT_PAYLOAD_BYTES_UNRECOVERABLE",
+  "base_repository": "neoflowcore/atelier-runtime",
+  "base_branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "e0f8cf109ed305cd425c9864719132aa73062311",
+  "base_tree": "0655cce631f2b7626c105762b0af6aff9bdb3743",
+  "binding": {
+    "upstream_schema": "RUNTIME_EXECUTION_PLAN_V1",
+    "downstream_schema": "WORKER_JOB_V1",
+    "canonicalization_id": "ATELIER_REV51_JCS_V1",
+    "plan_hash_binding": [
+      "UPSTREAM_OBJECT_SHA256",
+      "EXECUTION_PLAN_HASH"
+    ],
+    "runtime_owned_identifiers": [
+      "EXECUTION_ID",
+      "ATTEMPT_ID",
+      "FENCE_TOKEN"
+    ],
+    "transport_mapping": {
+      "DIRECT_WORKER": "DIRECT_REMOTE",
+      "GITHUB_SELF_HOSTED_JIT": "GITHUB_GATE"
+    },
+    "semantic_replanning": "DENY",
+    "shell_interpretation_default": "DENY"
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/runtime-plan-worker-job-v1.mjs",
+      "bytes": 4695,
+      "sha256": "ecb1d3f57d216c0a514bd9c9a66286a38a8cd4fae57b37201dca60a95a5215bf"
+    },
+    {
+      "path": "test/rev51-runtime-plan-worker-job-v1.test.mjs",
+      "bytes": 3751,
+      "sha256": "4b3d6f2b007664adf1659f5c93dd7ee64f28f484d73f901a2caba42708082b1f"
+    },
+    {
+      "path": "docs/rev51/R51_A2_RUNTIME_PLAN_TO_WORKER_JOB_BINDING.md",
+      "bytes": 1452,
+      "sha256": "a9265230de184d8702a10c71cb7aba3ee210af0c3faaf2e1358f463bcfc83719"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "node_tests": "11/11 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "remote_cas": "PASS_IDENTICAL",
+    "remote_mutation": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0
+  }
+}
