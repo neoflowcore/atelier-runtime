@@ -1,0 +1,48 @@
+{
+  "manifest_type": "R51_RESULT_QUARANTINE_ATOMIC_ACCEPTANCE_PATCH_MANIFEST_V1",
+  "base_repository": "neoflowcore/atelier-runtime",
+  "base_branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "6955b7c4d68a0c8eec2202f160e4dc6e2501800e",
+  "base_tree": "b79cf5e8d9817b60893666679d8c8ef7ad1537d4",
+  "binding": {
+    "worker_job_schema": "WORKER_JOB_V1",
+    "artifact_store_schema": "ARTIFACT_STORE_V1",
+    "execution_receipt_schema": "EXECUTION_RECEIPT_V1",
+    "acceptance_policy": "QUARANTINE_VERIFY_ATOMIC_ACCEPT",
+    "worker_says_pass_equals_runtime_accepted_output": false,
+    "shared_contract_redesign": 0,
+    "pilote_semantic_reinterpretation": 0
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/result-quarantine-acceptance-v1.mjs",
+      "bytes": 7628,
+      "sha256": "86ccc2d2f186886a26e1a381c9a6eac4ec0bfafedbed6a041c725c4b207730c4"
+    },
+    {
+      "path": "test/rev51-result-quarantine-acceptance-v1.test.mjs",
+      "bytes": 5869,
+      "sha256": "647f9cf872122d21060433f8c9a7710ed693343e5d6519180e8189b1237ed2ec"
+    },
+    {
+      "path": "docs/rev51/R51_RESULT_QUARANTINE_ATOMIC_ACCEPTANCE.md",
+      "bytes": 2105,
+      "sha256": "26de24d6592339afa4bf6bedef6d3ee35f292bfb3d69f87be42e07ece3fd1ab6"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "node_tests": "12/12 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "remote_mutation": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0
+  }
+}
