@@ -1,0 +1,80 @@
+{
+  "manifest_type": "R51_P2A_DURABLE_STATE_FENCE_CAS_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P2A-001",
+  "status": "LOCAL_CANDIDATE_REMOTE_WRITE_NOT_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "76cbf506f27ef68332eba0b1ee8c7f2443c23f27",
+  "base_tree": "4daf4a5577db4421f0c3782529fc4777edd6a6e1",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "planning_baseline_sha256": "5806e197e7d07c96877da5a7dd81e59457aa62583e1aae99bec16db46082a8c2",
+  "scope": {
+    "phase": "R51-P2",
+    "slice": "P2A_DURABLE_STATE_FENCE_CAS_CORE",
+    "runtime_owned_only": true,
+    "pilote_a3_dependency": false,
+    "shared_contract_change": false
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/durable-execution-state-v1.mjs",
+      "bytes": 14194,
+      "sha256": "3ef454d65d5dd8a1b0bf1362f1b12241bb66a40adf9ac7d0cf6dc7e0e18546c6"
+    },
+    {
+      "path": "test/rev51-durable-execution-state-v1.test.mjs",
+      "bytes": 8770,
+      "sha256": "820b5de54be19790a99ec1aeff52cb3bab3fb0978741ed98fff3202e7e81f340"
+    },
+    {
+      "path": "docs/rev51/R51_P2A_DURABLE_STATE_FENCE_CAS.md",
+      "bytes": 2641,
+      "sha256": "cb0ea9d647f457d723502f7fc930d157b0d7dd774c7fc0cceca1581b04189e67"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "11/11 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "intermediate_full_ci": 0,
+    "workflow_run": 0,
+    "rerun": 0,
+    "dispatch": 0
+  },
+  "correctness_coverage": {
+    "durable_restart_reopen": "PASS",
+    "state_version_cas": "PASS",
+    "append_only_logical_event_ledger": "PASS_HASH_CHAINED",
+    "state_transition_idempotency": "PASS",
+    "authoritative_runtime_time": "PASS_EXPLICIT_INPUT",
+    "stale_fence_rejection": "PASS",
+    "fence_monotonicity": "PASS",
+    "fence_token_reuse_denied": "PASS",
+    "outcome_unknown_reconciliation_required": "PASS",
+    "blind_retry": "DENY"
+  },
+  "explicit_non_scope": [
+    "PILOTE_R51_A3_VERIFIER_ACCEPTANCE_SEMANTICS",
+    "FULL_R51_P2_CLOSURE",
+    "DURABLE_ONE_SHOT_SESSION_LIFECYCLE",
+    "OPERATOR_INTERVENTION_RECEIPT_PERSISTENCE",
+    "READY_ATTESTATION_EXPIRY_RECONCILIATION",
+    "PROVIDER_BOOTSTRAP_SAGA_STATE",
+    "STATE_EVENT_SCHEMA_MIGRATION_IMPLEMENTATION",
+    "STALE_LOCK_RECOVERY_MULTI_PROCESS_HARDENING"
+  ],
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "REMOTE_MUTATION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}
