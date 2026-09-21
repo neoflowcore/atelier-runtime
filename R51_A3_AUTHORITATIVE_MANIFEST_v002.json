@@ -1,0 +1,51 @@
+{
+  "manifest_type": "R51_A3E_PILOTE_VERIFIER_EVIDENCE_NORMALIZATION_AUTHORITATIVE_MANIFEST_V2",
+  "phase": "R51-A3E",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "pilote-r51-a3-verifier-acceptance-intent",
+  "base_head": "a09ed89a271a55cb8e631810d70c834e9790b2da",
+  "base_tree": "0d4f0e8e0adbc1ed7a1e6e4c92cc6d246bc83d8c",
+  "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "source_fixture_set": {
+    "path": "fixtures/rev51/pilote-verifier-policy-v1/fixture-set-v1.json",
+    "sha256": "5b661b9eb0cc9e982e4915787a04dcb0286b8fe7c03f3dd68618c361a8c2dce2"
+  },
+  "evidence_files": [
+    {
+      "path": "fixtures/rev51/pilote-verifier-policy-v1/test-vector-set-v1.json",
+      "bytes": 8608,
+      "sha256": "080b23a76005d83bfdd8495c51c486959d6ba53e6be9181e460e01fa0202e61f"
+    },
+    {
+      "path": "fixtures/rev51/pilote-verifier-policy-v1/expected-result-set-v1.json",
+      "bytes": 1543,
+      "sha256": "7d884b47d4c2f1c47f404dd3bf148036447324d86ef93e88be34a1b4f77c93bd"
+    }
+  ],
+  "semantic_identity_unchanged": {
+    "pilote_verifier_policy_module_sha256": "a3d086939dc5e08e5ec20beb85b30a0e0d5275c2d165c24d97e563d339786c5a",
+    "pilote_verifier_policy_schema_sha256": "59652f22bbf361b496947b26671aae81d58ff79c579561c050bf0e54b830cf58",
+    "source_fixture_set_sha256": "5b661b9eb0cc9e982e4915787a04dcb0286b8fe7c03f3dd68618c361a8c2dce2"
+  },
+  "normalization": {
+    "semantic_change": 0,
+    "split_reconstructs_source_fixture_exactly": "PASS",
+    "vector_count": 8,
+    "expected_result_count": 8
+  },
+  "gate": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "A3_SEMANTIC_MUTATION": 0,
+    "INTERMEDIATE_FULL_CI": 0,
+    "DISPATCH": 0,
+    "RERUN": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

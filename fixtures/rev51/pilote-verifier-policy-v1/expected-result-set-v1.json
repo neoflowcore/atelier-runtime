@@ -1,0 +1,60 @@
+{
+  "RESULT_SET_ID": "PILOTE_VERIFIER_POLICY_V1_EXPECTED_RESULT_SET_V1",
+  "RESULT_SET_VERSION": "1.0.0",
+  "VECTOR_SET_ID": "PILOTE_VERIFIER_POLICY_V1_TEST_VECTOR_SET_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "SOURCE_FIXTURE_SET_ID": "PILOTE_VERIFIER_POLICY_V1_FIXTURE_SET_V1",
+  "SOURCE_FIXTURE_SET_SHA256": "5b661b9eb0cc9e982e4915787a04dcb0286b8fe7c03f3dd68618c361a8c2dce2",
+  "RESULTS": [
+    {
+      "ID": "V001_RUNTIME_REQUIRED_VALID",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V002_PROJECT_CI_REQUIRED_VALID",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V003_RUNTIME_PLUS_PROJECT_CI_VALID",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V004_RUNTIME_ACCEPTANCE_NAMESPACE_DENY",
+      "OK": false,
+      "ERRORS": [
+        "ACCEPTANCE_REQUIREMENT_OWNER_NOT_PILOTE_SEMANTIC"
+      ]
+    },
+    {
+      "ID": "V005_RUNTIME_DEFINED_ACCEPTANCE_DENY",
+      "OK": false,
+      "ERRORS": [
+        "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS_MUST_BE_DENY"
+      ]
+    },
+    {
+      "ID": "V006_RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE_DENY",
+      "OK": false,
+      "ERRORS": [
+        "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE_MUST_BE_DENY"
+      ]
+    },
+    {
+      "ID": "V007_POLICY_TAMPER_DENY",
+      "OK": false,
+      "ERRORS": [
+        "VERIFIER_POLICY_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V008_CONTRACT_SET_DRIFT_DENY",
+      "OK": false,
+      "ERRORS": [
+        "CONTRACT_SET_REF_MISMATCH"
+      ]
+    }
+  ]
+}
