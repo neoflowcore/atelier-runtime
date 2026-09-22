@@ -1,0 +1,76 @@
+{
+  "manifest_type": "R51_A4_PILOTE_APPROVAL_EFFECT_OPERATOR_AUTHORITATIVE_MANIFEST_V1",
+  "phase": "R51-A4",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "pilote-r51-a4-approval-effect-operator-intent",
+  "base_head": "8a87ddb7fba03165339f86b26047417624b43899",
+  "base_tree": "fc8ce3ce6c7a1650c2894937699c51876b6428bc",
+  "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "semantic_contract": {
+    "intent_type": "PILOTE_APPROVAL_EFFECT_OPERATOR_INTENT_V1",
+    "intent_version": "1.0.0",
+    "authority_grant_policy": "DECLARATION_NEVER_GRANTS_AUTHORITY",
+    "first_irreversible_remote_submission_policy": "ATOMIC_APPROVAL_CLAIM_REQUIRED",
+    "outcome_unknown_approval_policy": "SAME_OPERATION_RECONCILE_APPROVAL_REOPEN_DENY",
+    "normal_path_policy": "ZERO_TOUCH_AFTER_APPROVAL",
+    "state_affecting_intervention_policy": "TRUST_RESET_REQUIRED",
+    "observe_only_intervention_policy": "TRUST_PRESERVED"
+  },
+  "files": [
+    {
+      "path": "pilote/rev51/approval-effect-operator-intent-v1.mjs",
+      "bytes": 13004,
+      "sha256": "5f996d03c63f657e12d4dc9b4ea562e646d9531aeed0a5b339d696dd36f2e3f3"
+    },
+    {
+      "path": "schemas/rev51/pilote-approval-effect-operator-intent-v1.schema.json",
+      "bytes": 3311,
+      "sha256": "7848f5983ef42ea06e1909530990961ca3db6d34e268a414cd238ad7ef1afa5d"
+    },
+    {
+      "path": "fixtures/rev51/pilote-approval-effect-operator-intent-v1/test-vector-set-v1.json",
+      "bytes": 15226,
+      "sha256": "18fafc3b42b3fb1a7df852003d2499dce9ab9cdcd7f4c032a7949a35962f589b"
+    },
+    {
+      "path": "fixtures/rev51/pilote-approval-effect-operator-intent-v1/expected-result-set-v1.json",
+      "bytes": 1717,
+      "sha256": "2ec752e64d99da612c82fe9e316e7e2e2835160226c78d3740670fdaf132ca95"
+    },
+    {
+      "path": "test/rev51-pilote-approval-effect-operator-v1.test.mjs",
+      "bytes": 6995,
+      "sha256": "48e73b4d18e996cea07efea6583cafd6af9fbe29fb5fb902fab0975b4717004d"
+    },
+    {
+      "path": "docs/rev51/R51_A4_PILOTE_APPROVAL_EFFECT_OPERATOR_INTENT.md",
+      "bytes": 2632,
+      "sha256": "684aee8bb8bcbdd29720a605470b05f685e427eb46a5b4b4b7dae450b20247b6"
+    }
+  ],
+  "validation": {
+    "module_syntax_evaluation": "PASS",
+    "vector_expected_result_reproduction": "8/8 PASS",
+    "node_test_file_published": "YES",
+    "node_test_execution_in_publish_step": "NOT_RUN",
+    "intermediate_full_ci": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "A2_EXECUTION_INTENT_SCHEMA_MUTATION": 0,
+    "A3_VERIFIER_ACCEPTANCE_SEMANTIC_MUTATION": 0,
+    "RUNTIME_OWNED_APPROVAL_ID_EMISSION": 0,
+    "RUNTIME_OWNED_OPERATION_ID_EMISSION": 0,
+    "RUNTIME_OWNED_FENCE_IDENTITY_EMISSION": 0,
+    "DISPATCH": 0,
+    "RERUN": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}
