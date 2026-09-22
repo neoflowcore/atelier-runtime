@@ -1,0 +1,69 @@
+{
+  "manifest_type": "R51_A4_RUNTIME_CROSS_STACK_BIND_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-A4-BIND-001",
+  "status": "LOCAL_VERIFIED_CANDIDATE_REMOTE_WRITE_NOT_YET_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "a2c5bab3c3ffe4be22b47793174889d6be68b210",
+  "base_tree": "c1be7aa8100404116e28e40cc8b77055a74f9540",
+  "pilote_a4_authoritative": {
+    "branch": "pilote-r51-a4-approval-effect-operator-intent",
+    "head": "395779f3ff04fb56d2aaa6a836a05b6600d18747",
+    "tree": "a0615fd74f6d7235744453f46b3430037afd4858",
+    "schema_sha256": "7848f5983ef42ea06e1909530990961ca3db6d34e268a414cd238ad7ef1afa5d",
+    "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+    "pilote_module_sha256": "5f996d03c63f657e12d4dc9b4ea562e646d9531aeed0a5b339d696dd36f2e3f3",
+    "test_vector_set_sha256": "18fafc3b42b3fb1a7df852003d2499dce9ab9cdcd7f4c032a7949a35962f589b",
+    "expected_result_set_sha256": "2ec752e64d99da612c82fe9e316e7e2e2835160226c78d3740670fdaf132ca95",
+    "authoritative_manifest_sha256": "bc8085b27534092a7dc22d2a0f79ff4a7ba48af9c06cbbcf940fbc8fa0486554"
+  },
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "files": [
+    {
+      "path": "runtime/rev51/pilote-approval-effect-operator-consumer-v1.mjs",
+      "bytes": 14436,
+      "sha256": "5b0cc4c5ce5759ce3e4c3a695e76f8c4b148ce702de520bdb95b612f94a527c8",
+      "git_blob": "1ef0643431d4bcc5f26a62ba3260199d34b30f99"
+    },
+    {
+      "path": "test/rev51-a4-cross-stack-consumer-v1.test.mjs",
+      "bytes": 8801,
+      "sha256": "3bff7907998827fa63d5122cd7e3f2cc33df2bc8e1b017aa878da7397fd38d2c",
+      "git_blob": "a73affdac1de98faabbab68071db76e39d22c0b7"
+    },
+    {
+      "path": "docs/rev51/R51_A4_RUNTIME_CROSS_STACK_CONSUMER_BINDING.md",
+      "bytes": 3330,
+      "sha256": "0e4f51b4a34b5935559acddd3b32f5cd0db06a6e661a7e8c0cff90c618b7a490",
+      "git_blob": "4a561e6bafad998ae885e34be2ff270e0258f6d8"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "18/18 PASS",
+    "a4_authoritative_vector_results_reproduced": "8/8 PASS",
+    "approval_effect_scope_binding": "PASS",
+    "approval_grant_compatibility": "PASS",
+    "outcome_unknown_reconciliation_boundary": "PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "workflow_run": 0,
+    "rerun": 0,
+    "dispatch": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "RUNTIME_OWNED_APPROVAL_ID_EMISSION": 0,
+    "RUNTIME_OWNED_OPERATION_ID_EMISSION": 0,
+    "RUNTIME_OWNED_FENCE_IDENTITY_EMISSION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}
