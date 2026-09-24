@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "gpt-bridge",
+  "upstream": "https://github.com/dreamurl/GPT-Bridge.git",
+  "commit": "699b8885d4faf8e48a3ecfdcd43781807f7fc6a4",
+  "packageVersion": "0.1.0",
+  "license": "MIT",
+  "destination": "integrations/gpt-bridge/upstream",
+  "importMode": "pinned-git-snapshot",
+  "include": [
+    "src",
+    "scripts",
+    "package.json",
+    "package-lock.json",
+    "tsconfig.json",
+    "esbuild.mjs",
+    "README.md",
+    "TUNNEL_SETUP.md"
+  ]
+}
