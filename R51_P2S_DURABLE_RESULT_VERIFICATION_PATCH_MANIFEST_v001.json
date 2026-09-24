@@ -1,0 +1,76 @@
+{
+  "PATCH_ID": "R51_P2S_DURABLE_RESULT_VERIFICATION_v001",
+  "PHASE": "R51-P2S",
+  "STATUS": "REMOTE_APPLIED_CI_PENDING",
+  "REPOSITORY": "neoflowcore/atelier-runtime",
+  "BRANCH": "runtime-r51-a2-consumer-binding",
+  "BASE_HEAD": "e807e502a50aeff61ca193e814a2a4519934708f",
+  "BASE_TREE": "7569677d43170a6cc72fa27e0544a05b5c173c45",
+  "SCOPE": {
+    "RUNTIME_OWNED_ONLY": true,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": false,
+    "SHARED_CONTRACT_CHANGE": false,
+    "INTERFACE_V1_CHANGE": false
+  },
+  "BINDING": {
+    "P2R_RESULT_COLLECTION": "R51_P2R_DURABLE_RESULT_COLLECTION_v001",
+    "PILOTE_A3_VERIFIER_ACCEPTANCE": "R51_A3_RUNTIME_CROSS_STACK_BIND_v001",
+    "P2F_DURABLE_RESULT_ACCEPTANCE": "CURRENT_FENCE_CAS_QUARANTINE_ATOMIC_COMMIT",
+    "VERIFICATION_POLICY": "A3_POLICY_BOUND_COLLECTION_TERMINAL_VERIFICATION",
+    "TERMINAL_RESULTS": [
+      "PASS",
+      "FAIL",
+      "BLOCKED"
+    ],
+    "P2F_ELIGIBLE_RESULT": "PASS",
+    "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": false,
+    "RUNTIME_DEFINED_TOLERANCE": false,
+    "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE": false
+  },
+  "FILES": [
+    {
+      "PATH": "runtime/rev51/durable-result-verification-v1.mjs",
+      "BYTES": 22849,
+      "GIT_BLOB": "4279ad58fca7954674ac269540e2f4b0dff95c13"
+    },
+    {
+      "PATH": "test/rev51-durable-result-verification-v1.test.mjs",
+      "BYTES": 14503,
+      "GIT_BLOB": "db8cb3ec643a61fa5f5556b11b3a77329866e7e0"
+    },
+    {
+      "PATH": "docs/rev51/R51_P2S_DURABLE_RESULT_VERIFICATION.md",
+      "BYTES": 2982,
+      "GIT_BLOB": "1f2f21edaa8adea8c026a91f6a3388c3a3329d40"
+    }
+  ],
+  "DEPENDENCY_BLOBS": {
+    "runtime/rev51/pilote-verifier-acceptance-consumer-v1.mjs": "48af74c5b3f70e7510e976329e34449c9f31c98d",
+    "runtime/rev51/durable-result-collection-v1.mjs": "5e976189f30005eeb6582c1d7c72684a944a222d",
+    "runtime/rev51/durable-result-acceptance-v1.mjs": "a57a8dd94ca5d66b571e6b8e3f01b131aa2a12ad",
+    "runtime/rev51/contract-core.mjs": "8f97692c9681d1ede24d498029f9253eadb9f5e3"
+  },
+  "LOCAL_VALIDATION": {
+    "SOURCE_NODE_CHECK": "PASS",
+    "TEST_NODE_CHECK": "PASS",
+    "TARGETED_TESTS": "NOT_RUN_LOCAL_REPOSITORY_SOURCE_NOT_MATERIALIZED",
+    "CANONICAL_NODE": "22.13.0",
+    "CANONICAL_CI": "REQUIRED_AFTER_REMOTE_APPLY",
+    "EVIDENCE_CLASS": "STATIC_SUPPLEMENTAL_ONLY"
+  },
+  "INVARIANTS": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": 0,
+    "RUNTIME_DEFINED_TOLERANCE": 0,
+    "WORKFLOW_RERUN": 0,
+    "WORKFLOW_DISPATCH": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}
