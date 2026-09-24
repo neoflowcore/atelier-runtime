@@ -10,6 +10,15 @@ import {
   readDurableWorkerIsolationBoundaryV1,
   validateWorkerIsolationBoundaryV1
 } from "../runtime/rev51/durable-worker-isolation-boundary-v1.mjs";
+import {
+  advanceExecutionFenceV1,
+  initializeDurableExecutionStateV1
+} from "../runtime/rev51/durable-execution-state-v1.mjs";
+import {
+  claimWorkerJobLaunchV1,
+  initializeDurableWorkerJobLaunchV1,
+  recordWorkerJobLaunchResultV1
+} from "../runtime/rev51/durable-worker-job-launch-v1.mjs";
 
 const H=(c)=>c.repeat(64);
 const baseInitial=()=>({
@@ -26,8 +35,15 @@ const claimReq=(over={})=>({
 async function fixture(){
   const dir=await mkdtemp(join(tmpdir(),"r51-p2p-"));
   const state=join(dir,"execution.json"), launch=join(dir,"launch.json"), iso=join(dir,"isolation.json");
-  await writeFile(state,JSON.stringify({EXECUTION_ID:"exec-1",ATTEMPT_ID:"attempt-1",FENCE_TOKEN:"fence-1"})+"\n");
-  await writeFile(launch,JSON.stringify({WORKER_JOB_SHA256:H("a"),EXECUTION_ID:"exec-1",ATTEMPT_ID:"attempt-1",FENCE_TOKEN:"fence-1",LAUNCH_STATUS:"AVAILABLE"})+"\n");
+  await initializeDurableExecutionStateV1(state,{
+    EXECUTION_ID:"exec-1",EXECUTION_EPOCH:1,ATTEMPT_ID:"attempt-1",LEASE_GENERATION:1,FENCE_SEQUENCE:1,FENCE_TOKEN:"fence-1",
+    DESIRED_STATE:"RUNNING",MATERIALIZED_STATE:"READY",PROVIDER_OPERATION_STATE:"PENDING"
+  },1000);
+  await initializeDurableWorkerJobLaunchV1(launch,state,{
+    SCHEMA_ID:"WORKER_JOB_V1",OBJECT_SHA256:H("a"),EXECUTION_ID:"exec-1",ATTEMPT_ID:"attempt-1",FENCE_TOKEN:"fence-1",
+    SEMANTIC_REPLANNING:"DENY",
+    ENTRYPOINT_SPEC:{schema_id:"ENTRYPOINT_SPEC_V1",executable:"node",argv:["task.mjs"],working_directory:"/workspace",environment_refs:["ENV_A"],stdin_policy:"CLOSED",timeout:60,expected_exit_codes:[0],shell_interpretation:"DENY"}
+  },1000);
   return {dir,state,launch,iso};
 }
 
@@ -44,13 +60,13 @@ test("07 successful exactly-once claim", async()=>{ const {f}=await init(); cons
 test("08 exact idempotent replay", async()=>{ const {f}=await init(); await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()); const r=await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({RUNTIME_NOW_MS:3000})); assert.equal(r.replay,true); });
 test("09 changed replay denied", async()=>{ const {f}=await init(); await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({RUNTIME_NOW_MS:3000,OPERATION_ID:"changed"})),"ISOLATION_IDEMPOTENCY_KEY_CONFLICT"); });
 test("10 second claim denied", async()=>{ const {f}=await init(); await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({IDEMPOTENCY_KEY:"claim-2",OPERATION_ID:"launch-op-2",OPERATION_IDEMPOTENCY_KEY:"launch-idem-2",EXPECTED_STATE_VERSION:1})),"WORKER_ISOLATION_BOUNDARY_NOT_AVAILABLE"); });
-test("11 stale execution fence denied after registration", async()=>{ const {f}=await init(); await writeFile(f.state,JSON.stringify({EXECUTION_ID:"exec-1",ATTEMPT_ID:"attempt-2",FENCE_TOKEN:"fence-2"})+"\n"); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()),"STALE_FENCE_REJECTED"); });
-test("12 launch no longer available denies isolation claim", async()=>{ const {f}=await init(); await writeFile(f.launch,JSON.stringify({WORKER_JOB_SHA256:H("a"),EXECUTION_ID:"exec-1",ATTEMPT_ID:"attempt-1",FENCE_TOKEN:"fence-1",LAUNCH_STATUS:"CLAIMED"})+"\n"); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()),"ISOLATION_REQUIRES_AVAILABLE_LAUNCH"); });
+test("11 stale execution fence denied after registration", async()=>{ const {f}=await init(); await advanceExecutionFenceV1(f.state,{EXPECTED_STATE_VERSION:0,IDEMPOTENCY_KEY:"advance-1",SUBMITTED_FENCE_TOKEN:"fence-1",RUNTIME_NOW_MS:1500,NEXT_FENCE_SEQUENCE:2,NEXT_FENCE_TOKEN:"fence-2",NEXT_ATTEMPT_ID:"attempt-2",NEXT_LEASE_GENERATION:2}); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()),"STALE_FENCE_REJECTED"); });
+test("12 launch no longer available denies isolation claim", async()=>{ const {f}=await init(); await claimWorkerJobLaunchV1(f.launch,f.state,{EXPECTED_STATE_VERSION:0,IDEMPOTENCY_KEY:"launch-claim-1",OPERATION_ID:"worker-launch-1",OPERATION_IDEMPOTENCY_KEY:"worker-launch-idem-1",SUBMITTED_FENCE_TOKEN:"fence-1",RUNTIME_NOW_MS:1500}); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()),"ISOLATION_REQUIRES_AVAILABLE_LAUNCH"); });
 test("13 worker binding mismatch denied", async()=>{ const {f}=await init(); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({WORKER_ID:"worker-2"})),"ISOLATION_WORKER_BINDING_MISMATCH"); });
 test("14 readiness attestation mismatch denied", async()=>{ const {f}=await init(); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({WORKER_READY_ATTESTATION_HASH:H("d")})),"ISOLATION_ATTESTATION_BINDING_MISMATCH"); });
 test("15 isolation profile mismatch denied", async()=>{ const {f}=await init(); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({ISOLATION_PROFILE_SHA256:H("d")})),"ISOLATION_PROFILE_BINDING_MISMATCH"); });
 test("16 available boundary can be invalidated and then not claimed", async()=>{ const {f}=await init(); const r=await invalidateWorkerIsolationBoundaryV1(f.iso,{EXPECTED_STATE_VERSION:0,IDEMPOTENCY_KEY:"inv-1",RUNTIME_NOW_MS:2000,REASON:"TRUST_RESET"}); assert.equal(r.state.ISOLATION_STATUS,"INVALID"); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({EXPECTED_STATE_VERSION:1,IDEMPOTENCY_KEY:"claim-after-invalid"})),"WORKER_ISOLATION_BOUNDARY_NOT_AVAILABLE"); });
 test("17 claimed boundary can be invalidated on policy drift", async()=>{ const {f}=await init(); await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()); const r=await invalidateWorkerIsolationBoundaryV1(f.iso,{EXPECTED_STATE_VERSION:1,IDEMPOTENCY_KEY:"inv-2",RUNTIME_NOW_MS:3000,REASON:"POLICY_DRIFT"}); assert.equal(r.state.ISOLATION_STATUS,"INVALID"); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({EXPECTED_STATE_VERSION:2,RUNTIME_NOW_MS:4000,IDEMPOTENCY_KEY:"claim-after-invalid",OPERATION_ID:"launch-op-2",OPERATION_IDEMPOTENCY_KEY:"launch-idem-2"})),"WORKER_ISOLATION_BOUNDARY_NOT_AVAILABLE"); });
 test("18 invalidated boundary blocks old exact replay", async()=>{ const {f}=await init(); await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()); await invalidateWorkerIsolationBoundaryV1(f.iso,{EXPECTED_STATE_VERSION:1,IDEMPOTENCY_KEY:"inv-old-replay",RUNTIME_NOW_MS:3000,REASON:"TRUST_RESET"}); await rejectsCode(()=>claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({RUNTIME_NOW_MS:4000})),"WORKER_ISOLATION_BOUNDARY_NOT_AVAILABLE"); });
-test("19 exact replay survives launch state progress", async()=>{ const {f}=await init(); await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()); await writeFile(f.launch,JSON.stringify({WORKER_JOB_SHA256:H("a"),EXECUTION_ID:"exec-1",ATTEMPT_ID:"attempt-1",FENCE_TOKEN:"fence-1",LAUNCH_STATUS:"STARTED"})+"\n"); const r=await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({RUNTIME_NOW_MS:4000})); assert.equal(r.replay,true); });
+test("19 exact replay survives launch state progress", async()=>{ const {f}=await init(); await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()); await claimWorkerJobLaunchV1(f.launch,f.state,{EXPECTED_STATE_VERSION:0,IDEMPOTENCY_KEY:"launch-claim-1",OPERATION_ID:"worker-launch-1",OPERATION_IDEMPOTENCY_KEY:"worker-launch-idem-1",SUBMITTED_FENCE_TOKEN:"fence-1",RUNTIME_NOW_MS:2500}); await recordWorkerJobLaunchResultV1(f.launch,{EXPECTED_STATE_VERSION:1,IDEMPOTENCY_KEY:"launch-result-1",OPERATION_ID:"worker-launch-1",OPERATION_IDEMPOTENCY_KEY:"worker-launch-idem-1",RESULT:"PASS",EVIDENCE_SHA256:H("d"),RUNTIME_NOW_MS:3000}); const r=await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq({RUNTIME_NOW_MS:4000})); assert.equal(r.replay,true); });
 test("20 crash reopen and event tamper detection", async()=>{ const {f}=await init(); await claimWorkerIsolationBoundaryV1(f.iso,f.state,f.launch,claimReq()); const reopened=await readDurableWorkerIsolationBoundaryV1(f.iso); assert.equal(reopened.ISOLATION_STATUS,"CLAIMED"); const raw=JSON.parse(await readFile(f.iso,"utf8")); raw.EVENT_LEDGER[1].PAYLOAD.WORKER_ID="tampered"; await writeFile(f.iso,JSON.stringify(raw)+"\n"); await rejectsCode(()=>readDurableWorkerIsolationBoundaryV1(f.iso),"ISOLATION_EVENT_HASH_MISMATCH"); });
