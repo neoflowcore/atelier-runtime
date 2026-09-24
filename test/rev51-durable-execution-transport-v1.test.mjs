@@ -14,34 +14,47 @@ import {
   validateExecutionTransportDispatchGateV1,
   validateDurableExecutionTransportV1
 } from "../runtime/rev51/durable-execution-transport-v1.mjs";
+import {
+  advanceExecutionFenceV1,
+  initializeDurableExecutionStateV1
+} from "../runtime/rev51/durable-execution-state-v1.mjs";
+import {
+  claimWorkerJobLaunchV1,
+  initializeDurableWorkerJobLaunchV1
+} from "../runtime/rev51/durable-worker-job-launch-v1.mjs";
 
 const H1 = "1".repeat(64);
 const H2 = "2".repeat(64);
 const H3 = "3".repeat(64);
 const BASE_TIME = 1_800_000_000_000;
 
-async function fixture({ transport = "DIRECT_WORKER", launchStatus = "AVAILABLE" } = {}) {
+async function fixture({ transport = "DIRECT_WORKER" } = {}) {
   const dir = await mkdtemp(join(tmpdir(), "r51-p2q-"));
   const execPath = join(dir, "execution.json");
   const launchPath = join(dir, "launch.json");
   const transportPath = join(dir, "transport.json");
-  const exec = { EXECUTION_ID: "exec-1", ATTEMPT_ID: "attempt-1", FENCE_TOKEN: "fence-1" };
-  const launch = { EXECUTION_ID: "exec-1", ATTEMPT_ID: "attempt-1", FENCE_TOKEN: "fence-1", WORKER_JOB_SHA256: H1, LAUNCH_STATUS: launchStatus };
-  await writeFile(execPath, `${JSON.stringify(exec)}\n`, "utf8");
-  await writeFile(launchPath, `${JSON.stringify(launch)}\n`, "utf8");
+  await initializeDurableExecutionStateV1(execPath, {
+    EXECUTION_ID:"exec-1",EXECUTION_EPOCH:1,ATTEMPT_ID:"attempt-1",LEASE_GENERATION:1,FENCE_SEQUENCE:1,FENCE_TOKEN:"fence-1",
+    DESIRED_STATE:"RUNNING",MATERIALIZED_STATE:"READY",PROVIDER_OPERATION_STATE:"PENDING"
+  }, BASE_TIME);
+  await initializeDurableWorkerJobLaunchV1(launchPath, execPath, {
+    SCHEMA_ID:"WORKER_JOB_V1",OBJECT_SHA256:H1,EXECUTION_ID:"exec-1",ATTEMPT_ID:"attempt-1",FENCE_TOKEN:"fence-1",
+    SEMANTIC_REPLANNING:"DENY",
+    ENTRYPOINT_SPEC:{schema_id:"ENTRYPOINT_SPEC_V1",executable:"node",argv:["task.mjs"],working_directory:"/workspace",environment_refs:["ENV_A"],stdin_policy:"CLOSED",timeout:60,expected_exit_codes:[0],shell_interpretation:"DENY"}
+  }, BASE_TIME);
   const store = await initializeDurableExecutionTransportV1(
-    transportPath,
-    execPath,
-    launchPath,
-    { EXECUTION_TRANSPORT: transport, WORKER_ID: "worker-1" },
-    BASE_TIME
+    transportPath, execPath, launchPath,
+    { EXECUTION_TRANSPORT: transport, WORKER_ID: "worker-1" }, BASE_TIME
   );
   return { dir, execPath, launchPath, transportPath, store };
 }
-async function setLaunch(path, status) {
-  const value = JSON.parse(await readFile(path, "utf8"));
-  value.LAUNCH_STATUS = status;
-  await writeFile(path, `${JSON.stringify(value)}\n`, "utf8");
+async function setLaunch(execPath, launchPath, status) {
+  if (status !== "CLAIMED") throw new Error("TEST_LAUNCH_STATUS_UNSUPPORTED");
+  await claimWorkerJobLaunchV1(launchPath, execPath, {
+    EXPECTED_STATE_VERSION:0,IDEMPOTENCY_KEY:"launch-claim-1",
+    OPERATION_ID:"worker-launch-1",OPERATION_IDEMPOTENCY_KEY:"worker-launch-idem-1",
+    SUBMITTED_FENCE_TOKEN:"fence-1",RUNTIME_NOW_MS:BASE_TIME+1
+  });
 }
 async function cleanup(dir) { await rm(dir, { recursive: true, force: true }); }
 function conformanceRequest(store, result = "PASS", key = "conf-1") {
@@ -111,7 +124,7 @@ test("FAIL conformance fail-closes transport", async () => {
   try {
     const r = await recordExecutionTransportConformanceV1(f.transportPath, conformanceRequest(f.store, "FAIL"));
     assert.equal(r.state.TRANSPORT_STATE, "FAILED");
-    await setLaunch(f.launchPath, "CLAIMED");
+    await setLaunch(f.execPath, f.launchPath, "CLAIMED");
     await assert.rejects(() => beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, activationRequest(r.state)), /TRANSPORT_NOT_READY/);
   } finally { await cleanup(f.dir); }
 });
@@ -130,7 +143,7 @@ test("activation rejects stale fence", async () => {
   const f = await fixture();
   try {
     const ready = (await recordExecutionTransportConformanceV1(f.transportPath, conformanceRequest(f.store))).state;
-    await setLaunch(f.launchPath, "CLAIMED");
+    await setLaunch(f.execPath, f.launchPath, "CLAIMED");
     await assert.rejects(() => beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, activationRequest(ready, "activate-stale", "fence-old")), /STALE_FENCE_REJECTED/);
   } finally { await cleanup(f.dir); }
 });
@@ -140,7 +153,7 @@ test("activation claim is exactly idempotent", async () => {
   const f = await fixture();
   try {
     const ready = (await recordExecutionTransportConformanceV1(f.transportPath, conformanceRequest(f.store))).state;
-    await setLaunch(f.launchPath, "CLAIMED");
+    await setLaunch(f.execPath, f.launchPath, "CLAIMED");
     const req = activationRequest(ready);
     const first = await beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, req);
     const replay = await beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, req);
@@ -154,7 +167,7 @@ test("changed activation replay conflicts", async () => {
   const f = await fixture();
   try {
     const ready = (await recordExecutionTransportConformanceV1(f.transportPath, conformanceRequest(f.store))).state;
-    await setLaunch(f.launchPath, "CLAIMED");
+    await setLaunch(f.execPath, f.launchPath, "CLAIMED");
     const req = activationRequest(ready);
     await beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, req);
     await assert.rejects(() => beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, { ...req, OPERATION_ID:"other-op" }), /IDEMPOTENCY_KEY_CONFLICT/);
@@ -166,7 +179,7 @@ test("PASS activation becomes ACTIVE and dispatch gate passes exact binding", as
   const f = await fixture();
   try {
     const ready = (await recordExecutionTransportConformanceV1(f.transportPath, conformanceRequest(f.store))).state;
-    await setLaunch(f.launchPath, "CLAIMED");
+    await setLaunch(f.execPath, f.launchPath, "CLAIMED");
     const claimed = (await beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, activationRequest(ready))).state;
     const active = (await recordExecutionTransportActivationResultV1(f.transportPath, activationResult(claimed, "PASS"))).state;
     assert.equal(active.TRANSPORT_STATE, "ACTIVE");
@@ -179,7 +192,7 @@ test("dispatch gate rejects wrong worker binding", async () => {
   const f = await fixture();
   try {
     const ready = (await recordExecutionTransportConformanceV1(f.transportPath, conformanceRequest(f.store))).state;
-    await setLaunch(f.launchPath, "CLAIMED");
+    await setLaunch(f.execPath, f.launchPath, "CLAIMED");
     const claimed = (await beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, activationRequest(ready))).state;
     const active = (await recordExecutionTransportActivationResultV1(f.transportPath, activationResult(claimed, "PASS"))).state;
     assert.equal(validateExecutionTransportDispatchGateV1(active, { EXECUTION_ID:"exec-1", ATTEMPT_ID:"attempt-1", FENCE_TOKEN:"fence-1", WORKER_ID:"worker-X", WORKER_JOB_SHA256:H1 }).code, "TRANSPORT_WORKER_BINDING_MISMATCH");
@@ -191,7 +204,7 @@ test("OUTCOME_UNKNOWN requires same-operation reconciliation", async () => {
   const f = await fixture();
   try {
     const ready = (await recordExecutionTransportConformanceV1(f.transportPath, conformanceRequest(f.store))).state;
-    await setLaunch(f.launchPath, "CLAIMED");
+    await setLaunch(f.execPath, f.launchPath, "CLAIMED");
     const claimed = (await beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, activationRequest(ready))).state;
     const unknown = (await recordExecutionTransportActivationResultV1(f.transportPath, activationResult(claimed, "OUTCOME_UNKNOWN"))).state;
     assert.equal(unknown.TRANSPORT_STATE, "OUTCOME_UNKNOWN");
@@ -204,7 +217,7 @@ test("same operation reconciles OUTCOME_UNKNOWN to ACTIVE", async () => {
   const f = await fixture();
   try {
     const ready = (await recordExecutionTransportConformanceV1(f.transportPath, conformanceRequest(f.store))).state;
-    await setLaunch(f.launchPath, "CLAIMED");
+    await setLaunch(f.execPath, f.launchPath, "CLAIMED");
     const claimed = (await beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, activationRequest(ready))).state;
     const unknown = (await recordExecutionTransportActivationResultV1(f.transportPath, activationResult(claimed, "OUTCOME_UNKNOWN"))).state;
     const reconciled = await reconcileExecutionTransportActivationV1(f.transportPath, { EXPECTED_STATE_VERSION:unknown.STATE_VERSION, IDEMPOTENCY_KEY:"reconcile-1", RUNTIME_NOW_MS:BASE_TIME+4, OPERATION_ID:"transport-op-1", OPERATION_IDEMPOTENCY_KEY:"remote-idem-1", RECONCILED_RESULT:"PASS", EVIDENCE_SHA256:H3 });
@@ -217,7 +230,7 @@ test("blind second activation after OUTCOME_UNKNOWN is denied", async () => {
   const f = await fixture();
   try {
     const ready = (await recordExecutionTransportConformanceV1(f.transportPath, conformanceRequest(f.store))).state;
-    await setLaunch(f.launchPath, "CLAIMED");
+    await setLaunch(f.execPath, f.launchPath, "CLAIMED");
     const claimed = (await beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, activationRequest(ready))).state;
     const unknown = (await recordExecutionTransportActivationResultV1(f.transportPath, activationResult(claimed, "OUTCOME_UNKNOWN"))).state;
     await assert.rejects(() => beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, { ...activationRequest(unknown, "activate-2"), OPERATION_ID:"transport-op-2", OPERATION_IDEMPOTENCY_KEY:"remote-idem-2" }), /TRANSPORT_RECONCILIATION_REQUIRED/);
@@ -229,7 +242,7 @@ test("ACTIVE transport closes with durable deregistration evidence", async () =>
   const f = await fixture();
   try {
     const ready = (await recordExecutionTransportConformanceV1(f.transportPath, conformanceRequest(f.store))).state;
-    await setLaunch(f.launchPath, "CLAIMED");
+    await setLaunch(f.execPath, f.launchPath, "CLAIMED");
     const claimed = (await beginExecutionTransportActivationV1(f.transportPath, f.execPath, f.launchPath, activationRequest(ready))).state;
     const active = (await recordExecutionTransportActivationResultV1(f.transportPath, activationResult(claimed, "PASS"))).state;
     const closed = await closeExecutionTransportV1(f.transportPath, { EXPECTED_STATE_VERSION:active.STATE_VERSION, IDEMPOTENCY_KEY:"close-1", RUNTIME_NOW_MS:BASE_TIME+5, DEREGISTRATION_EVIDENCE_SHA256:H2 });
@@ -269,8 +282,19 @@ test("registration rejects lineage drift between execution and launch stores", a
   const dir = await mkdtemp(join(tmpdir(), "r51-p2q-"));
   try {
     const execPath = join(dir, "execution.json"), launchPath = join(dir, "launch.json"), transportPath = join(dir, "transport.json");
-    await writeFile(execPath, `${JSON.stringify({ EXECUTION_ID:"exec-1", ATTEMPT_ID:"attempt-1", FENCE_TOKEN:"fence-1" })}\n`);
-    await writeFile(launchPath, `${JSON.stringify({ EXECUTION_ID:"exec-1", ATTEMPT_ID:"attempt-OLD", FENCE_TOKEN:"fence-1", WORKER_JOB_SHA256:H1, LAUNCH_STATUS:"AVAILABLE" })}\n`);
-    await assert.rejects(() => initializeDurableExecutionTransportV1(transportPath, execPath, launchPath, { EXECUTION_TRANSPORT:"DIRECT_WORKER", WORKER_ID:"worker-1" }, BASE_TIME), /TRANSPORT_INITIAL_LINEAGE_MISMATCH/);
+    await initializeDurableExecutionStateV1(execPath, {
+      EXECUTION_ID:"exec-1",EXECUTION_EPOCH:1,ATTEMPT_ID:"attempt-1",LEASE_GENERATION:1,FENCE_SEQUENCE:1,FENCE_TOKEN:"fence-1",
+      DESIRED_STATE:"RUNNING",MATERIALIZED_STATE:"READY",PROVIDER_OPERATION_STATE:"PENDING"
+    }, BASE_TIME);
+    await initializeDurableWorkerJobLaunchV1(launchPath, execPath, {
+      SCHEMA_ID:"WORKER_JOB_V1",OBJECT_SHA256:H1,EXECUTION_ID:"exec-1",ATTEMPT_ID:"attempt-1",FENCE_TOKEN:"fence-1",
+      SEMANTIC_REPLANNING:"DENY",
+      ENTRYPOINT_SPEC:{schema_id:"ENTRYPOINT_SPEC_V1",executable:"node",argv:["task.mjs"],working_directory:"/workspace",environment_refs:["ENV_A"],stdin_policy:"CLOSED",timeout:60,expected_exit_codes:[0],shell_interpretation:"DENY"}
+    }, BASE_TIME);
+    await advanceExecutionFenceV1(execPath, {
+      EXPECTED_STATE_VERSION:0,IDEMPOTENCY_KEY:"advance-1",SUBMITTED_FENCE_TOKEN:"fence-1",RUNTIME_NOW_MS:BASE_TIME+1,
+      NEXT_FENCE_SEQUENCE:2,NEXT_FENCE_TOKEN:"fence-2",NEXT_ATTEMPT_ID:"attempt-2",NEXT_LEASE_GENERATION:2
+    });
+    await assert.rejects(() => initializeDurableExecutionTransportV1(transportPath, execPath, launchPath, { EXECUTION_TRANSPORT:"DIRECT_WORKER", WORKER_ID:"worker-1" }, BASE_TIME+2), /TRANSPORT_INITIAL_LINEAGE_MISMATCH/);
   } finally { await cleanup(dir); }
 });
