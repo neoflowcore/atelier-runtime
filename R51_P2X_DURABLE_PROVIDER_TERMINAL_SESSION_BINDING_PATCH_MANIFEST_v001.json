@@ -1,7 +1,7 @@
 {
   "PATCH_ID": "R51_P2X_DURABLE_PROVIDER_TERMINAL_SESSION_BINDING_v001",
   "PHASE": "R51-P2X",
-  "STATUS": "REMOTE_APPLY_CANDIDATE",
+  "STATUS": "REMOTE_REPAIR_1_CI_PENDING",
   "REPOSITORY": "neoflowcore/atelier-runtime",
   "BRANCH": "runtime-r51-a2-consumer-binding",
   "BASE_HEAD": "fa9b0687f568cd31ce18061f16568f7fbe57858e",
@@ -34,9 +34,9 @@
     },
     {
       "PATH": "test/rev51-durable-provider-terminal-session-binding-v1.test.mjs",
-      "BYTES": 9064,
-      "SHA256": "61412aae1f42f5b2ff08b7380c4568b690d8e869cf8b3928b79a645c326fe833",
-      "GIT_BLOB": "306186637ba840e525852e1b2b9d39aa829a7791",
+      "BYTES": 9086,
+      "SHA256": "1638342695abe51e3dd69507c9db9d9061442d63fdcdc3a253e82b52b8df4416",
+      "GIT_BLOB": "549fba4c1ed7c46a5978e34e1aa6f17a1d061cd7",
       "TEST_CASES": 7,
       "LOCAL_NODE_CHECK": "PASS"
     },
@@ -72,5 +72,15 @@
     "MAIN_WRITE": 0,
     "MERGE": 0,
     "FORCE_PUSH": 0
-  }
+  },
+  "REPAIR_HISTORY": [
+    {
+      "FAILURE_RUN_ID": 36044276728,
+      "FAILURE_JOB_ID": 107783817091,
+      "FAILURE_CLASS": "TEST_FIXTURE_PATH_COLLISION",
+      "FIRST_DIAGNOSTIC": "ONE_SHOT_SESSION_ALREADY_EXISTS in saga state version, event hash and billing status are exact",
+      "CHANGE": "include billing status in createSession fixture path and SESSION_ID",
+      "SOURCE_SEMANTIC_CHANGE": 0
+    }
+  ]
 }

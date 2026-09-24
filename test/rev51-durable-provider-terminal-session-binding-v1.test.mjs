@@ -66,9 +66,9 @@ async function createSaga(dir, { planHash = PLAN, executionId = "exec-001", appr
 }
 
 async function createSession(dir, { planHash = PLAN, approval = "approval-001", budget = "budget-001", billing = "STOPPED" } = {}) {
-  const path = join(dir, `session-${planHash.slice(0,8)}-${approval}-${budget}.json`);
+  const path = join(dir, `session-${planHash.slice(0,8)}-${approval}-${budget}-${billing}.json`);
   const session = await initializeOneShotExecutionSessionV1(path, {
-    SESSION_ID: `session-${planHash.slice(0,8)}-${approval}-${budget}`,
+    SESSION_ID: `session-${planHash.slice(0,8)}-${approval}-${budget}-${billing}`,
     EXECUTION_PLAN_HASH: planHash,
     EXECUTION_EPOCH: 2,
     ATTEMPT_ID: "attempt-003",
