@@ -26,14 +26,17 @@ async function fixture() {
   const dir = await mkdtemp(join(tmpdir(), "r51-p2n-"));
   const executionPath = join(dir, "execution.json");
   const proofPath = join(dir, "ownership.json");
-  const execution = {
+  const execution = await initializeDurableExecutionStateV1(executionPath, {
     EXECUTION_ID: "exec-1",
     EXECUTION_EPOCH: 1,
     ATTEMPT_ID: "attempt-1",
     LEASE_GENERATION: 1,
-    FENCE_TOKEN: "fence-1"
-  };
-  await writeFile(executionPath, `${JSON.stringify(execution, null, 2)}\n`, "utf8");
+    FENCE_SEQUENCE: 1,
+    FENCE_TOKEN: "fence-1",
+    DESIRED_STATE: "RUNNING",
+    MATERIALIZED_STATE: "READY",
+    PROVIDER_OPERATION_STATE: "PENDING"
+  }, T0);
   return { dir, executionPath, proofPath, execution };
 }
 
