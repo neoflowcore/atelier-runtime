@@ -1,0 +1,16 @@
+{
+  "manifest_type": "R51_P2H_DURABLE_RESERVATION_SETTLEMENT_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P2H-001",
+  "status": "LOCAL_VERIFIED_CANDIDATE_REMOTE_WRITE_NOT_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "b509777c3cb494544f8b4c619fd9eb084f52498f",
+  "base_tree": "a462bf86a66c450427fe0cae41e7f500e8564e5e",
+  "files": [
+    {"path":"runtime/rev51/durable-reservation-settlement-v1.mjs","bytes":7637,"sha256":"f15eff599158a598212bf705d9ceb57304988fcb632c119b1c0a470bdfbb7a50","git_blob":"3683ba42f503b578a10ef9bc91619a89dec3a993"},
+    {"path":"test/rev51-durable-reservation-settlement-v1.test.mjs","bytes":5108,"sha256":"21f8bdc54af81941ec622ef9a38d7df575dc7e1dc8223e3e1c3c8843b27a913a","git_blob":"551e54fc11b786e060431489b876da9993f5d3bc"},
+    {"path":"docs/rev51/R51_P2H_DURABLE_RESERVATION_SETTLEMENT.md","bytes":531,"sha256":"9aec0557d3448365e32156dc78266025863c7366afc88cc3fb7a7acaef43bd8d","git_blob":"fc4bf4509290590c5003d9e99b2bc3f666e535d9"}
+  ],
+  "validation": {"node_check":"PASS","targeted_tests":"10/10 PASS","execution_node":"22.16.0","repository_engine_node":"22.13.0","evidence_class":"SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH"},
+  "invariants": {"TASK_CONTRACT_V1_MUTATION":0,"FROZEN_27_FIELDS_MUTATION":0,"INTERFACE_V1_MUTATION":0,"SHARED_CONTRACT_REDESIGN":0,"PILOTE_SEMANTIC_REINTERPRETATION":0,"PILOTE_A6_SEMANTIC_DEPENDENCY":0,"PROVIDER_ID_EMISSION":0,"WORKER_ID_EMISSION":0,"ATTEMPT_ID_EMISSION":0,"FENCE_TOKEN_EMISSION":0,"WORKFLOW_RUN":0,"RERUN":0,"DISPATCH":0,"MAIN_WRITE":0,"MERGE":0,"FORCE_PUSH":0}
+}
