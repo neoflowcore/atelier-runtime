@@ -1,0 +1,76 @@
+{
+  "PATCH_ID": "R51_P2X_DURABLE_PROVIDER_TERMINAL_SESSION_BINDING_v001",
+  "PHASE": "R51-P2X",
+  "STATUS": "REMOTE_APPLY_CANDIDATE",
+  "REPOSITORY": "neoflowcore/atelier-runtime",
+  "BRANCH": "runtime-r51-a2-consumer-binding",
+  "BASE_HEAD": "fa9b0687f568cd31ce18061f16568f7fbe57858e",
+  "BASE_TREE": "cc29acf093ebb69001d43a39147231c4185ce80b",
+  "SCOPE": {
+    "RUNTIME_OWNED_ONLY": true,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": false,
+    "SHARED_CONTRACT_CHANGE": false,
+    "INTERFACE_V1_CHANGE": false
+  },
+  "BINDING": {
+    "P2E_PROVIDER_SAGA": "COMPLETE_AUTHORITATIVE_SOURCE",
+    "P2E_PROJECTION_EXPORT": "deriveOneShotSessionTerminalProjectionV1",
+    "P2B_ONE_SHOT_SESSION": "EXISTING_LIFECYCLE",
+    "MUTATED_SESSION_FLAGS": [
+      "EXECUTION_TRANSPORT_DEREGISTERED",
+      "REQUIRED_RESOURCE_CLEANUP_TERMINAL"
+    ],
+    "EXECUTION_TERMINAL_MUTATED": false,
+    "RECEIPT_TERMINAL_MUTATED": false,
+    "BILLING_STATUS_MUTATED": false
+  },
+  "FILES": [
+    {
+      "PATH": "runtime/rev51/durable-provider-terminal-session-binding-v1.mjs",
+      "BYTES": 4864,
+      "SHA256": "ba5c67cfceb2a1e01ec5f72994f829b03ebeb07f1a2e568257c8235563b696bf",
+      "GIT_BLOB": "19c3664c7f4b76d6ad906ae99d7b1b5afaf60761",
+      "LOCAL_NODE_CHECK": "PASS"
+    },
+    {
+      "PATH": "test/rev51-durable-provider-terminal-session-binding-v1.test.mjs",
+      "BYTES": 9064,
+      "SHA256": "61412aae1f42f5b2ff08b7380c4568b690d8e869cf8b3928b79a645c326fe833",
+      "GIT_BLOB": "306186637ba840e525852e1b2b9d39aa829a7791",
+      "TEST_CASES": 7,
+      "LOCAL_NODE_CHECK": "PASS"
+    },
+    {
+      "PATH": "docs/rev51/R51_P2X_DURABLE_PROVIDER_TERMINAL_SESSION_BINDING.md",
+      "GIT_BLOB": "3fb307debb9f03cf995a3bb609fff58d9b37241d"
+    }
+  ],
+  "DEPENDENCIES": [
+    "runtime/rev51/provider-bootstrap-saga-v1.mjs",
+    "runtime/rev51/one-shot-execution-session-v1.mjs"
+  ],
+  "VALIDATION": {
+    "CANONICAL_NODE": "22.13.0",
+    "SOURCE_LOCAL_NODE_CHECK": "PASS",
+    "TEST_LOCAL_NODE_CHECK": "PASS",
+    "EVIDENCE_CLASS": "SUPPLEMENTAL_STATIC",
+    "CANONICAL_CI": "REQUIRED_AFTER_REMOTE_APPLY"
+  },
+  "INVARIANTS": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "EXECUTION_TERMINAL_SEMANTICS_REDEFINITION": 0,
+    "EXECUTION_TERMINAL_MUTATION": 0,
+    "RECEIPT_TERMINAL_MUTATION": 0,
+    "BILLING_STATUS_MUTATION": 0,
+    "WORKFLOW_RERUN": 0,
+    "WORKFLOW_DISPATCH": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}
