@@ -1,0 +1,349 @@
+{
+  "VECTOR_SET_ID": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1_TEST_VECTOR_SET_V1",
+  "VECTOR_SET_VERSION": "1.0.0",
+  "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "VECTORS": [
+    {
+      "ID": "V001_VALID_BINDING",
+      "DESCRIPTION": "Valid sealed execution-terminal semantic partition",
+      "INPUT": {
+        "BINDING_TYPE": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1",
+        "BINDING_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "SOURCE_STATUS_SCHEMA_REF": {
+          "PATH": "schemas/rev51/execution-session-status-v1.schema.json",
+          "SHA256": "fd612bf9556b20b9434d6218ec437d9ec61dfe447f1d9eb534fbb4e7a2a3b5f2",
+          "GIT_BLOB": "d0e0c62d1b387d39eb911e493eeb459e283e626a"
+        },
+        "EXECUTION_STATE_ENUM": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED",
+          "OUTCOME_UNKNOWN"
+        ],
+        "TERMINAL_STATES": [
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED"
+        ],
+        "NON_TERMINAL_STATES": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "OUTCOME_UNKNOWN"
+        ],
+        "DESTINATION_FLAG": "EXECUTION_TERMINAL",
+        "OUTCOME_UNKNOWN_POLICY": "NON_TERMINAL_RECONCILIATION_REQUIRED",
+        "TERMINAL_ACCEPTANCE_POLICY": "NO_ACCEPTANCE_IMPLICATION",
+        "RUNTIME_EVIDENCE_AUTHORITY": "AUTHORITATIVE_RUNTIME_EVIDENCE_REQUIRED",
+        "PILOTE_DIRECT_FLAG_MUTATION": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "A5T_BINDING_SHA256": "0c26ecc91d6a8f9ebba390f9168ec9e7681f6915a87070a15d74df06f22bdaca"
+      }
+    },
+    {
+      "ID": "V002_OUTCOME_UNKNOWN_TERMINAL_DENY",
+      "DESCRIPTION": "OUTCOME_UNKNOWN must remain non-terminal",
+      "INPUT": {
+        "BINDING_TYPE": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1",
+        "BINDING_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "SOURCE_STATUS_SCHEMA_REF": {
+          "PATH": "schemas/rev51/execution-session-status-v1.schema.json",
+          "SHA256": "fd612bf9556b20b9434d6218ec437d9ec61dfe447f1d9eb534fbb4e7a2a3b5f2",
+          "GIT_BLOB": "d0e0c62d1b387d39eb911e493eeb459e283e626a"
+        },
+        "EXECUTION_STATE_ENUM": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED",
+          "OUTCOME_UNKNOWN"
+        ],
+        "TERMINAL_STATES": [
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED",
+          "OUTCOME_UNKNOWN"
+        ],
+        "NON_TERMINAL_STATES": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "OUTCOME_UNKNOWN"
+        ],
+        "DESTINATION_FLAG": "EXECUTION_TERMINAL",
+        "OUTCOME_UNKNOWN_POLICY": "NON_TERMINAL_RECONCILIATION_REQUIRED",
+        "TERMINAL_ACCEPTANCE_POLICY": "NO_ACCEPTANCE_IMPLICATION",
+        "RUNTIME_EVIDENCE_AUTHORITY": "AUTHORITATIVE_RUNTIME_EVIDENCE_REQUIRED",
+        "PILOTE_DIRECT_FLAG_MUTATION": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "A5T_BINDING_SHA256": "0c26ecc91d6a8f9ebba390f9168ec9e7681f6915a87070a15d74df06f22bdaca"
+      }
+    },
+    {
+      "ID": "V003_ACCEPTANCE_IMPLICATION_DENY",
+      "DESCRIPTION": "Execution terminality cannot imply acceptance",
+      "INPUT": {
+        "BINDING_TYPE": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1",
+        "BINDING_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "SOURCE_STATUS_SCHEMA_REF": {
+          "PATH": "schemas/rev51/execution-session-status-v1.schema.json",
+          "SHA256": "fd612bf9556b20b9434d6218ec437d9ec61dfe447f1d9eb534fbb4e7a2a3b5f2",
+          "GIT_BLOB": "d0e0c62d1b387d39eb911e493eeb459e283e626a"
+        },
+        "EXECUTION_STATE_ENUM": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED",
+          "OUTCOME_UNKNOWN"
+        ],
+        "TERMINAL_STATES": [
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED"
+        ],
+        "NON_TERMINAL_STATES": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "OUTCOME_UNKNOWN"
+        ],
+        "DESTINATION_FLAG": "EXECUTION_TERMINAL",
+        "OUTCOME_UNKNOWN_POLICY": "NON_TERMINAL_RECONCILIATION_REQUIRED",
+        "TERMINAL_ACCEPTANCE_POLICY": "EXECUTION_SUCCESS_IMPLIES_ACCEPTANCE",
+        "RUNTIME_EVIDENCE_AUTHORITY": "AUTHORITATIVE_RUNTIME_EVIDENCE_REQUIRED",
+        "PILOTE_DIRECT_FLAG_MUTATION": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "A5T_BINDING_SHA256": "0c26ecc91d6a8f9ebba390f9168ec9e7681f6915a87070a15d74df06f22bdaca"
+      }
+    },
+    {
+      "ID": "V004_RUNTIME_EVIDENCE_REQUIRED",
+      "DESCRIPTION": "Concrete terminal mutation requires authoritative Runtime evidence",
+      "INPUT": {
+        "BINDING_TYPE": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1",
+        "BINDING_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "SOURCE_STATUS_SCHEMA_REF": {
+          "PATH": "schemas/rev51/execution-session-status-v1.schema.json",
+          "SHA256": "fd612bf9556b20b9434d6218ec437d9ec61dfe447f1d9eb534fbb4e7a2a3b5f2",
+          "GIT_BLOB": "d0e0c62d1b387d39eb911e493eeb459e283e626a"
+        },
+        "EXECUTION_STATE_ENUM": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED",
+          "OUTCOME_UNKNOWN"
+        ],
+        "TERMINAL_STATES": [
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED"
+        ],
+        "NON_TERMINAL_STATES": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "OUTCOME_UNKNOWN"
+        ],
+        "DESTINATION_FLAG": "EXECUTION_TERMINAL",
+        "OUTCOME_UNKNOWN_POLICY": "NON_TERMINAL_RECONCILIATION_REQUIRED",
+        "TERMINAL_ACCEPTANCE_POLICY": "NO_ACCEPTANCE_IMPLICATION",
+        "RUNTIME_EVIDENCE_AUTHORITY": "PILOTE_DECLARATION_SUFFICIENT",
+        "PILOTE_DIRECT_FLAG_MUTATION": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "A5T_BINDING_SHA256": "0c26ecc91d6a8f9ebba390f9168ec9e7681f6915a87070a15d74df06f22bdaca"
+      }
+    },
+    {
+      "ID": "V005_PILOTE_DIRECT_MUTATION_DENY",
+      "DESCRIPTION": "Pilote semantic binding cannot directly mutate Runtime session flag",
+      "INPUT": {
+        "BINDING_TYPE": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1",
+        "BINDING_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "SOURCE_STATUS_SCHEMA_REF": {
+          "PATH": "schemas/rev51/execution-session-status-v1.schema.json",
+          "SHA256": "fd612bf9556b20b9434d6218ec437d9ec61dfe447f1d9eb534fbb4e7a2a3b5f2",
+          "GIT_BLOB": "d0e0c62d1b387d39eb911e493eeb459e283e626a"
+        },
+        "EXECUTION_STATE_ENUM": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED",
+          "OUTCOME_UNKNOWN"
+        ],
+        "TERMINAL_STATES": [
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED"
+        ],
+        "NON_TERMINAL_STATES": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "OUTCOME_UNKNOWN"
+        ],
+        "DESTINATION_FLAG": "EXECUTION_TERMINAL",
+        "OUTCOME_UNKNOWN_POLICY": "NON_TERMINAL_RECONCILIATION_REQUIRED",
+        "TERMINAL_ACCEPTANCE_POLICY": "NO_ACCEPTANCE_IMPLICATION",
+        "RUNTIME_EVIDENCE_AUTHORITY": "AUTHORITATIVE_RUNTIME_EVIDENCE_REQUIRED",
+        "PILOTE_DIRECT_FLAG_MUTATION": "ALLOW",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "A5T_BINDING_SHA256": "0c26ecc91d6a8f9ebba390f9168ec9e7681f6915a87070a15d74df06f22bdaca"
+      }
+    },
+    {
+      "ID": "V006_SOURCE_SCHEMA_DRIFT_DENY",
+      "DESCRIPTION": "Source status schema drift fails closed",
+      "INPUT": {
+        "BINDING_TYPE": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1",
+        "BINDING_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "SOURCE_STATUS_SCHEMA_REF": {
+          "PATH": "schemas/rev51/execution-session-status-v1.schema.json",
+          "SHA256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "GIT_BLOB": "d0e0c62d1b387d39eb911e493eeb459e283e626a"
+        },
+        "EXECUTION_STATE_ENUM": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED",
+          "OUTCOME_UNKNOWN"
+        ],
+        "TERMINAL_STATES": [
+          "SUCCEEDED",
+          "FAILED",
+          "CANCELED",
+          "EXPIRED"
+        ],
+        "NON_TERMINAL_STATES": [
+          "REQUESTED",
+          "READY",
+          "RUNNING",
+          "OUTCOME_UNKNOWN"
+        ],
+        "DESTINATION_FLAG": "EXECUTION_TERMINAL",
+        "OUTCOME_UNKNOWN_POLICY": "NON_TERMINAL_RECONCILIATION_REQUIRED",
+        "TERMINAL_ACCEPTANCE_POLICY": "NO_ACCEPTANCE_IMPLICATION",
+        "RUNTIME_EVIDENCE_AUTHORITY": "AUTHORITATIVE_RUNTIME_EVIDENCE_REQUIRED",
+        "PILOTE_DIRECT_FLAG_MUTATION": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "A5T_BINDING_SHA256": "880b230613be28c06da138c2b34cd3fa3b56a413e31af0d82ac473742bbec5a8"
+      }
+    }
+  ],
+  "PROJECTION_CASES": [
+    {
+      "EXECUTION_STATE": "REQUESTED",
+      "EXECUTION_TERMINAL": false,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "READY",
+      "EXECUTION_TERMINAL": false,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "RUNNING",
+      "EXECUTION_TERMINAL": false,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "SUCCEEDED",
+      "EXECUTION_TERMINAL": true,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "FAILED",
+      "EXECUTION_TERMINAL": true,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "CANCELED",
+      "EXECUTION_TERMINAL": true,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "EXPIRED",
+      "EXECUTION_TERMINAL": true,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "OUTCOME_UNKNOWN",
+      "EXECUTION_TERMINAL": false,
+      "RECONCILIATION_REQUIRED": true,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    }
+  ]
+}

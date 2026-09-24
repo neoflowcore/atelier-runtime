@@ -1,0 +1,111 @@
+{
+  "RESULT_SET_ID": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1_EXPECTED_RESULT_SET_V1",
+  "RESULT_SET_VERSION": "1.0.0",
+  "VECTOR_SET_ID": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1_TEST_VECTOR_SET_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "RESULTS": [
+    {
+      "ID": "V001_VALID_BINDING",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V002_OUTCOME_UNKNOWN_TERMINAL_DENY",
+      "OK": false,
+      "ERRORS": [
+        "TERMINAL_STATES_MISMATCH",
+        "TERMINAL_PARTITION_INVALID",
+        "A5T_BINDING_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V003_ACCEPTANCE_IMPLICATION_DENY",
+      "OK": false,
+      "ERRORS": [
+        "TERMINAL_ACCEPTANCE_POLICY_MISMATCH",
+        "A5T_BINDING_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V004_RUNTIME_EVIDENCE_REQUIRED",
+      "OK": false,
+      "ERRORS": [
+        "RUNTIME_EVIDENCE_AUTHORITY_MISMATCH",
+        "A5T_BINDING_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V005_PILOTE_DIRECT_MUTATION_DENY",
+      "OK": false,
+      "ERRORS": [
+        "PILOTE_DIRECT_FLAG_MUTATION_MISMATCH",
+        "A5T_BINDING_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V006_SOURCE_SCHEMA_DRIFT_DENY",
+      "OK": false,
+      "ERRORS": [
+        "SOURCE_STATUS_SCHEMA_REF_MISMATCH"
+      ]
+    }
+  ],
+  "PROJECTION_EXPECTED": [
+    {
+      "EXECUTION_STATE": "REQUESTED",
+      "EXECUTION_TERMINAL": false,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "READY",
+      "EXECUTION_TERMINAL": false,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "RUNNING",
+      "EXECUTION_TERMINAL": false,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "SUCCEEDED",
+      "EXECUTION_TERMINAL": true,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "FAILED",
+      "EXECUTION_TERMINAL": true,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "CANCELED",
+      "EXECUTION_TERMINAL": true,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "EXPIRED",
+      "EXECUTION_TERMINAL": true,
+      "RECONCILIATION_REQUIRED": false,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    },
+    {
+      "EXECUTION_STATE": "OUTCOME_UNKNOWN",
+      "EXECUTION_TERMINAL": false,
+      "RECONCILIATION_REQUIRED": true,
+      "ACCEPTANCE_IMPLIED": false,
+      "RUNTIME_EVIDENCE_REQUIRED": true
+    }
+  ]
+}
