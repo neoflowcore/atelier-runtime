@@ -11,6 +11,10 @@ import {
   reconcileDestructiveResourceActionV1,
   validateDurableResourceOwnershipProofV1
 } from "../runtime/rev51/durable-resource-ownership-proof-v1.mjs";
+import {
+  advanceExecutionFenceV1,
+  initializeDurableExecutionStateV1
+} from "../runtime/rev51/durable-execution-state-v1.mjs";
 
 const T0 = Date.parse("2026-09-24T00:00:00.000Z");
 const SHA_A = "a".repeat(64);
@@ -132,7 +136,16 @@ test("execution lineage drift denies stale ownership proof", async () => {
   const f = await fixture();
   try {
     await init(f);
-    await writeFile(f.executionPath, `${JSON.stringify({ ...f.execution, ATTEMPT_ID: "attempt-2", FENCE_TOKEN: "fence-2" }, null, 2)}\n`, "utf8");
+    await advanceExecutionFenceV1(f.executionPath, {
+      EXPECTED_STATE_VERSION: 0,
+      IDEMPOTENCY_KEY: "advance-1",
+      SUBMITTED_FENCE_TOKEN: "fence-1",
+      RUNTIME_NOW_MS: T0 + 500,
+      NEXT_FENCE_SEQUENCE: 2,
+      NEXT_FENCE_TOKEN: "fence-2",
+      NEXT_ATTEMPT_ID: "attempt-2",
+      NEXT_LEASE_GENERATION: 2
+    });
     await assert.rejects(beginDestructiveResourceActionV1(f.proofPath, f.executionPath, beginRequest({ SUBMITTED_FENCE_TOKEN: "fence-2" })), /RESOURCE_OWNERSHIP_ATTEMPT_STALE/);
   } finally { await rm(f.dir, { recursive: true, force: true }); }
 });
