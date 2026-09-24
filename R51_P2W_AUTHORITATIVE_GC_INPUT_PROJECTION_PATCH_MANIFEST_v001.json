@@ -1,7 +1,7 @@
 {
   "PATCH_ID": "R51_P2W_AUTHORITATIVE_GC_INPUT_PROJECTION_v001",
   "PHASE": "R51-P2W",
-  "STATUS": "REMOTE_APPLY_CANDIDATE",
+  "STATUS": "REMOTE_REPAIR_1_CI_PENDING",
   "REPOSITORY": "neoflowcore/atelier-runtime",
   "BRANCH": "runtime-r51-a2-consumer-binding",
   "BASE_HEAD": "907c459a592b43f6645b06d54706c9dd1557eb96",
@@ -32,7 +32,7 @@
       "PATH": "test/rev51-authoritative-gc-input-projection-v1.test.mjs",
       "GIT_BLOB": "a9dec6c80fa9ae203dafbbf76c2cdbaddd2a7256",
       "TEST_CASES": 6,
-      "LOCAL_REFERENCE_SHA256": "d0d33699ce8215ed86922e6a61b466826ac0f3c817e85faa2e9a72518baf78e5",
+      "LOCAL_REFERENCE_SHA256": "9aa176a1bb460b483dadeac0f555b2ab650260de948d90e226b2213ac77b0d8f",
       "REMOTE_BYTES_CANONICAL_CI_REQUIRED": true
     },
     {
@@ -68,5 +68,15 @@
     "MAIN_WRITE": 0,
     "MERGE": 0,
     "FORCE_PUSH": 0
-  }
+  },
+  "REPAIR_HISTORY": [
+    {
+      "FAILURE_RUN_ID": 36043379583,
+      "FAILURE_JOB_ID": 107780791838,
+      "FAILURE_CLASS": "TEST_FIXTURE_PATH_COLLISION",
+      "FIRST_DIAGNOSTIC": "ONE_SHOT_SESSION_ALREADY_EXISTS in valid closure seal from another plan is denied",
+      "CHANGE": "add execution-plan hash suffix to closure test session/seal temp paths",
+      "SOURCE_SEMANTIC_CHANGE": 0
+    }
+  ]
 }

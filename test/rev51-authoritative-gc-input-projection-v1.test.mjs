@@ -113,8 +113,8 @@ async function createCompleteSaga(dir, p, { executionId = "exec-001", provider =
   }
 }
 async function createClosureSeal(dir, p, billingStatus = "STOPPED") {
-  const sessionPath = join(dir, `session-${billingStatus}.json`);
-  const sealPath = join(dir, `seal-${billingStatus}.json`);
+  const sessionPath = join(dir, `session-${billingStatus}-${p.OBJECT_SHA256.slice(0, 8)}.json`);
+  const sealPath = join(dir, `seal-${billingStatus}-${p.OBJECT_SHA256.slice(0, 8)}.json`);
   await initializeOneShotExecutionSessionV1(sessionPath, {
     SESSION_ID: `session-${billingStatus}`,EXECUTION_PLAN_HASH: p.OBJECT_SHA256,EXECUTION_EPOCH: 2,ATTEMPT_ID: "attempt-003",LEASE_GENERATION: 4,FENCE_TOKEN: "fence-007",
     COMPUTE_PROVIDER_BINDING: { BINDING_ID: "compute-1", BINDING_SHA256: "d".repeat(64) },
