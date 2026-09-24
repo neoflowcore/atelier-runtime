@@ -1,0 +1,62 @@
+{
+  "PATCH_ID": "R51_P2U_DURABLE_BILLING_TERMINALIZATION_v001",
+  "PHASE": "R51-P2U",
+  "STATUS": "REMOTE_APPLY_CANDIDATE",
+  "REPOSITORY": "neoflowcore/atelier-runtime",
+  "BRANCH": "runtime-r51-a2-consumer-binding",
+  "BASE_HEAD": "0d318a8efe2c2ee7be7e06457ab49a1e648c2220",
+  "BASE_TREE": "a000e7d9fc7cd87c9baeade80553462081afd422",
+  "SCOPE": {
+    "RUNTIME_OWNED_ONLY": true,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": false,
+    "SHARED_CONTRACT_CHANGE": false,
+    "INTERFACE_V1_CHANGE": false
+  },
+  "BINDING": {
+    "P2H_DURABLE_RESERVATION_SETTLEMENT": "AUTHORITATIVE_ACCOUNTING_SOURCE",
+    "P2B_ONE_SHOT_SESSION": "EXISTING_SESSION_LIFECYCLE",
+    "TERMINALIZATION_POLICY": "P2H_SETTLEMENT_TO_SESSION_BILLING_STOPPED",
+    "SESSION_FIELD": "BILLING_STATUS",
+    "TERMINAL_VALUE": "STOPPED",
+    "OTHER_SESSION_TERMINAL_FLAGS_MUTATED": false,
+    "SESSION_COMPLETE_DIRECTLY": false
+  },
+  "FILES": [
+    {
+      "PATH": "runtime/rev51/durable-billing-terminalization-v1.mjs",
+      "GIT_BLOB": "69f684b1068ff084f4a56383212299b232c0e8f2"
+    },
+    {
+      "PATH": "test/rev51-durable-billing-terminalization-v1.test.mjs",
+      "GIT_BLOB": "ebf47c8585baffb9556eb5a9ebbd2a78a01bd75d",
+      "TEST_CASES": 7
+    },
+    {
+      "PATH": "docs/rev51/R51_P2U_DURABLE_BILLING_TERMINALIZATION.md",
+      "GIT_BLOB": "23c2cda4faca2d95ba3269beb52e8bab326eadbc"
+    }
+  ],
+  "DEPENDENCIES": [
+    "runtime/rev51/durable-reservation-settlement-v1.mjs",
+    "runtime/rev51/one-shot-execution-session-v1.mjs"
+  ],
+  "VALIDATION": {
+    "CANONICAL_NODE": "22.13.0",
+    "CANONICAL_CI": "REQUIRED_AFTER_REMOTE_APPLY"
+  },
+  "INVARIANTS": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "SETTLEMENT_ARITHMETIC_REDEFINITION": 0,
+    "OTHER_SESSION_TERMINAL_FLAGS_MUTATION": 0,
+    "WORKFLOW_RERUN": 0,
+    "WORKFLOW_DISPATCH": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}
