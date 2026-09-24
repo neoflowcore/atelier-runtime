@@ -9,9 +9,13 @@ import {
   readDurableResultAcceptanceV1,
   validateDurableResultAcceptanceV1
 } from "../runtime/rev51/durable-result-acceptance-v1.mjs";
+import {
+  advanceExecutionFenceV1,
+  initializeDurableExecutionStateV1,
+  recordProviderOperationOutcomeV1
+} from "../runtime/rev51/durable-execution-state-v1.mjs";
 
 const T0 = Date.parse("2026-09-24T00:00:00.000Z");
-const SOURCE_EVENT_HASH = "e".repeat(64);
 
 function plan() {
   const value = {
@@ -78,35 +82,6 @@ function verification(p, w, artifacts) {
   };
 }
 
-function state(overrides = {}) {
-  return {
-    STORE_SCHEMA_ID: "DURABLE_EXECUTION_STATE_V1",
-    STATE_SCHEMA_VERSION: "1",
-    EVENT_SCHEMA_VERSION: "1",
-    EXECUTION_ID: "exec-001",
-    EXECUTION_EPOCH: 2,
-    ATTEMPT_ID: "attempt-003",
-    LEASE_GENERATION: 4,
-    FENCE_SEQUENCE: 7,
-    FENCE_TOKEN: "fence-007",
-    DESIRED_STATE: "RUNNING",
-    MATERIALIZED_STATE: "RESULT_QUARANTINED",
-    PROVIDER_OPERATION_STATE: "SUCCEEDED",
-    RECONCILIATION_REQUIRED: false,
-    BLIND_RETRY_ALLOWED: false,
-    STATE_VERSION: 9,
-    LAST_EVENT_SEQUENCE: 4,
-    CREATED_AT: "2026-09-24T00:00:00Z",
-    UPDATED_AT: "2026-09-24T00:00:00Z",
-    USED_FENCE_TOKENS: ["fence-007"],
-    IDEMPOTENCY_INDEX: {},
-    EVENT_LEDGER: [
-      { EVENT_SHA256: SOURCE_EVENT_HASH }
-    ],
-    ...overrides
-  };
-}
-
 function request(overrides = {}) {
   const p = plan();
   const w = workerJob(p);
@@ -116,7 +91,7 @@ function request(overrides = {}) {
   ];
   return {
     IDEMPOTENCY_KEY: "accept-001",
-    EXPECTED_STATE_VERSION: 9,
+    EXPECTED_STATE_VERSION: 0,
     EXPECTED_EXECUTION_EPOCH: 2,
     EXPECTED_LEASE_GENERATION: 4,
     SUBMITTED_FENCE_TOKEN: "fence-007",
@@ -134,8 +109,27 @@ async function fixture(stateOverrides = {}) {
   const statePath = join(dir, "execution-state.json");
   const journalPath = join(dir, "result-acceptance.json");
   await mkdir(dir, { recursive: true });
-  await writeFile(statePath, `${JSON.stringify(state(stateOverrides), null, 2)}\n`, "utf8");
-  return { dir, statePath, journalPath };
+  let state = await initializeDurableExecutionStateV1(statePath, {
+    EXECUTION_ID: "exec-001",
+    EXECUTION_EPOCH: 2,
+    ATTEMPT_ID: "attempt-003",
+    LEASE_GENERATION: 4,
+    FENCE_SEQUENCE: 7,
+    FENCE_TOKEN: "fence-007",
+    DESIRED_STATE: "RUNNING",
+    MATERIALIZED_STATE: "RESULT_QUARANTINED",
+    PROVIDER_OPERATION_STATE: "SUCCEEDED"
+  }, T0);
+  if (stateOverrides.PROVIDER_OPERATION_STATE === "OUTCOME_UNKNOWN" || stateOverrides.RECONCILIATION_REQUIRED === true) {
+    state = (await recordProviderOperationOutcomeV1(statePath, {
+      EXPECTED_STATE_VERSION: 0,
+      IDEMPOTENCY_KEY: "provider-unknown-1",
+      SUBMITTED_FENCE_TOKEN: "fence-007",
+      RUNTIME_NOW_MS: T0 + 1,
+      PROVIDER_OPERATION_STATE: "OUTCOME_UNKNOWN"
+    })).state;
+  }
+  return { dir, statePath, journalPath, state };
 }
 
 async function cleanup(f) {
@@ -148,8 +142,8 @@ test("current fence CAS commits receipt and immutable artifact manifest atomical
     const r = await commitDurableResultAcceptanceV1(f.statePath, f.journalPath, request());
     assert.equal(r.replay, false);
     assert.equal(r.acceptance.ACCEPTANCE_STATE, "ACCEPTED");
-    assert.equal(r.acceptance.SOURCE_STATE_VERSION, 9);
-    assert.equal(r.acceptance.SOURCE_EVENT_SHA256, SOURCE_EVENT_HASH);
+    assert.equal(r.acceptance.SOURCE_STATE_VERSION, 0);
+    assert.equal(r.acceptance.SOURCE_EVENT_SHA256, f.state.EVENT_LEDGER.at(-1).EVENT_SHA256);
     assert.deepEqual(r.acceptance.EXECUTION_RECEIPT.ACCEPTED_ARTIFACT_IDS, ["artifact-a", "artifact-b"]);
     assert.ok(r.acceptance.ACCEPTED_ARTIFACT_MANIFEST.every((a) => a.ARTIFACT_STATE === "IMMUTABLE"));
     assert.deepEqual(validateDurableResultAcceptanceV1(r.acceptance), { ok: true, errors: [] });
@@ -195,7 +189,7 @@ test("state version CAS mismatch is rejected", async () => {
   const f = await fixture();
   try {
     await assert.rejects(
-      commitDurableResultAcceptanceV1(f.statePath, f.journalPath, request({ EXPECTED_STATE_VERSION: 8 })),
+      commitDurableResultAcceptanceV1(f.statePath, f.journalPath, request({ EXPECTED_STATE_VERSION: 1 })),
       /DURABLE_RESULT_ACCEPTANCE_STATE_CAS_MISMATCH/
     );
   } finally { await cleanup(f); }
@@ -219,7 +213,7 @@ test("unresolved provider outcome blocks authoritative result acceptance", async
   const f = await fixture({ PROVIDER_OPERATION_STATE: "OUTCOME_UNKNOWN", RECONCILIATION_REQUIRED: true });
   try {
     await assert.rejects(
-      commitDurableResultAcceptanceV1(f.statePath, f.journalPath, request()),
+      commitDurableResultAcceptanceV1(f.statePath, f.journalPath, request({ EXPECTED_STATE_VERSION: 1 })),
       /DURABLE_RESULT_ACCEPTANCE_RECONCILIATION_REQUIRED/
     );
   } finally { await cleanup(f); }
@@ -243,14 +237,16 @@ test("same idempotency replay survives restart and later durable state advanceme
   try {
     const req = request();
     const first = await commitDurableResultAcceptanceV1(f.statePath, f.journalPath, req);
-    await writeFile(f.statePath, `${JSON.stringify(state({
-      STATE_VERSION: 10,
-      ATTEMPT_ID: "attempt-004",
-      LEASE_GENERATION: 5,
-      FENCE_SEQUENCE: 8,
-      FENCE_TOKEN: "fence-008",
-      USED_FENCE_TOKENS: ["fence-007", "fence-008"]
-    }), null, 2)}\n`, "utf8");
+    await advanceExecutionFenceV1(f.statePath, {
+      EXPECTED_STATE_VERSION: 0,
+      IDEMPOTENCY_KEY: "advance-after-acceptance",
+      SUBMITTED_FENCE_TOKEN: "fence-007",
+      RUNTIME_NOW_MS: T0 + 1,
+      NEXT_FENCE_SEQUENCE: 8,
+      NEXT_FENCE_TOKEN: "fence-008",
+      NEXT_ATTEMPT_ID: "attempt-004",
+      NEXT_LEASE_GENERATION: 5
+    });
     const replay = await commitDurableResultAcceptanceV1(f.statePath, f.journalPath, req);
     assert.equal(replay.replay, true);
     assert.deepEqual(replay.acceptance, first.acceptance);
