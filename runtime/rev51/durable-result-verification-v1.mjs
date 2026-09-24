@@ -189,7 +189,7 @@ function validateStoredVerificationPayload(payload, record) {
   if (payload.WORKER_JOB_HASH !== record.WORKER_JOB_SHA256) throw new Error("DURABLE_RESULT_VERIFICATION_PAYLOAD_WORKER_JOB_HASH_MISMATCH");
   if (payload.EXECUTION_PLAN_HASH !== record.EXECUTION_PLAN_SHA256) throw new Error("DURABLE_RESULT_VERIFICATION_PAYLOAD_PLAN_HASH_MISMATCH");
   for (const key of VERIFICATION_CHECKS) {
-    if (typeof payload[key] !== "boolean") throw new Error( DURABLE_RESULT_VERIFICATION_CHECK_NOT_BOOLEAN:${key}`);
+    if (typeof payload[key] !== "boolean") throw new Error(`DURABLE_RESULT_VERIFICATION_CHECK_NOT_BOOLEAN:${key}`);
   }
   if (!Array.isArray(payload.ARTIFACT_CONTENT_BINDINGS)) throw new Error("DURABLE_RESULT_VERIFICATION_ARTIFACT_BINDINGS_REQUIRED");
   const seen = new Set();
@@ -202,7 +202,7 @@ function validateStoredVerificationPayload(payload, record) {
   }
   if (record.VERIFICATION_RESULT === "PASS") {
     for (const key of VERIFICATION_CHECKS) {
-      if (payload[key] !== true) throw new Error( DURABLE_RESULT_VERIFICATION_PASS_CHECK_FAILED:${key}`);
+      if (payload[key] !== true) throw new Error(`DURABLE_RESULT_VERIFICATION_PASS_CHECK_FAILED:${key}`);
     }
     const sorted = [...payload.ARTIFACT_CONTENT_BINDINGS].sort((a, b) => a.ARTIFACT_ID.localeCompare(b.ARTIFACT_ID));
     if (hashObject(sorted) !== record.ARTIFACT_MANIFEST_SHA256) throw new Error("DURABLE_RESULT_VERIFICATION_ARTIFACT_MANIFEST_HASH_MISMATCH");

@@ -1,7 +1,7 @@
 {
   "PATCH_ID": "R51_P2S_DURABLE_RESULT_VERIFICATION_v001",
   "PHASE": "R51-P2S",
-  "STATUS": "REMOTE_REPAIR_CI_PENDING",
+  "STATUS": "REMOTE_REPAIR_2_CI_PENDING",
   "REPOSITORY": "neoflowcore/atelier-runtime",
   "BRANCH": "runtime-r51-a2-consumer-binding",
   "BASE_HEAD": "e807e502a50aeff61ca193e814a2a4519934708f",
@@ -31,7 +31,7 @@
     {
       "PATH": "runtime/rev51/durable-result-verification-v1.mjs",
       "BYTES": 22849,
-      "GIT_BLOB": "bf010a8ee4bf8557cfb151d6137cd20d4d010c29"
+      "GIT_BLOB": "51d9566c1eacfa3b510a7ccb17c3b3b83ab3904e"
     },
     {
       "PATH": "test/rev51-durable-result-verification-v1.test.mjs",
@@ -73,12 +73,25 @@
     "MERGE": 0,
     "FORCE_PUSH": 0
   },
-  "REPAIR": {
-    "FAILURE_RUN_ID": 36006320814,
-    "FAILURE_JOB_ID": 107655282594,
-    "FAILURE_CLASS": "SOURCE_TRANSFER_SYNTAX_CORRUPTION",
-    "FIRST_DIAGNOSTIC": "missing ) after argument list at durable-result-verification-v1.mjs:179",
-    "CHANGE": "restore missing template-literal opening backtick",
-    "SOURCE_SEMANTIC_CHANGE": 0
-  }
+  "REPAIR_HISTORY": [
+    {
+      "FAILURE_RUN_ID": 36006320814,
+      "FAILURE_JOB_ID": 107655282594,
+      "FAILURE_CLASS": "SOURCE_TRANSFER_SYNTAX_CORRUPTION",
+      "FIRST_DIAGNOSTIC": "missing ) after argument list at durable-result-verification-v1.mjs:179",
+      "CHANGE": "restore missing template-literal opening backtick",
+      "SOURCE_SEMANTIC_CHANGE": 0
+    },
+    {
+      "FAILURE_RUN_ID": 36006518060,
+      "FAILURE_JOB_ID": 107655951887,
+      "FAILURE_CLASS": "SOURCE_TRANSFER_SYNTAX_CORRUPTION_REMAINDER",
+      "DIAGNOSTICS": [
+        "line 192 missing template-literal opening backtick",
+        "line 205 missing template-literal opening backtick"
+      ],
+      "CHANGE": "restore remaining two template-literal opening backticks",
+      "SOURCE_SEMANTIC_CHANGE": 0
+    }
+  ]
 }
