@@ -176,7 +176,7 @@ function validateVerificationPayload(payload, collection, plan, workerJob) {
   validateArtifactBindings(payload.ARTIFACT_CONTENT_BINDINGS, collection, payload.VERIFICATION_RESULT === "PASS");
   if (payload.VERIFICATION_RESULT === "PASS") {
     for (const key of VERIFICATION_CHECKS) {
-      if (payload[key] !== true) throw new Error( RESULT_VERIFICATION_PASS_CHECK_FAILED:${key}`);
+      if (payload[key] !== true) throw new Error(`RESULT_VERIFICATION_PASS_CHECK_FAILED:${key}`);
     }
   }
 }
