@@ -14,6 +14,7 @@ import {
   validateDurableAdmissionBudgetV1,
   validateReservationForExecutionV1
 } from "../runtime/rev51/durable-admission-budget-cancellation-v1.mjs";
+import { initializeDurableExecutionStateV1 } from "../runtime/rev51/durable-execution-state-v1.mjs";
 
 const T0 = Date.parse("2026-09-24T00:00:00.000Z");
 const TASK = "1".repeat(64);
@@ -24,16 +25,17 @@ async function fixture() {
   const dir = await mkdtemp(join(tmpdir(), "r51-p2g-"));
   const admissionPath = join(dir, "admission.json");
   const statePath = join(dir, "execution-state.json");
-  const state = {
+  const state = await initializeDurableExecutionStateV1(statePath, {
     EXECUTION_ID: "exec-1",
+    EXECUTION_EPOCH: 1,
     ATTEMPT_ID: "attempt-1",
     LEASE_GENERATION: 1,
     FENCE_SEQUENCE: 1,
     FENCE_TOKEN: "fence-1",
-    STATE_VERSION: 7,
-    RECONCILIATION_REQUIRED: false
-  };
-  await writeFile(statePath, `${JSON.stringify(state, null, 2)}\n`, "utf8");
+    DESIRED_STATE: "RUNNING",
+    MATERIALIZED_STATE: "READY",
+    PROVIDER_OPERATION_STATE: "PENDING"
+  }, T0);
   await initializeDurableAdmissionBudgetV1(admissionPath, {
     TASK_CONTRACT_SHA256: TASK,
     EXECUTION_INTENT_SHA256: INTENT,
@@ -47,7 +49,7 @@ async function fixture() {
 function reserveRequest(overrides = {}) {
   return {
     EXPECTED_ADMISSION_STATE_VERSION: 0,
-    EXPECTED_EXECUTION_STATE_VERSION: 7,
+    EXPECTED_EXECUTION_STATE_VERSION: 0,
     EXECUTION_ID: "exec-1",
     SUBMITTED_FENCE_TOKEN: "fence-1",
     IDEMPOTENCY_KEY: "reserve-1",
@@ -63,7 +65,7 @@ function reserveRequest(overrides = {}) {
 function stateRequest(version, key, overrides = {}) {
   return {
     EXPECTED_ADMISSION_STATE_VERSION: version,
-    EXPECTED_EXECUTION_STATE_VERSION: 7,
+    EXPECTED_EXECUTION_STATE_VERSION: 0,
     EXECUTION_ID: "exec-1",
     SUBMITTED_FENCE_TOKEN: "fence-1",
     IDEMPOTENCY_KEY: key,
@@ -87,7 +89,7 @@ test("reservation binds current execution state and fence", async () => {
   try {
     const r = await reserveAdmissionBudgetV1(f.admissionPath, f.statePath, reserveRequest());
     assert.equal(r.store.RESERVATIONS["reservation-1"].FENCE_TOKEN, "fence-1");
-    assert.equal(r.store.RESERVATIONS["reservation-1"].SOURCE_EXECUTION_STATE_VERSION, 7);
+    assert.equal(r.store.RESERVATIONS["reservation-1"].SOURCE_EXECUTION_STATE_VERSION, 0);
     assert.equal(r.store.TOTAL_EXECUTIONS_RESERVED, 1);
   } finally { await rm(f.dir, { recursive: true, force: true }); }
 });
@@ -106,7 +108,7 @@ test("execution state CAS mismatch is rejected", async () => {
   const f = await fixture();
   try {
     await assert.rejects(
-      reserveAdmissionBudgetV1(f.admissionPath, f.statePath, reserveRequest({ EXPECTED_EXECUTION_STATE_VERSION: 6 })),
+      reserveAdmissionBudgetV1(f.admissionPath, f.statePath, reserveRequest({ EXPECTED_EXECUTION_STATE_VERSION: 1 })),
       /EXECUTION_STATE_CAS_MISMATCH/
     );
   } finally { await rm(f.dir, { recursive: true, force: true }); }
