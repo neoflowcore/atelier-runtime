@@ -1,0 +1,38 @@
+{
+  "PATCH_ID": "R51_P2Q_DURABLE_EXECUTION_TRANSPORT_v001",
+  "PHASE": "R51-P2Q",
+  "REPOSITORY": "neoflowcore/atelier-runtime",
+  "BRANCH": "runtime-r51-a2-consumer-binding",
+  "BASE_HEAD": "36fb5a50e2dc01ac25ca171aad1cc7ea3dad9fbc",
+  "BASE_TREE": "05d657f9024fbaaada0ca9aadaa1aa747c459b31",
+  "FILES": [
+    {"PATH":"runtime/rev51/durable-execution-transport-v1.mjs","SHA256":"bd1b7ac21d59aa69cc1cb3c8344a37aef491dc22eda0404f2c7daebdc8c1b44d","GIT_BLOB":"9c784f49a821f5fb1d4b1eac0f6709fb075cc88e"},
+    {"PATH":"test/rev51-durable-execution-transport-v1.test.mjs","SHA256":"b301247759347b23d476a0f4e815f344ea9dc32be10ee2a13d38ec99f81a318c","GIT_BLOB":"e6aa306343322ed00f34e11bf87369b930a840fd"},
+    {"PATH":"docs/rev51/R51_P2Q_DURABLE_EXECUTION_TRANSPORT.md","SHA256":"3d4aa8d1fd548a52ef7ebf9107463344de5c3f043f1c870e326e9e0f9e3921a9","GIT_BLOB":"a2090c2c6038999c24b0e68ebc0b71c035846264"}
+  ],
+  "DEPENDENCY_BLOBS": {
+    "runtime/rev51/durable-execution-state-v1.mjs": "3f7526254318e32061687a3efc9fda80a103d459",
+    "runtime/rev51/durable-worker-job-launch-v1.mjs": "e35b7cdc2862efc96aa955870b799e8a2e6a4719",
+    "schemas/rev51/execution-transport-v1.schema.json": "1c35d1a0aa318491d0a73cd89edd4a9e631da88e",
+    "schemas/rev51/execution-transport-conformance-v1.schema.json": "adb5ea8b99a9bc82b1f2341b4eb88b763e82a539"
+  },
+  "LOCAL_TARGETED_TESTS": {"PASS":20,"FAIL":0,"EVIDENCE_CLASS":"SUPPLEMENTAL_PASS_CANONICAL_BLOCKED","LOCAL_NODE":"22.16.0","REPOSITORY_ENGINE_NODE":"22.13.0"},
+  "INVARIANTS": {
+    "TASK_CONTRACT_V1_MUTATION":0,
+    "FROZEN_27_FIELDS_MUTATION":0,
+    "INTERFACE_V1_MUTATION":0,
+    "SHARED_CONTRACT_REDESIGN":0,
+    "PILOTE_SEMANTIC_REINTERPRETATION":0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY":0,
+    "RUNTIME_OWNED_PROVIDER_ID_EMISSION":0,
+    "RUNTIME_OWNED_WORKER_ID_EMISSION":0,
+    "RUNTIME_OWNED_ATTEMPT_ID_EMISSION":0,
+    "RUNTIME_OWNED_FENCE_TOKEN_EMISSION":0,
+    "WORKFLOW_RUN":0,
+    "RERUN":0,
+    "DISPATCH":0,
+    "MAIN_WRITE":0,
+    "MERGE":0,
+    "FORCE_PUSH":0
+  }
+}
