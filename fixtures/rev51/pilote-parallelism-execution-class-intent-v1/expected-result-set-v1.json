@@ -1,0 +1,132 @@
+{
+  "RESULT_SET_ID": "PILOTE_PARALLELISM_EXECUTION_CLASS_INTENT_V1_EXPECTED_RESULT_SET_V1",
+  "RESULT_SET_VERSION": "1.0.0",
+  "VECTOR_SET_ID": "PILOTE_PARALLELISM_EXECUTION_CLASS_INTENT_V1_TEST_VECTOR_SET_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "RESULTS": [
+    {
+      "ID": "V001_VALID_INHERIT_DAG",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V002_VALID_SERIAL_REQUIRED",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V003_VALID_PARALLEL_ALLOWED",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V004_RUNTIME_SEMANTIC_EDGE_ADD_DENY",
+      "OK": false,
+      "ERRORS": [
+        "RUNTIME_SEMANTIC_EDGE_ADD_MISMATCH",
+        "A6_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V005_HARD_CLASS_DOWNGRADE_DENY",
+      "OK": false,
+      "ERRORS": [
+        "HARD_EXECUTION_CLASS_DOWNGRADE_MISMATCH",
+        "A6_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V006_PROVIDER_ID_DENY",
+      "OK": false,
+      "ERRORS": [
+        "A6_TOP_LEVEL_FIELDS_MISMATCH",
+        "FORBIDDEN_RUNTIME_OWNED_KEY:$.PROVIDER_ID",
+        "A6_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V007_VALID_SELF_HOSTED_REQUIRED",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V008_VALID_HOST_LOCAL_REQUIRED",
+      "OK": true,
+      "ERRORS": []
+    }
+  ],
+  "PARALLELISM_PROJECTION_EXPECTED": [
+    {
+      "PARALLELISM_INTENT": "INHERIT_DAG",
+      "MAX_PARALLELISM": 4,
+      "EXPECTED": {
+        "SCHEDULING_MODE": "DAG_CONSTRAINED",
+        "EFFECTIVE_PARALLELISM_CAP": 4,
+        "PARALLELISM_IS_PERMISSION_ONLY": true,
+        "SEMANTIC_DAG_MUST_BE_PRESERVED": true
+      }
+    },
+    {
+      "PARALLELISM_INTENT": "PARALLEL_ALLOWED",
+      "MAX_PARALLELISM": 4,
+      "EXPECTED": {
+        "SCHEDULING_MODE": "PARALLEL_PERMITTED",
+        "EFFECTIVE_PARALLELISM_CAP": 4,
+        "PARALLELISM_IS_PERMISSION_ONLY": true,
+        "SEMANTIC_DAG_MUST_BE_PRESERVED": true
+      }
+    },
+    {
+      "PARALLELISM_INTENT": "SERIAL_REQUIRED",
+      "MAX_PARALLELISM": 4,
+      "EXPECTED": {
+        "SCHEDULING_MODE": "SERIAL_ONLY",
+        "EFFECTIVE_PARALLELISM_CAP": 1,
+        "PARALLELISM_IS_PERMISSION_ONLY": false,
+        "SEMANTIC_DAG_MUST_BE_PRESERVED": true
+      }
+    }
+  ],
+  "EXECUTION_CLASS_PROJECTION_EXPECTED": [
+    {
+      "EXECUTION_CLASS": "RUNTIME_DEFAULT",
+      "EXPECTED": {
+        "CONSTRAINT_KIND": "RUNTIME_DEFAULT",
+        "REQUIRED_CLASS": null,
+        "HOSTED_ELIGIBLE": null,
+        "CONCRETE_PROVIDER_SELECTION": "RUNTIME_OWNED",
+        "SILENT_DOWNGRADE_ALLOWED": false
+      }
+    },
+    {
+      "EXECUTION_CLASS": "HOSTED_ELIGIBLE",
+      "EXPECTED": {
+        "CONSTRAINT_KIND": "ELIGIBILITY",
+        "REQUIRED_CLASS": null,
+        "HOSTED_ELIGIBLE": true,
+        "CONCRETE_PROVIDER_SELECTION": "RUNTIME_OWNED",
+        "SILENT_DOWNGRADE_ALLOWED": false
+      }
+    },
+    {
+      "EXECUTION_CLASS": "SELF_HOSTED_REQUIRED",
+      "EXPECTED": {
+        "CONSTRAINT_KIND": "HARD_REQUIREMENT",
+        "REQUIRED_CLASS": "SELF_HOSTED",
+        "HOSTED_ELIGIBLE": false,
+        "CONCRETE_PROVIDER_SELECTION": "RUNTIME_OWNED",
+        "SILENT_DOWNGRADE_ALLOWED": false
+      }
+    },
+    {
+      "EXECUTION_CLASS": "HOST_LOCAL_REQUIRED",
+      "EXPECTED": {
+        "CONSTRAINT_KIND": "HARD_REQUIREMENT",
+        "REQUIRED_CLASS": "HOST_LOCAL",
+        "HOSTED_ELIGIBLE": false,
+        "CONCRETE_PROVIDER_SELECTION": "RUNTIME_OWNED",
+        "SILENT_DOWNGRADE_ALLOWED": false
+      }
+    }
+  ]
+}

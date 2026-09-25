@@ -1,0 +1,97 @@
+{
+  "manifest_type": "R51_A6_PILOTE_PARALLELISM_EXECUTION_CLASS_AUTHORITATIVE_MANIFEST_V1",
+  "phase": "R51-A6",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "pilote-r51-a6-parallelism-execution-class-intent",
+  "base_head": "e74a428d1c987aaec396a8a144869747b42360e9",
+  "base_tree": "1a403580a090edc8747c156ae67cd9031fbcf439",
+  "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "semantic_contract": {
+    "intent_type": "PILOTE_PARALLELISM_EXECUTION_CLASS_INTENT_V1",
+    "intent_version": "1.0.0",
+    "parallelism_intents": [
+      "INHERIT_DAG",
+      "PARALLEL_ALLOWED",
+      "SERIAL_REQUIRED"
+    ],
+    "execution_classes": [
+      "RUNTIME_DEFAULT",
+      "HOSTED_ELIGIBLE",
+      "SELF_HOSTED_REQUIRED",
+      "HOST_LOCAL_REQUIRED"
+    ],
+    "parallel_allowed_policy": "PERMISSION_NOT_OBLIGATION",
+    "inherit_dag_policy": "FOLLOW_SEMANTIC_DAG",
+    "serial_required_policy": "EFFECTIVE_CAP_ONE",
+    "runtime_stricter_limit": "ALLOW",
+    "runtime_semantic_edge_add": "DENY",
+    "runtime_semantic_edge_remove": "DENY",
+    "runtime_execution_only_edge_add": "ALLOW",
+    "hard_execution_class_downgrade": "DENY",
+    "execution_class_provider_selection": "RUNTIME_OWNED",
+    "provider_transport_independence": "REQUIRED",
+    "admission_intersection_policy": "ALL_APPLICABLE_LIMITS_MUST_PASS"
+  },
+  "files": [
+    {
+      "path": "pilote/rev51/parallelism-execution-class-intent-v1.mjs",
+      "bytes": 16639,
+      "sha256": "149668f616aee87a08e986c6c12e971893ddca51a6ccf1b7d555d7f669c24c15"
+    },
+    {
+      "path": "schemas/rev51/pilote-parallelism-execution-class-intent-v1.schema.json",
+      "bytes": 3738,
+      "sha256": "f15d74050a35c56eb036deccd67f670953d2719082de2505f2881596e3bd2704"
+    },
+    {
+      "path": "fixtures/rev51/pilote-parallelism-execution-class-intent-v1/test-vector-set-v1.json",
+      "bytes": 19539,
+      "sha256": "3f768f91f135e43e4e041d1bc642174dcacc2554f9c4054a82a3302d13add0ca"
+    },
+    {
+      "path": "fixtures/rev51/pilote-parallelism-execution-class-intent-v1/expected-result-set-v1.json",
+      "bytes": 3576,
+      "sha256": "3a612965e62cc0cc2d497955538755772f9b7d237e63678f97c62d6e48ef13af"
+    },
+    {
+      "path": "test/rev51-pilote-parallelism-execution-class-v1.test.mjs",
+      "bytes": 3277,
+      "sha256": "a891c3f312981ec88d5f2c63fd35aae553b2c07e58cacfe2aee43e66de51ab41"
+    },
+    {
+      "path": "docs/rev51/R51_A6_PILOTE_PARALLELISM_EXECUTION_CLASS_INTENT.md",
+      "bytes": 3280,
+      "sha256": "07ffeb320bf2e9eb3f30a1d103611fb65d1521fd7be8c71704f45adf9accabad"
+    }
+  ],
+  "validation": {
+    "module_syntax_evaluation": "PASS",
+    "vector_expected_result_reproduction": "8/8 PASS",
+    "parallelism_projection_cases": "3/3 PASS",
+    "execution_class_projection_cases": "4/4 PASS",
+    "node_test_file_published": "YES",
+    "node_test_execution_in_publish_step": "NOT_RUN",
+    "intermediate_full_ci": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "A2_EXECUTION_INTENT_SCHEMA_MUTATION": 0,
+    "A5T_EXECUTION_TERMINAL_SEMANTIC_MUTATION": 0,
+    "RUNTIME_SEMANTIC_EDGE_ADD": 0,
+    "RUNTIME_SEMANTIC_EDGE_REMOVE": 0,
+    "RUNTIME_OWNED_PROVIDER_ID_EMISSION": 0,
+    "RUNTIME_OWNED_WORKER_ID_EMISSION": 0,
+    "RUNTIME_OWNED_RESERVATION_ID_EMISSION": 0,
+    "RUNTIME_OWNED_SCHEDULER_ID_EMISSION": 0,
+    "DISPATCH": 0,
+    "RERUN": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}
