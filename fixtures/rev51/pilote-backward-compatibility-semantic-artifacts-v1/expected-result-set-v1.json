@@ -1,0 +1,189 @@
+{
+  "RESULT_SET_ID": "PILOTE_BACKWARD_COMPATIBILITY_SEMANTIC_ARTIFACTS_V1_EXPECTED_RESULT_SET_V1",
+  "RESULT_SET_VERSION": "1.0.0",
+  "VECTOR_SET_ID": "PILOTE_BACKWARD_COMPATIBILITY_SEMANTIC_ARTIFACTS_V1_TEST_VECTOR_SET_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "RESULTS": [
+    {
+      "ID": "V001_SEALED_ARTIFACT_VALID",
+      "RESULT": {
+        "ok": true,
+        "errors": []
+      }
+    },
+    {
+      "ID": "V002_REV42_EXACT_PROFILE",
+      "RESULT": {
+        "ok": true,
+        "outcome": "PROFILE_SELECTED",
+        "profile": {
+          "ID": "COMPAT_PROFILE_REV42_TASK_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "bb36e0eeb02def246696894b91121348330bc3086124e68753a69a8d40e41be8"
+        },
+        "errors": []
+      }
+    },
+    {
+      "ID": "V003_REV45_EXACT_PROFILE",
+      "RESULT": {
+        "ok": true,
+        "outcome": "PROFILE_SELECTED",
+        "profile": {
+          "ID": "COMPAT_PROFILE_REV45_PHASE_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "b758045aaa65f02e9f22f73c330220b12a9e3b399603d3115026175dce9a4049"
+        },
+        "errors": []
+      }
+    },
+    {
+      "ID": "V004_REV50_EXACT_PROFILE",
+      "RESULT": {
+        "ok": true,
+        "outcome": "PROFILE_SELECTED",
+        "profile": {
+          "ID": "COMPAT_PROFILE_REV50_FRAMEWORK_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "fca1cea7faa088d7d5e013b12561c654585e7e5b73cc5353a6772d42c4169984"
+        },
+        "errors": []
+      }
+    },
+    {
+      "ID": "V005_KNOWN_FAMILY_IDENTITY_MISMATCH",
+      "RESULT": {
+        "ok": false,
+        "outcome": "BLOCKED_LEGACY_IDENTITY_MISMATCH",
+        "profile": null,
+        "errors": []
+      }
+    },
+    {
+      "ID": "V006_UNKNOWN_PROFILE_FAIL_CLOSED",
+      "RESULT": {
+        "ok": false,
+        "outcome": "BLOCKED_UNKNOWN_COMPAT_PROFILE",
+        "profile": null,
+        "errors": []
+      }
+    },
+    {
+      "ID": "V007_NATIVE_TO_LEGACY_DOWNGRADE_DENY",
+      "RESULT": {
+        "ok": false,
+        "outcome": "NATIVE_TO_LEGACY_DOWNGRADE_DENY"
+      }
+    },
+    {
+      "ID": "V008_LEGACY_TO_REV51_SYNTHESIS_DENY",
+      "RESULT": {
+        "ok": false,
+        "outcome": "LEGACY_TO_REV51_INTENT_SYNTHESIS_DENY"
+      }
+    },
+    {
+      "ID": "V009_CLASS_C_REQUIRES_REV51_INTENT",
+      "RESULT": {
+        "ok": false,
+        "class": "C_REQUIRES_EXPLICIT_REV51_INTENT",
+        "outcome": "BLOCKED_NEEDS_REV51_EXECUTION_INTENT"
+      }
+    },
+    {
+      "ID": "V010_TRANSPARENT_FENCING_ALLOWED",
+      "RESULT": {
+        "ok": true,
+        "outcome": "TRANSPARENT_HARDENING_ALLOWED"
+      }
+    },
+    {
+      "ID": "V011_TRANSPARENT_HARDENING_SEMANTIC_TARGET_DENY",
+      "RESULT": {
+        "ok": false,
+        "outcome": "BLOCKED_LEGACY_COMPATIBILITY_REQUIREMENT"
+      }
+    },
+    {
+      "ID": "V012_REVOKED_PROFILE_NEW_EXECUTION_DENY",
+      "RESULT": {
+        "ok": false,
+        "outcome": "BLOCKED_LEGACY_COMPATIBILITY_REQUIREMENT"
+      }
+    },
+    {
+      "ID": "V013_REVOKED_PROFILE_HISTORICAL_RECEIPT_VERIFIABLE",
+      "RESULT": {
+        "ok": true
+      }
+    },
+    {
+      "ID": "V014_ACCEPTANCE_PASS",
+      "RESULT": {
+        "ok": true,
+        "outcome": "PROJECTED",
+        "projection": {
+          "SEMANTIC_RESULT_PROJECTION_ID": "SEMANTIC_RESULT_PROJECTION_LEGACY_ACCEPTANCE_V1",
+          "ACCEPTANCE_OUTCOME": "PASS"
+        },
+        "oracle": {
+          "ok": true,
+          "verdict": "PASS"
+        }
+      }
+    },
+    {
+      "ID": "V015_ACCEPTANCE_FAIL",
+      "RESULT": {
+        "ok": true,
+        "outcome": "PROJECTED",
+        "projection": {
+          "SEMANTIC_RESULT_PROJECTION_ID": "SEMANTIC_RESULT_PROJECTION_LEGACY_ACCEPTANCE_V1",
+          "ACCEPTANCE_OUTCOME": "NON_PASS"
+        },
+        "oracle": {
+          "ok": false,
+          "verdict": "FAIL"
+        }
+      }
+    },
+    {
+      "ID": "V016_ACCEPTANCE_OUTCOME_UNKNOWN",
+      "RESULT": {
+        "ok": true,
+        "outcome": "PROJECTED",
+        "projection": {
+          "SEMANTIC_RESULT_PROJECTION_ID": "SEMANTIC_RESULT_PROJECTION_LEGACY_ACCEPTANCE_V1",
+          "ACCEPTANCE_OUTCOME": "OUTCOME_UNKNOWN"
+        },
+        "oracle": {
+          "ok": false,
+          "verdict": "OUTCOME_UNKNOWN"
+        }
+      }
+    },
+    {
+      "ID": "V017_SEMANTICS_ADAPTER_TAMPER_DENY",
+      "RESULT": {
+        "ok": false,
+        "errors": [
+          "LEGACY_SEMANTICS_ADAPTER_MISMATCH",
+          "A8_ARTIFACT_SHA256_MISMATCH",
+          "SEALED_ARTIFACT_MISMATCH"
+        ]
+      }
+    },
+    {
+      "ID": "V018_PROFILE_HASH_TAMPER_DENY",
+      "RESULT": {
+        "ok": false,
+        "errors": [
+          "PROFILE_HASH_INVALID:COMPAT_PROFILE_REV45_PHASE_V1",
+          "REGISTRY_PROFILE_BINDING_INVALID:COMPAT_PROFILE_REV45_PHASE_V1",
+          "A8_ARTIFACT_SHA256_MISMATCH",
+          "SEALED_ARTIFACT_MISMATCH"
+        ]
+      }
+    }
+  ]
+}
