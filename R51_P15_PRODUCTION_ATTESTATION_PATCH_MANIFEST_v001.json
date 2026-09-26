@@ -1,0 +1,24 @@
+{
+  "manifest_type": "R51_P15_PRODUCTION_ATTESTATION_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P15-PRODUCTION-ATTESTATION-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "adds": [
+    "PRODUCTION_ATTESTATION_INPUT_V1",
+    "PRODUCTION_ATTESTATION_V1",
+    "SOURCE_PROVENANCE_VERIFY",
+    "BINDING_IDENTITY_VERIFY",
+    "TRAFFIC_POLICY_VERIFY",
+    "SLO_ASYNC_STATE",
+    "ATTESTATION_FRESHNESS"
+  ],
+  "boundaries": {
+    "PROVIDER_READ_API_CALLS": 0,
+    "REMOTE_MUTATION": 0,
+    "PAID_COMPUTE": 0,
+    "CREDENTIAL_BINDING": 0,
+    "SCREENSHOT_REQUIRED": 0,
+    "PROVIDER_UI_REQUIRED": 0
+  }
+}

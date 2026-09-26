@@ -1,0 +1,16 @@
+{
+  "manifest_type": "R51_P16_PROVIDER_EFFECT_TRUST_RESET_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P16-EFFECT-TRUST-RESET-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "adds": [
+    "EFFECT_SEMANTICS_AUTHORITY_CLASSIFIER_V1",
+    "OPERATOR_MUTATION_TRUST_RESET_V1"
+  ],
+  "boundaries": {
+    "HTTP_VERB_AS_AUTHORITY": 0,
+    "PROVIDER_MUTATION": 0,
+    "CREDENTIAL_BINDING": 0
+  }
+}

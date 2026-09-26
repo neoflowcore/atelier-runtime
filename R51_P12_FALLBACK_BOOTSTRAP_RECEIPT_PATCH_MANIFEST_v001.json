@@ -1,12 +1,24 @@
 {
   "manifest_type": "R51_P12_FALLBACK_BOOTSTRAP_RECEIPT_PATCH_MANIFEST_V1",
   "wt_id": "WT-RUNTIME-R51-P12-FALLBACK-BOOTSTRAP-001",
-  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
   "repository": "neoflowcore/atelier-runtime",
   "development_branch": "runtime-r51-p8-dependency-lock-cache",
   "adds": [
     "FALLBACK_BOOTSTRAP_RECEIPT_V1"
   ],
+  "validation": {
+    "canonical_exact_repo_ci": "PASS",
+    "required_behavior": "PASS",
+    "unexpected_failures": 0,
+    "observed_test_summary": "782/782 PASS",
+    "canonical_run_id": 36255926847,
+    "canonical_job_id": 108442585724,
+    "canonical_node": "22.13.0",
+    "release_gate": "PASS",
+    "workflow_dispatch": 0,
+    "rerun": 0
+  },
   "boundaries": {
     "REMOTE_VALIDATION_RUN_MAX": 1,
     "WORKFLOW_DISPATCH": 0,
