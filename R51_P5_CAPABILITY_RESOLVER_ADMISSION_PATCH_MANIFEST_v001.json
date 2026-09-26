@@ -1,7 +1,7 @@
 {
   "manifest_type": "R51_P5_CAPABILITY_RESOLVER_ADMISSION_PATCH_MANIFEST_V1",
   "wt_id": "WT-RUNTIME-R51-P5-CAPABILITY-ADMISSION-001",
-  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
   "repository": "neoflowcore/atelier-runtime",
   "planned_branch": "runtime-r51-p5-capability-admission",
   "base_head": "ca659256732ea796a21e31e1e3c27ba0b61813ee",
@@ -22,9 +22,14 @@
   "validation": {
     "isolated_semantic_harness": "10/10 PASS",
     "execution_node": "22.16.0",
-    "canonical_exact_repo_ci": "PENDING",
+    "canonical_exact_repo_ci": "713/713 PASS",
     "workflow_dispatch": 0,
-    "rerun": 0
+    "rerun": 0,
+    "canonical_run_id": 36252525040,
+    "canonical_job_id": 108433096699,
+    "canonical_node": "22.13.0",
+    "canonical_npm": "10.9.2",
+    "release_gate": "PASS"
   },
   "boundaries": {
     "P6_EXACT_PROVISIONING_IMPLEMENTED_HERE": false,
