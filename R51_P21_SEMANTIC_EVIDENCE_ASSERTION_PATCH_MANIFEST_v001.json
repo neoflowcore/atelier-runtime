@@ -1,13 +1,25 @@
 {
   "manifest_type": "R51_P21_SEMANTIC_EVIDENCE_ASSERTION_PATCH_MANIFEST_V1",
   "wt_id": "WT-RUNTIME-R51-P21-SEMANTIC-EVIDENCE-ASSERTION-001",
-  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
   "repository": "neoflowcore/atelier-runtime",
   "development_branch": "runtime-r51-p8-dependency-lock-cache",
   "adds": [
     "SEMANTIC_ASSERTION_V1",
     "BRITTLE_GENERATED_NAME_DENY"
   ],
+  "validation": {
+    "canonical_exact_repo_ci": "PASS",
+    "required_behavior": "PASS",
+    "unexpected_failures": 0,
+    "observed_test_summary": "815/815 PASS",
+    "canonical_run_id": 36256256205,
+    "canonical_job_id": 108443501586,
+    "canonical_node": "22.13.0",
+    "release_gate": "PASS",
+    "workflow_dispatch": 0,
+    "rerun": 0
+  },
   "boundaries": {
     "FULL_CI_RERUN": 0,
     "CREDENTIAL_BINDING": 0

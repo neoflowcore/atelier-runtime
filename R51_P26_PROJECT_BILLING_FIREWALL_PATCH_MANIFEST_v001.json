@@ -1,0 +1,20 @@
+{
+  "manifest_type": "R51_P26_PROJECT_BILLING_FIREWALL_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P26-BILLING-FIREWALL-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "reuse": {
+    "P2G_ADMISSION_BUDGET": true,
+    "P2H_SETTLEMENT": true,
+    "P2U_BILLING_TERMINALIZATION": true
+  },
+  "adds": [
+    "PROJECT_BILLING_FIREWALL_V1",
+    "GLOBAL_PAID_COMPUTE_FUSE_V1"
+  ],
+  "boundaries": {
+    "PAID_RESOURCE_CREATED": 0,
+    "CREDENTIAL_BINDING": 0
+  }
+}
