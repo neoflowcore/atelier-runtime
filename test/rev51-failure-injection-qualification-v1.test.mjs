@@ -1,0 +1,4 @@
+import test from"node:test";import assert from"node:assert/strict";import{REQUIRED_FAILURE_CLASSES,evaluateFailureQualificationV1}from"../runtime/rev51/failure-injection-qualification-v1.mjs";
+test("P33 incomplete failure matrix is not qualified",()=>assert.equal(evaluateFailureQualificationV1([]).qualified,false));
+test("P33 full PASS matrix with zero invariant violations qualifies",()=>assert.equal(evaluateFailureQualificationV1(REQUIRED_FAILURE_CLASSES.map(SCENARIO=>({SCENARIO,RESULT:"PASS",INVARIANT_VIOLATIONS:[]}))).qualified,true));
+test("P33 invariant violation blocks qualification despite scenario PASS",()=>{const r=REQUIRED_FAILURE_CLASSES.map(SCENARIO=>({SCENARIO,RESULT:"PASS",INVARIANT_VIOLATIONS:[]}));r[0].INVARIANT_VIOLATIONS=["NO_BLIND_RERUN"];assert.equal(evaluateFailureQualificationV1(r).qualified,false)});

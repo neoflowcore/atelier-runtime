@@ -1,0 +1,21 @@
+{
+  "manifest_type": "R51_P29_DISPOSABLE_HEAVY_WORKER_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P29-DISPOSABLE-HEAVY-WORKER-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "reuse": {
+    "P2_PROVIDER_BOOTSTRAP_SAGA": true,
+    "P2_BILLING_TERMINALIZATION": true,
+    "P27_RESIDUE_SCANNER": true
+  },
+  "adds": [
+    "DISPOSABLE_HEAVY_WORKER_CREATE_READINESS_V1",
+    "DISPOSABLE_HEAVY_WORKER_CLOSURE_V1"
+  ],
+  "boundaries": {
+    "PAID_RESOURCE_CREATED": 0,
+    "CREDENTIAL_BINDING": 0,
+    "POWER_OFF_EQUALS_DESTROY": false
+  }
+}

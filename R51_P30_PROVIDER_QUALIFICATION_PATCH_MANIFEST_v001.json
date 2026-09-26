@@ -1,0 +1,16 @@
+{
+  "manifest_type": "R51_P30_PROVIDER_QUALIFICATION_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P30-PROVIDER-QUALIFICATION-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "adds": [
+    "PROVIDER_QUALIFICATION_OBSERVATION_V1",
+    "MEASURED_QUALIFICATION_POLICY_V1"
+  ],
+  "boundaries": {
+    "LIVE_PROVIDER_RUNS": 0,
+    "PAID_COMPUTE": 0,
+    "CREDENTIAL_BINDING": 0
+  }
+}

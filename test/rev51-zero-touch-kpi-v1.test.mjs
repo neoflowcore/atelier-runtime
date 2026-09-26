@@ -1,0 +1,3 @@
+import test from"node:test";import assert from"node:assert/strict";import{evaluateZeroTouchKpiV1}from"../runtime/rev51/zero-touch-kpi-v1.mjs";const m={HUMAN_TOUCHES_PER_PHASE:1,MANUAL_COMMAND_COUNT:0,MANUAL_SSH_COUNT:0,TERMUX_UI_OPEN_COUNT:0,TOKEN_COPY_PASTE_COUNT:0,REPEATED_DEVICE_LOGIN_COUNT:0,MANUAL_RECOVERY_COUNT:0,CREDENTIAL_TOUCH_COUNT:0,ORPHAN_RESOURCE_COUNT:0,CLEANUP_FAILURE_COUNT:0};
+test("P34 target normal phase has one approval touch and zero manual loops",()=>assert.equal(evaluateZeroTouchKpiV1(m).pass,true));
+test("P34 token copy-paste violates zero-touch target",()=>assert.equal(evaluateZeroTouchKpiV1({...m,TOKEN_COPY_PASTE_COUNT:1}).pass,false));
