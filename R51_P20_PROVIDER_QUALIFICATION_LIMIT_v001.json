@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "r51-provider-qualification-limit.v1",
+  "workplanIdentity": "P20_ALTERNATIVE_PROVIDER_QUALIFICATION",
+  "provider": "github-hosted-runner",
+  "status": "QUALIFIED_LIMIT",
+  "evidence": {
+    "canonicalRunId": 36256552594,
+    "canonicalJobId": 108444309502,
+    "candidateHead": "c67f0da3c1a9db33713ce4f777db374e954ff405",
+    "runtime": "node@22.13.0",
+    "packageManager": "npm@10.9.2",
+    "observedTests": "845/845 PASS",
+    "unexpectedFailures": 0,
+    "releaseGate": "PASS"
+  },
+  "qualifiedScope": [
+    "repository checkout",
+    "npm ci",
+    "exact runtime selftest",
+    "artifact/log return via GitHub Actions execution path"
+  ],
+  "notQualifiedScope": [
+    "paid remote-heavy compute economics",
+    "cross-provider cost bakeoff",
+    "provider-native production attestation",
+    "credential-bound live cleanup"
+  ],
+  "reason": "Current authoritative evidence proves the repository-hosted exact-runtime validation path, but does not establish paid heavy-provider economics or credential-bound live operations.",
+  "remoteMutation": 0,
+  "paidComputeCreated": 0,
+  "credentialBinding": 0
+}
