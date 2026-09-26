@@ -9,3 +9,5 @@ P6 reuses the existing G3 fixed-runtime policy and the P5 resolved capability/en
 `attestExecutionEnvironmentV1` compares the observed execution environment with the exact plan and emits a deterministic environment fingerprint only on exact match. `validateExecutionEnvironmentAtStartV1` is the P6 execution-start gate: runtime, package manager, OS, architecture, libc or image drift blocks start instead of becoming an application failure.
 
 Provider-specific installation/bootstrap remains P10. Network/registry protocol probing remains P7. The current repository's canonical workflow already demonstrates the fixed Node 22.13.0 / npm 10.9.2 pattern, but P6 generalizes the contract without making GitHub Actions a mandatory provider.
+
+Canonical P6 qualification: pull-request Runtime self-test run 36252756292, job 108433742256, repository-pinned Node 22.13.0 / npm 10.9.2, 722/722 tests PASS, fail=0, release gate PASS. P5 baseline was 713/713, so all nine P6 integration tests were exercised. No manual dispatch or rerun was used.

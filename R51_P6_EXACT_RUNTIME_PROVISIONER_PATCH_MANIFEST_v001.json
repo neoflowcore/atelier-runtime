@@ -1,7 +1,7 @@
 {
   "manifest_type": "R51_P6_EXACT_RUNTIME_PROVISIONER_PATCH_MANIFEST_V1",
   "wt_id": "WT-RUNTIME-R51-P6-EXACT-PROVISIONER-001",
-  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
   "repository": "neoflowcore/atelier-runtime",
   "planned_branch": "runtime-r51-p6-exact-provisioner",
   "base_head": "307515e4a38b8f81b1aaa92d2a76b282b16631c1",
@@ -21,9 +21,14 @@
   "validation": {
     "isolated_semantic_harness": "9/9 PASS",
     "execution_node": "22.16.0",
-    "canonical_exact_repo_ci": "PENDING",
+    "canonical_exact_repo_ci": "722/722 PASS",
     "workflow_dispatch": 0,
-    "rerun": 0
+    "rerun": 0,
+    "canonical_run_id": 36252756292,
+    "canonical_job_id": 108433742256,
+    "canonical_node": "22.13.0",
+    "canonical_npm": "10.9.2",
+    "release_gate": "PASS"
   },
   "boundaries": {
     "P7_NETWORK_PROTOCOL_PROBING_IMPLEMENTED_HERE": false,
