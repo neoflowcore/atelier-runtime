@@ -1,0 +1,15 @@
+{
+  "manifest_type": "R51_P16L_PROVIDER_SCHEMA_CONFORMANCE_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P16L-PROVIDER-SCHEMA-CONFORMANCE-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "adds": [
+    "PROVIDER_SCHEMA_DRIFT_GUARD_V1",
+    "PROVIDER_ADAPTER_CONFORMANCE_FIXTURES_V1"
+  ],
+  "boundaries": {
+    "PROVIDER_CALLS": 0,
+    "CREDENTIAL_BINDING": 0
+  }
+}

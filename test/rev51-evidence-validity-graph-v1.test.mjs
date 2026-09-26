@@ -1,0 +1,4 @@
+import test from"node:test";import assert from"node:assert/strict";import{buildEvidenceValidityGraphV1,invalidateEvidenceGraphV1}from"../runtime/rev51/evidence-validity-graph-v1.mjs";const g=()=>buildEvidenceValidityGraphV1([{EVIDENCE_ID:"provider",DOMAINS:["deployment"]},{EVIDENCE_ID:"acceptance",DOMAINS:["release"],DEPENDS_ON:["provider"]}]);
+test("P16M operator/domain invalidation propagates through evidence dependency graph",()=>{const r=invalidateEvidenceGraphV1(g(),{domains:["deployment"]});assert.deepEqual(r.staleEvidenceIds,["acceptance","provider"])});
+test("P16M unrelated domain preserves evidence validity",()=>assert.equal(invalidateEvidenceGraphV1(g(),{domains:["other"]}).staleEvidenceIds.length,0));
+test("P16M missing dependency fails closed",()=>assert.throws(()=>buildEvidenceValidityGraphV1([{EVIDENCE_ID:"x",DEPENDS_ON:["missing"]}]),/DEPENDENCY_MISSING/));

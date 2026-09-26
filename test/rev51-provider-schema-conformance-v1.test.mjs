@@ -1,0 +1,5 @@
+import test from"node:test";import assert from"node:assert/strict";import{evaluateProviderSchemaConformanceV1,REQUIRED_PROVIDER_CONFORMANCE_FIXTURES,evaluateProviderAdapterConformanceFixturesV1}from"../runtime/rev51/provider-schema-conformance-v1.mjs";const c={REQUIRED_FIELDS:["id","status"],OPTIONAL_FIELDS:["traffic"],UNKNOWN_FIELD_POLICY:"BLOCK",ENUM_FIELDS:{status:["active","inactive"]}};
+test("P16L known provider schema passes",()=>assert.equal(evaluateProviderSchemaConformanceV1({contract:c,payload:{id:"1",status:"active"}}).status,"PASS"));
+test("P16L missing identity field fails closed",()=>assert.equal(evaluateProviderSchemaConformanceV1({contract:c,payload:{status:"active"}}).status,"BLOCKED_SCHEMA_DRIFT"));
+test("P16L unknown enum fails closed",()=>assert.equal(evaluateProviderSchemaConformanceV1({contract:c,payload:{id:"1",status:"new"}}).status,"BLOCKED_SCHEMA_DRIFT"));
+test("P16L semantic fixture suite requires all provider-neutral cases",()=>assert.equal(evaluateProviderAdapterConformanceFixturesV1(REQUIRED_PROVIDER_CONFORMANCE_FIXTURES.map(FIXTURE_ID=>({FIXTURE_ID,RESULT:"PASS"}))).pass,true));
