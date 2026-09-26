@@ -1,0 +1,4 @@
+import test from"node:test";import assert from"node:assert/strict";import{decideDurableConvergenceV1,finalizeConvergentMutationV1}from"../runtime/rev51/durable-convergence-v1.mjs";
+test("P19 desired state already reached is SUCCESS_NOOP",()=>assert.equal(decideDurableConvergenceV1({desiredState:{a:1},currentState:{a:1}}).decision,"SUCCESS_NOOP"));
+test("P19 different state requires mutation",()=>assert.equal(decideDurableConvergenceV1({desiredState:{a:1},currentState:{a:2}}).decision,"MUTATION_REQUIRED"));
+test("P19 unknown outcome reconciles to success when desired state reached",()=>{const p=decideDurableConvergenceV1({desiredState:{a:1},currentState:{a:2}});assert.equal(finalizeConvergentMutationV1({preflight:p,outcome:"OUTCOME_UNKNOWN",reconciledState:{desiredState:{a:1},currentState:{a:1}}}).result,"SUCCESS_CHANGED")});

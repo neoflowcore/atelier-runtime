@@ -1,0 +1,16 @@
+{
+  "manifest_type": "R51_P20_EVIDENCE_PACKAGING_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P20-EVIDENCE-PACKAGING-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "adds": [
+    "EVIDENCE_PACKAGING_MANIFEST_V1",
+    "EVIDENCE_PACKAGING_RECEIPT_V1",
+    "HIDDEN_PATH_EXPLICIT_POLICY"
+  ],
+  "boundaries": {
+    "ARTIFACT_UPLOAD_CALLS": 0,
+    "CREDENTIAL_BINDING": 0
+  }
+}

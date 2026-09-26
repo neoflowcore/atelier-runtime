@@ -1,7 +1,7 @@
 {
   "manifest_type": "R51_P17_PROVIDER_EVIDENCE_DRIFT_PATCH_MANIFEST_V1",
   "wt_id": "WT-RUNTIME-R51-P17-EVIDENCE-DRIFT-001",
-  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
   "repository": "neoflowcore/atelier-runtime",
   "development_branch": "runtime-r51-p8-dependency-lock-cache",
   "adds": [
@@ -9,6 +9,18 @@
     "PROVIDER_DRIFT_FINGERPRINT_V1",
     "PROVIDER_DRIFT_WATCH_DECISION_V1"
   ],
+  "validation": {
+    "canonical_exact_repo_ci": "PASS",
+    "required_behavior": "PASS",
+    "unexpected_failures": 0,
+    "observed_test_summary": "794/794 PASS",
+    "canonical_run_id": 36256066337,
+    "canonical_job_id": 108442969311,
+    "canonical_node": "22.13.0",
+    "release_gate": "PASS",
+    "workflow_dispatch": 0,
+    "rerun": 0
+  },
   "boundaries": {
     "RAW_PROVIDER_BODY_PERSISTENCE": 0,
     "RAW_TELEMETRY_PERSISTENCE": 0,

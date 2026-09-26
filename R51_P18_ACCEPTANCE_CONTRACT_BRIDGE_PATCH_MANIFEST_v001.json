@@ -1,0 +1,15 @@
+{
+  "manifest_type": "R51_P18_ACCEPTANCE_CONTRACT_BRIDGE_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P18-ACCEPTANCE-CONTRACT-BRIDGE-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "adds": [
+    "CANONICAL_EVIDENCE_FRAGMENT_V1",
+    "ACCEPTANCE_BRIDGE_RECEIPT_V1"
+  ],
+  "boundaries": {
+    "PARALLEL_ACCEPTANCE_SYSTEM": 0,
+    "CREDENTIAL_BINDING": 0
+  }
+}
