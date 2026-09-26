@@ -1,0 +1,48 @@
+{
+  "manifest_type": "R51_P4_DURABLE_REFERENCE_INDEX_PHYSICAL_DELETION_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P4-REFERENCE-GC-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "36fbb631dc51dd68becb64720907cdfca000fa86",
+  "base_tree": "ef3a86c85d00946d843678e1a8bd682d90077fec",
+  "scope": {
+    "runtime_owned_only": true,
+    "shared_contract_change": false,
+    "interface_v1_change": false,
+    "provider_mutation": false,
+    "paid_compute": false
+  },
+  "binding": {
+    "acceptance_authority": "P2F_DURABLE_RESULT_ACCEPTANCE_V1",
+    "gc_tombstone_authority": "P2J_AUTHORITATIVE_GC_TOMBSTONE_V1",
+    "retention_authority": "ARTIFACT_RETENTION_V1",
+    "reference_index": "ARTIFACT_REFERENCE_INDEX_V1",
+    "physical_deletion_receipt": "ARTIFACT_PHYSICAL_DELETION_RECEIPT_V1",
+    "caller_supplied_reference_count_is_deletion_authority": false,
+    "complete_reference_coverage_required": true,
+    "zero_reference_proof_required": true
+  },
+  "validation": {
+    "isolated_semantic_harness": "8/8 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "production_module_syntax_check": "PASS",
+    "repo_integration_test_syntax_check": "PASS",
+    "canonical_repo_integration": "PENDING",
+    "canonical_exact_runtime_full_ci": "NOT_RUN",
+    "workflow_dispatch": 0,
+    "rerun": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PROVIDER_MUTATION": 0,
+    "PAID_COMPUTE": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}
