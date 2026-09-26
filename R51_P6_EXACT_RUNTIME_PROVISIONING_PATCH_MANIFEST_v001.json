@@ -1,0 +1,42 @@
+{
+  "manifest_type": "R51_P6_EXACT_RUNTIME_PROVISIONING_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P6-EXACT-PROVISIONING-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-p6-exact-runtime-provisioning",
+  "base_head": "307515e4a38b8f81b1aaa92d2a76b282b16631c1",
+  "reuse": {
+    "P5_CAPABILITY_REQUIREMENT_SET": true,
+    "P5_CAPABILITY_ADMISSION_RECEIPT": true,
+    "P5_PROVIDER_CAPABILITY_PROFILE": true,
+    "P2O_WORKER_JOB_LAUNCH": true,
+    "P2Q_EXECUTION_TRANSPORT": true,
+    "REIMPLEMENT_EXISTING_CAPABILITY": false
+  },
+  "adds": [
+    "EXACT_RUNTIME_PROVISION_SPEC_V1",
+    "EXACT_RUNTIME_PROVISION_RECEIPT_V1",
+    "EXECUTION_START_PROVISIONING_REATTESTATION_V1"
+  ],
+  "validation": {
+    "isolated_semantic_harness": "10/10 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "module_sha256": "9fabe313bbc5e5183d1499a2a1c870e2f21c689c7f9807fa5597815a931257b3",
+    "test_sha256": "bdde491b9e0a93a928b228456d7c581878e261a2b01bee0b7184d35dabc2260b",
+    "canonical_exact_repo_ci": "PENDING",
+    "workflow_dispatch": 0,
+    "rerun": 0
+  },
+  "boundaries": {
+    "P7_NETWORK_PROTOCOL_PROBING_IMPLEMENTED_HERE": false,
+    "P9_PROVIDER_FALLBACK_IMPLEMENTED_HERE": false,
+    "PROVIDER_MUTATION": 0,
+    "PAID_COMPUTE": 0,
+    "CREDENTIAL_BINDING": 0,
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0
+  }
+}
