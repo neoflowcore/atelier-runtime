@@ -10,4 +10,4 @@ The new `ARTIFACT_REFERENCE_INDEX_V1` is durable and fail-closed. References are
 
 This implementation is local-filesystem only and creates no provider mutation, paid compute, shared Interface V1 change, or Pilote semantic reinterpretation. Provider-backed storage and live qualification remain deferred to later approved Runtime phases / global auth endgame as applicable.
 
-An isolated semantic harness was executed on Node 22.16.0 while the repository pins Node 22.13.0; it passed 8/8 and is supplemental evidence only. The production modules and the real-repository integration test syntax-check successfully, but canonical exact-repository / exact-runtime integration remains pending. No workflow dispatch, rerun, or intermediate full CI was used for this slice.
+An isolated semantic harness on Node 22.16.0 passed 8/8 as supplemental evidence. Canonical pull-request self-test run 36251986952 then executed the exact branch candidate on repository-pinned Node 22.13.0 and passed 703/703 tests with fail=0; the prior baseline was 695/695, so all eight new integration tests were exercised. The release-policy gate also passed. No manual workflow dispatch or rerun was used.

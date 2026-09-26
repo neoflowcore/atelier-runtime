@@ -1,0 +1,41 @@
+{
+  "manifest_type": "R51_P5_CAPABILITY_RESOLVER_ADMISSION_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P5-CAPABILITY-ADMISSION-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "planned_branch": "runtime-r51-p5-capability-admission",
+  "base_head": "ca659256732ea796a21e31e1e3c27ba0b61813ee",
+  "base_tree": "9c64a0fded57071f8731216537092f6d939e8b83",
+  "reuse": {
+    "P2M_DURABLE_CAPABILITY_ATTESTATION": true,
+    "P3_DETERMINISTIC_ROUTER_ADMISSION": true,
+    "FROZEN_TASK_CONTRACT_V1": true,
+    "REIMPLEMENT_EXISTING_CAPABILITY": false
+  },
+  "adds": [
+    "EXECUTION_ENVIRONMENT_CONTRACT_V1",
+    "CAPABILITY_REQUIREMENT_SET_V1",
+    "PROVIDER_CAPABILITY_REGISTRY_V1",
+    "PROVIDER_CAPABILITY_PROFILE_V1",
+    "CAPABILITY_ADMISSION_RECEIPT_V1"
+  ],
+  "validation": {
+    "isolated_semantic_harness": "10/10 PASS",
+    "execution_node": "22.16.0",
+    "canonical_exact_repo_ci": "PENDING",
+    "workflow_dispatch": 0,
+    "rerun": 0
+  },
+  "boundaries": {
+    "P6_EXACT_PROVISIONING_IMPLEMENTED_HERE": false,
+    "P7_NETWORK_PROTOCOL_PROBING_IMPLEMENTED_HERE": false,
+    "P9_PROVIDER_FALLBACK_IMPLEMENTED_HERE": false,
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PROVIDER_MUTATION": 0,
+    "PAID_COMPUTE": 0,
+    "CREDENTIAL_BINDING": 0
+  }
+}

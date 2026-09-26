@@ -1,7 +1,7 @@
 {
   "manifest_type": "R51_P4_DURABLE_REFERENCE_INDEX_PHYSICAL_DELETION_PATCH_MANIFEST_V1",
   "wt_id": "WT-RUNTIME-R51-P4-REFERENCE-GC-001",
-  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
   "repository": "neoflowcore/atelier-runtime",
   "branch": "runtime-r51-a2-consumer-binding",
   "base_head": "36fbb631dc51dd68becb64720907cdfca000fa86",
@@ -29,10 +29,13 @@
     "repository_engine_node": "22.13.0",
     "production_module_syntax_check": "PASS",
     "repo_integration_test_syntax_check": "PASS",
-    "canonical_repo_integration": "PENDING",
-    "canonical_exact_runtime_full_ci": "NOT_RUN",
+    "canonical_repo_integration": "PASS",
+    "canonical_exact_runtime_full_ci": "703/703 PASS",
     "workflow_dispatch": 0,
-    "rerun": 0
+    "rerun": 0,
+    "canonical_run_id": 36251986952,
+    "canonical_job_id": 108431609588,
+    "release_gate": "PASS"
   },
   "invariants": {
     "TASK_CONTRACT_V1_MUTATION": 0,
