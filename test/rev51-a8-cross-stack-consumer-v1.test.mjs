@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import * as a from "../runtime/rev51/pilote-backward-compatibility-consumer-v1.mjs";
-import artifact from "../fixtures/rev51/pilote-backward-compatibility-semantic-artifacts-v1/semantic-artifact-set-v1.json" with { type: "json" };
+import artifact from "../fixtures/rev51/runtime-a8-backward-compatibility/semantic-artifact-set-v1.json" with { type: "json" };
 
 const H="1".repeat(64);
 const baseChain=(profileSha)=>({
