@@ -1,7 +1,7 @@
 {
   "manifest_type": "R51_P10_PROVIDER_EXECUTION_ADAPTER_READINESS_PATCH_MANIFEST_V1",
   "wt_id": "WT-RUNTIME-R51-P10-EXECUTION-ADAPTER-READINESS-001",
-  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
   "repository": "neoflowcore/atelier-runtime",
   "development_branch": "runtime-r51-p8-dependency-lock-cache",
   "adds": [
@@ -10,11 +10,17 @@
     "EXACT_SHA_CHECKOUT_FIRST_SOURCE_TRANSPORT",
     "ACTION_ECONOMY_FALLBACK_BUDGET"
   ],
-  "local_validation": {
-    "isolated_semantic_tests": "11/11 PASS",
+  "validation": {
+    "canonical_exact_repo_ci": "PASS",
+    "required_behavior": "PASS",
     "unexpected_failures": 0,
-    "module_syntax": "PASS",
-    "canonical_exact_repo_ci": "PENDING"
+    "observed_test_summary": "770/770 PASS",
+    "canonical_run_id": 36255803762,
+    "canonical_job_id": 108442241108,
+    "canonical_node": "22.13.0",
+    "release_gate": "PASS",
+    "workflow_dispatch": 0,
+    "rerun": 0
   },
   "boundaries": {
     "WORKFLOW_DISPATCH": 0,

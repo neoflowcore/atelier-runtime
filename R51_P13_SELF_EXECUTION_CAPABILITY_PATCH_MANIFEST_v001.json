@@ -1,0 +1,17 @@
+{
+  "manifest_type": "R51_P13_SELF_EXECUTION_CAPABILITY_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P13-SELF-EXECUTION-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "adds": [
+    "SELF_EXECUTION_CAPABILITY_CHECK_V1",
+    "HUMAN_HANDOFF_GUARD_V1"
+  ],
+  "boundaries": {
+    "MANUAL_TERMUX_NORMAL_PATH": 0,
+    "MANUAL_SSH_NORMAL_PATH": 0,
+    "SCREENSHOT_ROUNDTRIP_NORMAL_PATH": 0,
+    "CREDENTIAL_BINDING": 0
+  }
+}

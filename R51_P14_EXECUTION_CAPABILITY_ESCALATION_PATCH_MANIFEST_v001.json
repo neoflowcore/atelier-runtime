@@ -1,0 +1,16 @@
+{
+  "manifest_type": "R51_P14_EXECUTION_CAPABILITY_ESCALATION_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P14-EXECUTION-ESCALATION-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "adds": [
+    "EXECUTION_CAPABILITY_ESCALATION_ORDER_V1",
+    "MANUAL_BREAK_GLASS_GUARD_V1"
+  ],
+  "boundaries": {
+    "AUTOMATED_PATH_EXISTS_MANUAL_HANDOFF": 0,
+    "BREAK_GLASS_REQUIRES_EXPLICIT_APPROVAL": true,
+    "CREDENTIAL_BINDING": 0
+  }
+}
