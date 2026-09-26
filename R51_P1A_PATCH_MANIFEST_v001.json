@@ -1,0 +1,40 @@
+{
+  "schema": "R51_P1A_PATCH_MANIFEST_V1",
+  "files": [
+    {
+      "path": "docs/rev51/R51_P1_RUNTIME_CONTRACT_FOUNDATION.md",
+      "sha256": "d9e00c07061ff9566bcf7c695271afeda009a4b522a13f56f54e4d250634f972",
+      "bytes": 2356
+    },
+    {
+      "path": "runtime/rev51/approval-grant-v1.mjs",
+      "sha256": "d70b9f2a54235b33087333e9141a7694861beb4eca31e0c9813c6191cdd028d0",
+      "bytes": 3286
+    },
+    {
+      "path": "runtime/rev51/contract-core.mjs",
+      "sha256": "0c84f79d90972612d3c3bf3c9fe9a68c45793d56ac8c39171b69ec7fd4f73f74",
+      "bytes": 6455
+    },
+    {
+      "path": "schemas/rev51/approval-grant-v1.schema.json",
+      "sha256": "0b7813b7e5ddbeeee68d7b55d2d72972dce3b02f79f33371e3c666e14ae934b4",
+      "bytes": 1251
+    },
+    {
+      "path": "schemas/rev51/runtime-execution-plan-v1.schema.json",
+      "sha256": "61b83eed5999db06d27ef7fc42494ce6e5c7042669416f5d84d3da6820b04215",
+      "bytes": 1310
+    },
+    {
+      "path": "test/rev51-approval-grant-v1.test.mjs",
+      "sha256": "48b24611fb8bc68b8a021cd8bf2ff1bba640137eb2845548af4d93ddde69b28a",
+      "bytes": 2714
+    },
+    {
+      "path": "test/rev51-contract-core.test.mjs",
+      "sha256": "2a4dfee0d56ce260fd1ea13d1faf98e51aba292d6872ff2368e879303a738935",
+      "bytes": 3692
+    }
+  ]
+}

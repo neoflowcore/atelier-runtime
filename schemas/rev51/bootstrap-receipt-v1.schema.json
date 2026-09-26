@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/bootstrap-receipt-v1.schema.json",
+  "title": "BOOTSTRAP_RECEIPT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "BOOTSTRAP_RECEIPT_ID",
+    "BOOTSTRAP_SPEC_SHA256",
+    "WORKER_ID",
+    "RESULT",
+    "READY_ATTESTATION_ELIGIBLE",
+    "PRIVILEGED_JOB_CREDENTIAL_ELIGIBLE"
+  ],
+  "properties": {
+    "BOOTSTRAP_RECEIPT_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BOOTSTRAP_SPEC_SHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "WORKER_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "RESULT": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "BLOCKED",
+        "OUTCOME_UNKNOWN"
+      ]
+    },
+    "READY_ATTESTATION_ELIGIBLE": {
+      "type": "boolean"
+    },
+    "PRIVILEGED_JOB_CREDENTIAL_ELIGIBLE": {
+      "type": "boolean"
+    }
+  }
+}

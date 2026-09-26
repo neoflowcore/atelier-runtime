@@ -1,0 +1,4 @@
+import test from"node:test";import assert from"node:assert/strict";import{scanBillableResidueV1}from"../runtime/rev51/billable-residue-scanner-v1.mjs";
+test("P27 exact billable inventory permits close",()=>assert.equal(scanBillableResidueV1({expectedInventory:[{CLASS:"VM",RESOURCE_ID:"v1"}],observedInventory:[{CLASS:"VM",RESOURCE_ID:"v1"}]}).JOB_CLOSE_ALLOWED,true));
+test("P27 unexpected snapshot blocks close",()=>{const r=scanBillableResidueV1({expectedInventory:[],observedInventory:[{CLASS:"SNAPSHOT",RESOURCE_ID:"s1"}]});assert.equal(r.JOB_CLOSE_ALLOWED,false);assert.equal(r.UNEXPECTED_BILLABLE_RESIDUE[0].CLASS,"SNAPSHOT")});
+test("P27 resource identity not count alone determines residue",()=>assert.equal(scanBillableResidueV1({expectedInventory:[{CLASS:"VM",RESOURCE_ID:"v1"}],observedInventory:[{CLASS:"VM",RESOURCE_ID:"v2"}]}).JOB_CLOSE_ALLOWED,false));

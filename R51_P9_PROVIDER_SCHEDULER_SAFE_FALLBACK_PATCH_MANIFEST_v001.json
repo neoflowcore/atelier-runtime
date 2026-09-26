@@ -1,0 +1,42 @@
+{
+  "manifest_type": "R51_P9_PROVIDER_SCHEDULER_SAFE_FALLBACK_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P9-PROVIDER-SCHEDULER-001",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "reuse": {
+    "P3_DETERMINISTIC_ROUTER": true,
+    "P5_CAPABILITY_ADMISSION": true,
+    "P5_PROVIDER_CAPABILITY_REGISTRY": true,
+    "P6_EXACT_RUNTIME_REATTESTATION": true
+  },
+  "adds": [
+    "PROVIDER_SCHEDULING_POLICY_V1",
+    "PROVIDER_CIRCUIT_BREAKER_V1",
+    "PROVIDER_SCHEDULE_RECEIPT_V1",
+    "EXECUTION_START_REATTESTATION_V1",
+    "DATA_POLICY_AWARE_PROVIDER_SELECTION"
+  ],
+  "validation": {
+    "canonical_exact_repo_ci": "PASS",
+    "required_behavior": "PASS",
+    "unexpected_failures": 0,
+    "observed_test_summary": "770/770 PASS",
+    "canonical_run_id": 36255803762,
+    "canonical_job_id": 108442241108,
+    "canonical_node": "22.13.0",
+    "release_gate": "PASS",
+    "workflow_dispatch": 0,
+    "rerun": 0
+  },
+  "boundaries": {
+    "APPLICATION_EXECUTION": 0,
+    "PROVIDER_MUTATION": 0,
+    "PAID_COMPUTE": 0,
+    "CREDENTIAL_BINDING": 0,
+    "NETWORK_PROBE": 0,
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0
+  }
+}

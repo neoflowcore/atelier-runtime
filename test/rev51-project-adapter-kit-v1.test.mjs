@@ -1,0 +1,3 @@
+import test from"node:test";import assert from"node:assert/strict";import{compileProjectAdapterKitV1}from"../runtime/rev51/project-adapter-kit-v1.mjs";const x={PROJECT_ID:"p",PROJECT_CONTRACT:{},PREFLIGHT_RULES:[],INPUT_POLICY:{},EXECUTOR_REQUIREMENTS:{},EVIDENCE_MAPPING:{},ACCEPTANCE_GATE:{},COST_POLICY:{},CREDENTIAL_REQUIREMENTS:[]};
+test("P35 project integration compiles to adapter without runtime core mutation",()=>{const r=compileProjectAdapterKitV1(x);assert.equal(r.RUNTIME_CORE_MUTATION_REQUIRED,false);assert.match(r.ADAPTER_SHA256,/^[0-9a-f]{64}$/)});
+test("P35 missing acceptance gate fails closed",()=>{const y={...x};delete y.ACCEPTANCE_GATE;assert.throws(()=>compileProjectAdapterKitV1(y),/ACCEPTANCE_GATE_REQUIRED/)});

@@ -1,0 +1,35 @@
+{
+  "manifest_type": "R51_P11_VALIDATION_SOURCE_PROMOTION_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P11-VALIDATION-SOURCE-PROMOTION-001",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "adds": [
+    "EPHEMERAL_VALIDATION_REF_LEASE_V1",
+    "GENERATED_SOURCE_ARTIFACT_PROVENANCE_V1",
+    "SOURCE_PROMOTION_RECEIPT_V1",
+    "VALIDATION_SOURCE_ISOLATION_V1"
+  ],
+  "validation": {
+    "canonical_exact_repo_ci": "PASS",
+    "required_behavior": "PASS",
+    "unexpected_failures": 0,
+    "observed_test_summary": "770/770 PASS",
+    "canonical_run_id": 36255803762,
+    "canonical_job_id": 108442241108,
+    "canonical_node": "22.13.0",
+    "release_gate": "PASS",
+    "workflow_dispatch": 0,
+    "rerun": 0
+  },
+  "boundaries": {
+    "MAIN_MUTATION_FOR_VALIDATION": 0,
+    "EPHEMERAL_REF_CREATED": 0,
+    "SOURCE_PROMOTION_EXECUTED": 0,
+    "RUNNER_DIRECT_COMMIT_TO_MAIN": 0,
+    "PROVIDER_MUTATION": 0,
+    "PAID_COMPUTE": 0,
+    "CREDENTIAL_BINDING": 0,
+    "INTERFACE_V1_MUTATION": 0
+  }
+}

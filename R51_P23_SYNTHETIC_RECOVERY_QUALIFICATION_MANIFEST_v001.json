@@ -1,0 +1,24 @@
+{
+  "manifest_type": "R51_P23_SYNTHETIC_RECOVERY_QUALIFICATION_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P23-SYNTHETIC-RECOVERY-001",
+  "status": "LOCAL_SYNTHETIC_CONFORMANCE_PENDING_CANONICAL_CI",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "covers": [
+    "OUTCOME_UNKNOWN_RECONCILIATION",
+    "LOST_SUCCESS_NO_DUPLICATE_CREATE",
+    "PROVIDER_CIRCUIT_BREAKER",
+    "PARTIAL_EVIDENCE_UPLOAD",
+    "BILLABLE_RESIDUE",
+    "EMERGENCY_COST_FUSE",
+    "OPERATOR_TRUST_RESET",
+    "MANUAL_HANDOFF_GUARD",
+    "CHECKPOINT_TAMPER"
+  ],
+  "boundaries": {
+    "LIVE_FAILURE_INJECTION": 0,
+    "PAID_COMPUTE": 0,
+    "CREDENTIAL_BINDING": 0,
+    "BLIND_RERUN": 0
+  }
+}

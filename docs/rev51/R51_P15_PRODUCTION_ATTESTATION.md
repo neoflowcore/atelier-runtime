@@ -1,0 +1,3 @@
+# Runtime Rev5.1 P15 — Provider Production Attestation Core
+
+P15 implements provider-neutral, credential-independent attestation semantics only. It binds reviewed expected source identity, exact binding resources, project-owned traffic policy, SLO criteria digest, telemetry-window policy, and freshness into an attestation input digest. Normalized observations produce source/binding/traffic/freshness outcomes and asynchronous SLO states (`PASS`, `ALERT`, `PENDING_WINDOW`, `INSUFFICIENT_DATA`, `BLOCKED`). Insufficient elapsed telemetry time is not converted into failure. No provider API call, mutation, paid compute, credential bind, UI verification, or screenshot evidence occurs in this slice.

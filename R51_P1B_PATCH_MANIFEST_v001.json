@@ -1,0 +1,57 @@
+{
+  "schema": "R51_P1B_PATCH_MANIFEST_V1",
+  "base_head": "8c59ad2f057635616fd4616dfbc86b6ff37ad57c",
+  "base_tree": "ea237ed6a85307fb2df321666954165f4b27cd49",
+  "files": [
+    {
+      "path": "docs/rev51/R51_P1B_ZERO_TOUCH_PREFLIGHT_TRUST.md",
+      "bytes": 1605,
+      "sha256": "127881899c255551933e4b075f5e30e9dfcc3861f44222f3da375d507476b640"
+    },
+    {
+      "path": "runtime/rev51/zero-touch-preflight-v1.mjs",
+      "bytes": 4981,
+      "sha256": "3ff6ee550ca7183a4c046061b8da07ef402e741b7acbc5882fd68fd404c84b3e"
+    },
+    {
+      "path": "schemas/rev51/compute-provider-conformance-v1.schema.json",
+      "bytes": 475,
+      "sha256": "a73a62b53f201995b42c6a6e343ee426c2d179cc232312933bf3aa6aaac836b2"
+    },
+    {
+      "path": "schemas/rev51/execution-preflight-v1.schema.json",
+      "bytes": 1200,
+      "sha256": "750aba6698bfcec1a634d5752eeaa7f939e18a02ae7aca9dbb0d27308790390f"
+    },
+    {
+      "path": "schemas/rev51/execution-transport-conformance-v1.schema.json",
+      "bytes": 495,
+      "sha256": "9e8f0fd9ed15d852f073edd465883526902551d39ec117714b669298c5c940f1"
+    },
+    {
+      "path": "schemas/rev51/execution-transport-v1.schema.json",
+      "bytes": 577,
+      "sha256": "06fe96d0cb6781cdc00ba80b6fb48e18065858cd94fc9fba3505fd93323d0c0c"
+    },
+    {
+      "path": "schemas/rev51/operator-interaction-policy-v1.schema.json",
+      "bytes": 493,
+      "sha256": "3e05b4d053ea38d34625c436ec60b066d41b1a8ea7cfad78532acc7011305c0a"
+    },
+    {
+      "path": "schemas/rev51/operator-intervention-receipt-v1.schema.json",
+      "bytes": 1033,
+      "sha256": "b8f47b9c8b3bf755d63157ee46339ff3912fb2e8ac5caa659046634ee976dc9e"
+    },
+    {
+      "path": "schemas/rev51/worker-ready-attestation-v1.schema.json",
+      "bytes": 752,
+      "sha256": "e52b98ee54508dd6dd2c8afca6e2436778a7d6f43968ea4e938891dddb109d0e"
+    },
+    {
+      "path": "test/rev51-zero-touch-preflight-v1.test.mjs",
+      "bytes": 4996,
+      "sha256": "becceb42b6252ae3c5d8db37c7819f1f4b8887955adacf2ebf1dce2fb78d2fcd"
+    }
+  ]
+}

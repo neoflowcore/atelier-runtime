@@ -1,0 +1,52 @@
+{
+  "manifest_type": "R51_A8_RUNTIME_CROSS_STACK_BIND_PATCH_MANIFEST_V2",
+  "phase": "R51-A8-RUNTIME-BIND",
+  "status": "REMOTE_REPAIR_CANDIDATE",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "prior_candidate_head": "de33927eb520deeeb1bbaf2f634bd16f97d88c16",
+  "prior_candidate_tree": "87e11b8bf26c2468fb91a828bd2266debf7c86ab",
+  "failure_fingerprint": {
+    "workflow_run": 36216474979,
+    "workflow_number": 74,
+    "job_id": 108333325009,
+    "failing_test": "test/rev51-a8-cross-stack-consumer-v1.test.mjs",
+    "error_code": "ERR_MODULE_NOT_FOUND",
+    "missing_path": "fixtures/rev51/pilote-backward-compatibility-semantic-artifacts-v1/semantic-artifact-set-v1.json",
+    "root_cause": "Runtime branch did not contain the Pilote A8 fixture imported by the new Runtime test."
+  },
+  "repair": {
+    "runtime_fixture_path": "fixtures/rev51/runtime-a8-backward-compatibility/semantic-artifact-set-v1.json",
+    "runtime_fixture_git_blob": "349f1bcce1e9be452faee1253be7c6bdd588a053",
+    "runtime_fixture_sha256": "4220684785f382c3dc0d252da8715ceb0ecb79d6783cf6901ac3e26eb21e8ca9",
+    "updated_test_git_blob": "e89522a473e6783a41f2d8dcf9db226f6b7f1699",
+    "semantic_change": 0
+  },
+  "pilote_a8_authoritative": {
+    "head": "96ab5e3b3d9ac17452d0c707b508152b7d09c197",
+    "tree": "3f8f0d2fd5795724d88ec7f7b47eed8bfc659774",
+    "semantic_artifact_set_sha256": "4220684785f382c3dc0d252da8715ceb0ecb79d6783cf6901ac3e26eb21e8ca9",
+    "authoritative_manifest_sha256": "82723878aa150627158c80f14dff38ed82a4d901c474b09c410119cde2568ee5"
+  },
+  "validation": {
+    "prior_ci": "FAIL",
+    "prior_ci_run": 36216474979,
+    "prior_pass_count": 669,
+    "prior_fail_count": 1,
+    "revalidation": "PENDING_NEW_COMMIT_CI",
+    "blind_rerun": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "SEMANTIC_CHANGE": 0,
+    "RERUN": 0,
+    "DISPATCH": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

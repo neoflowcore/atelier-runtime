@@ -1,0 +1,354 @@
+{
+  "$id": "https://atelier.local/rev51/pilote-execution-intent-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "ACCEPTANCE_REQUIREMENT_REF": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/#-]{0,255}$",
+      "type": "string"
+    },
+    "APPROVAL_BOUNDARY": {
+      "additionalProperties": false,
+      "properties": {
+        "EFFECT_CLASS_REFS": {
+          "items": {
+            "pattern": "^[A-Z][A-Z0-9_.-]{0,63}$",
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "MODE": {
+          "enum": [
+            "INHERIT_TASK",
+            "EXPLICIT_HUMAN_APPROVAL",
+            "NO_ADDITIONAL_APPROVAL"
+          ]
+        },
+        "SCOPE_REFS": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/#-]{0,255}$",
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "MODE",
+        "EFFECT_CLASS_REFS",
+        "SCOPE_REFS"
+      ],
+      "type": "object"
+    },
+    "BUDGET_INTENT": {
+      "additionalProperties": false,
+      "properties": {
+        "MAX_COST_MICRO_USD": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "MAX_RUNTIME_SECONDS": {
+          "minimum": 1,
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "MAX_RUNTIME_SECONDS",
+        "MAX_COST_MICRO_USD"
+      ],
+      "type": "object"
+    },
+    "CACHE_POLICY": {
+      "enum": [
+        "NOT_REQUESTED",
+        "ELIGIBLE",
+        "REQUIRED"
+      ]
+    },
+    "CANONICALIZATION_ID": {
+      "const": "ATELIER_EXECUTION_CANONICAL_JSON_V1"
+    },
+    "CAPABILITY_REQUIREMENTS": {
+      "items": {
+        "pattern": "^[A-Z][A-Z0-9_.-]{0,63}$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "CHECKPOINT_POLICY": {
+      "enum": [
+        "NOT_REQUESTED",
+        "ELIGIBLE",
+        "REQUIRED"
+      ]
+    },
+    "CONTRACT_SET_REF": {
+      "additionalProperties": false,
+      "properties": {
+        "ID": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$",
+          "type": "string"
+        },
+        "SHA256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "VERSION": {
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[A-Za-z0-9.-]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ID",
+        "VERSION",
+        "SHA256"
+      ],
+      "type": "object"
+    },
+    "DATA_LOCALITY_POLICY": {
+      "enum": [
+        "NONE",
+        "COLOCATE_WITH_INPUT_SET",
+        "EGRESS_RESTRICTED"
+      ]
+    },
+    "EXECUTION_PATH_POLICY": {
+      "enum": [
+        "RUNTIME_DECIDES",
+        "DIRECT_REMOTE_ALLOWED",
+        "DIRECT_REMOTE_REQUIRED",
+        "GITHUB_GATE_REQUIRED"
+      ]
+    },
+    "EXPECTED_EVIDENCE_CLASSES": {
+      "items": {
+        "pattern": "^[A-Z][A-Z0-9_.-]{0,63}$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "EXPECTED_OUTPUT_CLASSES": {
+      "items": {
+        "pattern": "^[A-Z][A-Z0-9_.-]{0,63}$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "INPUT_MODE": {
+      "const": "NATIVE_REV51"
+    },
+    "INTENT_SHA256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "INTENT_TYPE": {
+      "const": "PILOTE_EXECUTION_INTENT_V1"
+    },
+    "INTENT_VERSION": {
+      "const": "1.0.0"
+    },
+    "OPERATOR_POLICY": {
+      "enum": [
+        "ZERO_TOUCH_AFTER_APPROVAL",
+        "RECOVERY_INTERACTION_ALLOWED"
+      ]
+    },
+    "PARALLELISM_INTENT": {
+      "enum": [
+        "INHERIT_DAG",
+        "PARALLEL_ALLOWED",
+        "SERIAL_REQUIRED"
+      ]
+    },
+    "PHASE_ID": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$",
+      "type": "string"
+    },
+    "PROJECT_ID": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$",
+      "type": "string"
+    },
+    "RESOURCE_INTENT": {
+      "additionalProperties": false,
+      "properties": {
+        "CPU_MIN_MILLICORES": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "DISK_MIN_MIB": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "GPU_CAPABILITY_CLASS": {
+          "pattern": "^[A-Z][A-Z0-9_.-]{0,63}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "GPU_COUNT": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "GPU_MEMORY_MIN_MIB": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "MEMORY_MIN_MIB": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "CPU_MIN_MILLICORES",
+        "MEMORY_MIN_MIB",
+        "DISK_MIN_MIB",
+        "GPU_COUNT",
+        "GPU_MEMORY_MIN_MIB",
+        "GPU_CAPABILITY_CLASS"
+      ],
+      "type": "object"
+    },
+    "SECURITY_REQUIREMENT": {
+      "additionalProperties": false,
+      "properties": {
+        "DATA_ACCESS_CLASS": {
+          "enum": [
+            "INHERIT_TASK",
+            "PUBLIC",
+            "PROJECT_INTERNAL",
+            "PRIVATE_SOURCE",
+            "PRODUCTION"
+          ]
+        },
+        "ISOLATION_CLASS": {
+          "enum": [
+            "DEFAULT",
+            "ISOLATED",
+            "HIGH_ISOLATION"
+          ]
+        },
+        "NETWORK_CLASS": {
+          "enum": [
+            "INHERIT_TASK",
+            "NONE",
+            "LOOPBACK_ONLY",
+            "ALLOWLIST_READ",
+            "ALLOWLIST_MUTATE"
+          ]
+        },
+        "SECRET_CLASS": {
+          "enum": [
+            "INHERIT_TASK",
+            "NONE",
+            "SOURCE_READ",
+            "SOURCE_WRITE",
+            "PROVIDER_MUTATION",
+            "PRODUCTION_CONTROL"
+          ]
+        }
+      },
+      "required": [
+        "ISOLATION_CLASS",
+        "NETWORK_CLASS",
+        "DATA_ACCESS_CLASS",
+        "SECRET_CLASS"
+      ],
+      "type": "object"
+    },
+    "SEMANTIC_DEPENDENCY_REFS": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "TASK_CONTRACT_SHA256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "TASK_ID": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$",
+      "type": "string"
+    },
+    "VERIFIER_POLICY_REF": {
+      "additionalProperties": false,
+      "properties": {
+        "ID": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$",
+          "type": "string"
+        },
+        "SHA256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "VERSION": {
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[A-Za-z0-9.-]+)?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ID",
+        "VERSION",
+        "SHA256"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "INTENT_TYPE",
+    "INTENT_VERSION",
+    "INPUT_MODE",
+    "CANONICALIZATION_ID",
+    "PROJECT_ID",
+    "PHASE_ID",
+    "TASK_ID",
+    "TASK_CONTRACT_SHA256",
+    "EXECUTION_PATH_POLICY",
+    "CAPABILITY_REQUIREMENTS",
+    "RESOURCE_INTENT",
+    "SECURITY_REQUIREMENT",
+    "BUDGET_INTENT",
+    "CHECKPOINT_POLICY",
+    "CACHE_POLICY",
+    "DATA_LOCALITY_POLICY",
+    "VERIFIER_POLICY_REF",
+    "ACCEPTANCE_REQUIREMENT_REF",
+    "APPROVAL_BOUNDARY",
+    "OPERATOR_POLICY",
+    "SEMANTIC_DEPENDENCY_REFS",
+    "PARALLELISM_INTENT",
+    "EXPECTED_OUTPUT_CLASSES",
+    "EXPECTED_EVIDENCE_CLASSES",
+    "CONTRACT_SET_REF",
+    "INTENT_SHA256"
+  ],
+  "title": "PILOTE_EXECUTION_INTENT_V1",
+  "type": "object"
+}

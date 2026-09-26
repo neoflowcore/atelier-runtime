@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/worker-bootstrap-spec-v1.schema.json",
+  "title": "WORKER_BOOTSTRAP_SPEC_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "BOOTSTRAP_SPEC_ID",
+    "EXECUTION_PLAN_HASH",
+    "COMPUTE_PROVIDER",
+    "EXECUTION_TRANSPORT",
+    "WORKER_IMAGE_ID",
+    "BOOTSTRAP_CREDENTIAL_CLASS",
+    "PRIVILEGED_JOB_CREDENTIAL_ALLOWED",
+    "ZERO_TOUCH_REQUIRED"
+  ],
+  "properties": {
+    "BOOTSTRAP_SPEC_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "EXECUTION_PLAN_HASH": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "COMPUTE_PROVIDER": {
+      "enum": [
+        "LOCAL",
+        "VMWARE",
+        "DIGITALOCEAN"
+      ]
+    },
+    "EXECUTION_TRANSPORT": {
+      "enum": [
+        "DIRECT_WORKER",
+        "GITHUB_SELF_HOSTED_JIT"
+      ]
+    },
+    "WORKER_IMAGE_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "BOOTSTRAP_CREDENTIAL_CLASS": {
+      "const": "BOOTSTRAP_OR_TRANSPORT_CREDENTIAL"
+    },
+    "PRIVILEGED_JOB_CREDENTIAL_ALLOWED": {
+      "const": false
+    },
+    "ZERO_TOUCH_REQUIRED": {
+      "const": true
+    }
+  }
+}

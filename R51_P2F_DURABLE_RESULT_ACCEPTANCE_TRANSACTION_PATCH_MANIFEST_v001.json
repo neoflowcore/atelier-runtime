@@ -1,0 +1,76 @@
+{
+  "manifest_type": "R51_P2F_DURABLE_RESULT_ACCEPTANCE_TRANSACTION_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P2F-001",
+  "status": "LOCAL_VERIFIED_CANDIDATE_REMOTE_WRITE_NOT_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "fa8eb665d8483bc8237cbe7098caed1bd4177537",
+  "base_tree": "0d849fc9e11f171ec9eff4427cc0e57065cc2669",
+  "scope": {
+    "runtime_owned_only": true,
+    "pilote_a6_semantic_dependency": false,
+    "shared_contract_change": false,
+    "interface_v1_change": false
+  },
+  "binding": {
+    "durable_execution_state": "P2A_REMOTE_VERIFIED_SOURCE",
+    "quarantine_acceptance_policy": "QUARANTINE_VERIFY_ATOMIC_ACCEPT",
+    "durable_acceptance_policy": "CURRENT_FENCE_CAS_QUARANTINE_ATOMIC_COMMIT",
+    "artifact_store_schema": "ARTIFACT_STORE_V1",
+    "execution_receipt_schema": "EXECUTION_RECEIPT_V1",
+    "blob_existence_equals_authoritative_acceptance": false,
+    "worker_says_pass_equals_runtime_accepted_output": false
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/durable-result-acceptance-v1.mjs",
+      "bytes": 14276,
+      "sha256": "b55d6ab7ebbe67cc93da058eeb8a2528d943a81115153dd073415f87b41869cb",
+      "git_blob": "a57a8dd94ca5d66b571e6b8e3f01b131aa2a12ad"
+    },
+    {
+      "path": "test/rev51-durable-result-acceptance-v1.test.mjs",
+      "bytes": 12619,
+      "sha256": "12abfc09d56e9c73ac5a96a48217bf27ff43a3fcf221d2089fa632b782dfab67",
+      "git_blob": "4af40614f6bce65158b714a13e08aadcc65b8cd7"
+    },
+    {
+      "path": "docs/rev51/R51_P2F_DURABLE_RESULT_ACCEPTANCE_TRANSACTION.md",
+      "bytes": 3012,
+      "sha256": "df58661254c382644fc06aa7c42725f20c90370143d9711ff79f084e49c2e45b",
+      "git_blob": "49f6fa820d978adabce5147bde2bd56268d2d7a3"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "16/16 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH_AND_P2A_VALIDATOR_HARNESS",
+    "existing_result_acceptance_module_sha256": "86ccc2d2f186886a26e1a381c9a6eac4ec0bfafedbed6a041c725c4b207730c4",
+    "existing_result_acceptance_byte_identity": "PASS",
+    "p2a_lock_semantics_fresh_remote_inspection": "PASS",
+    "current_fence_cas": "PASS",
+    "exact_once_replay": "PASS",
+    "second_acceptance": "DENY",
+    "unresolved_outcome_acceptance": "DENY",
+    "stale_temp_authoritative_acceptance": "DENY",
+    "receipt_reopen_hash_validation": "PASS"
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "WORKER_SAYS_PASS_EQUALS_RUNTIME_ACCEPTED_OUTPUT": 0,
+    "BLOB_EXISTENCE_EQUALS_AUTHORITATIVE_ACCEPTANCE": 0,
+    "WORKFLOW_RUN": 0,
+    "RERUN": 0,
+    "DISPATCH": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

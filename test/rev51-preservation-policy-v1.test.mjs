@@ -1,0 +1,5 @@
+import test from"node:test";import assert from"node:assert/strict";import{evaluatePreservationRequestV1}from"../runtime/rev51/preservation-policy-v1.mjs";
+test("P28 normal receipt preservation is allowed",()=>assert.equal(evaluatePreservationRequestV1({CLASS:"RECEIPT"}).ok,true));
+test("P28 full VM snapshot as normal evidence is denied",()=>assert.equal(evaluatePreservationRequestV1({CLASS:"SNAPSHOT",REASON:"NORMAL_EVIDENCE"}).code,"FULL_VM_SNAPSHOT_AS_NORMAL_EVIDENCE_DENIED"));
+test("P28 exceptional snapshot hold requires deletion cost destination and extraction plan",()=>assert.equal(evaluatePreservationRequestV1({CLASS:"SNAPSHOT",REASON:"EMERGENCY_PRESERVATION_HOLD"}).ok,false));
+test("P28 fully bounded exceptional snapshot hold is allowed",()=>assert.equal(evaluatePreservationRequestV1({CLASS:"SNAPSHOT",REASON:"LEGACY_RESOURCE_EVACUATION",DELETE_AFTER:"2026-09-28T00:00:00Z",DELETE_CONDITION:"artifact verified",ESTIMATED_COST_MILLIUNITS:10,CANONICAL_DESTINATION:"cas:x",EXTRACTION_PLAN:"extract required files",OWNER_JOB:"j"}).ok,true));

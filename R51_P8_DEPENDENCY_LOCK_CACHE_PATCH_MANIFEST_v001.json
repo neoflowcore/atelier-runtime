@@ -1,0 +1,41 @@
+{
+  "manifest_type": "R51_P8_DEPENDENCY_LOCK_CACHE_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P8-DEPENDENCY-LOCK-CACHE-001",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "reuse": {
+    "PACKAGE_LOCK_PRESENT": true,
+    "NPM_CI_EXISTING": true,
+    "ACTIONS_NPM_CACHE_EXISTING": true
+  },
+  "adds": [
+    "DEPENDENCY_LOCK_POLICY_V1",
+    "DEPENDENCY_CACHE_KEY_V1",
+    "DEPENDENCY_RESOLUTION_JOB_REQUIRED",
+    "LOCK_BOUND_CACHE_VALIDATION"
+  ],
+  "validation": {
+    "canonical_exact_repo_ci": "PASS",
+    "required_behavior": "PASS",
+    "unexpected_failures": 0,
+    "observed_test_summary": "746/746 PASS",
+    "canonical_run_id": 36253019629,
+    "canonical_job_id": 108434477549,
+    "canonical_node": "22.13.0",
+    "canonical_npm": "10.9.2",
+    "release_gate": "PASS",
+    "workflow_dispatch": 0,
+    "rerun": 0
+  },
+  "boundaries": {
+    "DEPENDENCY_GRAPH_MUTATION": 0,
+    "LIVE_REGISTRY_CALL": 0,
+    "CREDENTIAL_BINDING": 0,
+    "PROVIDER_MUTATION": 0,
+    "PAID_COMPUTE": 0,
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0
+  }
+}

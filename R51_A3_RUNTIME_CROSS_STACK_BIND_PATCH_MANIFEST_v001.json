@@ -1,0 +1,53 @@
+{
+  "manifest_type": "R51_A3_RUNTIME_CROSS_STACK_BIND_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-A3-BIND-001",
+  "status": "LOCAL_VERIFIED_CANDIDATE_REMOTE_WRITE_NOT_YET_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "f894ba1a315587408bb21a9e1e22eb737e8391de",
+  "base_tree": "f26f045730e86c6e9460fb96ada7b530955f64af",
+  "pilote_a3_authoritative": {
+    "branch": "pilote-r51-a3-verifier-acceptance-intent",
+    "head": "8a87ddb7fba03165339f86b26047417624b43899",
+    "tree": "fc8ce3ce6c7a1650c2894937699c51876b6428bc",
+    "schema_sha256": "59652f22bbf361b496947b26671aae81d58ff79c579561c050bf0e54b830cf58",
+    "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+    "pilote_verifier_policy_module_sha256": "a3d086939dc5e08e5ec20beb85b30a0e0d5275c2d165c24d97e563d339786c5a",
+    "source_fixture_set_sha256": "5b661b9eb0cc9e982e4915787a04dcb0286b8fe7c03f3dd68618c361a8c2dce2",
+    "test_vector_set_sha256": "080b23a76005d83bfdd8495c51c486959d6ba53e6be9181e460e01fa0202e61f",
+    "expected_result_set_sha256": "7d884b47d4c2f1c47f404dd3bf148036447324d86ef93e88be34a1b4f77c93bd",
+    "authoritative_manifest_sha256": "ad914089dec666fb5befc4ba9084736043bd1466b3f543a11823c3a6e4fab6ca"
+  },
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "files": [
+    "runtime/rev51/pilote-verifier-acceptance-consumer-v1.mjs",
+    "test/rev51-a3-cross-stack-consumer-v1.test.mjs",
+    "docs/rev51/R51_A3_RUNTIME_CROSS_STACK_CONSUMER_BINDING.md"
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "16/16 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "a3_vector_outcomes_reproduced": "8/8 PASS",
+    "verifier_policy_binding": "PASS",
+    "acceptance_requirement_binding": "PASS"
+  },
+  "invariants": {
+    "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": 0,
+    "RAW_WORKER_SUCCESS_DIRECT_PROJECT_ACCEPTANCE": 0,
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0,
+    "WORKFLOW_RUN": 0,
+    "RERUN": 0,
+    "DISPATCH": 0
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/artifact-store-v1.schema.json",
+  "title": "ARTIFACT_STORE_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ARTIFACT_ID",
+    "CONTENT_SHA256",
+    "SIZE_BYTES",
+    "MEDIA_TYPE",
+    "STORAGE_CLASS",
+    "SECURITY_DOMAIN",
+    "ORIGIN_EXECUTION_ID",
+    "CREATED_AT",
+    "RETENTION_CLASS",
+    "LOCATIONS",
+    "ARTIFACT_STATE"
+  ],
+  "properties": {
+    "ARTIFACT_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "CONTENT_SHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "SIZE_BYTES": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "MEDIA_TYPE": {
+      "type": "string",
+      "minLength": 1
+    },
+    "STORAGE_CLASS": {
+      "type": "string",
+      "minLength": 1
+    },
+    "SECURITY_DOMAIN": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ORIGIN_EXECUTION_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "CREATED_AT": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "RETENTION_CLASS": {
+      "enum": [
+        "PINNED",
+        "UNTIL_FINAL_ACCEPTANCE",
+        "UNTIL_ROLLBACK_WINDOW_END",
+        "CACHE_EVICTABLE",
+        "CHECKPOINT_LATEST_N",
+        "TEMPORARY",
+        "AUDIT_LONG_TERM"
+      ]
+    },
+    "LOCATIONS": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "ARTIFACT_STATE": {
+      "enum": [
+        "STAGING",
+        "IMMUTABLE",
+        "QUARANTINED",
+        "GC_ELIGIBLE"
+      ]
+    }
+  }
+}

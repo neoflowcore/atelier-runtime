@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/worker-ready-attestation-v1.schema.json",
+  "title": "WORKER_READY_ATTESTATION_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ATTESTATION_ID", "WORKER_ID", "EXECUTION_PLAN_HASH", "ATTESTATION_STATE", "ISSUED_AT", "EXPIRES_AT"],
+  "properties": {
+    "ATTESTATION_ID": { "type": "string", "minLength": 1 },
+    "WORKER_ID": { "type": "string", "minLength": 1 },
+    "EXECUTION_PLAN_HASH": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "ATTESTATION_STATE": { "const": "READY" },
+    "ISSUED_AT": { "type": "string", "format": "date-time" },
+    "EXPIRES_AT": { "type": "string", "format": "date-time" }
+  }
+}

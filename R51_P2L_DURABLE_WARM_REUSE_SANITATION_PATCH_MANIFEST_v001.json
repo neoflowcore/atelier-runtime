@@ -1,0 +1,16 @@
+{
+  "manifest_type":"R51_P2L_DURABLE_WARM_REUSE_SANITATION_PATCH_MANIFEST_V1",
+  "status":"LOCAL_VERIFIED_READY_FOR_SUSTAINED_APPROVAL_APPLY",
+  "repository":"neoflowcore/atelier-runtime",
+  "branch":"runtime-r51-a2-consumer-binding",
+  "base_head":"7531ac7c02927bf030157df62a0dc69547f6e9ec",
+  "base_tree":"412def41861c670db3931048191cc227816eaa3d",
+  "a5_policy_source_git_blob":"d183ebdc0bed3677240d5feeecdc771ba3304755",
+  "files":[
+    {"path":"runtime/rev51/durable-worker-sanitation-receipt-v1.mjs","bytes":11038,"sha256":"d0bc50ca1cdf3249c15b63b1da9f5d8ea29df00c00df435164aad0f99659b632","git_blob":"97a5626fddfdcec66ccc4ec94b955793a83de74f"},
+    {"path":"test/rev51-durable-worker-sanitation-receipt-v1.test.mjs","bytes":6095,"sha256":"e3f44d5df363b1b591b14410a5be99fe7b9e489d6cba1bb023d894d376a50c75","git_blob":"13ada2588a926578e12b915a4028a3f0dd99fb08"},
+    {"path":"docs/rev51/R51_P2L_DURABLE_WARM_REUSE_SANITATION.md","bytes":753,"sha256":"c08c28ae7eb45aed481835108d23d3341778888de58331e70f9a99a52a5989a3","git_blob":"46cbd7d35e764be5d1272759b0ba1fe5c1a6aa06"}
+  ],
+  "validation":{"node_check":"PASS","targeted_tests":"16/16 PASS","execution_node":"22.16.0","repository_engine_node":"22.13.0","evidence_class":"SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH_AND_A5_POLICY_HARNESS"},
+  "invariants":{"TASK_CONTRACT_V1_MUTATION":0,"FROZEN_27_FIELDS_MUTATION":0,"INTERFACE_V1_MUTATION":0,"PILOTE_SEMANTIC_REINTERPRETATION":0,"PILOTE_A6_SEMANTIC_DEPENDENCY":0,"WORKER_ID_EMISSION":0,"WORKER_JOB_ID_EMISSION":0,"ATTESTATION_ID_EMISSION":0,"SECRET_PERSISTENCE":0,"FORCE_PUSH":0,"MAIN_WRITE":0,"MERGE":0,"RERUN":0,"DISPATCH":0}
+}

@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "r51-p26-v022-policy-promotion-receipt.v1",
+  "status": "LOCAL_TARGETED_VALIDATION_PASS_REMOTE_EXACT_CANDIDATE_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "developmentBranch": "runtime-r51-p8-dependency-lock-cache",
+  "authoritativeHostPlan": "ATELIER POST-REV5.1 RUNTIME-FIRST REINFORCED PLAN v017",
+  "hostPlanMutatedByPolicyPromotion": false,
+  "promotionSources": [
+    {
+      "name": "UNIVERSAL_PROJECT_ONE_SHOT_CONTROL_POLICY_v022_GENERIC_FINAL_SEALED_20260927.md",
+      "sha256": "380a18e88ecda85f38ad0ecfe1c063cb055f9cdb5c655883760a951567ddafcc",
+      "role": "EXECUTION_GOVERNOR_SOURCE"
+    },
+    {
+      "name": "PROMPT_UNIVERSAL_ONE_SHOT_v022_RESUME_FINAL_v001_20260927.txt",
+      "sha256": "c7c6b62aa14bac1b0a0db76730aaa1d5129d40503142de32d7d134f578709b1d",
+      "role": "REATTACH_SEMANTIC_SOURCE"
+    }
+  ],
+  "runtimeModules": [
+    {
+      "path": "runtime/rev51/project-identity-plan-binding-v1.mjs",
+      "sha256": "db2b18a870cd889b7c9f08fdf205f38afbcbec957f69f75e1cbaacca3312eef0"
+    },
+    {
+      "path": "runtime/rev51/master-plan-run-contract-v1.mjs",
+      "sha256": "0e27524b3d803e7b015c36fad90e2a2b68c77f430748724112deaaf240a82086"
+    },
+    {
+      "path": "runtime/rev51/continuation-decision-v1.mjs",
+      "sha256": "0d248aee59e102a86fb2a27978dbe36bf04945e0d932e450bf0de696be527402"
+    },
+    {
+      "path": "runtime/rev51/source-mutation-compiler-v1.mjs",
+      "sha256": "02a24e4586573ffd1cc3c27dff98c6fce7e52268df5337a1f4bac6f79c55ee43"
+    },
+    {
+      "path": "runtime/rev51/longrun-checkpoint-reattach-v1.mjs",
+      "sha256": "271f90f57f207c3a8e026c73dd522880a755cd710a27c63c24dce7792fb1821b"
+    },
+    {
+      "path": "runtime/rev51/auth-endgame-transaction-v1.mjs",
+      "sha256": "e8241a652937bedbf88f33a00aa74d680127127730c637fd00735f3bd692fd10"
+    }
+  ],
+  "promotedContractCoverage": {
+    "CONTINUATION_POLICY_V1": "runtime/rev51/continuation-decision-v1.mjs",
+    "ALIAS_TO_GRANT_BINDING": "runtime/rev51/master-plan-run-contract-v1.mjs",
+    "MASTER_PLAN_RUN_CONTRACT_V1": "runtime/rev51/master-plan-run-contract-v1.mjs",
+    "MASTER_PLAN_EXECUTION_GRANT": "runtime/rev51/master-plan-run-contract-v1.mjs",
+    "GLOBAL_NEXT_LEGAL_ACTION_RESOLVER_V1": "runtime/rev51/continuation-decision-v1.mjs",
+    "AUTO_PHASE_TRANSITION_V1": "runtime/rev51/master-plan-run-contract-v1.mjs",
+    "GLOBAL_BLOCKER_BYPASS_V1": "runtime/rev51/continuation-decision-v1.mjs",
+    "UNIVERSAL_CONTINUE_RESUME_ALIAS_V1": "runtime/rev51/master-plan-run-contract-v1.mjs",
+    "CURRENT_TURN_EXECUTION_MAXIMIZATION_RUNTIME_ENFORCEMENT": "runtime/rev51/master-plan-run-contract-v1.mjs + runtime/rev51/continuation-decision-v1.mjs",
+    "DURABLE_MASTER_PLAN_RUNNER": "runtime/rev51/master-plan-run-contract-v1.mjs + runtime/rev51/longrun-checkpoint-reattach-v1.mjs",
+    "CONTINUATION_DECISION_V1": "runtime/rev51/continuation-decision-v1.mjs",
+    "PILOTE_RESPONSE_GATE_CONTRACT": "runtime/rev51/continuation-decision-v1.mjs",
+    "LONGRUN_CHECKPOINT_REATTACH": "runtime/rev51/longrun-checkpoint-reattach-v1.mjs",
+    "PREMATURE_STOP_WATCHDOG": "runtime/rev51/continuation-decision-v1.mjs",
+    "LONGRUN_CONFORMANCE_SUITE": "test/rev51-*-v1.test.mjs promotion suite",
+    "MASTER_PLAN_SOURCE_CONTROL_LIFETIME_V1_PROMOTION": "runtime/rev51/master-plan-run-contract-v1.mjs",
+    "SOURCE_MUTATION_COMPILER_V1_PROMOTION": "runtime/rev51/source-mutation-compiler-v1.mjs",
+    "SEMANTIC_CI_ASSERTION_V1_PROMOTION": "runtime/rev51/source-mutation-compiler-v1.mjs",
+    "PROJECT_IDENTITY_FENCE_V1": "runtime/rev51/project-identity-plan-binding-v1.mjs",
+    "TOOL_TARGET_IDENTITY_FENCE_V1": "runtime/rev51/project-identity-plan-binding-v1.mjs",
+    "PROJECT_PLAN_BINDING_FENCE_V1": "runtime/rev51/project-identity-plan-binding-v1.mjs",
+    "PROJECT_SOURCE_MANIFEST_V1": "runtime/rev51/project-identity-plan-binding-v1.mjs",
+    "FINAL_CREDENTIAL_BIND_MANIFEST_V1_IMPLEMENTATION": "runtime/rev51/auth-endgame-transaction-v1.mjs",
+    "FINAL_AUTH_BIND_MANIFEST_V1_IMPLEMENTATION": "runtime/rev51/auth-endgame-transaction-v1.mjs",
+    "AUTH_ENDGAME_CLOSURE_PREFLIGHT_V1_IMPLEMENTATION": "runtime/rev51/auth-endgame-transaction-v1.mjs",
+    "TRANSITIVE_LIVE_AUTH_DEPENDENCY_CLOSURE_COMPILER": "runtime/rev51/auth-endgame-transaction-v1.mjs",
+    "AUTH_ENDGAME_TRANSACTION_V1_IMPLEMENTATION": "runtime/rev51/auth-endgame-transaction-v1.mjs"
+  },
+  "targetedValidation": {
+    "runtime": "node",
+    "testFiles": 6,
+    "observedTests": 49,
+    "pass": 49,
+    "fail": 0,
+    "unexpectedFunctionalFailures": 0,
+    "fixedTestCountIsAcceptanceContract": false
+  },
+  "remoteValidation": {
+    "canonicalCiRunId": null,
+    "canonicalCiJobId": null,
+    "conclusion": "PENDING",
+    "workflowDispatch": 0,
+    "rerun": 0
+  },
+  "interfaceFreezeClaimed": false,
+  "runtimeDevelopmentSealClaimed": false,
+  "globalAuthEndgameTriggered": false,
+  "deferredLiveAuthItemsPreserved": true,
+  "optionalUnboundV017NodesPreserved": true,
+  "nextLegalAction": "Create one exact remote candidate on the persistent development branch, reconcile its pull-request CI, then generate interface/compatibility identities and re-evaluate P26 freeze/seal."
+}

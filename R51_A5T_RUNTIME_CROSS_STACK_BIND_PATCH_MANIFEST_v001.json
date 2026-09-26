@@ -1,0 +1,65 @@
+{
+  "manifest_type": "R51_A5T_RUNTIME_CROSS_STACK_BIND_PATCH_MANIFEST_V1",
+  "phase": "R51-A5T-RUNTIME-BIND",
+  "status": "REMOTE_APPLY_CANDIDATE",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "53c80c8f76c04a90560199833c25119cff1c8068",
+  "base_tree": "7c5504eacb342444b9a2cd5bce3aca20f5609f6f",
+  "pilote_a5t_authoritative": {
+    "head": "e74a428d1c987aaec396a8a144869747b42360e9",
+    "tree": "1a403580a090edc8747c156ae67cd9031fbcf439",
+    "module_sha256": "e0f14ed0e1f25bf86f38cf6b95e89aed657f68233a2def401f57572ad0dc3a5b",
+    "schema_sha256": "a02d12215955e8b3fcfc663a6123002303d3ed80fe395d9aed97e0212cec6336",
+    "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+    "test_vector_set_sha256": "73d0840feff0977e7ebd6c1e91e66055fe4f3bdf6c8c59e569fdae24ef9e6fc1",
+    "expected_result_set_sha256": "62c85eeaac53bfc69adefdf9d54b0c6c76e03dabb51470876a35206aec669095",
+    "authoritative_manifest_sha256": "4e8a77efd1171d82dcc20e1b1908e5cafefd3284477f9f8a7af375354956b3a8",
+    "source_status_schema_sha256": "fd612bf9556b20b9434d6218ec437d9ec61dfe447f1d9eb534fbb4e7a2a3b5f2",
+    "source_status_schema_git_blob": "d0e0c62d1b387d39eb911e493eeb459e283e626a"
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/pilote-execution-terminal-semantic-consumer-v1.mjs",
+      "sha256": "e826b6152991e6540b59e593b3df7d8bc95cf42392598c3ad05f5fdb5f8a4eaf",
+      "git_blob": "d34ef793f5fff9e7129bc1f7ffded359cb2ac520",
+      "node_check": "PASS"
+    },
+    {
+      "path": "test/rev51-a5t-cross-stack-consumer-v1.test.mjs",
+      "sha256": "a9e7011a6226ea3ef65d7de5ea198c9fbbbe95261fb2f93f48402c9a5bf1e2b4",
+      "git_blob": "4d571ef18f63a52d19a7295002e18e774f368bf0",
+      "node_check": "PASS"
+    },
+    {
+      "path": "docs/rev51/R51_A5T_RUNTIME_CROSS_STACK_BINDING.md",
+      "git_blob": "50c7e8fbcc3ec6918bac0c70d9f843ff26a98fdb"
+    }
+  ],
+  "binding_results": {
+    "SOURCE_STATUS_SCHEMA_BINDING": "PASS",
+    "TERMINAL_STATE_PARTITION_BINDING": "PASS",
+    "OUTCOME_UNKNOWN_NON_TERMINAL_BINDING": "PASS",
+    "EXECUTION_TERMINAL_RUNTIME_EVIDENCE_BINDING": "PASS",
+    "ACCEPTANCE_NON_IMPLICATION_BINDING": "PASS"
+  },
+  "validation": {
+    "local_source_node_check": "PASS",
+    "local_test_node_check": "PASS",
+    "local_targeted_test": "BLOCKED_GITHUB_DNS",
+    "canonical_ci": "REQUIRED_AFTER_REMOTE_APPLY"
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_DIRECT_RUNTIME_FLAG_MUTATION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0,
+    "RERUN": 0,
+    "DISPATCH": 0
+  }
+}

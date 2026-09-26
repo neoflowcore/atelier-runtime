@@ -1,0 +1,39 @@
+{
+  "manifest_type": "R51_P7_NETWORK_REGISTRY_PREFLIGHT_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P7-NETWORK-PREFLIGHT-001",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
+  "repository": "neoflowcore/atelier-runtime",
+  "planned_branch": "runtime-r51-p7-network-registry-preflight",
+  "reuse": {
+    "P1B_ZERO_TOUCH_PREFLIGHT": true,
+    "P5_CAPABILITY_REQUIREMENT_SET": true,
+    "LIVE_NETWORK_ADAPTER_REIMPLEMENTED": false
+  },
+  "adds": [
+    "NETWORK_REGISTRY_PREFLIGHT_PLAN_V1",
+    "NETWORK_REGISTRY_PREFLIGHT_RECEIPT_V1",
+    "PROTOCOL_STAGE_FAILURE_CLASSIFICATION",
+    "NETWORK_FAILURE_FINGERPRINT_EQUIVALENCE"
+  ],
+  "boundaries": {
+    "LIVE_NETWORK_CALLS": 0,
+    "CREDENTIAL_BINDING": 0,
+    "PROVIDER_MUTATION": 0,
+    "PAID_COMPUTE": 0,
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0
+  },
+  "validation": {
+    "isolated_semantic_harness": "13/13 PASS",
+    "execution_node": "22.16.0",
+    "canonical_exact_repo_ci": "735/735 PASS",
+    "canonical_run_id": 36252888802,
+    "canonical_job_id": 108434112181,
+    "canonical_node": "22.13.0",
+    "canonical_npm": "10.9.2",
+    "release_gate": "PASS",
+    "workflow_dispatch": 0,
+    "rerun": 0
+  }
+}
