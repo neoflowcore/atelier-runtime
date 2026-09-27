@@ -72,7 +72,7 @@ test("canonical CI evidence requires success, zero failures, release gate, rerun
   assert.ok(validateCanonicalCiEvidenceV1({ ...ci, fail: 1 }).errors.includes("CI_FUNCTIONAL_FAILURES_PRESENT"));
 });
 
-test("interface freeze passes after promotion but development seal waits for deferred auth endgame", () => {
+test("credential-independent Runtime Development Seal passes while live auth remains deferred", () => {
   const out = evaluateRuntimeInterfaceFreezeV1({
     canonicalCi: ci,
     runtimeInterfaceIdentitySha256: H("8"),
@@ -84,13 +84,14 @@ test("interface freeze passes after promotion but development seal waits for def
     deferredGlobalAuthEndgame: ["SOURCE_PROVENANCE_LIVE_VERIFICATION"]
   });
   assert.equal(out.interfaceFreeze, "PASS");
-  assert.equal(out.projectDevelopmentComplete, true);
-  assert.equal(out.globalAuthEndgameTrigger, true);
-  assert.equal(out.runtimeDevelopmentSeal, "PENDING_GLOBAL_AUTH_ENDGAME");
+  assert.equal(out.runtimeDevelopmentSeal, "PASS");
+  assert.equal(out.runtimeLiveAcceptance, "DEFERRED_GLOBAL_AUTH_ENDGAME");
+  assert.equal(out.projectDevelopmentComplete, false);
+  assert.equal(out.globalAuthEndgameTrigger, false);
 });
 
-test("development seal passes when no auth endgame requirement remains", () => {
-  const out = evaluateRuntimeInterfaceFreezeV1({
+test("project completion and auth endgame wait for Pilote and credential-independent cross-stack sync", () => {
+  const base = {
     canonicalCi: ci,
     runtimeInterfaceIdentitySha256: H("8"),
     runtimeCompatibilityIdentitySha256: H("9"),
@@ -98,10 +99,17 @@ test("development seal passes when no auth endgame requirement remains", () => {
     credentialIndependentGatesComplete: true,
     remainingCredentialIndependentRequiredWork: 0,
     unexpectedBillableResidue: 0,
-    deferredGlobalAuthEndgame: []
+    deferredGlobalAuthEndgame: ["SOURCE_PROVENANCE_LIVE_VERIFICATION"]
+  };
+  assert.equal(evaluateRuntimeInterfaceFreezeV1(base).projectDevelopmentComplete, false);
+  const complete = evaluateRuntimeInterfaceFreezeV1({
+    ...base,
+    piloteDevelopmentComplete: true,
+    credentialIndependentCrossStackSync: true
   });
-  assert.equal(out.runtimeDevelopmentSeal, "PASS");
-  assert.equal(out.globalAuthEndgameTrigger, false);
+  assert.equal(complete.projectDevelopmentComplete, true);
+  assert.equal(complete.globalAuthEndgameTrigger, true);
+  assert.equal(complete.runtimeDevelopmentSeal, "PASS");
 });
 
 test("freeze fails closed on missing promotion or billable residue", () => {

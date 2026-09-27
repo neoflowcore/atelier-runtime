@@ -1,7 +1,8 @@
 {
-  "schemaVersion": "r51-p26-runtime-interface-freeze-decision.v1",
+  "schemaVersion": "r51-p26-runtime-interface-freeze-decision.v2",
+  "supersedes": "r51-p26-runtime-interface-freeze-decision.v1",
   "workplanIdentity": "P26_INTERFACE_FREEZE_RUNTIME_DEVELOPMENT_SEAL",
-  "status": "INTERFACE_FREEZE_PASS_RUNTIME_DEVELOPMENT_SEAL_PENDING_GLOBAL_AUTH_ENDGAME",
+  "status": "INTERFACE_FREEZE_PASS_RUNTIME_DEVELOPMENT_SEAL_PASS",
   "authoritativeHostPlan": "ATELIER POST-REV5.1 RUNTIME-FIRST REINFORCED PLAN v017",
   "exactPromotionCandidate": {
     "head": "33c90192cd15ed77329aaf657bbea43ca06c9267",
@@ -15,13 +16,26 @@
     "rerun": 0,
     "workflowDispatch": 0
   },
+  "freezeCandidate": {
+    "head": "8144c57edafd9627731cc01adac7f3e744d5829b",
+    "tree": "e5a843b9fef4ba96b08720fc8328e5945dcac760",
+    "runId": 36264176883,
+    "jobId": 108465550977,
+    "conclusion": "success",
+    "observedTests": 922,
+    "fail": 0,
+    "releaseGate": "PASS",
+    "rerun": 0,
+    "workflowDispatch": 0
+  },
   "runtimeInterfaceIdentitySha256": "39e686591f169e62416726518d1e6917a8ed3cded43b284e2d3a2216c546548b",
   "runtimeCompatibilityIdentitySha256": "35cbae1c4a6d42b27a45e5faeba37fe3a86a319c6944a9eb046482dea3e59dec",
   "promotedRuntimeContractSetSha256": "d72564952b8a57b8f494306e882817f366e8f14b8c6baf367a37fb16015412fa",
   "interfaceFreeze": "PASS",
-  "projectDevelopmentComplete": true,
-  "globalAuthEndgameTrigger": true,
-  "runtimeDevelopmentSeal": "PENDING_GLOBAL_AUTH_ENDGAME",
+  "runtimeDevelopmentSeal": "PASS",
+  "runtimeLiveAcceptance": "DEFERRED_GLOBAL_AUTH_ENDGAME",
+  "projectDevelopmentComplete": false,
+  "globalAuthEndgameTrigger": false,
   "deferredGlobalAuthEndgame": [
     "BINDING_IDENTITY_LIVE_VERIFICATION",
     "CREDENTIAL_BOUND_LIVE_FAILURE_INJECTION",
@@ -38,5 +52,5 @@
   "unexpectedBillableResidue": 0,
   "workflowDispatch": 0,
   "rerun": 0,
-  "nextLegalAction": "Reuse existing connected/delegated auth first for project-end live requirements; aggregate only unresolved requirements into at most one auth boundary."
+  "nextLegalAction": "Begin Pilote development against frozen Runtime interface identities; defer credential-bound live acceptance until credential-independent Pilote development and final cross-stack sync complete."
 }

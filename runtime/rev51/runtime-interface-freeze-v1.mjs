@@ -129,20 +129,31 @@ export function evaluateRuntimeInterfaceFreezeV1(input = {}) {
   if (input.promotionCoverageComplete !== true) errors.push("PROMOTION_COVERAGE_INCOMPLETE");
   if (input.credentialIndependentGatesComplete !== true) errors.push("CREDENTIAL_INDEPENDENT_GATES_INCOMPLETE");
   if (input.unexpectedBillableResidue !== 0) errors.push("UNEXPECTED_BILLABLE_RESIDUE_PRESENT");
+
   const interfaceFreeze = errors.length === 0 ? "PASS" : "DENY";
-  const projectDevelopmentComplete = interfaceFreeze === "PASS" && input.remainingCredentialIndependentRequiredWork === 0;
   const deferredAuth = Array.isArray(input.deferredGlobalAuthEndgame) ? [...new Set(input.deferredGlobalAuthEndgame)].sort() : [];
-  const globalAuthEndgameTrigger = projectDevelopmentComplete && deferredAuth.length > 0;
-  const runtimeDevelopmentSeal = interfaceFreeze !== "PASS"
-    ? "DENY"
-    : globalAuthEndgameTrigger
-      ? "PENDING_GLOBAL_AUTH_ENDGAME"
-      : "PASS";
+
+  // Runtime Development Seal is intentionally credential-independent.
+  // Live/provider credential acceptance is deferred to the project-end Global Auth Endgame
+  // and MUST NOT block Pilote development.
+  const runtimeDevelopmentSeal = interfaceFreeze === "PASS" ? "PASS" : "DENY";
+  const runtimeLiveAcceptance = deferredAuth.length > 0 ? "DEFERRED_GLOBAL_AUTH_ENDGAME" : "PASS_OR_NOT_REQUIRED";
+
+  // Project completion is a later cross-stack state. Runtime completion alone may not
+  // activate the Global Auth Endgame.
+  const projectDevelopmentComplete =
+    runtimeDevelopmentSeal === "PASS" &&
+    input.piloteDevelopmentComplete === true &&
+    input.credentialIndependentCrossStackSync === true &&
+    input.remainingCredentialIndependentRequiredWork === 0;
+  const globalAuthEndgameTrigger = projectDevelopmentComplete;
+
   return Object.freeze({
     interfaceFreeze,
+    runtimeDevelopmentSeal,
+    runtimeLiveAcceptance,
     projectDevelopmentComplete,
     globalAuthEndgameTrigger,
-    runtimeDevelopmentSeal,
     deferredGlobalAuthEndgame: deferredAuth,
     errors
   });

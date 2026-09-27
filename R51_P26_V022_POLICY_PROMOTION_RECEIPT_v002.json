@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "r51-p26-v022-policy-promotion-receipt.v2",
-  "supersedes": "R51_P26_V022_POLICY_PROMOTION_RECEIPT_v001.json",
+  "schemaVersion": "r51-p26-v022-policy-promotion-receipt.v3",
+  "supersedes": "R51_P26_V022_POLICY_PROMOTION_RECEIPT_v002.json",
   "repository": "neoflowcore/atelier-runtime",
   "developmentBranch": "runtime-r51-p8-dependency-lock-cache",
   "promotedContractSetSha256": "d72564952b8a57b8f494306e882817f366e8f14b8c6baf367a37fb16015412fa",
@@ -16,26 +16,27 @@
     "rerun": 0,
     "workflowDispatch": 0
   },
-  "fullSelftest": {
-    "observedTests": 913,
-    "pass": 913,
+  "freezeCandidate": {
+    "head": "8144c57edafd9627731cc01adac7f3e744d5829b",
+    "tree": "e5a843b9fef4ba96b08720fc8328e5945dcac760",
+    "runId": 36264176883,
+    "jobId": 108465550977,
+    "conclusion": "success",
+    "observedTests": 922,
+    "pass": 922,
     "fail": 0,
-    "unexpectedFunctionalFailures": 0
-  },
-  "releaseGate": {
-    "G8_RUNTIME_VERSION_BINDING": "PASS",
-    "G8_EXACT_SHA_POLICY": "PASS",
-    "G8_DUAL_CHECKOUT_POLICY": "PASS",
-    "G8_ACTION_SHA_PINNING": "PASS",
-    "G8_SOURCE_WRITE_ZERO_POLICY": "PASS",
-    "G8_RAW_SHELL_INPUT_ZERO_POLICY": "PASS",
-    "G8_AUTO_RETRY_ZERO_POLICY": "PASS",
-    "G8_RELEASE_POLICY": "PASS"
+    "releaseGate": "PASS",
+    "rerun": 0,
+    "workflowDispatch": 0
   },
   "interfaceIdentitySha256": "39e686591f169e62416726518d1e6917a8ed3cded43b284e2d3a2216c546548b",
   "compatibilityIdentitySha256": "35cbae1c4a6d42b27a45e5faeba37fe3a86a319c6944a9eb046482dea3e59dec",
   "interfaceFreeze": "PASS",
-  "runtimeDevelopmentSeal": "PENDING_GLOBAL_AUTH_ENDGAME",
+  "runtimeDevelopmentSeal": "PASS",
+  "runtimeLiveAcceptance": "DEFERRED_GLOBAL_AUTH_ENDGAME",
+  "projectDevelopmentComplete": false,
+  "globalAuthEndgameTriggered": false,
   "workflowDispatch": 0,
-  "rerun": 0
+  "rerun": 0,
+  "nextPhase": "PILOTE_DEVELOPMENT"
 }
