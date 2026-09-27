@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { computeExecutionIntentSha256 } from "../pilote/rev51/canonicalize-execution-v1.mjs";
 import {
   buildCheckpointCacheDataLocalityIntentV1,
   deriveCachePolicyProjectionV1,
@@ -28,6 +29,7 @@ test("checkpoint resume requires new attempt lease generation and fence", async 
   const task = await loadJson("../fixtures/rev51/pilote-execution-intent-v1/task-contract-anchor-v1.json");
   const executionIntent = await loadJson("../fixtures/rev51/pilote-execution-intent-v1/valid-native-v1.json");
   executionIntent.CHECKPOINT_POLICY = "REQUIRED";
+  executionIntent.INTENT_SHA256 = computeExecutionIntentSha256(executionIntent);
   const a7 = buildCheckpointCacheDataLocalityIntentV1(task, executionIntent);
   assert.equal(a7.CHECKPOINT_RESUME_NEW_ATTEMPT, "REQUIRED");
   assert.equal(a7.CHECKPOINT_RESUME_NEW_LEASE_GENERATION, "REQUIRED");
@@ -39,6 +41,7 @@ test("cache hit never equals verifier pass and never bypasses final gate", async
   const task = await loadJson("../fixtures/rev51/pilote-execution-intent-v1/task-contract-anchor-v1.json");
   const executionIntent = await loadJson("../fixtures/rev51/pilote-execution-intent-v1/valid-native-v1.json");
   executionIntent.CACHE_POLICY = "REQUIRED";
+  executionIntent.INTENT_SHA256 = computeExecutionIntentSha256(executionIntent);
   const a7 = buildCheckpointCacheDataLocalityIntentV1(task, executionIntent);
   assert.equal(a7.CACHE_HIT_VERIFIER_EQUIVALENCE, "DENY");
   assert.equal(a7.CACHE_FINAL_GATE_BYPASS, "DENY");

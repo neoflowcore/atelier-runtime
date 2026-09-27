@@ -124,7 +124,7 @@ function exactArray(left, right) {
 
 function exactJson(left, right) {
   try {
-    return canonicalizeExecutionV1(left) === canonicalizeExecutionV1(right);
+    return canonicalizeExecutionV1(left).equals(canonicalizeExecutionV1(right));
   } catch {
     return false;
   }

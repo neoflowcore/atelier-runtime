@@ -12,7 +12,7 @@ const REGISTRY_STATUS = new Set(["ACTIVE","DEPRECATED","REVOKED"]);
 
 function clone(value) { return structuredClone(value); }
 function isObject(value) { return !!value && typeof value === "object" && !Array.isArray(value); }
-function canonicalEqual(a,b) { try { return canonicalizeExecutionV1(a) === canonicalizeExecutionV1(b); } catch { return false; } }
+function canonicalEqual(a,b) { try { return canonicalizeExecutionV1(a).equals(canonicalizeExecutionV1(b)); } catch { return false; } }
 
 export function computeCompatFixtureSetSha256V1(fixtureSet) {
   return createHash("sha256").update(canonicalizeExecutionV1(fixtureSet)).digest("hex");
