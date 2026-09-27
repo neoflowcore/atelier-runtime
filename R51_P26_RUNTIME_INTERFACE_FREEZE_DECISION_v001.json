@@ -1,9 +1,9 @@
 {
-  "schemaVersion": "r51-p26-runtime-interface-freeze-decision.v2",
-  "supersedes": "r51-p26-runtime-interface-freeze-decision.v1",
+  "schemaVersion": "r51-p26-runtime-interface-freeze-decision.v3",
+  "supersedes": "r51-p26-runtime-interface-freeze-decision.v2",
   "workplanIdentity": "P26_INTERFACE_FREEZE_RUNTIME_DEVELOPMENT_SEAL",
   "status": "INTERFACE_FREEZE_PASS_RUNTIME_DEVELOPMENT_SEAL_PASS",
-  "authoritativeHostPlan": "ATELIER POST-REV5.1 RUNTIME-FIRST REINFORCED PLAN v017",
+  "authoritativeHostPlan": "ATELIER POST-REV5.1 RUNTIME-FIRST REINFORCED PLAN v016 — GENERIC FULL CONSOLIDATED",
   "exactPromotionCandidate": {
     "head": "33c90192cd15ed77329aaf657bbea43ca06c9267",
     "tree": "156aea7e937ac0863bdbb18e1eb45a93581327f3",
@@ -52,5 +52,7 @@
   "unexpectedBillableResidue": 0,
   "workflowDispatch": 0,
   "rerun": 0,
-  "nextLegalAction": "Begin Pilote development against frozen Runtime interface identities; defer credential-bound live acceptance until credential-independent Pilote development and final cross-stack sync complete."
+  "nextLegalAction": "Begin Pilote development against frozen Runtime interface identities; defer credential-bound live acceptance until credential-independent Pilote development and final cross-stack sync complete.",
+  "authoritativeHostPlanSha256": "db21c3488bc6032ec96c9c8c40f82d56ed5808f25325f59c1c0cd33682d3bce2",
+  "projectSettingsSha256": "f78ae42aaae104194fa745d73dae4d6b165b1a0e61a70b288972c50deed64a3f"
 }

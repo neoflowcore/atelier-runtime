@@ -1,4 +1,4 @@
-# Rev5.1 / v016-v017 P28 — Pilote Implementation
+# Rev5.1 / v016 P28 — Pilote Implementation
 
 Status: credential-independent development candidate.
 

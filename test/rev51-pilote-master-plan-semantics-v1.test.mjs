@@ -8,7 +8,7 @@ import {
 } from "../pilote/rev51/master-plan-semantics-v1.mjs";
 const H=x=>x.repeat(64);
 const runtime={runtimeInterfaceIdentitySha256:FROZEN_RUNTIME_INTERFACE_IDENTITY_SHA256,runtimeCompatibilityIdentitySha256:FROZEN_RUNTIME_COMPATIBILITY_IDENTITY_SHA256,runtimeContractSetSha256:FROZEN_RUNTIME_CONTRACT_SET_SHA256};
-function master(){return compileMasterPlanSemanticContractV1({...runtime,projectId:"ephemdrop",masterPlanId:"v017",masterPlanManifestSha256:H("1"),masterPlanExecutionGrantSha256:H("2")})}
+function master(){return compileMasterPlanSemanticContractV1({...runtime,projectId:"ephemdrop",masterPlanId:"v016",masterPlanManifestSha256:H("1"),masterPlanExecutionGrantSha256:H("2")})}
 
 test("P28 freezes exact Runtime interface identities",()=>{assert.equal(validateFrozenRuntimeInterfaceV1(runtime).ok,true);assert.equal(validateFrozenRuntimeInterfaceV1({...runtime,runtimeInterfaceIdentitySha256:H("f")}).ok,false)});
 test("P28 continue aliases preserve universal resume semantics",()=>{for(const a of ["ㅇㅇ","dd","continue","resume","reattach","ㅈㄱ"])assert.equal(normalizePiloteAliasV1(a).operation,"UNIVERSAL_CONTINUE_RESUME_REATTACH")});

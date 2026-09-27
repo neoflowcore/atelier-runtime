@@ -12,7 +12,7 @@ const H = "a".repeat(64);
 const current = {
   projectId: "project-runtime",
   projectSlugOrName: "runtime",
-  projectSpecificPlanId: "runtime-v017",
+  projectSpecificPlanId: "runtime-v016",
   repositorySet: ["neoflowcore/atelier-runtime"],
   primaryRepository: "neoflowcore/atelier-runtime",
   workspaceRoots: ["/workspace/runtime"],
@@ -26,10 +26,10 @@ function manifest(identityDigest, overrides = {}) {
     sourceManifestId: "runtime-source-manifest",
     sourceManifestVersion: "1",
     authoritativePlanRefs: [
-      { planId: "runtime-v017", exactTitleOrFilename: "ATELIER POST-REV5.1 RUNTIME-FIRST REINFORCED PLAN v017", projectLocalSourceRef: "project:runtime-v017", version: "017", digest: H, role: "MASTER_PLAN", precedence: 1 },
+      { planId: "runtime-v016", exactTitleOrFilename: "ATELIER POST-REV5.1 RUNTIME-FIRST REINFORCED PLAN v016", projectLocalSourceRef: "project:runtime-v016", version: "017", digest: H, role: "MASTER_PLAN", precedence: 1 },
       { planId: "runtime-p26", exactTitleOrFilename: "R51_P26_RUNTIME_INTERFACE_FREEZE_PRECHECK.md", projectLocalSourceRef: "repo:docs/rev51/R51_P26_RUNTIME_INTERFACE_FREEZE_PRECHECK.md", version: "1", role: "PHASE_PLAN", precedence: 2 }
     ],
-    activeMasterPlanId: "runtime-v017",
+    activeMasterPlanId: "runtime-v016",
     activePhasePlanId: "runtime-p26",
     manifestEvidence: ["current-project-plan"],
     ...overrides
@@ -97,10 +97,10 @@ test("manifest requires the active master plan to be a MASTER_PLAN ref", () => {
 test("plan set resolves only when manifest-bound project sources are available", () => {
   const identity = resolveCurrentProjectIdentityV1({ projectLocalIdentity: current }).identity;
   const m = manifest(identity.projectIdentityDigest);
-  const partial = resolveAuthoritativePlanSetV1({ identity, manifest: m, availableProjectSources: ["project:runtime-v017"] });
+  const partial = resolveAuthoritativePlanSetV1({ identity, manifest: m, availableProjectSources: ["project:runtime-v016"] });
   assert.equal(partial.status, "MANIFEST_BOUND_SOURCE_REFRESH_REQUIRED");
   assert.deepEqual(partial.missingSourceRefs, ["repo:docs/rev51/R51_P26_RUNTIME_INTERFACE_FREEZE_PRECHECK.md"]);
-  const full = resolveAuthoritativePlanSetV1({ identity, manifest: m, availableProjectSources: ["project:runtime-v017", "repo:docs/rev51/R51_P26_RUNTIME_INTERFACE_FREEZE_PRECHECK.md"] });
+  const full = resolveAuthoritativePlanSetV1({ identity, manifest: m, availableProjectSources: ["project:runtime-v016", "repo:docs/rev51/R51_P26_RUNTIME_INTERFACE_FREEZE_PRECHECK.md"] });
   assert.equal(full.status, "RESOLVED");
-  assert.equal(full.activeMasterPlanId, "runtime-v017");
+  assert.equal(full.activeMasterPlanId, "runtime-v016");
 });

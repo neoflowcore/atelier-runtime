@@ -39,3 +39,17 @@ The earlier v1 preflight's `s-1vcpu-1gb` candidate was a generic Droplet price o
 A fresh read-only DigitalOcean reconciliation found no active Droplets and one pre-existing SSH public key. This corrects the earlier zero-key observation. The existing key does not make the current Web runtime a trusted execution path: its private key is not available here, local `ssh` and `ssh-keygen` are absent, and the installed DigitalOcean Codex workspace flow requires ephemeral local key generation plus Codex Desktop/OpenSSH.
 
 The Codex Universal image `234061005` is currently available in `nyc3` with an 80 GiB minimum disk. The default supported workspace size `s-2vcpu-4gb` is also currently available in `nyc3` at USD 0.03571/hour. This is read-only provider readiness evidence only; no provider mutation or paid lease was created.
+
+
+## Authoritative project/source reconciliation
+
+Fresh verification of the project-supplied final five-file SHA set establishes the authoritative FULL consolidated master plan as **v016**:
+
+- master plan: `ATELIER_POST_REV51_RUNTIME_FIRST_REINFORCED_PLAN_v016_GENERIC_FULL_CONSOLIDATED_20260926.md`
+- master plan SHA-256: `db21c3488bc6032ec96c9c8c40f82d56ed5808f25325f59c1c0cd33682d3bce2`
+- project settings: `CHATGPT_PROJECT_SETTINGS_INSTRUCTIONS_RUNTIME_PILOTE_v016_COMPACT_v008_SAFE_20260926.txt`
+- project settings SHA-256: `f78ae42aaae104194fa745d73dae4d6b165b1a0e61a70b288972c50deed64a3f`
+- project identity digest: `9f84671bf806417c39e804e8cc2a91940b13289767e8cfd15830ab064a159e56`
+- project source manifest SHA-256: `a2d8a0224cfdfb773b2f57a14e189fea79d7a0b0e447d74ac26ac70c45329697`
+
+Earlier `v017` labels were not backed by a project-supplied FULL plan and are superseded as stale metadata before live endgame execution.

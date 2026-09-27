@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "r51-p30-auth-endgame-closure-preflight.v3",
+  "schemaVersion": "r51-p30-auth-endgame-closure-preflight.v4",
   "status": "SEALED_AUTH_NO_INTERACTIVE_AUTH_EXECUTION_AND_COST_BOUNDARY",
   "repository": "neoflowcore/atelier-runtime",
   "developmentBranch": "runtime-r51-p8-dependency-lock-cache",
@@ -112,6 +112,15 @@
   "noProviderMutationPerformed": true,
   "workflowDispatch": 0,
   "blindRerun": 0,
-  "supersedes": "r51-p30-auth-endgame-closure-preflight.v2",
-  "readOnlyProviderPreflight": "PASS"
+  "supersedes": "r51-p30-auth-endgame-closure-preflight.v3",
+  "readOnlyProviderPreflight": "PASS",
+  "projectAuthority": {
+    "projectIdentityDigest": "9f84671bf806417c39e804e8cc2a91940b13289767e8cfd15830ab064a159e56",
+    "sourceManifestSha256": "a2d8a0224cfdfb773b2f57a14e189fea79d7a0b0e447d74ac26ac70c45329697",
+    "authoritativeMasterPlanId": "runtime-v016",
+    "authoritativeMasterPlanSha256": "db21c3488bc6032ec96c9c8c40f82d56ed5808f25325f59c1c0cd33682d3bce2",
+    "projectSettingsVersion": "v008",
+    "projectSettingsSha256": "f78ae42aaae104194fa745d73dae4d6b165b1a0e61a70b288972c50deed64a3f",
+    "staleV017Authority": "SUPERSEDED_NOT_AUTHORITATIVE"
+  }
 }

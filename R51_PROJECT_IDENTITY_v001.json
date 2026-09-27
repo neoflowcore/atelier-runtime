@@ -1,0 +1,24 @@
+{
+  "projectIdentityVersion": "1",
+  "projectId": "ephemdrop",
+  "projectSlugOrName": "ephemdrop",
+  "projectIdentityManifestId": "EPHEMDROP_RUNTIME_PILOTE_PROJECT_IDENTITY_V1",
+  "projectSpecificPlanId": "ATELIER_POST_REV51_RUNTIME_FIRST_REINFORCED_PLAN_v016",
+  "repositorySet": [
+    "neoflowcore/atelier-runtime"
+  ],
+  "primaryRepository": "neoflowcore/atelier-runtime",
+  "workspaceRoots": [],
+  "providerTargetSet": [
+    "digitalocean",
+    "github"
+  ],
+  "identityEvidence": [
+    "current-project:ephemdrop",
+    "repository:neoflowcore/atelier-runtime",
+    "master-plan:v016",
+    "project-settings:v008"
+  ],
+  "resolvedFrom": "CURRENT_PROJECT_USER",
+  "projectIdentityDigest": "9f84671bf806417c39e804e8cc2a91940b13289767e8cfd15830ab064a159e56"
+}

@@ -1,22 +1,62 @@
 {
-  "schemaVersion": "final-auth-bind-manifest.v1",
+  "schemaVersion": "final-auth-bind-manifest.v2",
   "state": "SEALED_FOR_BIND",
-  "projectIdentityDigest": "aecc87b155f20ca3b27cb38dcaa2478c14de0aa85c2d3916e003831ac6b89eab",
+  "projectIdentityDigest": "9f84671bf806417c39e804e8cc2a91940b13289767e8cfd15830ab064a159e56",
   "projectDevelopmentComplete": true,
   "authBindInteractionBudgetPerProjectRun": 1,
   "rawSecretChatNormalPath": "DENY",
   "partialBindThenDiscoverMore": "DENY",
   "requirements": [
-    {"provider":"github","capability":"SOURCE_PROVENANCE_READ","scope":"neoflowcore/atelier-runtime","resolution":"EXISTING_CONNECTED_AUTH_REUSE"},
-    {"provider":"github","capability":"BINDING_IDENTITY_READ","scope":"neoflowcore/atelier-runtime","resolution":"EXISTING_CONNECTED_AUTH_REUSE"},
-    {"provider":"github","capability":"CANONICAL_EVIDENCE_WRITE","scope":"runtime-r51-p8-dependency-lock-cache","resolution":"EXISTING_CONNECTED_AUTH_REUSE"},
-    {"provider":"digitalocean","capability":"ACCOUNT_RESOURCE_INVENTORY_READ","scope":"ephemdrop-p30","resolution":"EXISTING_CONNECTED_AUTH_REUSE"},
-    {"provider":"digitalocean","capability":"BILLING_OBSERVATION_READ","scope":"ephemdrop-p30","resolution":"EXISTING_CONNECTED_AUTH_REUSE"},
-    {"provider":"digitalocean","capability":"DROPLET_LIFECYCLE","scope":"ephemdrop-p30-disposable-worker","resolution":"EXISTING_CONNECTED_AUTH_REUSE"},
-    {"provider":"digitalocean","capability":"SSH_KEY_LIFECYCLE","scope":"ephemdrop-p30-disposable-worker","resolution":"EXISTING_CONNECTED_AUTH_REUSE"}
+    {
+      "provider": "github",
+      "capability": "SOURCE_PROVENANCE_READ",
+      "scope": "neoflowcore/atelier-runtime",
+      "resolution": "EXISTING_CONNECTED_AUTH_REUSE"
+    },
+    {
+      "provider": "github",
+      "capability": "BINDING_IDENTITY_READ",
+      "scope": "neoflowcore/atelier-runtime",
+      "resolution": "EXISTING_CONNECTED_AUTH_REUSE"
+    },
+    {
+      "provider": "github",
+      "capability": "CANONICAL_EVIDENCE_WRITE",
+      "scope": "runtime-r51-p8-dependency-lock-cache",
+      "resolution": "EXISTING_CONNECTED_AUTH_REUSE"
+    },
+    {
+      "provider": "digitalocean",
+      "capability": "ACCOUNT_RESOURCE_INVENTORY_READ",
+      "scope": "ephemdrop-p30",
+      "resolution": "EXISTING_CONNECTED_AUTH_REUSE"
+    },
+    {
+      "provider": "digitalocean",
+      "capability": "BILLING_OBSERVATION_READ",
+      "scope": "ephemdrop-p30",
+      "resolution": "EXISTING_CONNECTED_AUTH_REUSE"
+    },
+    {
+      "provider": "digitalocean",
+      "capability": "DROPLET_LIFECYCLE",
+      "scope": "ephemdrop-p30-disposable-worker",
+      "resolution": "EXISTING_CONNECTED_AUTH_REUSE"
+    },
+    {
+      "provider": "digitalocean",
+      "capability": "SSH_KEY_LIFECYCLE",
+      "scope": "ephemdrop-p30-disposable-worker",
+      "resolution": "EXISTING_CONNECTED_AUTH_REUSE"
+    }
   ],
   "unresolvedRequiredAuthCount": 0,
   "existingAuthResolutionExhausted": true,
   "interactiveAuthBoundaryRequired": false,
-  "secondAuthPromptNormalPath": 0
+  "secondAuthPromptNormalPath": 0,
+  "supersedes": "final-auth-bind-manifest.v1",
+  "projectIdentityManifest": "R51_PROJECT_IDENTITY_v001.json",
+  "projectSourceManifestSha256": "a2d8a0224cfdfb773b2f57a14e189fea79d7a0b0e447d74ac26ac70c45329697",
+  "authoritativeMasterPlanId": "runtime-v016",
+  "authoritativeMasterPlanSha256": "db21c3488bc6032ec96c9c8c40f82d56ed5808f25325f59c1c0cd33682d3bce2"
 }

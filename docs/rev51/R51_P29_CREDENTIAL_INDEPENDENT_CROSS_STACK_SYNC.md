@@ -1,4 +1,4 @@
-# Rev5.1 / v016-v017 P29 — Credential-Independent Final Cross-Stack Sync
+# Rev5.1 / v016 P29 — Credential-Independent Final Cross-Stack Sync
 
 P29 qualifies the sealed Runtime and accepted Pilote implementation as one credential-independent stack. It does not bind credentials or perform live provider acceptance.
 
