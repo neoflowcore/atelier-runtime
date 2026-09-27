@@ -1,6 +1,7 @@
 {
-  "schemaVersion": "r51-p30-auth-endgame-closure-preflight.v4",
-  "status": "SEALED_AUTH_NO_INTERACTIVE_AUTH_EXECUTION_AND_COST_BOUNDARY",
+  "schemaVersion": "r51-p30-auth-endgame-closure-preflight.v5",
+  "supersedes": "r51-p30-auth-endgame-closure-preflight.v4",
+  "status": "SEALED_AUTH_CONTINUE_GITHUB_HOSTED_LIVE_ACCEPTANCE",
   "repository": "neoflowcore/atelier-runtime",
   "developmentBranch": "runtime-r51-p8-dependency-lock-cache",
   "projectDevelopmentComplete": true,
@@ -13,114 +14,62 @@
     "PRODUCTION_ATTESTATION_LIVE",
     "SOURCE_PROVENANCE_LIVE_VERIFICATION",
     "BINDING_IDENTITY_LIVE_VERIFICATION",
-    "CREDENTIAL_BOUND_LIVE_FAILURE_INJECTION",
-    "PAID_REMOTE_HEAVY_PROVIDER_ECONOMICS_AND_CLEANUP"
+    "GITHUB_JOB_SCOPED_CREDENTIAL_LIVE_BINDING",
+    "REPOSITORY_HOSTED_CI_PROVIDER_QUALIFICATION",
+    "CANONICAL_EVIDENCE_READBACK",
+    "PROJECT_ACCEPTANCE"
   ],
-  "existingAuthReuse": {
-    "github": "PASS",
-    "digitalocean": "PASS"
-  },
-  "currentProviderReality": {
-    "digitalOceanConnected": true,
-    "accountStatus": "active",
-    "dropletLimit": 10,
-    "activeDropletsObserved": 0,
-    "sshKeysObserved": 1,
-    "billableDropletResidueObserved": 0,
-    "codexUniversalImage": {
-      "id": 234061005,
-      "status": "available",
-      "distribution": "Ubuntu",
-      "name": "Codex Universal on Ubuntu 24.04",
-      "nyc3Available": true,
-      "minDiskGiB": 80
-    },
-    "defaultWorkspaceCandidate": {
-      "region": "nyc3",
-      "regionAvailable": true,
-      "size": "s-2vcpu-4gb",
-      "sizeAvailable": true,
-      "vcpu": 2,
-      "memoryMiB": 4096,
-      "diskGiB": 80,
-      "priceHourlyUsd": 0.03571,
-      "priceMonthlyUsd": 24
-    }
-  },
-  "disposableWorkerCandidate": {
-    "provider": "digitalocean",
-    "workflow": "INSTALLED_CODEX_DIGITALOCEAN_PROVISION_DROPLET_SKILL",
-    "userSelectionState": "REQUIRES_REGION_SIZE_CONFIRMATION_BEFORE_CREATE",
-    "defaultRegion": "nyc3",
-    "defaultSize": "s-2vcpu-4gb",
-    "vcpu": 2,
-    "memoryMiB": 4096,
-    "diskGiB": 80,
-    "priceHourlyUsd": 0.03571,
-    "priceMonthlyUsd": 24,
-    "codexUniversalImageId": 234061005,
-    "resourceCreated": false
-  },
-  "requiredCreationAdmission": {
-    "preflightPass": true,
+  "selectedLivePath": {
+    "provider": "github-actions",
+    "executorClass": "repository-hosted-ci-executor",
+    "transport": "github-execution",
+    "normalPathManualSsh": 0,
+    "newProviderResourceCreated": false,
+    "newPaidLeaseCreated": false,
+    "executionPathReady": true,
     "credentialReady": true,
     "artifactDestinationReady": true,
-    "cleanupAuthorityReady": true,
-    "costAuthorizationReady": false,
-    "executionPathReady": false
+    "cleanupSemantics": "SUCCESS_NOOP_NO_USER_OWNED_RESOURCE"
   },
-  "executionPathEvidence": {
-    "digitalOceanCodexWorkspacePlugin": "INSTALLED",
-    "pluginRequiresCodexDesktop": true,
-    "pluginRequiresLocalOpenSSH": true,
-    "pluginRequiresEphemeralLocalKeyGeneration": true,
-    "currentSurface": "WEB",
-    "currentContainerSsh": "ABSENT",
-    "currentContainerSshKeygen": "ABSENT",
-    "currentContainerPython3": "AVAILABLE",
-    "existingProviderSshPublicKeyCount": 1,
-    "existingProviderSshKeyReuse": "DENY_PRIVATE_KEY_NOT_AVAILABLE_IN_CURRENT_TRUSTED_RUNTIME_AND_EPHEMERAL_KEY_WORKFLOW_REQUIRED",
-    "packageInstallProbe": "NETWORK_TIMEOUT_NO_RETRY",
-    "rawDigitalOceanRemoteExecTool": "ABSENT",
-    "trustedExecutionPath": "BLOCKED"
+  "actionEconomy": {
+    "newWorkflowJob": 0,
+    "reuseExistingRuntimeSelftestJob": true,
+    "runnerLabel": "ubuntu-24.04",
+    "existingTimeoutMinutes": 5,
+    "listRateMicroUsdPerMinute": 6000,
+    "maxListPriceMilliUsd": 30,
+    "billingRounding": "CEIL_MINUTE",
+    "includedMinutesMayReduceActualBilledCost": true,
+    "workflowDispatch": 0,
+    "blindRerun": 0
   },
-  "costBoundary": {
-    "newPaidResourceAuthorityRequired": true,
-    "costCapAuthorized": false,
-    "ttlAuthorized": false,
-    "dropletCreate": "DENY_UNTIL_BOUNDARY_RESOLVED",
-    "proposedMaxSpendUsd": 0.1,
-    "proposedTtlHours": 2,
-    "estimatedBaseComputeAtTtlUsd": 0.07142,
-    "userRegionSizeConfirmationRequired": true
+  "evidencePlan": {
+    "sourceProvenance": "GITHUB_COMMIT_API_PLUS_PR_HEAD_PLUS_LOCAL_EXACT_HEAD",
+    "bindingIdentity": "GITHUB_ACTIONS_RUN_ID_PLUS_JOB_ID",
+    "productionAttestation": "RUNTIME_PRODUCTION_ATTESTATION_V1_OVER_GITHUB_PROVIDER_BINDINGS",
+    "providerQualification": "MEASURED_GITHUB_HOSTED_RUNNER_OBSERVATION",
+    "failureQualification": "P33_CONTENT_IDENTITY_REUSE",
+    "canonicalEvidence": "UPLOAD_ARTIFACT_THEN_ACTIONS_API_READBACK",
+    "billableResidue": "ZERO_NEW_USER_OWNED_PROVIDER_RESOURCE",
+    "authResidue": "JOB_SCOPED_TOKEN_NOT_PERSISTED",
+    "releaseAuthority": "SEPARATE_HUMAN_ONLY_BOUNDARY"
   },
-  "cleanupPlan": [
-    "EXTERNALIZE_AND_VERIFY_REQUIRED_EVIDENCE",
-    "DELETE_DROPLET",
-    "VERIFY_DROPLET_ABSENCE",
-    "DELETE_EPHEMERAL_SSH_KEY",
-    "VERIFY_KEY_ABSENCE",
-    "BILLABLE_RESIDUE_SCAN_ZERO"
-  ],
-  "decision": "STOP_GLOBAL_HARD_BOUNDARY",
-  "boundaryReasons": [
-    "NEW_PAID_RESOURCE_COST_CAP_AUTHORITY_REQUIRED",
-    "TRUSTED_AUTOMATED_EXECUTION_PATH_NOT_AVAILABLE_ON_CURRENT_WEB_RUNTIME"
-  ],
+  "digitalOceanAlternative": {
+    "status": "OPTIONAL_NOT_SELECTED",
+    "reason": "Provider-neutral v016 permits repository-hosted CI executor; normal-path SSH is forbidden except break-glass.",
+    "providerMutationPerformed": false,
+    "paidResourceCreated": false
+  },
+  "decision": "CONTINUE_GITHUB_HOSTED_LIVE_ACCEPTANCE",
+  "boundaryReasons": [],
   "noManualFallback": true,
   "noTokenCopyPaste": true,
-  "noProviderMutationPerformed": true,
-  "workflowDispatch": 0,
-  "blindRerun": 0,
-  "supersedes": "r51-p30-auth-endgame-closure-preflight.v3",
-  "readOnlyProviderPreflight": "PASS",
   "projectAuthority": {
     "projectIdentityDigest": "9f84671bf806417c39e804e8cc2a91940b13289767e8cfd15830ab064a159e56",
     "sourceManifestSha256": "a2d8a0224cfdfb773b2f57a14e189fea79d7a0b0e447d74ac26ac70c45329697",
     "authoritativeMasterPlanId": "runtime-v016",
     "authoritativeMasterPlanSha256": "db21c3488bc6032ec96c9c8c40f82d56ed5808f25325f59c1c0cd33682d3bce2",
     "projectSettingsVersion": "v008",
-    "projectSettingsSha256": "f78ae42aaae104194fa745d73dae4d6b165b1a0e61a70b288972c50deed64a3f",
-    "staleV017Authority": "SUPERSEDED_NOT_AUTHORITATIVE"
+    "projectSettingsSha256": "f78ae42aaae104194fa745d73dae4d6b165b1a0e61a70b288972c50deed64a3f"
   }
 }
