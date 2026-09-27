@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { compileFinalLiveAcceptanceSemanticsV1, evaluateFinalMergeBoundaryV1 } from "./final-live-seal-semantics-v1.mjs";
+import { compileFinalLiveAcceptanceSemanticsV1, evaluateFinalMergeBoundaryV1 } from "../pilote/rev51/final-live-seal-semantics-v1.mjs";
 const H=x=>x.repeat(64);
 const base={runtimeInterfaceIdentitySha256:H("1"),runtimeCompatibilityIdentitySha256:H("2"),projectDevelopmentComplete:true,authEndgameClosureComplete:true,finalAuthManifestState:"SEALED_FOR_BIND",livePreflight:"PASS",sourceProvenance:"PASS",bindingIdentity:"PASS",productionAttestation:"PASS",failureQualification:"QUALIFIED",providerQualification:"QUALIFIED",canonicalEvidence:"PASS",cleanupClosure:"CLOSED",unexpectedBillableResidue:0,authResidueClean:"PASS",projectAcceptance:"ACCEPTED"};
 test("all live gates but no release grant becomes merge-ready not final seal",()=>{const r=compileFinalLiveAcceptanceSemanticsV1(base);assert.equal(r.DECISION,"MERGE_READY_AWAITING_RELEASE_AUTHORITY");assert.equal(r.PROJECT_COMPLETE,false);assert.equal(r.FINAL_RESPONSE_ALLOWED,false)});
