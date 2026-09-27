@@ -1,0 +1,44 @@
+{
+  "$id": "https://atelier.local/rev51/pilote-verifier-policy-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PILOTE_VERIFIER_POLICY_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "POLICY_TYPE": { "const": "PILOTE_VERIFIER_POLICY_V1" },
+    "POLICY_VERSION": { "const": "1.0.0" },
+    "CANONICALIZATION_ID": { "const": "ATELIER_EXECUTION_CANONICAL_JSON_V1" },
+    "VERIFIER_POLICY_ID": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "VERIFIER_POLICY_VERSION": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[A-Za-z0-9.-]+)?$" },
+    "VERIFIER_POLICY": { "enum": ["RUNTIME_REQUIRED", "PROJECT_CI_REQUIRED", "RUNTIME_PLUS_PROJECT_CI"] },
+    "ACCEPTANCE_REQUIREMENT_REF": { "type": "string", "pattern": "^(task-contract|project|phase|framework):[A-Za-z0-9][A-Za-z0-9._:/#-]{0,239}$" },
+    "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": { "const": "DENY" },
+    "RUNTIME_DEFINED_TOLERANCE": { "const": "DENY" },
+    "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE": { "const": "DENY" },
+    "CONTRACT_SET_REF": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ID": { "const": "ATELIER_REV51_CONTRACT_SET_V1" },
+        "VERSION": { "const": "1.0.0" },
+        "SHA256": { "const": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a" }
+      },
+      "required": ["ID", "VERSION", "SHA256"]
+    },
+    "VERIFIER_POLICY_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "required": [
+    "POLICY_TYPE",
+    "POLICY_VERSION",
+    "CANONICALIZATION_ID",
+    "VERIFIER_POLICY_ID",
+    "VERIFIER_POLICY_VERSION",
+    "VERIFIER_POLICY",
+    "ACCEPTANCE_REQUIREMENT_REF",
+    "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS",
+    "RUNTIME_DEFINED_TOLERANCE",
+    "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE",
+    "CONTRACT_SET_REF",
+    "VERIFIER_POLICY_SHA256"
+  ]
+}

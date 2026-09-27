@@ -1,0 +1,63 @@
+{
+  "$id": "https://atelier.local/rev51/pilote-execution-terminal-semantic-binding-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "BINDING_TYPE": { "const": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1" },
+    "BINDING_VERSION": { "const": "1.0.0" },
+    "CANONICALIZATION_ID": { "const": "ATELIER_EXECUTION_CANONICAL_JSON_V1" },
+    "SOURCE_STATUS_SCHEMA_REF": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "PATH": { "const": "schemas/rev51/execution-session-status-v1.schema.json" },
+        "SHA256": { "const": "fd612bf9556b20b9434d6218ec437d9ec61dfe447f1d9eb534fbb4e7a2a3b5f2" },
+        "GIT_BLOB": { "const": "d0e0c62d1b387d39eb911e493eeb459e283e626a" }
+      },
+      "required": ["PATH", "SHA256", "GIT_BLOB"]
+    },
+    "EXECUTION_STATE_ENUM": {
+      "const": ["REQUESTED","READY","RUNNING","SUCCEEDED","FAILED","CANCELED","EXPIRED","OUTCOME_UNKNOWN"]
+    },
+    "TERMINAL_STATES": {
+      "const": ["SUCCEEDED","FAILED","CANCELED","EXPIRED"]
+    },
+    "NON_TERMINAL_STATES": {
+      "const": ["REQUESTED","READY","RUNNING","OUTCOME_UNKNOWN"]
+    },
+    "DESTINATION_FLAG": { "const": "EXECUTION_TERMINAL" },
+    "OUTCOME_UNKNOWN_POLICY": { "const": "NON_TERMINAL_RECONCILIATION_REQUIRED" },
+    "TERMINAL_ACCEPTANCE_POLICY": { "const": "NO_ACCEPTANCE_IMPLICATION" },
+    "RUNTIME_EVIDENCE_AUTHORITY": { "const": "AUTHORITATIVE_RUNTIME_EVIDENCE_REQUIRED" },
+    "PILOTE_DIRECT_FLAG_MUTATION": { "const": "DENY" },
+    "CONTRACT_SET_REF": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ID": { "const": "ATELIER_REV51_CONTRACT_SET_V1" },
+        "VERSION": { "const": "1.0.0" },
+        "SHA256": { "const": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a" }
+      },
+      "required": ["ID", "VERSION", "SHA256"]
+    },
+    "A5T_BINDING_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "required": [
+    "BINDING_TYPE",
+    "BINDING_VERSION",
+    "CANONICALIZATION_ID",
+    "SOURCE_STATUS_SCHEMA_REF",
+    "EXECUTION_STATE_ENUM",
+    "TERMINAL_STATES",
+    "NON_TERMINAL_STATES",
+    "DESTINATION_FLAG",
+    "OUTCOME_UNKNOWN_POLICY",
+    "TERMINAL_ACCEPTANCE_POLICY",
+    "RUNTIME_EVIDENCE_AUTHORITY",
+    "PILOTE_DIRECT_FLAG_MUTATION",
+    "CONTRACT_SET_REF",
+    "A5T_BINDING_SHA256"
+  ]
+}

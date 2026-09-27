@@ -1,0 +1,75 @@
+{
+  "$id": "https://atelier.local/rev51/pilote-parallelism-execution-class-intent-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PILOTE_PARALLELISM_EXECUTION_CLASS_INTENT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "INTENT_TYPE": { "const": "PILOTE_PARALLELISM_EXECUTION_CLASS_INTENT_V1" },
+    "INTENT_VERSION": { "const": "1.0.0" },
+    "CANONICALIZATION_ID": { "const": "ATELIER_EXECUTION_CANONICAL_JSON_V1" },
+    "PROJECT_ID": { "type": "string", "minLength": 1 },
+    "PHASE_ID": { "type": "string", "minLength": 1 },
+    "TASK_ID": { "type": "string", "minLength": 1 },
+    "TASK_CONTRACT_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "EXECUTION_INTENT_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "EXECUTION_CLASS": {
+      "enum": ["RUNTIME_DEFAULT","HOSTED_ELIGIBLE","SELF_HOSTED_REQUIRED","HOST_LOCAL_REQUIRED"]
+    },
+    "EXECUTION_CLASS_SOURCE_REF": {
+      "const": "task-contract:RESOURCE_REQUIREMENTS.EXECUTION_CLASS"
+    },
+    "PARALLELISM_INTENT": {
+      "enum": ["INHERIT_DAG","PARALLEL_ALLOWED","SERIAL_REQUIRED"]
+    },
+    "PARALLELISM_INTENT_SOURCE_REF": {
+      "const": "execution-intent:PARALLELISM_INTENT"
+    },
+    "SEMANTIC_DEPENDENCY_REFS": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "SEMANTIC_DEPENDENCY_REFS_SOURCE_REF": {
+      "const": "execution-intent:SEMANTIC_DEPENDENCY_REFS"
+    },
+    "MAX_PARALLELISM": { "type": "integer", "minimum": 1, "maximum": 1024 },
+    "MAX_PARALLELISM_SOURCE_REF": {
+      "const": "task-contract:ECONOMY_BUDGET.MAX_PARALLELISM"
+    },
+    "EFFECTIVE_PARALLELISM_CAP": { "type": "integer", "minimum": 1, "maximum": 1024 },
+    "PARALLEL_ALLOWED_POLICY": { "const": "PERMISSION_NOT_OBLIGATION" },
+    "INHERIT_DAG_POLICY": { "const": "FOLLOW_SEMANTIC_DAG" },
+    "SERIAL_REQUIRED_POLICY": { "const": "EFFECTIVE_CAP_ONE" },
+    "RUNTIME_STRICTER_LIMIT": { "const": "ALLOW" },
+    "RUNTIME_SEMANTIC_EDGE_ADD": { "const": "DENY" },
+    "RUNTIME_SEMANTIC_EDGE_REMOVE": { "const": "DENY" },
+    "RUNTIME_EXECUTION_ONLY_EDGE_ADD": { "const": "ALLOW" },
+    "HARD_EXECUTION_CLASS_DOWNGRADE": { "const": "DENY" },
+    "EXECUTION_CLASS_PROVIDER_SELECTION": { "const": "RUNTIME_OWNED" },
+    "PROVIDER_TRANSPORT_INDEPENDENCE": { "const": "REQUIRED" },
+    "ADMISSION_INTERSECTION_POLICY": { "const": "ALL_APPLICABLE_LIMITS_MUST_PASS" },
+    "CONTRACT_SET_REF": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ID": { "const": "ATELIER_REV51_CONTRACT_SET_V1" },
+        "VERSION": { "const": "1.0.0" },
+        "SHA256": { "const": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a" }
+      },
+      "required": ["ID","VERSION","SHA256"]
+    },
+    "A6_INTENT_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "required": [
+    "INTENT_TYPE","INTENT_VERSION","CANONICALIZATION_ID","PROJECT_ID","PHASE_ID","TASK_ID",
+    "TASK_CONTRACT_SHA256","EXECUTION_INTENT_SHA256","EXECUTION_CLASS","EXECUTION_CLASS_SOURCE_REF",
+    "PARALLELISM_INTENT","PARALLELISM_INTENT_SOURCE_REF","SEMANTIC_DEPENDENCY_REFS",
+    "SEMANTIC_DEPENDENCY_REFS_SOURCE_REF","MAX_PARALLELISM","MAX_PARALLELISM_SOURCE_REF",
+    "EFFECTIVE_PARALLELISM_CAP","PARALLEL_ALLOWED_POLICY","INHERIT_DAG_POLICY","SERIAL_REQUIRED_POLICY",
+    "RUNTIME_STRICTER_LIMIT","RUNTIME_SEMANTIC_EDGE_ADD","RUNTIME_SEMANTIC_EDGE_REMOVE",
+    "RUNTIME_EXECUTION_ONLY_EDGE_ADD","HARD_EXECUTION_CLASS_DOWNGRADE",
+    "EXECUTION_CLASS_PROVIDER_SELECTION","PROVIDER_TRANSPORT_INDEPENDENCE",
+    "ADMISSION_INTERSECTION_POLICY","CONTRACT_SET_REF","A6_INTENT_SHA256"
+  ]
+}

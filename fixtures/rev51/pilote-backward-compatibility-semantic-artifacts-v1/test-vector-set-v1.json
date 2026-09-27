@@ -1,0 +1,162 @@
+{
+  "VECTOR_SET_ID": "PILOTE_BACKWARD_COMPATIBILITY_SEMANTIC_ARTIFACTS_V1_TEST_VECTOR_SET_V1",
+  "VECTOR_SET_VERSION": "1.0.0",
+  "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "VECTORS": [
+    {
+      "ID": "V001_SEALED_ARTIFACT_VALID",
+      "OP": "VALIDATE_ARTIFACT",
+      "INPUT": null
+    },
+    {
+      "ID": "V002_REV42_EXACT_PROFILE",
+      "OP": "SELECT_PROFILE",
+      "INPUT": {
+        "legacySourceFamily": "REV42_TASK_V1",
+        "legacySealedIdentitySha256": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617"
+      }
+    },
+    {
+      "ID": "V003_REV45_EXACT_PROFILE",
+      "OP": "SELECT_PROFILE",
+      "INPUT": {
+        "legacySourceFamily": "REV45_PHASE_V1",
+        "legacySealedIdentitySha256": "3439a7249b6ba9051269c89e6d783a343457cf01e43ec8a62dcffd1b0ed55284"
+      }
+    },
+    {
+      "ID": "V004_REV50_EXACT_PROFILE",
+      "OP": "SELECT_PROFILE",
+      "INPUT": {
+        "legacySourceFamily": "REV50_FRAMEWORK_V1",
+        "legacySealedIdentitySha256": "141fe59a393fe5224833fe0d83ec80589464d08bf2bf7729c3cf7b9d9c0f00f8"
+      }
+    },
+    {
+      "ID": "V005_KNOWN_FAMILY_IDENTITY_MISMATCH",
+      "OP": "SELECT_PROFILE",
+      "INPUT": {
+        "legacySourceFamily": "REV45_PHASE_V1",
+        "legacySealedIdentitySha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "ID": "V006_UNKNOWN_PROFILE_FAIL_CLOSED",
+      "OP": "SELECT_PROFILE",
+      "INPUT": {
+        "legacySourceFamily": "UNKNOWN_LEGACY",
+        "legacySealedIdentitySha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "ID": "V007_NATIVE_TO_LEGACY_DOWNGRADE_DENY",
+      "OP": "VALIDATE_INPUT_MODE",
+      "INPUT": {
+        "inputMode": "NATIVE_REV51",
+        "nativeExecutionIntentPresent": true,
+        "compatProfileSha256": "bb36e0eeb02def246696894b91121348330bc3086124e68753a69a8d40e41be8"
+      }
+    },
+    {
+      "ID": "V008_LEGACY_TO_REV51_SYNTHESIS_DENY",
+      "OP": "VALIDATE_INPUT_MODE",
+      "INPUT": {
+        "inputMode": "LEGACY_COMPAT",
+        "nativeExecutionIntentPresent": true,
+        "compatProfileSha256": "bb36e0eeb02def246696894b91121348330bc3086124e68753a69a8d40e41be8"
+      }
+    },
+    {
+      "ID": "V009_CLASS_C_REQUIRES_REV51_INTENT",
+      "OP": "CLASSIFY_FEATURE",
+      "INPUT": {
+        "FEATURE": "DATA_LOCALITY"
+      }
+    },
+    {
+      "ID": "V010_TRANSPARENT_FENCING_ALLOWED",
+      "OP": "VALIDATE_HARDENING",
+      "INPUT": {
+        "hardening": "FENCING",
+        "targets": []
+      }
+    },
+    {
+      "ID": "V011_TRANSPARENT_HARDENING_SEMANTIC_TARGET_DENY",
+      "OP": "VALIDATE_HARDENING",
+      "INPUT": {
+        "hardening": "FENCING",
+        "targets": [
+          "TASK_SEMANTICS"
+        ]
+      }
+    },
+    {
+      "ID": "V012_REVOKED_PROFILE_NEW_EXECUTION_DENY",
+      "OP": "VALIDATE_REGISTRY_ENTRY_NEW_EXECUTION",
+      "INPUT": {
+        "PROFILE_ID": "COMPAT_PROFILE_REV42_TASK_V1",
+        "PROFILE_VERSION": "1.0.0",
+        "PROFILE_SHA256": "bb36e0eeb02def246696894b91121348330bc3086124e68753a69a8d40e41be8",
+        "STATUS": "REVOKED",
+        "REASON_CODE": "TEST_REVOKED",
+        "EFFECTIVE_AT": "2026-09-25",
+        "REPLACED_BY_PROFILE_SHA256": null
+      }
+    },
+    {
+      "ID": "V013_REVOKED_PROFILE_HISTORICAL_RECEIPT_VERIFIABLE",
+      "OP": "HISTORICAL_PROFILE_VERIFIABLE",
+      "INPUT": {
+        "PROFILE_ID": "COMPAT_PROFILE_REV42_TASK_V1",
+        "PROFILE_VERSION": "1.0.0",
+        "PROFILE_SHA256": "bb36e0eeb02def246696894b91121348330bc3086124e68753a69a8d40e41be8",
+        "STATUS": "REVOKED",
+        "REASON_CODE": "TEST_REVOKED",
+        "EFFECTIVE_AT": "2026-09-25",
+        "REPLACED_BY_PROFILE_SHA256": null
+      }
+    },
+    {
+      "ID": "V014_ACCEPTANCE_PASS",
+      "OP": "EVALUATE_RECEIPT_ACCEPTANCE",
+      "INPUT": {
+        "RUNTIME_SEALED": true,
+        "VERIFICATION_RESULT": "PASS"
+      }
+    },
+    {
+      "ID": "V015_ACCEPTANCE_FAIL",
+      "OP": "EVALUATE_RECEIPT_ACCEPTANCE",
+      "INPUT": {
+        "RUNTIME_SEALED": true,
+        "VERIFICATION_RESULT": "FAIL"
+      }
+    },
+    {
+      "ID": "V016_ACCEPTANCE_OUTCOME_UNKNOWN",
+      "OP": "EVALUATE_RECEIPT_ACCEPTANCE",
+      "INPUT": {
+        "RUNTIME_SEALED": true,
+        "VERIFICATION_RESULT": "OUTCOME_UNKNOWN"
+      }
+    },
+    {
+      "ID": "V017_SEMANTICS_ADAPTER_TAMPER_DENY",
+      "OP": "VALIDATE_ARTIFACT_PATCH",
+      "INPUT": {
+        "PATH": "COMPATIBILITY_POLICY.LEGACY_SEMANTICS_ADAPTER",
+        "VALUE": "YES"
+      }
+    },
+    {
+      "ID": "V018_PROFILE_HASH_TAMPER_DENY",
+      "OP": "VALIDATE_ARTIFACT_PATCH",
+      "INPUT": {
+        "PATH": "COMPAT_PROFILES.1.COMPAT_PROFILE_SHA256",
+        "VALUE": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    }
+  ]
+}

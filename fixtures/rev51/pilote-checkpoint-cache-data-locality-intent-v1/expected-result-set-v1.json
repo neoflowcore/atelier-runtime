@@ -1,0 +1,61 @@
+{
+  "RESULT_SET_ID": "PILOTE_CHECKPOINT_CACHE_DATA_LOCALITY_INTENT_V1_EXPECTED_RESULT_SET_V1",
+  "RESULT_SET_VERSION": "1.0.0",
+  "VECTOR_SET_ID": "PILOTE_CHECKPOINT_CACHE_DATA_LOCALITY_INTENT_V1_TEST_VECTOR_SET_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "RESULTS": [
+    {
+      "ID": "V001_VALID_NONE",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V002_VALID_CHECKPOINT_REQUIRED",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V003_VALID_CACHE_REQUIRED",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V004_VALID_EGRESS_RESTRICTED",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V005_CACHE_HIT_VERIFIER_EQUIVALENCE_DENY",
+      "OK": false,
+      "ERRORS": [
+        "CACHE_HIT_VERIFIER_EQUIVALENCE_MISMATCH",
+        "A7_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V006_CHECKPOINT_RESUME_FENCE_ADVANCE_REQUIRED",
+      "OK": false,
+      "ERRORS": [
+        "CHECKPOINT_RESUME_FENCE_ADVANCE_MISMATCH",
+        "A7_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V007_PROVIDER_SELECTION_OWNERSHIP_DENY",
+      "OK": false,
+      "ERRORS": [
+        "DATA_LOCALITY_PROVIDER_SELECTION_MISMATCH",
+        "A7_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V008_RUNTIME_CACHE_IDENTITY_DENY",
+      "OK": false,
+      "ERRORS": [
+        "A7_TOP_LEVEL_FIELDS_MISMATCH",
+        "FORBIDDEN_RUNTIME_OWNED_KEY:$.CACHE_KEY",
+        "A7_INTENT_SHA256_MISMATCH"
+      ]
+    }
+  ]
+}
