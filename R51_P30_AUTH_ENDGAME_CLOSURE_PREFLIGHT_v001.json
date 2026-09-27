@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "r51-p30-auth-endgame-closure-preflight.v1",
+  "schemaVersion": "r51-p30-auth-endgame-closure-preflight.v2",
   "status": "SEALED_AUTH_NO_INTERACTIVE_AUTH_EXECUTION_AND_COST_BOUNDARY",
   "repository": "neoflowcore/atelier-runtime",
   "developmentBranch": "runtime-r51-p8-dependency-lock-cache",
@@ -28,13 +28,16 @@
   },
   "disposableWorkerCandidate": {
     "provider": "digitalocean",
-    "regionCandidate": "sgp1",
-    "sizeCandidate": "s-1vcpu-1gb",
-    "vcpu": 1,
-    "memoryMiB": 1024,
-    "diskGiB": 25,
-    "priceHourlyUsd": 0.00893,
-    "imageCandidate": "ubuntu-24-04-x64",
+    "workflow": "INSTALLED_CODEX_DIGITALOCEAN_PROVISION_DROPLET_SKILL",
+    "userSelectionState": "REQUIRES_REGION_SIZE_CONFIRMATION_BEFORE_CREATE",
+    "defaultRegion": "nyc3",
+    "defaultSize": "s-2vcpu-4gb",
+    "vcpu": 2,
+    "memoryMiB": 4096,
+    "diskGiB": 80,
+    "priceHourlyUsd": 0.03571,
+    "priceMonthlyUsd": 24,
+    "codexUniversalImageId": 234061005,
     "resourceCreated": false
   },
   "requiredCreationAdmission": {
@@ -59,7 +62,11 @@
     "newPaidResourceAuthorityRequired": true,
     "costCapAuthorized": false,
     "ttlAuthorized": false,
-    "dropletCreate": "DENY_UNTIL_BOUNDARY_RESOLVED"
+    "dropletCreate": "DENY_UNTIL_BOUNDARY_RESOLVED",
+    "proposedMaxSpendUsd": 0.1,
+    "proposedTtlHours": 2,
+    "estimatedBaseComputeAtTtlUsd": 0.07142,
+    "userRegionSizeConfirmationRequired": true
   },
   "cleanupPlan": [
     "EXTERNALIZE_AND_VERIFY_REQUIRED_EVIDENCE",
@@ -78,5 +85,6 @@
   "noTokenCopyPaste": true,
   "noProviderMutationPerformed": true,
   "workflowDispatch": 0,
-  "blindRerun": 0
+  "blindRerun": 0,
+  "supersedes": "r51-p30-auth-endgame-closure-preflight.v1"
 }

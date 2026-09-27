@@ -4,11 +4,11 @@ P29 credential-independent cross-stack development is canonically accepted at `9
 
 The full live-auth dependency closure is complete and the final auth manifest is sealed. Existing connected GitHub and DigitalOcean authority resolves every required auth capability; `UNRESOLVED_REQUIRED_AUTH_COUNT=0`. No token, API key, OAuth bootstrap, or interactive auth prompt is required.
 
-The remaining Final Live Seal path includes disposable paid remote-worker economics/cleanup and credential-bound live failure qualification. DigitalOcean is connected and currently has no observed active droplets or SSH keys. The minimum read-only cost candidate found is `s-1vcpu-1gb` (1 vCPU / 1 GiB / 25 GiB) at USD 0.00893/hour, available in `sgp1`.
+The remaining Final Live Seal path includes disposable paid remote-worker economics/cleanup and credential-bound live failure qualification. DigitalOcean is connected and currently has no observed active droplets or SSH keys. The installed DigitalOcean Codex workspace workflow restricts provisioning to its supported workspace sizes. Its default is `nyc3` + `s-2vcpu-4gb` (2 vCPU / 4 GiB / 80 GiB), currently USD 0.03571/hour (USD 24/month), using Codex Universal image ID `234061005`. The workflow requires user confirmation of the default region/size or an allowed customization before create.
 
 Creation is denied at this preflight because two required admission conditions are not yet true:
 
-1. **Cost authority** — no new paid-resource cost cap/TTL has been approved for this Project Run.
+1. **Cost authority / workspace selection** — no new paid-resource cost cap/TTL has been approved, and the DigitalOcean workspace workflow requires confirmation of region/size before create. Proposed bounded envelope: max USD 0.10, TTL 2 hours; at the current base compute rate, two hours is about USD 0.07142 before any separately billed extras.
 2. **Trusted automated execution path** — the installed DigitalOcean Codex workspace workflow requires Codex Desktop plus local OpenSSH. The current execution surface is Web; OpenSSH is absent in the ephemeral executor, the package-install probe timed out and was not retried, and the raw DigitalOcean connector exposes no remote-exec operation.
 
 No droplet, SSH key, paid lease, or provider mutation was created. Manual SSH/Termux/token-copy fallback remains denied.
@@ -29,3 +29,6 @@ ephemeral SSH key
 -> final acceptance
 -> FINAL_LIVE_SEAL
 ```
+
+
+The earlier v1 preflight's `s-1vcpu-1gb` candidate was a generic Droplet price observation, not a valid Codex workspace selection. v2 supersedes that candidate before any provider mutation or billing occurred.
