@@ -1,0 +1,12 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { compileCrossStackCompatibilityReceiptV1,evaluateProjectDevelopmentCompleteV1 } from "../pilote/rev51/cross-stack-sync-v1.mjs";
+const H=x=>x.repeat(64);
+const base={runtimeInterfaceIdentitySha256:H("1"),runtimeCompatibilityIdentitySha256:H("2"),runtimeContractSetSha256:H("3"),runtimeDevelopmentSeal:"PASS",piloteDevelopmentAcceptance:"PASS",runtimeDecisionToPiloteResponseGate:"PASS",aliasContinuationCompatibility:"PASS",acceptanceBridgeCompatibility:"PASS",evidenceInvalidationCompatibility:"PASS",authorityDeltaCompatibility:"PASS",authTimingCompatibility:"PASS",remainingCredentialIndependentRequiredWork:0,gates:{A2_A8:"PASS",P28:"PASS"}};
+test("P29 complete credential-independent sync marks project development complete",()=>{const r=compileCrossStackCompatibilityReceiptV1(base);assert.equal(r.CREDENTIAL_INDEPENDENT_CROSS_STACK_SYNC,"PASS");assert.equal(r.PROJECT_DEVELOPMENT_COMPLETE,true);assert.equal(evaluateProjectDevelopmentCompleteV1(r).globalAuthEndgameTrigger,true)});
+test("P29 Runtime seal is mandatory",()=>{const r=compileCrossStackCompatibilityReceiptV1({...base,runtimeDevelopmentSeal:"DENY"});assert.equal(r.PROJECT_DEVELOPMENT_COMPLETE,false);assert.ok(r.ERRORS.includes("RUNTIME_DEVELOPMENT_SEAL_REQUIRED"))});
+test("P29 Pilote acceptance is mandatory",()=>{const r=compileCrossStackCompatibilityReceiptV1({...base,piloteDevelopmentAcceptance:"PENDING"});assert.equal(r.PROJECT_DEVELOPMENT_COMPLETE,false)});
+test("P29 response-gate compatibility is mandatory",()=>{const r=compileCrossStackCompatibilityReceiptV1({...base,runtimeDecisionToPiloteResponseGate:"FAIL"});assert.ok(r.ERRORS.includes("RUNTIME_DECISION_RESPONSE_GATE_COMPATIBILITY_REQUIRED"))});
+test("P29 remaining credential-independent work blocks project completion",()=>{const r=compileCrossStackCompatibilityReceiptV1({...base,remainingCredentialIndependentRequiredWork:1});assert.equal(evaluateProjectDevelopmentCompleteV1(r).projectDevelopmentComplete,false)});
+test("P29 non-pass gate blocks completion",()=>{const r=compileCrossStackCompatibilityReceiptV1({...base,gates:{A2_A8:"PASS",P28:"FAIL"}});assert.ok(r.ERRORS.some(x=>x.startsWith("GATE_NOT_PASS_LIKE")))});
+test("P29 receipt is deterministic",()=>{assert.equal(compileCrossStackCompatibilityReceiptV1(base).CROSS_STACK_RECEIPT_SHA256,compileCrossStackCompatibilityReceiptV1(base).CROSS_STACK_RECEIPT_SHA256)});
