@@ -32,3 +32,10 @@ ephemeral SSH key
 
 
 The earlier v1 preflight's `s-1vcpu-1gb` candidate was a generic Droplet price observation, not a valid Codex workspace selection. v2 supersedes that candidate before any provider mutation or billing occurred.
+
+
+## Fresh provider-readiness reconciliation
+
+A fresh read-only DigitalOcean reconciliation found no active Droplets and one pre-existing SSH public key. This corrects the earlier zero-key observation. The existing key does not make the current Web runtime a trusted execution path: its private key is not available here, local `ssh` and `ssh-keygen` are absent, and the installed DigitalOcean Codex workspace flow requires ephemeral local key generation plus Codex Desktop/OpenSSH.
+
+The Codex Universal image `234061005` is currently available in `nyc3` with an 80 GiB minimum disk. The default supported workspace size `s-2vcpu-4gb` is also currently available in `nyc3` at USD 0.03571/hour. This is read-only provider readiness evidence only; no provider mutation or paid lease was created.

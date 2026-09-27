@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "r51-p30-auth-endgame-closure-preflight.v2",
+  "schemaVersion": "r51-p30-auth-endgame-closure-preflight.v3",
   "status": "SEALED_AUTH_NO_INTERACTIVE_AUTH_EXECUTION_AND_COST_BOUNDARY",
   "repository": "neoflowcore/atelier-runtime",
   "developmentBranch": "runtime-r51-p8-dependency-lock-cache",
@@ -22,9 +22,30 @@
   },
   "currentProviderReality": {
     "digitalOceanConnected": true,
+    "accountStatus": "active",
+    "dropletLimit": 10,
     "activeDropletsObserved": 0,
-    "sshKeysObserved": 0,
-    "billableDropletResidueObserved": 0
+    "sshKeysObserved": 1,
+    "billableDropletResidueObserved": 0,
+    "codexUniversalImage": {
+      "id": 234061005,
+      "status": "available",
+      "distribution": "Ubuntu",
+      "name": "Codex Universal on Ubuntu 24.04",
+      "nyc3Available": true,
+      "minDiskGiB": 80
+    },
+    "defaultWorkspaceCandidate": {
+      "region": "nyc3",
+      "regionAvailable": true,
+      "size": "s-2vcpu-4gb",
+      "sizeAvailable": true,
+      "vcpu": 2,
+      "memoryMiB": 4096,
+      "diskGiB": 80,
+      "priceHourlyUsd": 0.03571,
+      "priceMonthlyUsd": 24
+    }
   },
   "disposableWorkerCandidate": {
     "provider": "digitalocean",
@@ -52,8 +73,13 @@
     "digitalOceanCodexWorkspacePlugin": "INSTALLED",
     "pluginRequiresCodexDesktop": true,
     "pluginRequiresLocalOpenSSH": true,
+    "pluginRequiresEphemeralLocalKeyGeneration": true,
     "currentSurface": "WEB",
-    "currentContainerOpenSsh": "ABSENT",
+    "currentContainerSsh": "ABSENT",
+    "currentContainerSshKeygen": "ABSENT",
+    "currentContainerPython3": "AVAILABLE",
+    "existingProviderSshPublicKeyCount": 1,
+    "existingProviderSshKeyReuse": "DENY_PRIVATE_KEY_NOT_AVAILABLE_IN_CURRENT_TRUSTED_RUNTIME_AND_EPHEMERAL_KEY_WORKFLOW_REQUIRED",
     "packageInstallProbe": "NETWORK_TIMEOUT_NO_RETRY",
     "rawDigitalOceanRemoteExecTool": "ABSENT",
     "trustedExecutionPath": "BLOCKED"
@@ -86,5 +112,6 @@
   "noProviderMutationPerformed": true,
   "workflowDispatch": 0,
   "blindRerun": 0,
-  "supersedes": "r51-p30-auth-endgame-closure-preflight.v1"
+  "supersedes": "r51-p30-auth-endgame-closure-preflight.v2",
+  "readOnlyProviderPreflight": "PASS"
 }
