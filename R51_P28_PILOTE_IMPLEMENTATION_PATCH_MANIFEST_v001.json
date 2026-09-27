@@ -1,0 +1,57 @@
+{
+  "manifest_type": "R51_P28_PILOTE_IMPLEMENTATION_PATCH_MANIFEST_V1",
+  "workplanIdentity": "P28_PILOTE_IMPLEMENTATION",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "developmentBranch": "runtime-r51-p8-dependency-lock-cache",
+  "runtimeSealPrerequisite": {
+    "runtimeDevelopmentSeal": "PASS",
+    "runtimeInterfaceIdentitySha256": "39e686591f169e62416726518d1e6917a8ed3cded43b284e2d3a2216c546548b",
+    "runtimeCompatibilityIdentitySha256": "35cbae1c4a6d42b27a45e5faeba37fe3a86a319c6944a9eb046482dea3e59dec",
+    "runtimeContractSetSha256": "d72564952b8a57b8f494306e882817f366e8f14b8c6baf367a37fb16015412fa"
+  },
+  "authoritativeSemanticArtifacts": {
+    "A2": "INTEGRATED",
+    "A3": "INTEGRATED",
+    "A4": "INTEGRATED",
+    "A5": "INTEGRATED",
+    "A5T": "INTEGRATED",
+    "A6": "INTEGRATED",
+    "A7": "INTEGRATED",
+    "A8": "INTEGRATED"
+  },
+  "adds": [
+    "PILOTE_MASTER_PLAN_SEMANTIC_CONTRACT_V1",
+    "PHASE_RUN_CONTRACT_V1_COMPILER",
+    "PILOTE_CONTINUATION_POLICY_V1",
+    "PILOTE_RESPONSE_FINALIZATION_GATE_V1",
+    "PILOTE_GRANT_LIFECYCLE_V1",
+    "PILOTE_VERIFICATION_SCOPE_V1",
+    "PILOTE_ACCEPTANCE_DEPENDENCY_GRAPH_V1",
+    "LEAST_PRIVILEGE_EVIDENCE_STAGING_V1",
+    "AUTHORITY_EXPANSION_BUDGET_V1",
+    "RUNTIME_EVIDENCE_INVALIDATION_CONSUMPTION_V1",
+    "CONTENT_IDENTITY_REUSE_ACCEPTANCE_POLICY_V1",
+    "DEPENDENCY_SECURITY_ACCEPTANCE_POLICY_V1",
+    "PILOTE_CREDENTIAL_REQUIRED_AT_POLICY_V1",
+    "PILOTE_FINAL_AUTH_BIND_SEMANTIC_MANIFEST_V1",
+    "PILOTE_AUTH_ENDGAME_TRANSACTION_SEMANTICS_V1"
+  ],
+  "validation": {
+    "localTargeted": "30/30 PASS",
+    "localNode": "22.16.0",
+    "canonicalExactRepoCi": "PENDING",
+    "workflowDispatch": 0,
+    "rerun": 0
+  },
+  "boundaries": {
+    "RUNTIME_SEMANTIC_REIMPLEMENTATION": 0,
+    "RUNTIME_INTERFACE_MUTATION": 0,
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "CREDENTIAL_BINDING": 0,
+    "PROVIDER_MUTATION": 0,
+    "PAID_COMPUTE": 0,
+    "PROJECT_DEVELOPMENT_COMPLETE": false,
+    "GLOBAL_AUTH_ENDGAME_TRIGGER": false
+  }
+}

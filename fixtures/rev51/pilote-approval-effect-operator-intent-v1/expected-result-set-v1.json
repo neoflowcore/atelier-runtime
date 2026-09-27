@@ -1,0 +1,68 @@
+{
+  "RESULT_SET_ID": "PILOTE_APPROVAL_EFFECT_OPERATOR_INTENT_V1_EXPECTED_RESULT_SET_V1",
+  "RESULT_SET_VERSION": "1.0.0",
+  "VECTOR_SET_ID": "PILOTE_APPROVAL_EFFECT_OPERATOR_INTENT_V1_TEST_VECTOR_SET_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "RESULTS": [
+    {
+      "ID": "V001_VALID_READ_ONLY",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V002_RUNTIME_OWNED_APPROVAL_ID_DENY",
+      "OK": false,
+      "ERRORS": [
+        "A4_TOP_LEVEL_FIELDS_MISMATCH",
+        "FORBIDDEN_RUNTIME_OWNED_KEY:$.APPROVAL_GRANT_ID",
+        "A4_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V003_DECLARATION_AUTHORITY_GRANT_DENY",
+      "OK": false,
+      "ERRORS": [
+        "AUTHORITY_GRANT_POLICY_MISMATCH",
+        "A4_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V004_POST_SUBMISSION_CLAIM_DENY",
+      "OK": false,
+      "ERRORS": [
+        "FIRST_IRREVERSIBLE_REMOTE_SUBMISSION_POLICY_MISMATCH",
+        "A4_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V005_OUTCOME_UNKNOWN_REOPEN_DENY",
+      "OK": false,
+      "ERRORS": [
+        "OUTCOME_UNKNOWN_APPROVAL_POLICY_MISMATCH",
+        "A4_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V006_STATE_AFFECTING_TRUST_PRESERVE_DENY",
+      "OK": false,
+      "ERRORS": [
+        "STATE_AFFECTING_INTERVENTION_POLICY_MISMATCH",
+        "A4_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V007_CONTRACT_SET_DRIFT_DENY",
+      "OK": false,
+      "ERRORS": [
+        "CONTRACT_SET_REF_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V008_OPERATOR_POLICY_INVALID",
+      "OK": false,
+      "ERRORS": [
+        "OPERATOR_POLICY_INVALID"
+      ]
+    }
+  ]
+}

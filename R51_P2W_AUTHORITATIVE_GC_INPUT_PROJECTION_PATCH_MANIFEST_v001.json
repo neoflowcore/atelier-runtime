@@ -1,0 +1,82 @@
+{
+  "PATCH_ID": "R51_P2W_AUTHORITATIVE_GC_INPUT_PROJECTION_v001",
+  "PHASE": "R51-P2W",
+  "STATUS": "REMOTE_REPAIR_1_CI_PENDING",
+  "REPOSITORY": "neoflowcore/atelier-runtime",
+  "BRANCH": "runtime-r51-a2-consumer-binding",
+  "BASE_HEAD": "907c459a592b43f6645b06d54706c9dd1557eb96",
+  "BASE_TREE": "3911bcc95bcdf69c4c601340dcd891cdb9e6380d",
+  "SCOPE": {
+    "RUNTIME_OWNED_ONLY": true,
+    "PURE_PROJECTION": true,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": false,
+    "SHARED_CONTRACT_CHANGE": false,
+    "INTERFACE_V1_CHANGE": false
+  },
+  "BINDING": {
+    "P2F_RESULT_ACCEPTANCE": "AUTHORITATIVE",
+    "P2E_PROVIDER_SAGA": "COMPLETE_REQUIRED",
+    "P2V_SESSION_CLOSURE_SEAL": "VALID_REQUIRED",
+    "P2J_GC_ELIGIBILITY": "EXISTING_GATE_REUSED",
+    "ARTIFACT_SOURCE": "P2F_ACCEPTED_ARTIFACT_MANIFEST_ONLY"
+  },
+  "FILES": [
+    {
+      "PATH": "runtime/rev51/authoritative-gc-input-projection-v1.mjs",
+      "BYTES": 5348,
+      "SHA256": "45a0e457a657134b0c6fb512f6c36f9cf7f1a6662a9a32f18cc5e6f8d4934eee",
+      "GIT_BLOB": "9b1ed209d91390e8f8cba3cc7666cbb3493bdddf",
+      "LOCAL_NODE_CHECK": "PASS"
+    },
+    {
+      "PATH": "test/rev51-authoritative-gc-input-projection-v1.test.mjs",
+      "GIT_BLOB": "a9dec6c80fa9ae203dafbbf76c2cdbaddd2a7256",
+      "TEST_CASES": 6,
+      "LOCAL_REFERENCE_SHA256": "9aa176a1bb460b483dadeac0f555b2ab650260de948d90e226b2213ac77b0d8f",
+      "REMOTE_BYTES_CANONICAL_CI_REQUIRED": true
+    },
+    {
+      "PATH": "docs/rev51/R51_P2W_AUTHORITATIVE_GC_INPUT_PROJECTION.md",
+      "GIT_BLOB": "5448b278f015c9e6349dd2764908bab57df72fb0"
+    }
+  ],
+  "DEPENDENCIES": [
+    "runtime/rev51/durable-result-acceptance-v1.mjs",
+    "runtime/rev51/provider-bootstrap-saga-v1.mjs",
+    "runtime/rev51/durable-session-closure-seal-v1.mjs",
+    "runtime/rev51/authoritative-gc-tombstone-v1.mjs"
+  ],
+  "VALIDATION": {
+    "CANONICAL_NODE": "22.13.0",
+    "SOURCE_LOCAL_NODE_CHECK": "PASS",
+    "TEST_LOCAL_REFERENCE_NODE_CHECK": "PASS",
+    "REMOTE_TEST_BYTES_NODE_CHECK": "CI_REQUIRED",
+    "CANONICAL_CI": "REQUIRED_AFTER_REMOTE_APPLY"
+  },
+  "INVARIANTS": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "GC_POLICY_REDEFINITION": 0,
+    "ARTIFACT_DELETION": 0,
+    "GC_TOMBSTONE_COMMIT": 0,
+    "WORKFLOW_RERUN": 0,
+    "WORKFLOW_DISPATCH": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  },
+  "REPAIR_HISTORY": [
+    {
+      "FAILURE_RUN_ID": 36043379583,
+      "FAILURE_JOB_ID": 107780791838,
+      "FAILURE_CLASS": "TEST_FIXTURE_PATH_COLLISION",
+      "FIRST_DIAGNOSTIC": "ONE_SHOT_SESSION_ALREADY_EXISTS in valid closure seal from another plan is denied",
+      "CHANGE": "add execution-plan hash suffix to closure test session/seal temp paths",
+      "SOURCE_SEMANTIC_CHANGE": 0
+    }
+  ]
+}

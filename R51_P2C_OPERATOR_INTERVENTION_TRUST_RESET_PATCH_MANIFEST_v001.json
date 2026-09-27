@@ -1,0 +1,85 @@
+{
+  "manifest_type": "R51_P2C_OPERATOR_INTERVENTION_TRUST_RESET_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P2C-001",
+  "status": "LOCAL_CANDIDATE_REMOTE_WRITE_NOT_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "8328423bd1484d8e0aba44ded6a38921600d9947",
+  "base_tree": "13941ac2386aafd286edc91fabdc4970e1393cf1",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "planning_baseline_sha256": "5806e197e7d07c96877da5a7dd81e59457aa62583e1aae99bec16db46082a8c2",
+  "scope": {
+    "phase": "R51-P2",
+    "slice": "P2C_OPERATOR_INTERVENTION_TRUST_RESET",
+    "runtime_owned_only": true,
+    "pilote_a3_dependency": false,
+    "shared_contract_change": false
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/operator-intervention-trust-reset-v1.mjs",
+      "bytes": 16195,
+      "sha256": "bc3a759a75eda470f85a6fc05a9fdb0faa3b9a732a02e9e490c738731c9e7038"
+    },
+    {
+      "path": "test/rev51-operator-intervention-trust-reset-v1.test.mjs",
+      "bytes": 12284,
+      "sha256": "99c68ad39cfdc4b4b7470a9f56b7072b74f4721d7bad5f1a14eb8130c541587e"
+    },
+    {
+      "path": "docs/rev51/R51_P2C_OPERATOR_INTERVENTION_TRUST_RESET.md",
+      "bytes": 4399,
+      "sha256": "131e154b8c1c589324644c6fb380cb4beeeed59e54eb5399a5b662f45031a1d7"
+    }
+  ],
+  "dependency_exact_git_blobs": {
+    "runtime/rev51/durable-execution-state-v1.mjs": "3f7526254318e32061687a3efc9fda80a103d459",
+    "runtime/rev51/one-shot-execution-session-v1.mjs": "60f87ec10c9159e9a3824e3a4c9d255e5313b826",
+    "runtime/rev51/zero-touch-preflight-v1.mjs": "2e755d3186659a105346a8cfd60f5c41d07547c2"
+  },
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "16/16 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "intermediate_full_ci": 0,
+    "workflow_run": 0,
+    "rerun": 0,
+    "dispatch": 0
+  },
+  "correctness_coverage": {
+    "observe_only_preserves_trust": "PASS",
+    "state_affecting_invalidates_attestation": "PASS",
+    "state_affecting_advances_fence": "PASS",
+    "state_affecting_requires_new_attempt": "PASS",
+    "privileged_mutation_trust_reset": "PASS",
+    "recovery_mutation_trust_reset": "PASS",
+    "ambiguous_interaction_conservative_default": "PASS",
+    "old_session_authority_stale_after_reset": "PASS",
+    "durable_receipt_event_binding": "PASS",
+    "intervention_idempotency": "PASS",
+    "receipt_hash_tamper_detection": "PASS",
+    "automatic_acceptance_suspension_gate": "PASS"
+  },
+  "explicit_non_scope": [
+    "PILOTE_R51_A3_VERIFIER_ACCEPTANCE_SEMANTICS",
+    "WORKER_REATTESTATION_ISSUANCE_SEMANTICS",
+    "SESSION_REBIND_AFTER_REATTESTATION",
+    "PROVIDER_BOOTSTRAP_SAGA",
+    "FULL_R51_P2_CLOSURE"
+  ],
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_R51_A3_SEMANTIC_DEPENDENCY": 0,
+    "REMOTE_MUTATION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

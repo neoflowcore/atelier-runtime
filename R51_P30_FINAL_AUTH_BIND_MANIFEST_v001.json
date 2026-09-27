@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "final-auth-bind-manifest.v3",
+  "supersedes": "final-auth-bind-manifest.v2",
+  "state": "SEALED_FOR_BIND",
+  "projectIdentityDigest": "9f84671bf806417c39e804e8cc2a91940b13289767e8cfd15830ab064a159e56",
+  "projectDevelopmentComplete": true,
+  "selectedLiveProvider": "github-actions",
+  "selectedExecutorClass": "repository-hosted-ci-executor",
+  "authBindInteractionBudgetPerProjectRun": 1,
+  "rawSecretChatNormalPath": "DENY",
+  "partialBindThenDiscoverMore": "DENY",
+  "requirements": [
+    {
+      "provider": "github",
+      "capability": "SOURCE_PROVENANCE_READ",
+      "scope": "neoflowcore/atelier-runtime",
+      "resolution": "EXISTING_CONNECTED_AUTH_REUSE"
+    },
+    {
+      "provider": "github-actions",
+      "capability": "RUN_AND_JOB_BINDING_READ",
+      "scope": "neoflowcore/atelier-runtime",
+      "resolution": "JOB_SCOPED_GITHUB_TOKEN_READ_ONLY"
+    },
+    {
+      "provider": "github-actions",
+      "capability": "CANONICAL_EVIDENCE_ARTIFACT_WRITE_READBACK",
+      "scope": "runtime-r51-p8-dependency-lock-cache",
+      "resolution": "EXISTING_REPOSITORY_CI_ENVELOPE"
+    }
+  ],
+  "optionalAlternativeProviders": [
+    {
+      "provider": "digitalocean",
+      "status": "NOT_SELECTED_FOR_FINAL_LIVE_ACCEPTANCE",
+      "reason": "v016 provider-neutral plan admits repository-hosted CI executors; SSH is BREAK_GLASS_ONLY and DigitalOcean is not a required dependency."
+    }
+  ],
+  "credentialBoundLiveVerification": {
+    "jobScopedReadPlane": "GITHUB_TOKEN_READ_ONLY",
+    "failureQualification": "REUSE_CREDENTIAL_INDEPENDENT_P33_EXACT_CONTENT_EVIDENCE",
+    "manualTokenCopyPaste": 0,
+    "interactiveCredentialPrompt": 0
+  },
+  "unresolvedRequiredAuthCount": 0,
+  "existingAuthResolutionExhausted": true,
+  "interactiveAuthBoundaryRequired": false,
+  "secondAuthPromptNormalPath": 0,
+  "projectIdentityManifest": "R51_PROJECT_IDENTITY_v001.json",
+  "projectSourceManifestSha256": "a2d8a0224cfdfb773b2f57a14e189fea79d7a0b0e447d74ac26ac70c45329697",
+  "authoritativeMasterPlanId": "runtime-v016",
+  "authoritativeMasterPlanSha256": "db21c3488bc6032ec96c9c8c40f82d56ed5808f25325f59c1c0cd33682d3bce2"
+}

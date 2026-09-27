@@ -1,0 +1,52 @@
+{
+  "base_head": "53716039bb0df7d725bf8d8b791f376ee17d9551",
+  "base_tree": "071d6a4e08fe97d32775336eddaf703535fa6871",
+  "branch": "pilote-r51-a3-verifier-acceptance-intent",
+  "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "files": [
+    {
+      "bytes": 8299,
+      "path": "pilote/rev51/verifier-acceptance-intent-v1.mjs",
+      "sha256": "a3d086939dc5e08e5ec20beb85b30a0e0d5275c2d165c24d97e563d339786c5a"
+    },
+    {
+      "bytes": 1904,
+      "path": "schemas/rev51/pilote-verifier-policy-v1.schema.json",
+      "sha256": "59652f22bbf361b496947b26671aae81d58ff79c579561c050bf0e54b830cf58"
+    },
+    {
+      "bytes": 9260,
+      "path": "fixtures/rev51/pilote-verifier-policy-v1/fixture-set-v1.json",
+      "sha256": "5b661b9eb0cc9e982e4915787a04dcb0286b8fe7c03f3dd68618c361a8c2dce2"
+    },
+    {
+      "bytes": 4530,
+      "path": "test/rev51-pilote-verifier-acceptance-v1.test.mjs",
+      "sha256": "8c73a94a0c66edb84c336d6532eb627e189e664cd50a65702d9e1c3771fbc580"
+    },
+    {
+      "bytes": 1883,
+      "path": "docs/rev51/R51_A3_PILOTE_VERIFIER_ACCEPTANCE_INTENT.md",
+      "sha256": "b3318e5ea25d911888049b6163af093c9d0efc88f806ff1fff2cc644bd62c8c2"
+    }
+  ],
+  "gate": {
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "LOCAL_TESTS": "13/13 PASS",
+    "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "VERIFIER_FIXTURES": "PASS"
+  },
+  "manifest_type": "R51_A3_PILOTE_VERIFIER_ACCEPTANCE_AUTHORITATIVE_MANIFEST_V1",
+  "phase": "R51-A3",
+  "repository": "neoflowcore/atelier-runtime",
+  "verifier_policies": [
+    "RUNTIME_REQUIRED",
+    "PROJECT_CI_REQUIRED",
+    "RUNTIME_PLUS_PROJECT_CI"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/operator-interaction-policy-v1.schema.json",
+  "title": "OPERATOR_INTERACTION_POLICY_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["NORMAL_PATH_POLICY", "STATE_AFFECTING_MANUAL_INTERVENTION"],
+  "properties": {
+    "NORMAL_PATH_POLICY": { "const": "ZERO_TOUCH_AFTER_APPROVAL" },
+    "STATE_AFFECTING_MANUAL_INTERVENTION": { "const": "RECOVERY_ONLY" }
+  }
+}

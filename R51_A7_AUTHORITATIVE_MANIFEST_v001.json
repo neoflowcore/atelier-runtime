@@ -1,0 +1,105 @@
+{
+  "manifest_type": "R51_A7_PILOTE_CHECKPOINT_CACHE_DATA_LOCALITY_AUTHORITATIVE_MANIFEST_V1",
+  "phase": "R51-A7",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "pilote-r51-a7-checkpoint-cache-data-locality-intent",
+  "base_head": "878e5966f6a4c3fc45f76659f83d107f17ce9f6d",
+  "base_tree": "e4eb4a8a1887fb859f0504431584f5f66869ce3b",
+  "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "semantic_contract": {
+    "intent_type": "PILOTE_CHECKPOINT_CACHE_DATA_LOCALITY_INTENT_V1",
+    "intent_version": "1.0.0",
+    "checkpoint_policies": [
+      "NOT_REQUESTED",
+      "ELIGIBLE",
+      "REQUIRED"
+    ],
+    "cache_policies": [
+      "NOT_REQUESTED",
+      "ELIGIBLE",
+      "REQUIRED"
+    ],
+    "data_locality_policies": [
+      "NONE",
+      "COLOCATE_WITH_INPUT_SET",
+      "EGRESS_RESTRICTED"
+    ],
+    "checkpoint_strong_identity": "REQUIRED",
+    "checkpoint_resume_new_attempt": "REQUIRED",
+    "checkpoint_resume_new_lease_generation": "REQUIRED",
+    "checkpoint_resume_fence_advance": "REQUIRED",
+    "checkpoint_stale_attempt_acceptance": "DENY",
+    "cache_immutable_cas": "REQUIRED",
+    "cache_producer_receipt": "REQUIRED",
+    "cache_security_domain_match": "REQUIRED",
+    "cache_hit_verifier_equivalence": "DENY",
+    "cache_final_gate_bypass": "DENY",
+    "cache_object_authoritative_evidence": "DENY",
+    "data_locality_provider_selection": "RUNTIME_OWNED",
+    "data_locality_security_weakening": "DENY",
+    "egress_restricted_fail_closed": "REQUIRED",
+    "runtime_stricter_locality": "ALLOW"
+  },
+  "files": [
+    {
+      "path": "pilote/rev51/checkpoint-cache-data-locality-intent-v1.mjs",
+      "bytes": 15480,
+      "sha256": "92465b0406c99d91c2975f9afc8d08f08108b2a485ad377d71aeb2bde115f673"
+    },
+    {
+      "path": "schemas/rev51/pilote-checkpoint-cache-data-locality-intent-v1.schema.json",
+      "bytes": 3554,
+      "sha256": "37c4e61dc7bc247dd91d8e8ccbb4191dfb9930e88be9cbd7852e4d401ce275f4"
+    },
+    {
+      "path": "fixtures/rev51/pilote-checkpoint-cache-data-locality-intent-v1/test-vector-set-v1.json",
+      "bytes": 17617,
+      "sha256": "a4845c7fab35f9cbb85c37a1fd180d7f9b58ccdab37f9ebb224fd882ee672660"
+    },
+    {
+      "path": "fixtures/rev51/pilote-checkpoint-cache-data-locality-intent-v1/expected-result-set-v1.json",
+      "bytes": 1534,
+      "sha256": "5e35700923ee42084a22b8bfa4ea51434ada50e0d47b8915a04322b85cb23031"
+    },
+    {
+      "path": "test/rev51-pilote-checkpoint-cache-data-locality-v1.test.mjs",
+      "bytes": 4236,
+      "sha256": "6a54b1df375356289b02962f63db95ec330ca4437c56eacf465a5ccc385d41ef"
+    },
+    {
+      "path": "docs/rev51/R51_A7_PILOTE_CHECKPOINT_CACHE_DATA_LOCALITY_INTENT.md",
+      "bytes": 3016,
+      "sha256": "ec161fb9ea1368e7f07ad7642ece84b06a3765499023623efc08fb428351c221"
+    }
+  ],
+  "validation": {
+    "module_syntax_evaluation": "PASS",
+    "vector_expected_result_reproduction": "8/8 PASS",
+    "checkpoint_projection_cases": "3/3 PASS",
+    "cache_projection_cases": "3/3 PASS",
+    "data_locality_projection_cases": "3/3 PASS",
+    "node_test_file_published": "YES",
+    "node_test_execution_in_publish_step": "NOT_RUN",
+    "intermediate_full_ci": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "A2_EXECUTION_INTENT_SCHEMA_MUTATION": 0,
+    "A6_PARALLELISM_EXECUTION_CLASS_SEMANTIC_MUTATION": 0,
+    "CACHE_HIT_NEVER_IMPLICITLY_EQUALS_VERIFIER_PASS": 1,
+    "OLD_ATTEMPT_CANNOT_SUBMIT_CURRENT_RESULT_OR_CHECKPOINT": 1,
+    "RUNTIME_OWNED_CHECKPOINT_ID_EMISSION": 0,
+    "RUNTIME_OWNED_CACHE_KEY_EMISSION": 0,
+    "RUNTIME_OWNED_PROVIDER_ID_EMISSION": 0,
+    "DISPATCH": 0,
+    "RERUN": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

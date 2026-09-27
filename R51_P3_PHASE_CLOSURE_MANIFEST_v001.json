@@ -1,0 +1,67 @@
+{
+  "manifest_type": "R51_P3_PHASE_CLOSURE_MANIFEST_V1",
+  "phase": "R51-P3",
+  "status": "VERIFIED_PASS",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "implementation_head": "24de61adc52af12937fa64648bdb09abfc027ccd",
+  "implementation_tree": "1a38934932d9e60558adcdee171e38e320f4fa5e",
+  "canonical_ci": {
+    "run_id": 36231448371,
+    "run_number": 77,
+    "run_attempt": 1,
+    "conclusion": "success",
+    "head_sha": "24de61adc52af12937fa64648bdb09abfc027ccd",
+    "tests": 688,
+    "pass": 688,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "gate": {
+    "DETERMINISTIC_ROUTER": "PASS",
+    "CAPABILITY_MATCHING": "PASS",
+    "STRUCTURED_REASON_CODES": "PASS",
+    "VERIFIER_SEPARATION": "PASS",
+    "READ_ONLY_EXECUTION_PREFLIGHT": "PASS",
+    "AGGREGATE_BUDGET_RESERVATION": "PASS",
+    "OPERATOR_INTERACTION_POLICY": "PASS",
+    "MANUAL_FALLBACK_RECOVERY_ONLY": "PASS",
+    "PLAN_INVALIDATION": "PASS",
+    "READINESS_TTL_PRETRIGGER_REVALIDATION": "PASS",
+    "APPROVAL_ATOMIC_CLAIM_CONSUME": "PASS",
+    "OUTCOME_UNKNOWN_RECONCILIATION_ONLY": "PASS"
+  },
+  "exact_test_evidence": [
+    "router selects deterministically by priority then backend id",
+    "router capability mismatch fails closed with reason code",
+    "hard execution class cannot silently downgrade",
+    "verifier policy stays exact and separate from backend and transport",
+    "preflight is read-only and expired attestation blocks",
+    "manual fallback is recovery-only",
+    "plan drift invalidates approval rather than silently proceeding",
+    "approval grant is atomic claim then consume",
+    "OUTCOME_UNKNOWN keeps claimed approval reconciliation-only",
+    "pre-trigger readiness uses authoritative runtime time and TTL",
+    "aggregate budget reservation delegates to durable admission and binds fence"
+  ],
+  "action_economy": {
+    "blind_rerun": 0,
+    "dispatch": 0,
+    "main_write": 0,
+    "merge": 0,
+    "force_push": 0,
+    "exact_candidate_full_ci": 1,
+    "closure_metadata_only": true
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0
+  },
+  "next_phase": "R51-P4",
+  "closure_rule": "P3 implementation and exact candidate validation complete; this artifact records closure only and does not claim P4 implementation."
+}

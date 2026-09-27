@@ -1,0 +1,2 @@
+import test from"node:test";import assert from"node:assert/strict";import{compareQualifiedProvidersV1}from"../runtime/rev51/provider-bakeoff-v1.mjs";
+test("P31 bakeoff uses measured normalized metrics",()=>{const r=compareQualifiedProvidersV1({observations:[{PROVIDER_ID:"a",ACTUAL_COST_MILLIUNITS:5,HUMAN_TOUCHES:1},{PROVIDER_ID:"b",ACTUAL_COST_MILLIUNITS:10,HUMAN_TOUCHES:0}],weights:{ACTUAL_COST_MILLIUNITS:1,HUMAN_TOUCHES:100}});assert.equal(r.selectedProviderId,"b");assert.equal(r.selectionBasis,"MEASURED_NORMALIZED_METRICS")});

@@ -1,0 +1,46 @@
+{
+  "manifest_type": "R51_P1C_B_OWNED_DOWNSTREAM_CONTRACTS_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "base_remote_head": "aa953c2aede01c8d564b0f83b8708d2fbd3d4914",
+  "base_remote_tree": "3c78ce2feee1d36ce09bbffca3c8e06f95b5373c",
+  "task_contract_v1_mutation": 0,
+  "frozen_27_fields_mutation": 0,
+  "interface_v1_mutation": 0,
+  "contracts": [
+    {
+      "path": "schemas/rev51/worker-job-v1.schema.json",
+      "sha256": "e9014b3d1dcba625087a977b197fe34ec7caf8bb2789916870247a82498f7a2f",
+      "bytes": 1428
+    },
+    {
+      "path": "schemas/rev51/execution-receipt-v1.schema.json",
+      "sha256": "84c6c05530f1e14211f323eda5364521656e0d4bf336c185918efef58eb3125c",
+      "bytes": 1703
+    },
+    {
+      "path": "schemas/rev51/worker-bootstrap-spec-v1.schema.json",
+      "sha256": "5091c7777ca9ee26f079144632f9911aa2eb712c55a585be86319ae4877ea4cb",
+      "bytes": 1215
+    },
+    {
+      "path": "schemas/rev51/bootstrap-receipt-v1.schema.json",
+      "sha256": "bf8bc0659c3efa101f9731b12b434b6ead87700398fcf6f73ebeec1a32981ea8",
+      "bytes": 954
+    },
+    {
+      "path": "schemas/rev51/one-shot-execution-session-v1.schema.json",
+      "sha256": "aa32da865d71d844ee20bda44cc703d3628fcc6cd57ef076afe27eb15c5ce231",
+      "bytes": 1281
+    },
+    {
+      "path": "schemas/rev51/execution-session-status-v1.schema.json",
+      "sha256": "fd612bf9556b20b9434d6218ec437d9ec61dfe447f1d9eb534fbb4e7a2a3b5f2",
+      "bytes": 1447
+    },
+    {
+      "path": "schemas/rev51/artifact-store-v1.schema.json",
+      "sha256": "a597994e14adaa89108b11e3fe4827df547878ff0d2e71e73afe5fcb58b608cf",
+      "bytes": 1675
+    }
+  ]
+}

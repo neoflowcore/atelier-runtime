@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: read
+  actions: read
+  pull-requests: read
 
 jobs:
   selftest:
@@ -17,6 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 2
           persist-credentials: false
       - name: Set up fixed Node
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
@@ -27,3 +31,47 @@ jobs:
         run: npm ci
       - name: Run security and unit self-tests
         run: npm run selftest
+
+      - name: Observe P30 GitHub-hosted live acceptance
+        id: p30_observe
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          P30_EXECUTION_HEAD: ${{ github.event.pull_request.head.sha }}
+          P30_PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$P30_EXECUTION_HEAD"
+          node scripts/rev51/p30-github-live-acceptance.mjs observe R51_P30_GITHUB_LIVE_TRIGGER_v001.json artifacts/rev51/p30-github-live/observation.json
+
+      - name: Upload P30 pre-final canonical evidence
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: p30-github-live-pre-${{ github.event.pull_request.head.sha }}
+          path: artifacts/rev51/p30-github-live/observation.json
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Finalize P30 live acceptance after artifact readback
+        id: p30_finalize
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          P30_EXECUTION_HEAD: ${{ github.event.pull_request.head.sha }}
+          P30_PRE_ARTIFACT_NAME: p30-github-live-pre-${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          node scripts/rev51/p30-github-live-acceptance.mjs finalize R51_P30_GITHUB_LIVE_TRIGGER_v001.json artifacts/rev51/p30-github-live/observation.json artifacts/rev51/p30-github-live/final-receipt.json
+          test "${{ steps.p30_observe.outputs.observation_sha256 }}" != ""
+
+      - name: Upload P30 final live acceptance evidence
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: p30-github-live-final-${{ github.event.pull_request.head.sha }}
+          path: |
+            artifacts/rev51/p30-github-live/observation.json
+            artifacts/rev51/p30-github-live/final-receipt.json
+          if-no-files-found: error
+          retention-days: 30

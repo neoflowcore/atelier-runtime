@@ -1,0 +1,79 @@
+{
+  "manifest_type": "R51_P2E_DURABLE_PROVIDER_BOOTSTRAP_SAGA_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P2E-001",
+  "status": "LOCAL_VERIFIED_CANDIDATE_REMOTE_WRITE_NOT_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "4961c90ff4040e5a116001e895613cde0ce786b4",
+  "base_tree": "ab5e765b3a08589e745b970428326be7847ed46e",
+  "scope": {
+    "runtime_owned_only": true,
+    "pilote_a6_semantic_dependency": false,
+    "shared_contract_change": false,
+    "interface_v1_change": false
+  },
+  "saga_order": [
+    "PROVISION",
+    "BOOTSTRAP",
+    "ATTEST",
+    "REGISTER_TRANSPORT",
+    "BIND_JOB",
+    "EXECUTE",
+    "COLLECT",
+    "DEREGISTER",
+    "CLEANUP",
+    "BILLING_STOP"
+  ],
+  "files": [
+    {
+      "path": "runtime/rev51/provider-bootstrap-saga-v1.mjs",
+      "bytes": 20884,
+      "sha256": "161b009b50106ec8eaa590606f0122704a2d44ba75fee5528463c9dc10e01f7f",
+      "git_blob": "1eb5832cea621ea686c4cd292ca15d4722869485"
+    },
+    {
+      "path": "test/rev51-provider-bootstrap-saga-v1.test.mjs",
+      "bytes": 12512,
+      "sha256": "0d190e7db7be8def635907d8802b06affc0ce8413d47985d1a58e20dfcc069af",
+      "git_blob": "cfb89aedba99e149d7969e6392c66ab6add04ed8"
+    },
+    {
+      "path": "docs/rev51/R51_P2E_DURABLE_PROVIDER_BOOTSTRAP_SAGA.md",
+      "bytes": 3019,
+      "sha256": "216c709626415aea975b97c738dba0b646ffdc6a85f025132e3cc0877c9a4df6",
+      "git_blob": "e906fcf6702072185fc978079c892ac4c4dadad2"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "16/16 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "crash_reopen": "PASS",
+    "strict_phase_order": "PASS",
+    "outcome_unknown_blind_retry": "DENY",
+    "same_operation_reconcile_only": "PASS",
+    "provider_observed_state_overrides_desired": "DENY",
+    "cas_idempotency": "PASS",
+    "terminal_cleanup_billing": "PASS",
+    "event_hash_tamper_reject": "PASS"
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "BLIND_RETRY_AFTER_OUTCOME_UNKNOWN": 0,
+    "SECOND_MUTATION_AFTER_OUTCOME_UNKNOWN": 0,
+    "PROVIDER_OBSERVED_STATE_OVERRIDE": 0,
+    "WORKFLOW_RUN": 0,
+    "RERUN": 0,
+    "DISPATCH": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

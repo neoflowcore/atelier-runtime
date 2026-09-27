@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "r51-p30-provider-readiness-receipt.v1",
+  "status": "READ_ONLY_PREFLIGHT_PASS_EXECUTION_PATH_BLOCKED",
+  "observed": {
+    "accountStatus": "active",
+    "dropletLimit": 10,
+    "activeDroplets": 0,
+    "sshPublicKeys": 1,
+    "billableDropletResidue": 0
+  },
+  "codexUniversalImage": {
+    "id": 234061005,
+    "status": "available",
+    "nyc3Available": true,
+    "minDiskGiB": 80
+  },
+  "defaultCandidate": {
+    "region": "nyc3",
+    "size": "s-2vcpu-4gb",
+    "vcpu": 2,
+    "memoryMiB": 4096,
+    "diskGiB": 80,
+    "priceHourlyUsd": 0.03571,
+    "priceMonthlyUsd": 24,
+    "regionAvailable": true,
+    "sizeAvailable": true
+  },
+  "executionPath": {
+    "currentSurface": "WEB",
+    "ssh": "ABSENT",
+    "sshKeygen": "ABSENT",
+    "python3": "AVAILABLE",
+    "installedDigitalOceanCodexWorkspacePlugin": true,
+    "pluginRequiresCodexDesktop": true,
+    "pluginRequiresLocalOpenSSH": true,
+    "trustedExecutionPath": "BLOCKED"
+  },
+  "authority": {
+    "providerRead": "EXISTING_CONNECTED_AUTH_REUSE",
+    "providerMutationPerformed": false,
+    "paidResourceCreated": false,
+    "costAuthorityGranted": false
+  },
+  "decision": "DO_NOT_CREATE_PAID_RESOURCE_UNTIL_COST_AND_TRUSTED_EXECUTION_BOUNDARIES_RESOLVED"
+}

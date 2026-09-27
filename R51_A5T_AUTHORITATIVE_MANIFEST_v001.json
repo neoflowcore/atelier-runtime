@@ -1,0 +1,95 @@
+{
+  "manifest_type": "R51_A5T_PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_AUTHORITATIVE_MANIFEST_V1",
+  "phase": "R51-A5T",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "pilote-r51-a5t-execution-terminal-semantic-binding",
+  "base_head": "47607a346f57077b46f3df527fae5a51e960243b",
+  "base_tree": "22871e691daedc9a922de95f6d7820b93c136e81",
+  "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "source_status_schema": {
+    "path": "schemas/rev51/execution-session-status-v1.schema.json",
+    "sha256": "fd612bf9556b20b9434d6218ec437d9ec61dfe447f1d9eb534fbb4e7a2a3b5f2",
+    "git_blob": "d0e0c62d1b387d39eb911e493eeb459e283e626a"
+  },
+  "semantic_contract": {
+    "binding_type": "PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING_V1",
+    "binding_version": "1.0.0",
+    "destination_flag": "EXECUTION_TERMINAL",
+    "terminal_states": [
+      "SUCCEEDED",
+      "FAILED",
+      "CANCELED",
+      "EXPIRED"
+    ],
+    "non_terminal_states": [
+      "REQUESTED",
+      "READY",
+      "RUNNING",
+      "OUTCOME_UNKNOWN"
+    ],
+    "outcome_unknown_policy": "NON_TERMINAL_RECONCILIATION_REQUIRED",
+    "terminal_acceptance_policy": "NO_ACCEPTANCE_IMPLICATION",
+    "runtime_evidence_authority": "AUTHORITATIVE_RUNTIME_EVIDENCE_REQUIRED",
+    "pilote_direct_flag_mutation": "DENY"
+  },
+  "files": [
+    {
+      "path": "pilote/rev51/execution-terminal-semantic-binding-v1.mjs",
+      "bytes": 7890,
+      "sha256": "e0f14ed0e1f25bf86f38cf6b95e89aed657f68233a2def401f57572ad0dc3a5b"
+    },
+    {
+      "path": "schemas/rev51/pilote-execution-terminal-semantic-binding-v1.schema.json",
+      "bytes": 2500,
+      "sha256": "a02d12215955e8b3fcfc663a6123002303d3ed80fe395d9aed97e0212cec6336"
+    },
+    {
+      "path": "fixtures/rev51/pilote-execution-terminal-semantic-binding-v1/test-vector-set-v1.json",
+      "bytes": 12277,
+      "sha256": "73d0840feff0977e7ebd6c1e91e66055fe4f3bdf6c8c59e569fdae24ef9e6fc1"
+    },
+    {
+      "path": "fixtures/rev51/pilote-execution-terminal-semantic-binding-v1/expected-result-set-v1.json",
+      "bytes": 2977,
+      "sha256": "62c85eeaac53bfc69adefdf9d54b0c6c76e03dabb51470876a35206aec669095"
+    },
+    {
+      "path": "test/rev51-pilote-execution-terminal-semantic-binding-v1.test.mjs",
+      "bytes": 2322,
+      "sha256": "e2772b89a11b2e7bb545324d29ebc3908beeb98ae316809683eb3072f6964101"
+    },
+    {
+      "path": "docs/rev51/R51_A5T_PILOTE_EXECUTION_TERMINAL_SEMANTIC_BINDING.md",
+      "bytes": 1865,
+      "sha256": "88b55557ee1ffb9707182e2d0b6098954d38e0bf7d5d4a9d0d42a278f4f13716"
+    }
+  ],
+  "validation": {
+    "module_syntax_evaluation": "PASS",
+    "vector_expected_result_reproduction": "6/6 PASS",
+    "projection_cases": "8/8 PASS",
+    "node_test_file_published": "YES",
+    "node_test_execution_in_publish_step": "NOT_RUN",
+    "intermediate_full_ci": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "A6_PREIMPLEMENTATION": 0,
+    "P2E_SEMANTIC_REDEFINITION": 0,
+    "P2F_SEMANTIC_REDEFINITION": 0,
+    "P2T_SEMANTIC_REDEFINITION": 0,
+    "P2U_SEMANTIC_REDEFINITION": 0,
+    "P2X_SEMANTIC_REDEFINITION": 0,
+    "PILOTE_DIRECT_RUNTIME_FLAG_MUTATION": 0,
+    "DISPATCH": 0,
+    "RERUN": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

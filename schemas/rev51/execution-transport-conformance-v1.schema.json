@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/execution-transport-conformance-v1.schema.json",
+  "title": "EXECUTION_TRANSPORT_CONFORMANCE_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["EXECUTION_TRANSPORT", "CONFORMANCE_RESULT"],
+  "properties": {
+    "EXECUTION_TRANSPORT": { "enum": ["DIRECT_WORKER", "GITHUB_SELF_HOSTED_JIT"] },
+    "CONFORMANCE_RESULT": { "enum": ["PASS", "FAIL", "BLOCKED"] }
+  }
+}

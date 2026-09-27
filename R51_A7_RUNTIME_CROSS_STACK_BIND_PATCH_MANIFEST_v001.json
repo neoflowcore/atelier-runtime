@@ -1,0 +1,99 @@
+{
+  "manifest_type": "R51_A7_RUNTIME_CROSS_STACK_BIND_PATCH_MANIFEST_V1",
+  "phase": "R51-A7-RUNTIME-BIND",
+  "status": "REMOTE_APPLY_CANDIDATE",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "6fecb9b8a2bf279d761c3a1a3adff071ea028fb1",
+  "base_tree": "a85bea1e69b6066f53d6ee7d5cc592a9ca94b90d",
+  "pilote_a7_authoritative": {
+    "head": "ccd3e5bc2b134c9bce274015d9b836afdad6e8f2",
+    "tree": "5df9e4ecd8b88d17ea87038c9f675900a4780e57",
+    "module_sha256": "92465b0406c99d91c2975f9afc8d08f08108b2a485ad377d71aeb2bde115f673",
+    "schema_sha256": "37c4e61dc7bc247dd91d8e8ccbb4191dfb9930e88be9cbd7852e4d401ce275f4",
+    "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+    "test_vector_set_sha256": "a4845c7fab35f9cbb85c37a1fd180d7f9b58ccdab37f9ebb224fd882ee672660",
+    "expected_result_set_sha256": "5e35700923ee42084a22b8bfa4ea51434ada50e0d47b8915a04322b85cb23031",
+    "authoritative_manifest_sha256": "dc4794dd8f0b75ee12c76ee6bffc63b7bdbb4d83f88374b1583e99f2252d83fe",
+    "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+  },
+  "runtime_primitive_anchors": [
+    {
+      "path": "runtime/rev51/durable-execution-state-v1.mjs",
+      "git_blob": "3f7526254318e32061687a3efc9fda80a103d459"
+    },
+    {
+      "path": "runtime/rev51/durable-result-verification-v1.mjs",
+      "git_blob": "51d9566c1eacfa3b510a7ccb17c3b3b83ab3904e"
+    },
+    {
+      "path": "runtime/rev51/durable-result-acceptance-v1.mjs",
+      "git_blob": "a57a8dd94ca5d66b571e6b8e3f01b131aa2a12ad"
+    },
+    {
+      "path": "runtime/rev51/pilote-capability-resource-security-consumer-v1.mjs",
+      "git_blob": "d183ebdc0bed3677240d5feeecdc771ba3304755"
+    },
+    {
+      "path": "schemas/rev51/artifact-store-v1.schema.json",
+      "git_blob": "c66b79053d7c43b761cad2032a7095a7c180b175"
+    }
+  ],
+  "files": [
+    {
+      "path": "runtime/rev51/pilote-checkpoint-cache-data-locality-consumer-v1.mjs",
+      "git_blob": "13b54363592090987c600bd1cbb0c70ad08808fd",
+      "sha256": "24fbfdc643d3716a3cb1da7618f40e1a2a2eb1cde33a487d6fdcb95bbb6c6679"
+    },
+    {
+      "path": "test/rev51-a7-cross-stack-consumer-v1.test.mjs",
+      "git_blob": "3076c47ec1213772902a1471dfcb35574acee74f",
+      "sha256": "fc5bb0afc1851d3124204ca39164265dedcfa74d0bf8c19fc73638d63a345db5"
+    },
+    {
+      "path": "docs/rev51/R51_A7_RUNTIME_CROSS_STACK_BINDING.md",
+      "git_blob": "abc3d9ad2efc27a78b7640a814157d9a3b4d4bc3",
+      "sha256": "cbb295490607ea53782f5519f5af3def4cb24aa36332ae312df9d40bc8e535ee"
+    }
+  ],
+  "binding_results": {
+    "CHECKPOINT_POLICY_BINDING": "PASS",
+    "CHECKPOINT_STRONG_IDENTITY_BINDING": "PASS",
+    "CHECKPOINT_RESUME_NEW_ATTEMPT_BINDING": "PASS",
+    "CHECKPOINT_RESUME_NEW_LEASE_GENERATION_BINDING": "PASS",
+    "CHECKPOINT_RESUME_FENCE_ADVANCE_BINDING": "PASS",
+    "STALE_ATTEMPT_CHECKPOINT_ACCEPTANCE_BOUNDARY": "PASS",
+    "CACHE_POLICY_BINDING": "PASS",
+    "CACHE_IMMUTABLE_CAS_BINDING": "PASS",
+    "CACHE_PRODUCER_RECEIPT_BINDING": "PASS",
+    "CACHE_SECURITY_DOMAIN_BINDING": "PASS",
+    "CACHE_HIT_VERIFIER_NON_EQUIVALENCE": "PASS",
+    "CACHE_FINAL_GATE_BYPASS_BOUNDARY": "PASS",
+    "DATA_LOCALITY_POLICY_BINDING": "PASS",
+    "DATA_LOCALITY_PROVIDER_OWNERSHIP": "PASS",
+    "DATA_LOCALITY_SECURITY_NON_WEAKENING": "PASS",
+    "EGRESS_RESTRICTED_FAIL_CLOSED": "PASS"
+  },
+  "validation": {
+    "node_version": "v22.16.0",
+    "source_node_check": "PASS_SUPPLEMENTAL",
+    "test_node_check": "8/8 PASS_SUPPLEMENTAL",
+    "remote_ci": "PENDING_AFTER_REMOTE_APPLY",
+    "base_head_remote_ci_run": 36096401059,
+    "base_head_remote_ci_conclusion": "success"
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "A2_EXECUTION_INTENT_SCHEMA_MUTATION": 0,
+    "A6_PARALLELISM_EXECUTION_CLASS_SEMANTIC_MUTATION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0,
+    "RERUN": 0,
+    "DISPATCH": 0
+  }
+}

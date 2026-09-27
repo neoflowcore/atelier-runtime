@@ -1,0 +1,57 @@
+{
+  "SCHEMA_ID": "R51_RUNTIME_INTERFACE_IDENTITY_V1",
+  "SCHEMA_VERSION": "1",
+  "LEGACY_INTERFACE_VERSION": "1.0.0",
+  "LEGACY_INTERFACE_MANIFEST_SHA256": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617",
+  "LEGACY_TASK_CONTRACT_SCHEMA_SHA256": "6afcf7aa1b7d3d73b28d6195326db22c82774de308664ce85ba52e42fba640e8",
+  "LEGACY_TASK_CONTRACT_MACHINE_SCHEMA_SHA256": "3bdbb85a7879c8cee2c7eb2f18c3936fac7a44389ec0ae61f0954b9c19660b65",
+  "LEGACY_FROZEN_FIELDS": 27,
+  "TASK_CONTRACT_V1_MUTATION": 0,
+  "INTERFACE_V1_MUTATION": 0,
+  "PROMOTED_RUNTIME_CONTRACT_SET_SHA256": "d72564952b8a57b8f494306e882817f366e8f14b8c6baf367a37fb16015412fa",
+  "SEMANTIC_OWNERSHIP": "LEGACY_INTERFACE_REMAINS_FROZEN_RUNTIME_ADDS_EXECUTION_CONTROL_CONTRACTS_ONLY",
+  "RUNTIME_INTERFACE_IDENTITY_SHA256": "39e686591f169e62416726518d1e6917a8ed3cded43b284e2d3a2216c546548b",
+  "PROMOTED_RUNTIME_CONTRACT_SET": {
+    "CONTRACT_SET_ID": "R51_V022_PROMOTED_RUNTIME_CONTRACT_SET_V1",
+    "CONTRACT_SET_VERSION": "1",
+    "modules": [
+      {
+        "path": "runtime/rev51/auth-endgame-transaction-v1.mjs",
+        "sha256": "e8241a652937bedbf88f33a00aa74d680127127730c637fd00735f3bd692fd10"
+      },
+      {
+        "path": "runtime/rev51/continuation-decision-v1.mjs",
+        "sha256": "0d248aee59e102a86fb2a27978dbe36bf04945e0d932e450bf0de696be527402"
+      },
+      {
+        "path": "runtime/rev51/longrun-checkpoint-reattach-v1.mjs",
+        "sha256": "271f90f57f207c3a8e026c73dd522880a755cd710a27c63c24dce7792fb1821b"
+      },
+      {
+        "path": "runtime/rev51/master-plan-run-contract-v1.mjs",
+        "sha256": "0e27524b3d803e7b015c36fad90e2a2b68c77f430748724112deaaf240a82086"
+      },
+      {
+        "path": "runtime/rev51/project-identity-plan-binding-v1.mjs",
+        "sha256": "db2b18a870cd889b7c9f08fdf205f38afbcbec957f69f75e1cbaacca3312eef0"
+      },
+      {
+        "path": "runtime/rev51/source-mutation-compiler-v1.mjs",
+        "sha256": "02a24e4586573ffd1cc3c27dff98c6fce7e52268df5337a1f4bac6f79c55ee43"
+      }
+    ],
+    "CONTRACT_SET_SHA256": "d72564952b8a57b8f494306e882817f366e8f14b8c6baf367a37fb16015412fa"
+  },
+  "CANONICAL_PROMOTION_CI": {
+    "head": "33c90192cd15ed77329aaf657bbea43ca06c9267",
+    "tree": "156aea7e937ac0863bdbb18e1eb45a93581327f3",
+    "runId": 36263812550,
+    "jobId": 108464528397,
+    "conclusion": "success",
+    "observedTests": 913,
+    "fail": 0,
+    "releaseGate": "PASS",
+    "rerun": 0,
+    "workflowDispatch": 0
+  }
+}

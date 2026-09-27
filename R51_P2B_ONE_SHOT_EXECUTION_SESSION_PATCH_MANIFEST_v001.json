@@ -1,0 +1,82 @@
+{
+  "manifest_type": "R51_P2B_ONE_SHOT_EXECUTION_SESSION_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P2B-001",
+  "status": "LOCAL_CANDIDATE_REMOTE_WRITE_NOT_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "70d8c5e8c8e603d63106daad84a9b751b6e44822",
+  "base_tree": "89009c981abf88995ea5c2bca2ce1fe7bc2292fa",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "planning_baseline_sha256": "5806e197e7d07c96877da5a7dd81e59457aa62583e1aae99bec16db46082a8c2",
+  "scope": {
+    "phase": "R51-P2",
+    "slice": "P2B_ONE_SHOT_EXECUTION_SESSION_LIFECYCLE",
+    "runtime_owned_only": true,
+    "pilote_a3_dependency": false,
+    "shared_contract_change": false
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/one-shot-execution-session-v1.mjs",
+      "bytes": 16967,
+      "sha256": "86458cb4069f632ecb8e530ccac61d02699ed4cb06b82042bbb759a96be879df"
+    },
+    {
+      "path": "test/rev51-one-shot-execution-session-v1.test.mjs",
+      "bytes": 10910,
+      "sha256": "4e1fb72988807804c0105ac8bcc45ea75016bf4ade9bef30d641178734374b09"
+    },
+    {
+      "path": "docs/rev51/R51_P2B_ONE_SHOT_EXECUTION_SESSION.md",
+      "bytes": 3310,
+      "sha256": "bdd41a48444fba836f0d5974e29d16f203b2fa9eeb026441c5758b0c72d8e608"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "16/16 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "intermediate_full_ci": 0,
+    "workflow_run": 0,
+    "rerun": 0,
+    "dispatch": 0
+  },
+  "correctness_coverage": {
+    "durable_session_reopen": "PASS",
+    "execution_plan_identity_binding": "PASS",
+    "durable_execution_state_fence_binding": "PASS",
+    "client_disconnect_lifetime_independence": "PASS",
+    "job_success_not_session_complete": "PASS",
+    "session_terminal_closure_gate": "PASS",
+    "terminal_flag_monotonicity": "PASS",
+    "billing_terminal_non_reopen": "PASS",
+    "session_cas_idempotency": "PASS",
+    "session_event_hash_chain": "PASS"
+  },
+  "explicit_non_scope": [
+    "PILOTE_R51_A3_VERIFIER_ACCEPTANCE_SEMANTICS",
+    "VERIFIER_POLICY_SEMANTIC_MEANING",
+    "ACCEPTANCE_REQUIREMENT_SEMANTIC_MEANING",
+    "PROVIDER_BOOTSTRAP_SAGA",
+    "OPERATOR_INTERVENTION_RECEIPT_PERSISTENCE",
+    "ATTEMPT_FENCE_REBIND_AFTER_TRUST_RESET",
+    "COST_ACCOUNTING_UNITS_AND_ADMISSION_ARITHMETIC",
+    "EXECUTION_SESSION_STATUS_COST_EVIDENCE_PROJECTION",
+    "FULL_R51_P2_CLOSURE"
+  ],
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_R51_A3_SEMANTIC_DEPENDENCY": 0,
+    "REMOTE_MUTATION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

@@ -1,0 +1,3 @@
+import test from"node:test";import assert from"node:assert/strict";import{buildGateExecutionReceiptV1}from"../runtime/rev51/gate-execution-receipt-v1.mjs";const H=x=>x.repeat(64),b={STEP_ID:"lint",GATE_TYPE:"SOURCE_VALIDATION",INPUT_DIGEST:H("a"),ENVIRONMENT_FINGERPRINT:H("b"),STARTED_AT:"t1",COMPLETED_AT:"t2",EXIT_CODE:0,RESULT:"PASS",FAILURE_FINGERPRINT:null,EVIDENCE_DIGEST:H("c"),SEAL_CRITICAL:true};
+test("P24 seal-critical gate requires evidence digest",()=>assert.throws(()=>buildGateExecutionReceiptV1({...b,EVIDENCE_DIGEST:null}),/EVIDENCE_DIGEST_REQUIRED/));
+test("P24 gate receipt binds execution result",()=>assert.match(buildGateExecutionReceiptV1(b).RECEIPT_SHA256,/^[0-9a-f]{64}$/));

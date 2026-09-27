@@ -1,0 +1,77 @@
+{
+  "manifest_type": "R51_P2G_DURABLE_ADMISSION_BUDGET_CANCELLATION_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P2G-001",
+  "status": "LOCAL_VERIFIED_CANDIDATE_REMOTE_WRITE_NOT_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "1a350c375f9cacd3868959b0b8b9b5a93b0d1150",
+  "base_tree": "f940a723db7121531a43c18672917d2356b9aa11",
+  "p2a_validator_git_blob": "3f7526254318e32061687a3efc9fda80a103d459",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "scope": {
+    "runtime_owned_only": true,
+    "pilote_a6_semantic_dependency": false,
+    "parallelism_intent_reinterpretation": false,
+    "execution_class_reinterpretation": false,
+    "dag_scheduling_reinterpretation": false,
+    "shared_contract_change": false,
+    "interface_v1_change": false
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/durable-admission-budget-cancellation-v1.mjs",
+      "bytes": 22058,
+      "sha256": "0aa93745022b43cc891eed2ed0db374c8f694b5d7498c033f98256e15eb3cf1b",
+      "git_blob": "773f36327c6a80aece62e3b38d9210e14fce35ba"
+    },
+    {
+      "path": "test/rev51-durable-admission-budget-cancellation-v1.test.mjs",
+      "bytes": 12297,
+      "sha256": "3caf5811ea03f4d5e1c9838165d0fe26f784fc53a23a334d660f7633ef3756f1",
+      "git_blob": "e21cb21cdba5fd4555fb6f9f4133b7e8bdf04ca0"
+    },
+    {
+      "path": "docs/rev51/R51_P2G_DURABLE_ADMISSION_BUDGET_CANCELLATION.md",
+      "bytes": 4776,
+      "sha256": "6959ad96a70a331cf0d3cd465d6fc945552821191a8f52a137951c95f34ce5fe",
+      "git_blob": "b9659733930c4b8bfdbdedd080f1762f423a0475"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "18/18 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH_AND_P2A_VALIDATOR_HARNESS",
+    "current_fence_binding": "PASS",
+    "execution_state_cas": "PASS",
+    "budget_idempotency": "PASS",
+    "budget_oversubscription": "DENY",
+    "cancellation_new_admission": "DENY",
+    "cancellation_new_start": "DENY",
+    "terminal_settlement_after_cancel": "ALLOW",
+    "crash_restart_reopen": "PASS",
+    "event_hash_tamper": "DENY"
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "PARALLELISM_INTENT_REINTERPRETATION": 0,
+    "EXECUTION_CLASS_REINTERPRETATION": 0,
+    "DAG_SCHEDULING_REINTERPRETATION": 0,
+    "RUNTIME_OWNED_PROVIDER_ID_EMISSION": 0,
+    "RUNTIME_OWNED_WORKER_ID_EMISSION": 0,
+    "RUNTIME_OWNED_ATTEMPT_ID_EMISSION": 0,
+    "RUNTIME_OWNED_FENCE_TOKEN_EMISSION": 0,
+    "WORKFLOW_RUN": 0,
+    "RERUN": 0,
+    "DISPATCH": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "manifest_type": "R51_A6_RUNTIME_CROSS_STACK_BIND_PATCH_MANIFEST_V1",
+  "phase": "R51-A6-RUNTIME-BIND",
+  "status": "REMOTE_APPLY_CANDIDATE",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "4078c03423205e8a98cef1254d75fbc53ecd3882",
+  "base_tree": "dd16789c3b80750f449f31a65d94e37a6bab4af4",
+  "pilote_a6_authoritative": {
+    "head": "878e5966f6a4c3fc45f76659f83d107f17ce9f6d",
+    "tree": "e4eb4a8a1887fb859f0504431584f5f66869ce3b",
+    "module_sha256": "149668f616aee87a08e986c6c12e971893ddca51a6ccf1b7d555d7f669c24c15",
+    "schema_sha256": "f15d74050a35c56eb036deccd67f670953d2719082de2505f2881596e3bd2704",
+    "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+    "test_vector_set_sha256": "3f768f91f135e43e4e041d1bc642174dcacc2554f9c4054a82a3302d13add0ca",
+    "expected_result_set_sha256": "3a612965e62cc0cc2d497955538755772f9b7d237e63678f97c62d6e48ef13af",
+    "authoritative_manifest_sha256": "29f7e31bafb295f3e6291ef30717dba080bb8a095cb4870c2ace9220ec94526a",
+    "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/pilote-parallelism-execution-class-consumer-v1.mjs",
+      "git_blob": "50b4ca204dee09dded33ddc8f308f7f46e4cc47f"
+    },
+    {
+      "path": "test/rev51-a6-cross-stack-consumer-v1.test.mjs",
+      "git_blob": "801581f82031106794ede4fcac9b087376f46746"
+    },
+    {
+      "path": "docs/rev51/R51_A6_RUNTIME_CROSS_STACK_BINDING.md",
+      "git_blob": "cf3773b8037813ff8b5860d518664ea504c53b7f"
+    }
+  ],
+  "binding_results": {
+    "PARALLELISM_INTENT_BINDING": "PASS",
+    "MAX_PARALLELISM_BINDING": "PASS",
+    "SERIAL_REQUIRED_CAP_BINDING": "PASS",
+    "PARALLEL_ALLOWED_PERMISSION_BINDING": "PASS",
+    "SEMANTIC_DAG_PRESERVATION": "PASS",
+    "EXECUTION_ONLY_EDGE_BOUNDARY": "PASS",
+    "EXECUTION_CLASS_BINDING": "PASS",
+    "HARD_CLASS_DOWNGRADE_BOUNDARY": "PASS",
+    "PROVIDER_SELECTION_OWNERSHIP": "PASS",
+    "PROVIDER_TRANSPORT_INDEPENDENCE": "PASS",
+    "ADMISSION_INTERSECTION_BINDING": "PASS"
+  },
+  "validation": {
+    "source_node_check": "PASS_SUPPLEMENTAL",
+    "test_node_check": "PASS_SUPPLEMENTAL",
+    "canonical_ci": "REQUIRED_AFTER_REMOTE_APPLY"
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "A2_EXECUTION_INTENT_SCHEMA_MUTATION": 0,
+    "A5T_EXECUTION_TERMINAL_SEMANTIC_MUTATION": 0,
+    "P2G_STORAGE_FORMAT_MUTATION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0,
+    "RERUN": 0,
+    "DISPATCH": 0
+  }
+}

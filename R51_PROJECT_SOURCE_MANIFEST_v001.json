@@ -1,0 +1,45 @@
+{
+  "SCHEMA_ID": "PROJECT_SOURCE_MANIFEST_V1",
+  "SCHEMA_VERSION": "1",
+  "projectIdentityDigest": "9f84671bf806417c39e804e8cc2a91940b13289767e8cfd15830ab064a159e56",
+  "sourceManifestId": "ephemdrop-runtime-pilote-source-manifest",
+  "sourceManifestVersion": "1",
+  "authoritativePlanRefs": [
+    {
+      "planId": "project-settings-v008",
+      "exactTitleOrFilename": "CHATGPT_PROJECT_SETTINGS_INSTRUCTIONS_RUNTIME_PILOTE_v016_COMPACT_v008_SAFE_20260926.txt",
+      "projectLocalSourceRef": "project-settings:v008",
+      "version": "008",
+      "digest": "f78ae42aaae104194fa745d73dae4d6b165b1a0e61a70b288972c50deed64a3f",
+      "role": "SPEC",
+      "precedence": 0
+    },
+    {
+      "planId": "runtime-v016",
+      "exactTitleOrFilename": "ATELIER_POST_REV51_RUNTIME_FIRST_REINFORCED_PLAN_v016_GENERIC_FULL_CONSOLIDATED_20260926.md",
+      "projectLocalSourceRef": "project:file_0000000021d482068ac3414894a526ec",
+      "version": "016",
+      "digest": "db21c3488bc6032ec96c9c8c40f82d56ed5808f25325f59c1c0cd33682d3bce2",
+      "role": "MASTER_PLAN",
+      "precedence": 1
+    },
+    {
+      "planId": "runtime-p30",
+      "exactTitleOrFilename": "docs/rev51/R51_P30_AUTH_ENDGAME_CLOSURE_PREFLIGHT.md",
+      "projectLocalSourceRef": "repo:docs/rev51/R51_P30_AUTH_ENDGAME_CLOSURE_PREFLIGHT.md",
+      "version": "3",
+      "digest": null,
+      "role": "PHASE_PLAN",
+      "precedence": 2
+    }
+  ],
+  "activeMasterPlanId": "runtime-v016",
+  "activePhasePlanId": "runtime-p30",
+  "lastCheckpointId": "p30-global-auth-endgame",
+  "manifestEvidence": [
+    "sha-set:20260926",
+    "repository:neoflowcore/atelier-runtime",
+    "branch:runtime-r51-p8-dependency-lock-cache"
+  ],
+  "SOURCE_MANIFEST_SHA256": "a2d8a0224cfdfb773b2f57a14e189fea79d7a0b0e447d74ac26ac70c45329697"
+}

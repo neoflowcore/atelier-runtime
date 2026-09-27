@@ -1,0 +1,61 @@
+{
+  "PATCH_ID": "R51_P2T_DURABLE_RECEIPT_TERMINALIZATION_v001",
+  "PHASE": "R51-P2T",
+  "STATUS": "REMOTE_APPLY_CANDIDATE",
+  "REPOSITORY": "neoflowcore/atelier-runtime",
+  "BRANCH": "runtime-r51-a2-consumer-binding",
+  "BASE_HEAD": "6bae8001f17a372cfbc99a5ea3d7c072859f2fa7",
+  "BASE_TREE": "c7233a3bf373146735ec925a2b8517954bc97e1d",
+  "SCOPE": {
+    "RUNTIME_OWNED_ONLY": true,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": false,
+    "SHARED_CONTRACT_CHANGE": false,
+    "INTERFACE_V1_CHANGE": false
+  },
+  "BINDING": {
+    "P2F_DURABLE_RESULT_ACCEPTANCE": "AUTHORITATIVE_SOURCE",
+    "P2B_ONE_SHOT_SESSION": "EXISTING_SESSION_LIFECYCLE",
+    "TERMINALIZATION_POLICY": "AUTHORITATIVE_P2F_ACCEPTANCE_TO_SESSION_RECEIPT_TERMINAL",
+    "SESSION_ID_EQUALS_EXECUTION_ID": false,
+    "MUTATED_SESSION_FLAG": "RECEIPT_TERMINAL_ONLY",
+    "SESSION_COMPLETE_DIRECTLY": false
+  },
+  "FILES": [
+    {
+      "PATH": "runtime/rev51/durable-receipt-terminalization-v1.mjs",
+      "GIT_BLOB": "2d83876de79057c1d043b912ef9fd5b898826f5f"
+    },
+    {
+      "PATH": "test/rev51-durable-receipt-terminalization-v1.test.mjs",
+      "GIT_BLOB": "d82e7a69f1afa11c27374b7c1e5fec94deb2ecb3",
+      "TEST_CASES": 6
+    },
+    {
+      "PATH": "docs/rev51/R51_P2T_DURABLE_RECEIPT_TERMINALIZATION.md",
+      "GIT_BLOB": "8852ae7ee7c910e6ebe6346041efe9a44efcec3f"
+    }
+  ],
+  "DEPENDENCIES": [
+    "runtime/rev51/durable-result-acceptance-v1.mjs",
+    "runtime/rev51/one-shot-execution-session-v1.mjs"
+  ],
+  "VALIDATION": {
+    "CANONICAL_NODE": "22.13.0",
+    "CANONICAL_CI": "REQUIRED_AFTER_REMOTE_APPLY"
+  },
+  "INVARIANTS": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "ACCEPTANCE_SEMANTICS_REDEFINITION": 0,
+    "OTHER_SESSION_TERMINAL_FLAGS_MUTATION": 0,
+    "WORKFLOW_RERUN": 0,
+    "WORKFLOW_DISPATCH": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

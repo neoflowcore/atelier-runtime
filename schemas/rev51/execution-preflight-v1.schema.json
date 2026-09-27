@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/execution-preflight-v1.schema.json",
+  "title": "EXECUTION_PREFLIGHT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "EXECUTION_PLAN_HASH",
+    "READY_ATTESTATION_VALID",
+    "SOURCE_IDENTITY_EXACT",
+    "EXECUTION_PLAN_VALID",
+    "APPROVAL_VALID",
+    "BUDGET_RESERVATION_VALID",
+    "VERIFIER_POLICY_EXACT",
+    "EXECUTION_TRANSPORT_READY",
+    "WORKER_READY_ATTESTATION",
+    "GATE_TRIGGERED"
+  ],
+  "properties": {
+    "EXECUTION_PLAN_HASH": { "$ref": "#/$defs/sha256" },
+    "READY_ATTESTATION_VALID": { "type": "boolean" },
+    "SOURCE_IDENTITY_EXACT": { "type": "boolean" },
+    "EXECUTION_PLAN_VALID": { "type": "boolean" },
+    "APPROVAL_VALID": { "type": "boolean" },
+    "BUDGET_RESERVATION_VALID": { "type": "boolean" },
+    "VERIFIER_POLICY_EXACT": { "type": "boolean" },
+    "EXECUTION_TRANSPORT_READY": { "type": "boolean" },
+    "WORKER_READY_ATTESTATION": { "$ref": "worker-ready-attestation-v1.schema.json" },
+    "GATE_TRIGGERED": { "type": "boolean" }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

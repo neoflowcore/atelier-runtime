@@ -1,0 +1,68 @@
+{
+  "manifest_type": "R51_P2O_DURABLE_WORKER_JOB_LAUNCH_PATCH_MANIFEST_V1",
+  "phase": "R51_P2O",
+  "status": "PHASE_CONTINUOUS_APPROVED_CANDIDATE",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "11eef55df95e1305bd153653e482b8612a7aa89f",
+  "base_tree": "49fd495a1a2ff672064f11fc265c8d6876578c57",
+  "scope": {
+    "runtime_owned_only": true,
+    "pilote_a6_semantic_dependency": false,
+    "task_contract_v1_mutation": 0,
+    "interface_v1_mutation": 0,
+    "shared_contract_redesign": 0
+  },
+  "production_dependencies": {
+    "worker_job_module_git_blob": "811c00b37f0f0208f07edd3c447aea04900811d8",
+    "p2a_durable_execution_state_git_blob": "3f7526254318e32061687a3efc9fda80a103d459"
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/durable-worker-job-launch-v1.mjs",
+      "bytes": 13661,
+      "sha256": "98bde6e46b7f5090a9d1bfc547acfae8649265fba7e9d89994bbfd66b26fefc0",
+      "git_blob": "e35b7cdc2862efc96aa955870b799e8a2e6a4719"
+    },
+    {
+      "path": "test/rev51-durable-worker-job-launch-v1.test.mjs",
+      "bytes": 7859,
+      "sha256": "b7f9b9fa559841c39b2132124f8dae0ad4c724d855e8660bc15bb9d5b88320c8",
+      "git_blob": "bef356d74376cd9b6dd998a914fc0e89a7486ad3"
+    },
+    {
+      "path": "docs/rev51/R51_P2O_DURABLE_WORKER_JOB_LAUNCH.md",
+      "bytes": 1884,
+      "sha256": "3f0f2fe4598b33da5793d4923dfd89b7dd86a0282f831f97111691433d4178e1",
+      "git_blob": "32698b135f72f1dddf29092028efa32686786898"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "15/15 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_PASS_CANONICAL_BLOCKED",
+    "structured_entrypoint_only": "PASS",
+    "shell_field": "DENY",
+    "semantic_replanning": "DENY",
+    "current_fence_required": "PASS",
+    "second_launch": "DENY",
+    "outcome_unknown_reconciliation_only": "PASS",
+    "crash_reopen": "PASS",
+    "event_tamper": "DENY"
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0,
+    "WORKFLOW_RERUN": 0,
+    "DISPATCH": 0
+  }
+}

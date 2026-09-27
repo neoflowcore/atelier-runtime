@@ -1,0 +1,31 @@
+import { createHash } from "node:crypto";
+
+export const EXACT_RUNTIME_PROVISIONING_PLAN_SCHEMA_ID = "EXACT_RUNTIME_PROVISIONING_PLAN_V1";
+export const EXECUTION_ENVIRONMENT_ATTESTATION_SCHEMA_ID = "EXECUTION_ENVIRONMENT_ATTESTATION_V1";
+const SHA=/^[0-9a-f]{64}$/;
+const TOKEN=/^[A-Z][A-Z0-9_.-]{0,63}$/;
+const VERSION=/^[A-Za-z0-9][A-Za-z0-9.+_-]{0,63}$/;
+function obj(v){return !!v&&typeof v==="object"&&!Array.isArray(v)}
+function canon(v){if(v===null)return"null";if(typeof v==="string"||typeof v==="boolean")return JSON.stringify(v);if(typeof v==="number"){if(!Number.isSafeInteger(v))throw new Error("EXACT_RUNTIME_NON_SAFE_INTEGER");return JSON.stringify(v)}if(Array.isArray(v))return`[${v.map(canon).join(",")}]`;if(obj(v))return`{${Object.keys(v).sort().map(k=>`${JSON.stringify(k)}:${canon(v[k])}`).join(",")}}`;throw new Error("EXACT_RUNTIME_UNSUPPORTED_CANONICAL_TYPE")}
+function hash(v){return createHash("sha256").update(canon(v),"utf8").digest("hex")}
+function str(v,c,re){if(typeof v!=="string"||!re.test(v))throw new Error(c);return v}
+function optional(v,c,re){if(v===null||v===undefined)return null;return str(v,c,re)}
+function checkDigest(v){if(v===null||v===undefined)return null;if(!/^sha256:[0-9a-f]{64}$/.test(v))throw new Error("CONTAINER_IMAGE_DIGEST_INVALID");return v}
+function validateRequirements(r){if(!obj(r)||!SHA.test(r.REQUIRED_CAPABILITIES_SHA256??"")||!SHA.test(r.EXECUTION_ENVIRONMENT_CONTRACT_SHA256??""))throw new Error("CAPABILITY_REQUIREMENT_SET_INVALID");return r}
+function validateProfile(p){if(!obj(p)||!SHA.test(p.PROFILE_SHA256??""))throw new Error("PROVIDER_CAPABILITY_PROFILE_INVALID");return p}
+export function compileExactRuntimeProvisioningPlanV1(requirements,providerProfile){
+  validateRequirements(requirements);validateProfile(providerProfile);
+  if(requirements.RUNTIME_VERSION&&!requirements.LANGUAGE_RUNTIME)throw new Error("RUNTIME_LANGUAGE_REQUIRED_FOR_EXACT_VERSION");
+  if(requirements.PACKAGE_MANAGER_VERSION&&!requirements.PACKAGE_MANAGER)throw new Error("PACKAGE_MANAGER_REQUIRED_FOR_EXACT_VERSION");
+  const runtime=requirements.LANGUAGE_RUNTIME?`${requirements.LANGUAGE_RUNTIME}@${requirements.RUNTIME_VERSION??"ANY"}`:null;
+  const packageManager=requirements.PACKAGE_MANAGER?`${requirements.PACKAGE_MANAGER}@${requirements.PACKAGE_MANAGER_VERSION??"ANY"}`:null;
+  if(runtime&&requirements.RUNTIME_VERSION&&!providerProfile.RUNTIME_FINGERPRINTS.includes(runtime))throw new Error("RUNTIME_VERSION_UNSATISFIED");
+  if(packageManager&&requirements.PACKAGE_MANAGER_VERSION&&!providerProfile.PACKAGE_MANAGER_FINGERPRINTS.includes(packageManager))throw new Error("PACKAGE_MANAGER_UNSATISFIED");
+  if(requirements.CONTAINER_IMAGE_DIGEST&&providerProfile.CONTAINER_IMAGE_DIGEST&&providerProfile.CONTAINER_IMAGE_DIGEST!==requirements.CONTAINER_IMAGE_DIGEST)throw new Error("CONTAINER_IMAGE_DIGEST_UNSATISFIED");
+  const body={SCHEMA_ID:EXACT_RUNTIME_PROVISIONING_PLAN_SCHEMA_ID,SCHEMA_VERSION:"1",REQUIRED_CAPABILITIES_SHA256:requirements.REQUIRED_CAPABILITIES_SHA256,EXECUTION_ENVIRONMENT_CONTRACT_SHA256:requirements.EXECUTION_ENVIRONMENT_CONTRACT_SHA256,PROVIDER_ID:providerProfile.PROVIDER_ID,PROVIDER_PROFILE_SHA256:providerProfile.PROFILE_SHA256,LANGUAGE_RUNTIME:optional(requirements.LANGUAGE_RUNTIME,"LANGUAGE_RUNTIME_INVALID",TOKEN),RUNTIME_VERSION:optional(requirements.RUNTIME_VERSION,"RUNTIME_VERSION_INVALID",VERSION),PACKAGE_MANAGER:optional(requirements.PACKAGE_MANAGER,"PACKAGE_MANAGER_INVALID",TOKEN),PACKAGE_MANAGER_VERSION:optional(requirements.PACKAGE_MANAGER_VERSION,"PACKAGE_MANAGER_VERSION_INVALID",VERSION),OS_CLASS:requirements.OS_CLASS,ARCH_CLASS:requirements.ARCH_CLASS,LIBC_CLASS:requirements.LIBC_CLASS,CONTAINER_IMAGE_DIGEST:checkDigest(requirements.CONTAINER_IMAGE_DIGEST),INSTALL_MODE:"EXACT_OR_FAIL",FALLBACK_TO_NEAREST_VERSION:false};
+  return Object.freeze({...body,PLAN_SHA256:hash(body)});
+}
+function validatePlan(plan){if(!obj(plan)||plan.SCHEMA_ID!==EXACT_RUNTIME_PROVISIONING_PLAN_SCHEMA_ID||!SHA.test(plan.PLAN_SHA256??""))throw new Error("EXACT_RUNTIME_PROVISIONING_PLAN_INVALID");const{PLAN_SHA256,...body}=plan;if(hash(body)!==PLAN_SHA256)throw new Error("EXACT_RUNTIME_PROVISIONING_PLAN_SHA256_MISMATCH");return plan}
+export function attestExecutionEnvironmentV1(plan,observation){validatePlan(plan);if(!obj(observation))throw new Error("EXECUTION_ENVIRONMENT_OBSERVATION_REQUIRED");const required={PROVIDER_ID:plan.PROVIDER_ID,LANGUAGE_RUNTIME:plan.LANGUAGE_RUNTIME,RUNTIME_VERSION:plan.RUNTIME_VERSION,PACKAGE_MANAGER:plan.PACKAGE_MANAGER,PACKAGE_MANAGER_VERSION:plan.PACKAGE_MANAGER_VERSION,OS_CLASS:plan.OS_CLASS,ARCH_CLASS:plan.ARCH_CLASS,LIBC_CLASS:plan.LIBC_CLASS,CONTAINER_IMAGE_DIGEST:plan.CONTAINER_IMAGE_DIGEST};const mismatches=[];for(const[k,v]of Object.entries(required)){if(v!==null&&v!=="ANY"&&observation[k]!==v)mismatches.push(`${k}_MISMATCH`)}if(mismatches.length)return Object.freeze({ok:false,code:"EXECUTION_ENVIRONMENT_MISMATCH",mismatches:mismatches.sort()});const fingerprintBody={PROVISIONING_PLAN_SHA256:plan.PLAN_SHA256,PROVIDER_ID:observation.PROVIDER_ID,LANGUAGE_RUNTIME:observation.LANGUAGE_RUNTIME??null,RUNTIME_VERSION:observation.RUNTIME_VERSION??null,PACKAGE_MANAGER:observation.PACKAGE_MANAGER??null,PACKAGE_MANAGER_VERSION:observation.PACKAGE_MANAGER_VERSION??null,OS_CLASS:observation.OS_CLASS,ARCH_CLASS:observation.ARCH_CLASS,LIBC_CLASS:observation.LIBC_CLASS,CONTAINER_IMAGE_DIGEST:observation.CONTAINER_IMAGE_DIGEST??null,PROVISIONER_POLICY_DIGEST:observation.PROVISIONER_POLICY_DIGEST??null};if(fingerprintBody.PROVISIONER_POLICY_DIGEST!==null&&!SHA.test(fingerprintBody.PROVISIONER_POLICY_DIGEST))throw new Error("PROVISIONER_POLICY_DIGEST_INVALID");const body={SCHEMA_ID:EXECUTION_ENVIRONMENT_ATTESTATION_SCHEMA_ID,SCHEMA_VERSION:"1",...fingerprintBody,STATUS:"PASS"};return Object.freeze({ok:true,code:"EXECUTION_ENVIRONMENT_ATTESTED",attestation:Object.freeze({...body,ENVIRONMENT_FINGERPRINT_SHA256:hash(fingerprintBody),ATTESTATION_SHA256:hash(body)})})}
+export function validateExecutionEnvironmentAtStartV1(plan,observation){const result=attestExecutionEnvironmentV1(plan,observation);if(!result.ok)return Object.freeze({...result,startAllowed:false});return Object.freeze({...result,startAllowed:true})}
+export function computeExactRuntimeObjectSha256V1(v){return hash(v)}

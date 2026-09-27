@@ -1,0 +1,5 @@
+import test from"node:test";import assert from"node:assert/strict";import{evaluateDisposableWorkerCreateReadinessV1,evaluateDisposableWorkerClosureV1}from"../runtime/rev51/disposable-heavy-worker-v1.mjs";const ready={PREFLIGHT_PASS:true,EXECUTION_PATH_READY:true,CREDENTIAL_READY:true,ARTIFACT_DESTINATION_READY:true,CLEANUP_AUTHORITY_READY:true,COST_AUTHORIZATION_READY:true,LEASE_TTL_PRESENT:true,COST_CAP_PRESENT:true};
+test("P29 disposable worker create requires all readiness gates",()=>assert.equal(evaluateDisposableWorkerCreateReadinessV1(ready).ok,true));
+test("P29 missing cleanup authority denies create",()=>assert.equal(evaluateDisposableWorkerCreateReadinessV1({...ready,CLEANUP_AUTHORITY_READY:false}).ok,false));
+test("P29 power off never counts as destroy",()=>assert.equal(evaluateDisposableWorkerClosureV1({}).powerOffCountsAsDestroy,false));
+test("P29 closure requires destroy absence and residue pass",()=>assert.equal(evaluateDisposableWorkerClosureV1({HEAVY_COMPLETE:true,EVIDENCE_EXTERNALIZED:true,REQUIRED_ARTIFACT_VERIFIED:true,DESTROY_CONFIRMED:true,ABSENCE_VERIFIED:true,BILLABLE_RESIDUE_PASS:true}).closed,true));

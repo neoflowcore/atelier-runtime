@@ -1,0 +1,15 @@
+{
+  "manifest_type": "R51_P31_PROVIDER_BAKEOFF_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P31-PROVIDER-BAKEOFF-001",
+  "status": "LOCAL_SEMANTIC_VERIFIED_REPO_INTEGRATION_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "development_branch": "runtime-r51-p8-dependency-lock-cache",
+  "adds": [
+    "MEASURED_PROVIDER_BAKEOFF_V1"
+  ],
+  "boundaries": {
+    "LIVE_PROVIDER_RUNS": 0,
+    "PAID_COMPUTE": 0,
+    "CREDENTIAL_BINDING": 0
+  }
+}

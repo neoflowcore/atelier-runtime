@@ -1,0 +1,81 @@
+{
+  "$id": "https://atelier.local/rev51/pilote-capability-resource-security-intent-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PILOTE_CAPABILITY_RESOURCE_SECURITY_INTENT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "INTENT_TYPE": { "const": "PILOTE_CAPABILITY_RESOURCE_SECURITY_INTENT_V1" },
+    "INTENT_VERSION": { "const": "1.0.0" },
+    "CANONICALIZATION_ID": { "const": "ATELIER_EXECUTION_CANONICAL_JSON_V1" },
+    "PROJECT_ID": { "type": "string", "minLength": 1 },
+    "PHASE_ID": { "type": "string", "minLength": 1 },
+    "TASK_ID": { "type": "string", "minLength": 1 },
+    "TASK_CONTRACT_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "EXECUTION_INTENT_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "CAPABILITY_REQUIREMENT_REFS": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "RESOURCE_INTENT": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "CPU_MIN_MILLICORES": { "type": ["integer", "null"], "minimum": 0 },
+        "MEMORY_MIN_MIB": { "type": ["integer", "null"], "minimum": 0 },
+        "DISK_MIN_MIB": { "type": ["integer", "null"], "minimum": 0 },
+        "GPU_COUNT": { "type": ["integer", "null"], "minimum": 0 },
+        "GPU_MEMORY_MIN_MIB": { "type": ["integer", "null"], "minimum": 0 },
+        "GPU_CAPABILITY_CLASS": { "type": ["string", "null"] }
+      },
+      "required": ["CPU_MIN_MILLICORES","MEMORY_MIN_MIB","DISK_MIN_MIB","GPU_COUNT","GPU_MEMORY_MIN_MIB","GPU_CAPABILITY_CLASS"]
+    },
+    "SECURITY_REQUIREMENT": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ISOLATION_CLASS": { "type": "string", "minLength": 1 },
+        "NETWORK_CLASS": { "type": "string", "minLength": 1 },
+        "DATA_ACCESS_CLASS": { "type": "string", "minLength": 1 },
+        "SECRET_CLASS": { "type": "string", "minLength": 1 }
+      },
+      "required": ["ISOLATION_CLASS","NETWORK_CLASS","DATA_ACCESS_CLASS","SECRET_CLASS"]
+    },
+    "CAPABILITY_ATTESTATION_POLICY": { "const": "STATIC_AND_DYNAMIC_REQUIRED" },
+    "CAPABILITY_DRIFT_POLICY": { "const": "FAIL_CLOSED" },
+    "RESOURCE_OWNERSHIP_PROOF_POLICY": { "const": "DURABLE_PROOF_REQUIRED_BEFORE_DESTRUCTIVE_ACTION" },
+    "HOST_MOUNT_POLICY": { "const": "DENY_DEFAULT" },
+    "HOST_SECRET_INHERITANCE": { "const": "DENY" },
+    "PRIVILEGED_WORKER": { "const": "DENY_DEFAULT" },
+    "UNTRUSTED_CODE_ON_PERSISTENT_WORKER": { "const": "DENY" },
+    "JOB_SCOPED_CREDENTIAL_LEASE": { "const": "REQUIRED" },
+    "BOOTSTRAP_CREDENTIAL_PRIVILEGED_JOB_EQUIVALENCE": { "const": "DENY" },
+    "UNATTESTED_WORKER_PRIVILEGED_JOB_CREDENTIAL": { "const": "DENY" },
+    "WARM_REUSE_SANITATION_RECEIPT": { "const": "REQUIRED" },
+    "STRUCTURED_ENTRYPOINT": { "const": "REQUIRED" },
+    "SHELL_EXECUTION": { "const": "DENY_DEFAULT" },
+    "SECRET_PERSISTENCE": { "const": "DENY" },
+    "CONTRACT_SET_REF": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ID": { "const": "ATELIER_REV51_CONTRACT_SET_V1" },
+        "VERSION": { "const": "1.0.0" },
+        "SHA256": { "const": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a" }
+      },
+      "required": ["ID","VERSION","SHA256"]
+    },
+    "A5_INTENT_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "required": [
+    "INTENT_TYPE","INTENT_VERSION","CANONICALIZATION_ID","PROJECT_ID","PHASE_ID","TASK_ID",
+    "TASK_CONTRACT_SHA256","EXECUTION_INTENT_SHA256","CAPABILITY_REQUIREMENT_REFS","RESOURCE_INTENT",
+    "SECURITY_REQUIREMENT","CAPABILITY_ATTESTATION_POLICY","CAPABILITY_DRIFT_POLICY",
+    "RESOURCE_OWNERSHIP_PROOF_POLICY","HOST_MOUNT_POLICY","HOST_SECRET_INHERITANCE","PRIVILEGED_WORKER",
+    "UNTRUSTED_CODE_ON_PERSISTENT_WORKER","JOB_SCOPED_CREDENTIAL_LEASE",
+    "BOOTSTRAP_CREDENTIAL_PRIVILEGED_JOB_EQUIVALENCE","UNATTESTED_WORKER_PRIVILEGED_JOB_CREDENTIAL",
+    "WARM_REUSE_SANITATION_RECEIPT","STRUCTURED_ENTRYPOINT","SHELL_EXECUTION","SECRET_PERSISTENCE",
+    "CONTRACT_SET_REF","A5_INTENT_SHA256"
+  ]
+}

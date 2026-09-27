@@ -1,0 +1,60 @@
+{
+  "$id": "https://atelier.local/rev51/pilote-checkpoint-cache-data-locality-intent-v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PILOTE_CHECKPOINT_CACHE_DATA_LOCALITY_INTENT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "INTENT_TYPE": { "const": "PILOTE_CHECKPOINT_CACHE_DATA_LOCALITY_INTENT_V1" },
+    "INTENT_VERSION": { "const": "1.0.0" },
+    "CANONICALIZATION_ID": { "const": "ATELIER_EXECUTION_CANONICAL_JSON_V1" },
+    "PROJECT_ID": { "type": "string", "minLength": 1 },
+    "PHASE_ID": { "type": "string", "minLength": 1 },
+    "TASK_ID": { "type": "string", "minLength": 1 },
+    "TASK_CONTRACT_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "EXECUTION_INTENT_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "CHECKPOINT_POLICY": { "enum": ["NOT_REQUESTED","ELIGIBLE","REQUIRED"] },
+    "CHECKPOINT_POLICY_SOURCE_REF": { "const": "execution-intent:CHECKPOINT_POLICY" },
+    "CACHE_POLICY": { "enum": ["NOT_REQUESTED","ELIGIBLE","REQUIRED"] },
+    "CACHE_POLICY_SOURCE_REF": { "const": "execution-intent:CACHE_POLICY" },
+    "DATA_LOCALITY_POLICY": { "enum": ["NONE","COLOCATE_WITH_INPUT_SET","EGRESS_RESTRICTED"] },
+    "DATA_LOCALITY_POLICY_SOURCE_REF": { "const": "execution-intent:DATA_LOCALITY_POLICY" },
+    "CHECKPOINT_STRONG_IDENTITY": { "const": "REQUIRED" },
+    "CHECKPOINT_RESUME_NEW_ATTEMPT": { "const": "REQUIRED" },
+    "CHECKPOINT_RESUME_NEW_LEASE_GENERATION": { "const": "REQUIRED" },
+    "CHECKPOINT_RESUME_FENCE_ADVANCE": { "const": "REQUIRED" },
+    "CHECKPOINT_STALE_ATTEMPT_ACCEPTANCE": { "const": "DENY" },
+    "CACHE_IMMUTABLE_CAS": { "const": "REQUIRED" },
+    "CACHE_PRODUCER_RECEIPT": { "const": "REQUIRED" },
+    "CACHE_SECURITY_DOMAIN_MATCH": { "const": "REQUIRED" },
+    "CACHE_HIT_VERIFIER_EQUIVALENCE": { "const": "DENY" },
+    "CACHE_FINAL_GATE_BYPASS": { "const": "DENY" },
+    "CACHE_OBJECT_AUTHORITATIVE_EVIDENCE": { "const": "DENY" },
+    "DATA_LOCALITY_PROVIDER_SELECTION": { "const": "RUNTIME_OWNED" },
+    "DATA_LOCALITY_SECURITY_WEAKENING": { "const": "DENY" },
+    "EGRESS_RESTRICTED_FAIL_CLOSED": { "const": "REQUIRED" },
+    "RUNTIME_STRICTER_LOCALITY": { "const": "ALLOW" },
+    "CONTRACT_SET_REF": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ID": { "const": "ATELIER_REV51_CONTRACT_SET_V1" },
+        "VERSION": { "const": "1.0.0" },
+        "SHA256": { "const": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a" }
+      },
+      "required": ["ID","VERSION","SHA256"]
+    },
+    "A7_INTENT_SHA256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "required": [
+    "INTENT_TYPE","INTENT_VERSION","CANONICALIZATION_ID","PROJECT_ID","PHASE_ID","TASK_ID",
+    "TASK_CONTRACT_SHA256","EXECUTION_INTENT_SHA256","CHECKPOINT_POLICY","CHECKPOINT_POLICY_SOURCE_REF",
+    "CACHE_POLICY","CACHE_POLICY_SOURCE_REF","DATA_LOCALITY_POLICY","DATA_LOCALITY_POLICY_SOURCE_REF",
+    "CHECKPOINT_STRONG_IDENTITY","CHECKPOINT_RESUME_NEW_ATTEMPT","CHECKPOINT_RESUME_NEW_LEASE_GENERATION",
+    "CHECKPOINT_RESUME_FENCE_ADVANCE","CHECKPOINT_STALE_ATTEMPT_ACCEPTANCE","CACHE_IMMUTABLE_CAS",
+    "CACHE_PRODUCER_RECEIPT","CACHE_SECURITY_DOMAIN_MATCH","CACHE_HIT_VERIFIER_EQUIVALENCE",
+    "CACHE_FINAL_GATE_BYPASS","CACHE_OBJECT_AUTHORITATIVE_EVIDENCE","DATA_LOCALITY_PROVIDER_SELECTION",
+    "DATA_LOCALITY_SECURITY_WEAKENING","EGRESS_RESTRICTED_FAIL_CLOSED","RUNTIME_STRICTER_LOCALITY",
+    "CONTRACT_SET_REF","A7_INTENT_SHA256"
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "manifest_type": "R51_A8_AUTHORITATIVE_MANIFEST_V1",
+  "phase": "R51-A8",
+  "status": "AUTHORITATIVE_REMOTE_CANDIDATE",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "pilote-r51-a8-backward-compatibility-semantic-artifacts",
+  "base_head": "ccd3e5bc2b134c9bce274015d9b836afdad6e8f2",
+  "base_tree": "5df9e4ecd8b88d17ea87038c9f675900a4780e57",
+  "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "semantic_artifact_internal_sha256": "3f952906794e162f9f392f7bf832c05d1876d3bdcd66bd4c27f17b19494cc292",
+  "legacy_source_anchors": [
+    {
+      "profile": "COMPAT_PROFILE_REV42_TASK_V1",
+      "kind": "FROZEN_INTERFACE_V1_MANIFEST",
+      "sha256": "90b016211babd4f10b7de7700c54ea6e2db9179563d88502fc1d9983ad47b617"
+    },
+    {
+      "profile": "COMPAT_PROFILE_REV45_PHASE_V1",
+      "kind": "FINAL_BUILDER_KIT_V004",
+      "sha256": "3439a7249b6ba9051269c89e6d783a343457cf01e43ec8a62dcffd1b0ed55284"
+    },
+    {
+      "profile": "COMPAT_PROFILE_REV50_FRAMEWORK_V1",
+      "kind": "FINAL_BUILDER_KIT_V001",
+      "sha256": "141fe59a393fe5224833fe0d83ec80589464d08bf2bf7729c3cf7b9d9c0f00f8"
+    }
+  ],
+  "files": [
+    {
+      "path": "docs/rev51/R51_A8_PILOTE_BACKWARD_COMPATIBILITY_SEMANTIC_ARTIFACTS.md",
+      "sha256": "6b7b033330fdd8f8d563e1ad894f8976069d1ad0e215fe844200706ee64b94de",
+      "git_blob_sha": "08784e00d7a748dea24d60538b12d3bf1910e450"
+    },
+    {
+      "path": "fixtures/rev51/pilote-backward-compatibility-semantic-artifacts-v1/expected-result-set-v1.json",
+      "sha256": "92be3ace31932d9acde6e39077d055ceb62aa9636bb2b179b28252799770728d",
+      "git_blob_sha": "a413056f50e24f3d2c36a554a5cea732439cf11c"
+    },
+    {
+      "path": "fixtures/rev51/pilote-backward-compatibility-semantic-artifacts-v1/semantic-artifact-set-v1.json",
+      "sha256": "4220684785f382c3dc0d252da8715ceb0ecb79d6783cf6901ac3e26eb21e8ca9",
+      "git_blob_sha": "349f1bcce1e9be452faee1253be7c6bdd588a053"
+    },
+    {
+      "path": "fixtures/rev51/pilote-backward-compatibility-semantic-artifacts-v1/test-vector-set-v1.json",
+      "sha256": "9f08e739759f07abf07fc4c5c95ad4fc27dee901ca74e3014543de1ac99b8a13",
+      "git_blob_sha": "67e4b4b4106cba620bf1f7d4f97c57d31d6d75c7"
+    },
+    {
+      "path": "pilote/rev51/backward-compatibility-semantic-artifacts-v1.mjs",
+      "sha256": "6f2ff2b90a505029f05988870329d0f181c8791fb0fa66e18e54b06d760360d1",
+      "git_blob_sha": "ada5427752627bb33f8588c1cd2dc323f450c597"
+    },
+    {
+      "path": "schemas/rev51/pilote-backward-compatibility-semantic-artifacts-v1.schema.json",
+      "sha256": "5b52e8b9d183b6beb8aaee42e8365b64c5faafb67def3cbdbac4b0fe9e9601db",
+      "git_blob_sha": "5364819a58c9326bb7f81ca9eb733767887b147f"
+    },
+    {
+      "path": "test/rev51-pilote-backward-compatibility-semantic-artifacts-v1.test.mjs",
+      "sha256": "6a119b2c898c39958a53dbf0808505e04f01ece41f1c0cda715350e63aa66d09",
+      "git_blob_sha": "a206c62b195cce5d6027b3577c993d8919e7bf90"
+    }
+  ],
+  "validation": {
+    "node_check_module": "PASS",
+    "node_check_test": "PASS",
+    "targeted_node_test": "2/2 PASS",
+    "sealed_vector_reproduction": "18/18 PASS",
+    "intermediate_full_ci": 0,
+    "remote_ci": "PENDING_POST_PUBLISH"
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "LEGACY_BUILDER_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "SEMANTIC_REINTERPRETATION": 0,
+    "LEGACY_REQUIRED_FIELD_ADDITION": 0,
+    "LEGACY_TO_REV51_INTENT_SYNTHESIS": 0,
+    "REV51_TO_LEGACY_DOWNGRADE": 0,
+    "RUNTIME_DEFINED_EQUIVALENCE": 0,
+    "DISPATCH": 0,
+    "RERUN": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

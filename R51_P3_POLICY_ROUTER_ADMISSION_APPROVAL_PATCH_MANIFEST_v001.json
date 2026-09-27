@@ -1,0 +1,39 @@
+{
+  "manifest_type": "R51_P3_POLICY_ROUTER_ADMISSION_APPROVAL_PATCH_MANIFEST_V1",
+  "phase": "R51-P3",
+  "status": "REMOTE_APPLY_CANDIDATE",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "8fb0fbf0168552604893f164e427bab460468b7e",
+  "base_tree": "671a35bdfc179974afed2a572c3783b27b7a0d5a",
+  "implementation": {
+    "deterministic_router": "runtime/rev51/policy-router-admission-approval-v1.mjs",
+    "capability_matching": "EXACT_SUPERSET_FAIL_CLOSED",
+    "reason_codes": "STRUCTURED",
+    "verifier_separation": "EXACT_POLICY_HASH_INDEPENDENT_OF_PROVIDER_AND_TRANSPORT",
+    "read_only_preflight": "PASS_THROUGH_FROZEN_EXECUTION_PREFLIGHT_V1",
+    "aggregate_budget_reservation": "DELEGATES_DURABLE_P2G_CAS",
+    "manual_fallback": "RECOVERY_ONLY",
+    "plan_invalidation": "APPROVAL_GRANT_INVALIDATION",
+    "readiness_pretrigger": "AUTHORITATIVE_TIME_TTL_REVALIDATION",
+    "approval_atomic_claim_consume": "EXISTING_APPROVAL_GRANT_V1"
+  },
+  "validation": {
+    "new_targeted_test": "test/rev51-policy-router-admission-approval-v1.test.mjs",
+    "expected_new_tests": 11,
+    "canonical_ci": "PENDING_AFTER_COMMIT",
+    "intermediate_full_ci": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0,
+    "RERUN": 0,
+    "DISPATCH": 0
+  }
+}

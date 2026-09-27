@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "r51-p29-cross-stack-acceptance.v1",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
+  "repository": "neoflowcore/atelier-runtime",
+  "developmentBranch": "runtime-r51-p8-dependency-lock-cache",
+  "exactCandidate": {
+    "head": "948917924f08afbf9642e94b40f17778f354af1f",
+    "tree": "63f18a8b4b16429dcb8a8765f25cfb3f089edd4d",
+    "runId": 36289657309,
+    "jobId": 108536016071,
+    "conclusion": "success",
+    "observedTests": 1016,
+    "pass": 1016,
+    "fail": 0,
+    "securityLint": "PASS",
+    "workflowDispatch": 0,
+    "rerun": 0
+  },
+  "runtimeDevelopmentSeal": "PASS",
+  "piloteDevelopmentAcceptance": "PASS",
+  "credentialIndependentCrossStackSync": "PASS",
+  "remainingCredentialIndependentRequiredWork": 0,
+  "projectDevelopmentComplete": true,
+  "globalAuthEndgameTrigger": true,
+  "runtimeInterfaceIdentitySha256": "39e686591f169e62416726518d1e6917a8ed3cded43b284e2d3a2216c546548b",
+  "runtimeCompatibilityIdentitySha256": "35cbae1c4a6d42b27a45e5faeba37fe3a86a319c6944a9eb046482dea3e59dec",
+  "runtimeContractSetSha256": "d72564952b8a57b8f494306e882817f366e8f14b8c6baf367a37fb16015412fa",
+  "nextPhase": "P30_GLOBAL_AUTH_ENDGAME"
+}

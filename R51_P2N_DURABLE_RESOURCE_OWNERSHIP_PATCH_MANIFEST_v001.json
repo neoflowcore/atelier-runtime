@@ -1,0 +1,73 @@
+{
+  "manifest_type": "R51_P2N_DURABLE_RESOURCE_OWNERSHIP_PATCH_MANIFEST_V1",
+  "phase": "R51_P2N",
+  "status": "PHASE_CONTINUOUS_APPROVED_CANDIDATE",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "73b13317259e4dfb1f2905afcb0078c168b0c3ca",
+  "base_tree": "1c284913eb23688c37b69f64eccabcf227b29e56",
+  "scope": {
+    "runtime_owned_only": true,
+    "pilote_a6_semantic_dependency": false,
+    "task_contract_v1_mutation": 0,
+    "interface_v1_mutation": 0,
+    "shared_contract_redesign": 0
+  },
+  "production_dependencies": {
+    "a5_consumer_git_blob": "d183ebdc0bed3677240d5feeecdc771ba3304755",
+    "p2a_durable_execution_state_git_blob": "3f7526254318e32061687a3efc9fda80a103d459"
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/durable-resource-ownership-proof-v1.mjs",
+      "bytes": 20077,
+      "sha256": "41cb92522e3c67532e2df4a9b003559d7dd30e31413e4862d04d22895c038922",
+      "git_blob": "9c0892922227c9ad084f828f7d9b8ba48405fe46"
+    },
+    {
+      "path": "test/rev51-durable-resource-ownership-proof-v1.test.mjs",
+      "bytes": 11867,
+      "sha256": "a03b9c26a07aac425e48dd63cb575c9185507cb7def1f8b900e2f5b7a4fe1b62",
+      "git_blob": "84fe42e39f048b1fc9203b4f71dd95599168ec93"
+    },
+    {
+      "path": "docs/rev51/R51_P2N_DURABLE_RESOURCE_OWNERSHIP_PROOF.md",
+      "bytes": 2243,
+      "sha256": "57b831d8021893bddcd48e94aadb448745ec1289f92c3aae3bbd04ad67ba36f9",
+      "git_blob": "8e4a816406d34514adfe2286b820e9395e55e3e3"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "18/18 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_PASS_CANONICAL_BLOCKED",
+    "current_fence_required": "PASS",
+    "stale_lineage": "DENY",
+    "second_destructive_action": "DENY",
+    "outcome_unknown_blind_retry": "DENY",
+    "same_operation_reconciliation": "PASS",
+    "pass_consumes_proof": "PASS",
+    "crash_reopen": "PASS",
+    "event_ledger_tamper": "DENY",
+    "raw_provider_resource_id_persistence": "DENY"
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "RUNTIME_OWNED_PROVIDER_ID_EMISSION": 0,
+    "RUNTIME_OWNED_WORKER_ID_EMISSION": 0,
+    "RUNTIME_OWNED_ATTEMPT_ID_EMISSION": 0,
+    "RUNTIME_OWNED_FENCE_TOKEN_EMISSION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0,
+    "WORKFLOW_RERUN": 0,
+    "DISPATCH": 0
+  }
+}

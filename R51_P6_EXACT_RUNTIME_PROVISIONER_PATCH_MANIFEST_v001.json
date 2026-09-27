@@ -1,0 +1,42 @@
+{
+  "manifest_type": "R51_P6_EXACT_RUNTIME_PROVISIONER_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P6-EXACT-PROVISIONER-001",
+  "status": "CANONICAL_EXACT_RUNTIME_CI_PASS",
+  "repository": "neoflowcore/atelier-runtime",
+  "planned_branch": "runtime-r51-p6-exact-provisioner",
+  "base_head": "307515e4a38b8f81b1aaa92d2a76b282b16631c1",
+  "base_tree": "0aaff859bb370cd7989bd836547b1e6ebe32abb1",
+  "reuse": {
+    "G3_FIXED_RUNTIME_POLICY": true,
+    "P5_CAPABILITY_REQUIREMENT_SET": true,
+    "P5_PROVIDER_PROFILE": true,
+    "PROVIDER_SPECIFIC_BOOTSTRAP_REIMPLEMENTED": false
+  },
+  "adds": [
+    "EXACT_RUNTIME_PROVISIONING_PLAN_V1",
+    "EXECUTION_ENVIRONMENT_ATTESTATION_V1",
+    "ENVIRONMENT_FINGERPRINT_SHA256",
+    "EXECUTION_START_EXACT_ENVIRONMENT_GATE"
+  ],
+  "validation": {
+    "isolated_semantic_harness": "9/9 PASS",
+    "execution_node": "22.16.0",
+    "canonical_exact_repo_ci": "722/722 PASS",
+    "workflow_dispatch": 0,
+    "rerun": 0,
+    "canonical_run_id": 36252756292,
+    "canonical_job_id": 108433742256,
+    "canonical_node": "22.13.0",
+    "canonical_npm": "10.9.2",
+    "release_gate": "PASS"
+  },
+  "boundaries": {
+    "P7_NETWORK_PROTOCOL_PROBING_IMPLEMENTED_HERE": false,
+    "P10_PROVIDER_BOOTSTRAP_IMPLEMENTED_HERE": false,
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "PROVIDER_MUTATION": 0,
+    "PAID_COMPUTE": 0,
+    "CREDENTIAL_BINDING": 0
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "FIXTURE_SET_ID": "PILOTE_VERIFIER_POLICY_V1_FIXTURE_SET_V1",
+  "FIXTURE_SET_VERSION": "1.0.0",
+  "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "FIXTURES": [
+    {
+      "ID": "V001_RUNTIME_REQUIRED_VALID",
+      "DESCRIPTION": "Runtime verifier path with Pilote-owned task acceptance reference",
+      "INPUT": {
+        "POLICY_TYPE": "PILOTE_VERIFIER_POLICY_V1",
+        "POLICY_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "VERIFIER_POLICY_ID": "verifier.runtime.required",
+        "VERIFIER_POLICY_VERSION": "1.0.0",
+        "VERIFIER_POLICY": "RUNTIME_REQUIRED",
+        "ACCEPTANCE_REQUIREMENT_REF": "task-contract:ACCEPTANCE_REQUIREMENTS",
+        "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": "DENY",
+        "RUNTIME_DEFINED_TOLERANCE": "DENY",
+        "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "VERIFIER_POLICY_SHA256": "3e1640da42dd97a43cd66e6ccaea0af6eb647a66c4eea7f48f47d40a67b2d569"
+      },
+      "EXPECTED": {
+        "OK": true,
+        "ERRORS": []
+      }
+    },
+    {
+      "ID": "V002_PROJECT_CI_REQUIRED_VALID",
+      "DESCRIPTION": "Project CI verifier path with project acceptance reference",
+      "INPUT": {
+        "POLICY_TYPE": "PILOTE_VERIFIER_POLICY_V1",
+        "POLICY_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "VERIFIER_POLICY_ID": "verifier.project-ci.required",
+        "VERIFIER_POLICY_VERSION": "1.0.0",
+        "VERIFIER_POLICY": "PROJECT_CI_REQUIRED",
+        "ACCEPTANCE_REQUIREMENT_REF": "project:ci-acceptance/rev51",
+        "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": "DENY",
+        "RUNTIME_DEFINED_TOLERANCE": "DENY",
+        "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "VERIFIER_POLICY_SHA256": "1fa9b995c59006504a78689fc0f56c41f4b690ae453aa83265065ef3c05350c4"
+      },
+      "EXPECTED": {
+        "OK": true,
+        "ERRORS": []
+      }
+    },
+    {
+      "ID": "V003_RUNTIME_PLUS_PROJECT_CI_VALID",
+      "DESCRIPTION": "Combined Runtime plus Project CI verifier path",
+      "INPUT": {
+        "POLICY_TYPE": "PILOTE_VERIFIER_POLICY_V1",
+        "POLICY_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "VERIFIER_POLICY_ID": "verifier.runtime-plus-project-ci",
+        "VERIFIER_POLICY_VERSION": "1.0.0",
+        "VERIFIER_POLICY": "RUNTIME_PLUS_PROJECT_CI",
+        "ACCEPTANCE_REQUIREMENT_REF": "phase:hybrid-acceptance/rev51",
+        "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": "DENY",
+        "RUNTIME_DEFINED_TOLERANCE": "DENY",
+        "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "VERIFIER_POLICY_SHA256": "b71b84ee4040a5c1f978f6c45446c3901964ce031dbd3e2d2f880d66374de9ab"
+      },
+      "EXPECTED": {
+        "OK": true,
+        "ERRORS": []
+      }
+    },
+    {
+      "ID": "V004_RUNTIME_ACCEPTANCE_NAMESPACE_DENY",
+      "DESCRIPTION": "Runtime-owned acceptance namespace is denied",
+      "INPUT": {
+        "POLICY_TYPE": "PILOTE_VERIFIER_POLICY_V1",
+        "POLICY_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "VERIFIER_POLICY_ID": "verifier.runtime.required",
+        "VERIFIER_POLICY_VERSION": "1.0.0",
+        "VERIFIER_POLICY": "RUNTIME_REQUIRED",
+        "ACCEPTANCE_REQUIREMENT_REF": "runtime:invented-acceptance",
+        "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": "DENY",
+        "RUNTIME_DEFINED_TOLERANCE": "DENY",
+        "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "VERIFIER_POLICY_SHA256": "5493c5d2bf23771d5360ac44b43c6174f90fbb8f5c317d642d80df77d0a265a7"
+      },
+      "EXPECTED": {
+        "OK": false,
+        "ERRORS": [
+          "ACCEPTANCE_REQUIREMENT_OWNER_NOT_PILOTE_SEMANTIC"
+        ]
+      }
+    },
+    {
+      "ID": "V005_RUNTIME_DEFINED_ACCEPTANCE_DENY",
+      "DESCRIPTION": "Runtime-defined acceptance semantics are denied",
+      "INPUT": {
+        "POLICY_TYPE": "PILOTE_VERIFIER_POLICY_V1",
+        "POLICY_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "VERIFIER_POLICY_ID": "verifier.runtime.required",
+        "VERIFIER_POLICY_VERSION": "1.0.0",
+        "VERIFIER_POLICY": "RUNTIME_REQUIRED",
+        "ACCEPTANCE_REQUIREMENT_REF": "task-contract:ACCEPTANCE_REQUIREMENTS",
+        "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": "ALLOW",
+        "RUNTIME_DEFINED_TOLERANCE": "DENY",
+        "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "VERIFIER_POLICY_SHA256": "6ff0ac29d6680ac484306a6657eeb7bdf8fbcfd9df3b59c47f265f6a5240784e"
+      },
+      "EXPECTED": {
+        "OK": false,
+        "ERRORS": [
+          "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS_MUST_BE_DENY"
+        ]
+      }
+    },
+    {
+      "ID": "V006_RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE_DENY",
+      "DESCRIPTION": "Raw worker success cannot directly imply project acceptance",
+      "INPUT": {
+        "POLICY_TYPE": "PILOTE_VERIFIER_POLICY_V1",
+        "POLICY_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "VERIFIER_POLICY_ID": "verifier.runtime-plus-project-ci",
+        "VERIFIER_POLICY_VERSION": "1.0.0",
+        "VERIFIER_POLICY": "RUNTIME_PLUS_PROJECT_CI",
+        "ACCEPTANCE_REQUIREMENT_REF": "phase:hybrid-acceptance/rev51",
+        "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": "DENY",
+        "RUNTIME_DEFINED_TOLERANCE": "DENY",
+        "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE": "ALLOW",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "VERIFIER_POLICY_SHA256": "ce6af4247e99a4d8cf13a0f99b4e6da4ba28859ee11e0a2e77b8d393f858353a"
+      },
+      "EXPECTED": {
+        "OK": false,
+        "ERRORS": [
+          "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE_MUST_BE_DENY"
+        ]
+      }
+    },
+    {
+      "ID": "V007_POLICY_TAMPER_DENY",
+      "DESCRIPTION": "Verifier semantic tampering without rehash is detected",
+      "INPUT": {
+        "POLICY_TYPE": "PILOTE_VERIFIER_POLICY_V1",
+        "POLICY_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "VERIFIER_POLICY_ID": "verifier.runtime.required",
+        "VERIFIER_POLICY_VERSION": "1.0.0",
+        "VERIFIER_POLICY": "PROJECT_CI_REQUIRED",
+        "ACCEPTANCE_REQUIREMENT_REF": "task-contract:ACCEPTANCE_REQUIREMENTS",
+        "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": "DENY",
+        "RUNTIME_DEFINED_TOLERANCE": "DENY",
+        "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a"
+        },
+        "VERIFIER_POLICY_SHA256": "3e1640da42dd97a43cd66e6ccaea0af6eb647a66c4eea7f48f47d40a67b2d569"
+      },
+      "EXPECTED": {
+        "OK": false,
+        "ERRORS": [
+          "VERIFIER_POLICY_SHA256_MISMATCH"
+        ]
+      }
+    },
+    {
+      "ID": "V008_CONTRACT_SET_DRIFT_DENY",
+      "DESCRIPTION": "Contract-set drift fails closed",
+      "INPUT": {
+        "POLICY_TYPE": "PILOTE_VERIFIER_POLICY_V1",
+        "POLICY_VERSION": "1.0.0",
+        "CANONICALIZATION_ID": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+        "VERIFIER_POLICY_ID": "verifier.project-ci.required",
+        "VERIFIER_POLICY_VERSION": "1.0.0",
+        "VERIFIER_POLICY": "PROJECT_CI_REQUIRED",
+        "ACCEPTANCE_REQUIREMENT_REF": "project:ci-acceptance/rev51",
+        "RUNTIME_DEFINED_ACCEPTANCE_SEMANTICS": "DENY",
+        "RUNTIME_DEFINED_TOLERANCE": "DENY",
+        "RAW_WORKER_SUCCESS_DIRECT_ACCEPTANCE": "DENY",
+        "CONTRACT_SET_REF": {
+          "ID": "ATELIER_REV51_CONTRACT_SET_V1",
+          "VERSION": "1.0.0",
+          "SHA256": "0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "VERIFIER_POLICY_SHA256": "f199a586e6a7f288b5d02d63af611bafecc07106a6de772ed96bcaaa2d90dcab"
+      },
+      "EXPECTED": {
+        "OK": false,
+        "ERRORS": [
+          "CONTRACT_SET_REF_MISMATCH"
+        ]
+      }
+    }
+  ]
+}

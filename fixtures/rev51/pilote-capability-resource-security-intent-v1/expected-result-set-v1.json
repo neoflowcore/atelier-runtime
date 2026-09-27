@@ -1,0 +1,70 @@
+{
+  "RESULT_SET_ID": "PILOTE_CAPABILITY_RESOURCE_SECURITY_INTENT_V1_EXPECTED_RESULT_SET_V1",
+  "RESULT_SET_VERSION": "1.0.0",
+  "VECTOR_SET_ID": "PILOTE_CAPABILITY_RESOURCE_SECURITY_INTENT_V1_TEST_VECTOR_SET_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "RESULTS": [
+    {
+      "ID": "V001_VALID_MINIMAL",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V002_RUNTIME_PROVIDER_ID_DENY",
+      "OK": false,
+      "ERRORS": [
+        "A5_TOP_LEVEL_FIELDS_MISMATCH",
+        "FORBIDDEN_RUNTIME_OWNED_KEY:$.PROVIDER_ID",
+        "A5_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V003_ATTESTATION_ID_DENY",
+      "OK": false,
+      "ERRORS": [
+        "A5_TOP_LEVEL_FIELDS_MISMATCH",
+        "FORBIDDEN_RUNTIME_OWNED_KEY:$.ATTESTATION_ID",
+        "A5_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V004_CAPABILITY_ATTESTATION_WEAKEN_DENY",
+      "OK": false,
+      "ERRORS": [
+        "CAPABILITY_ATTESTATION_POLICY_MISMATCH",
+        "A5_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V005_PRIVILEGED_WORKER_ALLOW_DENY",
+      "OK": false,
+      "ERRORS": [
+        "PRIVILEGED_WORKER_MISMATCH",
+        "A5_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V006_BOOTSTRAP_PRIV_EQUIVALENCE_DENY",
+      "OK": false,
+      "ERRORS": [
+        "BOOTSTRAP_CREDENTIAL_PRIVILEGED_JOB_EQUIVALENCE_MISMATCH",
+        "A5_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V007_SECRET_PERSISTENCE_DENY",
+      "OK": false,
+      "ERRORS": [
+        "SECRET_PERSISTENCE_MISMATCH",
+        "A5_INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V008_CONTRACT_SET_DRIFT_DENY",
+      "OK": false,
+      "ERRORS": [
+        "CONTRACT_SET_REF_MISMATCH"
+      ]
+    }
+  ]
+}

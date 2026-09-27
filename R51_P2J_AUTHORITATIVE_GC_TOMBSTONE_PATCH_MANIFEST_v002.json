@@ -1,0 +1,15 @@
+{
+  "manifest_type":"R51_P2J_AUTHORITATIVE_GC_TOMBSTONE_PATCH_MANIFEST_V2",
+  "status":"REBASED_TO_P2I_REMOTE_READY",
+  "repository":"neoflowcore/atelier-runtime",
+  "branch":"runtime-r51-a2-consumer-binding",
+  "base_head":"ee84a598a5519ad20c39574de0ccce9c2eae1bf7",
+  "base_tree":"2f40080228970c2c9c9e4bcc31200cf310bba01a",
+  "files":[
+    {"path":"runtime/rev51/authoritative-gc-tombstone-v1.mjs","bytes":5699,"sha256":"022c37d69a2f5e5652ad9abe4c8996ad1e97f50b2eb4e13daaf8521318793749","git_blob":"98226aca36c9563b8d4073b22d8b770b0cb3901f"},
+    {"path":"test/rev51-authoritative-gc-tombstone-v1.test.mjs","bytes":4024,"sha256":"46b3bd44c54b5fc8074a85e1f834fb8347ef14d46c7f1397176f2dfff2df5485","git_blob":"f1bc576022cb94133986de47f618ad6ca9130255"},
+    {"path":"docs/rev51/R51_P2J_AUTHORITATIVE_GC_TOMBSTONE.md","bytes":568,"sha256":"18b67eb1de5dd781e1fb04d035537b0419439ab58a1df230c9001d9de63c49cd","git_blob":"b95f2cd444d230de87de2c2d4c9c3065d638f695"}
+  ],
+  "validation":{"targeted_tests":"12/12 PASS","evidence_class":"SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH","source_semantics_changed_during_rebase":false},
+  "invariants":{"TASK_CONTRACT_V1_MUTATION":0,"INTERFACE_V1_MUTATION":0,"PILOTE_A6_SEMANTIC_DEPENDENCY":0,"DELETE_BEFORE_TOMBSTONE":0,"FORCE_PUSH":0,"MAIN_WRITE":0,"MERGE":0,"RERUN":0,"DISPATCH":0}
+}

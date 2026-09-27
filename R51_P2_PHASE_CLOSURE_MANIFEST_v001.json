@@ -1,0 +1,71 @@
+{
+  "manifest_type": "R51_P2_PHASE_CLOSURE_MANIFEST_V1",
+  "phase": "R51-P2",
+  "status": "VERIFIED_PASS",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "candidate_base_head": "e485ceb461e9fe490a6f7498704eccaa7f686b1b",
+  "candidate_base_tree": "590e0c959b5d3d266cacdb24b549da0f02e6df01",
+  "plan_gate": {
+    "CRASH_RESTART": "PASS",
+    "STALE_RESULT_REJECTED": "PASS",
+    "REPLAY_IDEMPOTENT": "PASS",
+    "FENCE_MONOTONIC_NON_REUSABLE": "PASS",
+    "OUTCOME_UNKNOWN_NOT_BLINDLY_RETRIED": "PASS"
+  },
+  "evidence": {
+    "canonical_ci": {
+      "run_id": 36216576442,
+      "run_number": 75,
+      "run_attempt": 1,
+      "conclusion": "success",
+      "tests": 677,
+      "pass": 677,
+      "fail": 0
+    },
+    "crash_restart": [
+      "session survives reopen from durable bytes",
+      "restart/reopen preserves durable saga state",
+      "restart reopen preserves durable readiness state",
+      "same idempotency replay survives restart and later durable state advancement"
+    ],
+    "stale_result_rejected": [
+      "stale state version fails compare-and-swap",
+      "stale fence is rejected before authoritative mutation",
+      "stale session fence binding is rejected against durable execution state"
+    ],
+    "replay_idempotent": [
+      "identical idempotency replay does not append a second event",
+      "exact idempotent replay",
+      "same closure request replays after reopen"
+    ],
+    "fence_monotonic_non_reusable": [
+      "fence advancement is strictly monotonic and updates attempt/lease",
+      "fence sequence gaps and token reuse are denied"
+    ],
+    "outcome_unknown_not_blindly_retried": [
+      "OUTCOME_UNKNOWN persists reconciliation-only state and never enables blind retry",
+      "OUTCOME_UNKNOWN blocks blind retry and phase advance",
+      "blind second activation after OUTCOME_UNKNOWN is denied"
+    ]
+  },
+  "durable_chain": {
+    "first": "R51_P2A_DURABLE_STATE_FENCE_CAS",
+    "last": "R51_P2X_DURABLE_PROVIDER_TERMINAL_SESSION_BINDING",
+    "substeps": "P2A-P2X",
+    "latest_cross_stack_binding": "RUNTIME_B_A8_CROSS_STACK_BIND=PASS"
+  },
+  "preserved_invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "BLIND_RERUN": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  },
+  "next_phase": "R51-P3",
+  "phase_closure_rule": "P2 gate satisfied by verified durable-state evidence; no P3 semantics are claimed by this closure artifact."
+}

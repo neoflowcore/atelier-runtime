@@ -1,0 +1,86 @@
+{
+  "manifest_type": "R51_A5_PILOTE_CAPABILITY_RESOURCE_SECURITY_AUTHORITATIVE_MANIFEST_V1",
+  "phase": "R51-A5",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "pilote-r51-a5-capability-resource-security-intent",
+  "base_head": "395779f3ff04fb56d2aaa6a836a05b6600d18747",
+  "base_tree": "a0615fd74f6d7235744453f46b3430037afd4858",
+  "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "semantic_contract": {
+    "intent_type": "PILOTE_CAPABILITY_RESOURCE_SECURITY_INTENT_V1",
+    "intent_version": "1.0.0",
+    "capability_attestation_policy": "STATIC_AND_DYNAMIC_REQUIRED",
+    "capability_drift_policy": "FAIL_CLOSED",
+    "resource_ownership_proof_policy": "DURABLE_PROOF_REQUIRED_BEFORE_DESTRUCTIVE_ACTION",
+    "host_mount_policy": "DENY_DEFAULT",
+    "host_secret_inheritance": "DENY",
+    "privileged_worker": "DENY_DEFAULT",
+    "untrusted_code_on_persistent_worker": "DENY",
+    "job_scoped_credential_lease": "REQUIRED",
+    "bootstrap_credential_privileged_job_equivalence": "DENY",
+    "unattested_worker_privileged_job_credential": "DENY",
+    "warm_reuse_sanitation_receipt": "REQUIRED",
+    "structured_entrypoint": "REQUIRED",
+    "shell_execution": "DENY_DEFAULT",
+    "secret_persistence": "DENY"
+  },
+  "files": [
+    {
+      "path": "pilote/rev51/capability-resource-security-intent-v1.mjs",
+      "bytes": 14108,
+      "sha256": "a38d88c13f497007a6903297713d064f5f71188aa5a734423f3a7d0838fed1eb"
+    },
+    {
+      "path": "schemas/rev51/pilote-capability-resource-security-intent-v1.schema.json",
+      "bytes": 4183,
+      "sha256": "1bbcd5a6acf38f677527ad69117c210b0c114754ba96c36edc268f7cffd948f8"
+    },
+    {
+      "path": "fixtures/rev51/pilote-capability-resource-security-intent-v1/test-vector-set-v1.json",
+      "bytes": 18503,
+      "sha256": "1b48f197728e418a4941dfe758c71842aae94fb83f2106d8bfcaf3ccd37af1ee"
+    },
+    {
+      "path": "fixtures/rev51/pilote-capability-resource-security-intent-v1/expected-result-set-v1.json",
+      "bytes": 1781,
+      "sha256": "0da554f47146a075e239d9cb60eeccffbe1002f98ce99306bcb3674ebeaae109"
+    },
+    {
+      "path": "test/rev51-pilote-capability-resource-security-v1.test.mjs",
+      "bytes": 4067,
+      "sha256": "8ef58f7b816bec9844cfec3b680cc7d6ba943aee86267362b680a0b5f4f62082"
+    },
+    {
+      "path": "docs/rev51/R51_A5_PILOTE_CAPABILITY_RESOURCE_SECURITY_INTENT.md",
+      "bytes": 2435,
+      "sha256": "2a9823dc00abcd995b8d090c472cbbaf07045f5714b737cd0e1fbc87419c2163"
+    }
+  ],
+  "validation": {
+    "module_syntax_evaluation": "PASS",
+    "vector_expected_result_reproduction": "8/8 PASS",
+    "node_test_file_published": "YES",
+    "node_test_execution_in_publish_step": "NOT_RUN",
+    "intermediate_full_ci": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "A2_EXECUTION_INTENT_SCHEMA_MUTATION": 0,
+    "A3_VERIFIER_ACCEPTANCE_SEMANTIC_MUTATION": 0,
+    "A4_APPROVAL_EFFECT_OPERATOR_SEMANTIC_MUTATION": 0,
+    "RUNTIME_OWNED_PROVIDER_ID_EMISSION": 0,
+    "RUNTIME_OWNED_WORKER_ID_EMISSION": 0,
+    "RUNTIME_OWNED_ATTESTATION_ID_EMISSION": 0,
+    "RUNTIME_OWNED_CREDENTIAL_LEASE_ID_EMISSION": 0,
+    "DISPATCH": 0,
+    "RERUN": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

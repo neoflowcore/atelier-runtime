@@ -1,0 +1,65 @@
+{
+  "manifest_type": "R51_P2D_DURABLE_READINESS_EXPIRY_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-P2D-001",
+  "status": "LOCAL_VERIFIED_CANDIDATE_REMOTE_WRITE_NOT_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "5368cb68c26ddc05a28e2032e14ac59b53a92916",
+  "base_tree": "bc4a485bea6af8eddea43eb5df17077001636c4e",
+  "scope": {
+    "runtime_owned_only": true,
+    "pilote_a6_semantic_dependency": false,
+    "shared_contract_change": false,
+    "interface_v1_change": false
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/readiness-expiry-reconciliation-v1.mjs",
+      "bytes": 16089,
+      "sha256": "a0bf0bc7249a9a0d655f7f72ef7dd390e1925938adc7dbf57ca53b5f3cb73f66",
+      "git_blob": "31a1cfa4639931d6f3c4cc7421d77b5df56972a5"
+    },
+    {
+      "path": "test/rev51-readiness-expiry-reconciliation-v1.test.mjs",
+      "bytes": 10719,
+      "sha256": "412745afa281a17dcc0006123eccce5d4a9ec18828a6f1d358ad8f6d7f2d7b1e",
+      "git_blob": "b4d6726a3b1d8939206696241b8540d69144e1b7"
+    },
+    {
+      "path": "docs/rev51/R51_P2D_DURABLE_READINESS_EXPIRY.md",
+      "bytes": 2012,
+      "sha256": "e71c6efb25601c43ade263aea1b7e5b45229959699e738cbb246ae3fdd3d9960",
+      "git_blob": "79ec46e4e757f0fee4e2276309e5167f66ce85e0"
+    }
+  ],
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "15/15 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "crash_restart_reopen": "PASS",
+    "expiry_boundary": "PASS",
+    "idempotent_reconcile": "PASS",
+    "reattestation_gate": "PASS",
+    "old_session_auto_rebind": "DENY",
+    "expiry_alone_attempt_lease_fence_advance": "DENY"
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY": 0,
+    "ATTEMPT_ID_EMISSION_ON_TTL_EXPIRY": 0,
+    "LEASE_GENERATION_EMISSION_ON_TTL_EXPIRY": 0,
+    "FENCE_TOKEN_EMISSION_ON_TTL_EXPIRY": 0,
+    "WORKFLOW_RUN": 0,
+    "RERUN": 0,
+    "DISPATCH": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

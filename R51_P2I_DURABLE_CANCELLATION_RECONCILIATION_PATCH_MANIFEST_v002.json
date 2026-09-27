@@ -1,0 +1,30 @@
+{
+  "manifest_type":"R51_P2I_DURABLE_CANCELLATION_RECONCILIATION_PATCH_MANIFEST_V2",
+  "status":"REBASED_TO_P2H_REMOTE_READY",
+  "repository":"neoflowcore/atelier-runtime",
+  "branch":"runtime-r51-a2-consumer-binding",
+  "base_head":"567ff03cc7fb34fd11d4a9aaaee6a532f9dcaae2",
+  "base_tree":"8cabe4a7381d90dd2f738ace23295c7e392ce8c4",
+  "files":[
+    {"path":"runtime/rev51/durable-cancellation-reconciliation-v1.mjs","bytes":6860,"sha256":"b23fea825c6cf29f3f7e9d43338a6bc00a16476607c8dbe6ff877cd8e3fa3229","git_blob":"418749347560c04d0dfac5bf8de04c3f5baf7783"},
+    {"path":"test/rev51-durable-cancellation-reconciliation-v1.test.mjs","bytes":3914,"sha256":"6db83b3786dade6d22e027490dc5cd47cb0965e12c9dac1297853d9c0c2a51dc","git_blob":"123780e83ae0e935244fdc94b965e587ef63a67f"},
+    {"path":"docs/rev51/R51_P2I_DURABLE_CANCELLATION_RECONCILIATION.md","bytes":487,"sha256":"4b5ff103b97a2654ce798ef3f7021203cb45c0651f4204a654f49f9ad78152dd","git_blob":"6010dac2dca14f576b0e59a7491a6bef893ac767"}
+  ],
+  "validation":{
+    "targeted_tests":"10/10 PASS",
+    "evidence_class":"SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "source_semantics_changed_during_rebase":false
+  },
+  "invariants":{
+    "TASK_CONTRACT_V1_MUTATION":0,
+    "INTERFACE_V1_MUTATION":0,
+    "PILOTE_A6_SEMANTIC_DEPENDENCY":0,
+    "BLIND_RETRY_AFTER_OUTCOME_UNKNOWN":0,
+    "SECOND_MUTATION_AFTER_OUTCOME_UNKNOWN":0,
+    "FORCE_PUSH":0,
+    "MAIN_WRITE":0,
+    "MERGE":0,
+    "RERUN":0,
+    "DISPATCH":0
+  }
+}

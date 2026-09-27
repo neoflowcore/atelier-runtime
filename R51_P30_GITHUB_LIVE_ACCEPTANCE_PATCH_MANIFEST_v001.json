@@ -1,0 +1,48 @@
+{
+  "manifest_type": "R51_P30_GITHUB_LIVE_ACCEPTANCE_PATCH_MANIFEST_V1",
+  "workplanIdentity": "P30_GLOBAL_AUTH_ENDGAME_GITHUB_HOSTED_LIVE_ACCEPTANCE",
+  "status": "LOCAL_TARGETED_VERIFIED_EXACT_CANDIDATE_PENDING",
+  "repository": "neoflowcore/atelier-runtime",
+  "developmentBranch": "runtime-r51-p8-dependency-lock-cache",
+  "authoritativeMasterPlan": "runtime-v016",
+  "providerSelection": {
+    "selected": "github-actions",
+    "executorClass": "repository-hosted-ci-executor",
+    "digitalOcean": "OPTIONAL_NOT_SELECTED",
+    "ssh": "BREAK_GLASS_ONLY_NOT_USED"
+  },
+  "adds": [
+    "P30_GITHUB_LIVE_TRIGGER_V1",
+    "P30_GITHUB_LIVE_OBSERVATION_V1",
+    "GITHUB_SOURCE_PROVENANCE_LIVE_READ",
+    "GITHUB_RUN_JOB_BINDING_IDENTITY",
+    "PRODUCTION_ATTESTATION_V1_GITHUB_BINDING",
+    "PROVIDER_QUALIFICATION_GITHUB_HOSTED_RUNNER",
+    "P33_CONTENT_IDENTITY_FAILURE_EVIDENCE_REUSE",
+    "CANONICAL_ARTIFACT_UPLOAD_READBACK",
+    "FINAL_LIVE_ACCEPTANCE_SEMANTIC_COMPILATIO"
+  ],
+  "validation": {
+    "localTargeted": "7/7 PASS",
+    "localNode": "22.16.0",
+    "canonicalExactRepoCi": "PENDING",
+    "workflowDispatch": 0,
+    "blindRerun": 0
+  },
+  "costEnvelope": {
+    "reuseExistingSelftestJob": true,
+    "newWorkflowJob": 0,
+    "runner": "ubuntu-24.04",
+    "timeoutMinutes": 5,
+    "listRateUsdPerMinute": 0.006,
+    "maxListPriceUsd": 0.03,
+    "newPaidProviderResource": 0
+  },
+  "boundaries": {
+    "DIGITALOCEAN_MUTATION": 0,
+    "MANUAL_SSH": 0,
+    "TOKEN_COPY_PASTE": 0,
+    "NEW_SECRET": 0,
+    "FINAL_RELEASE_MERGE_AUTHORITY": "PRESERVED_SEPARATE"
+  }
+}

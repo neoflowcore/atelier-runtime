@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/worker-job-v1.schema.json",
+  "title": "WORKER_JOB_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "SCHEMA_ID",
+    "SCHEMA_VERSION",
+    "CANONICALIZATION_ID",
+    "UPSTREAM_OBJECT_SHA256",
+    "OBJECT_SHA256",
+    "EXECUTION_PLAN_HASH",
+    "EXECUTION_ID",
+    "ATTEMPT_ID",
+    "FENCE_TOKEN",
+    "EXECUTION_MODE",
+    "ENTRYPOINT_SPEC",
+    "SEMANTIC_REPLANNING"
+  ],
+  "properties": {
+    "SCHEMA_ID": {
+      "const": "WORKER_JOB_V1"
+    },
+    "SCHEMA_VERSION": {
+      "const": "1"
+    },
+    "CANONICALIZATION_ID": {
+      "const": "ATELIER_REV51_JCS_V1"
+    },
+    "UPSTREAM_OBJECT_SHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "OBJECT_SHA256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "EXECUTION_PLAN_HASH": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "EXECUTION_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ATTEMPT_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "FENCE_TOKEN": {
+      "type": "string",
+      "minLength": 1
+    },
+    "EXECUTION_MODE": {
+      "enum": [
+        "DIRECT_REMOTE",
+        "GITHUB_GATE"
+      ]
+    },
+    "ENTRYPOINT_SPEC": {
+      "type": "object"
+    },
+    "SEMANTIC_REPLANNING": {
+      "const": "DENY"
+    }
+  }
+}

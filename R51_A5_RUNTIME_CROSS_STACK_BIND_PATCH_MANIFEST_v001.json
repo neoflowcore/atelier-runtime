@@ -1,0 +1,85 @@
+{
+  "manifest_type": "R51_A5_RUNTIME_CROSS_STACK_BIND_PATCH_MANIFEST_V1",
+  "wt_id": "WT-RUNTIME-R51-A5-BIND-001",
+  "status": "LOCAL_VERIFIED_CANDIDATE_REMOTE_WRITE_NOT_AUTHORIZED",
+  "repository": "neoflowcore/atelier-runtime",
+  "branch": "runtime-r51-a2-consumer-binding",
+  "base_head": "260a162cfa31a177c8049d1eaf0ffe343d0f9d5e",
+  "base_tree": "71c940b6e3af9e2c617acaf918cb75f5f4b1fc28",
+  "pilote_a5_authoritative": {
+    "branch": "pilote-r51-a5-capability-resource-security-intent",
+    "head": "47607a346f57077b46f3df527fae5a51e960243b",
+    "tree": "22871e691daedc9a922de95f6d7820b93c136e81",
+    "module_sha256": "a38d88c13f497007a6903297713d064f5f71188aa5a734423f3a7d0838fed1eb",
+    "schema_sha256": "1bbcd5a6acf38f677527ad69117c210b0c114754ba96c36edc268f7cffd948f8",
+    "canonicalization_id": "ATELIER_EXECUTION_CANONICAL_JSON_V1",
+    "test_vector_set_sha256": "1b48f197728e418a4941dfe758c71842aae94fb83f2106d8bfcaf3ccd37af1ee",
+    "expected_result_set_sha256": "0da554f47146a075e239d9cb60eeccffbe1002f98ce99306bcb3674ebeaae109",
+    "authoritative_manifest_sha256": "59a9b26f59fbe2a9c452e6f86313a86d7d0e6635a43f9a3198a5af4634d5fe11"
+  },
+  "contract_set_id": "ATELIER_REV51_CONTRACT_SET_V1",
+  "contract_set_sha256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "scope": {
+    "runtime_owned_only": true,
+    "pilote_a5_semantic_reinterpretation": false,
+    "shared_contract_change": false,
+    "interface_v1_change": false
+  },
+  "files": [
+    {
+      "path": "runtime/rev51/pilote-capability-resource-security-consumer-v1.mjs",
+      "bytes": 13670,
+      "sha256": "4eb4baed293b6c9c872d53c7a9c6b016049f9fedb148347837c5f024499dd437",
+      "git_blob": "d183ebdc0bed3677240d5feeecdc771ba3304755"
+    },
+    {
+      "path": "test/rev51-a5-cross-stack-consumer-v1.test.mjs",
+      "bytes": 8699,
+      "sha256": "df2ccbc3a77012db7a5ca9031b4100c0999dceb1e82e0878c0ad9c57f2c9b0a6",
+      "git_blob": "e34e9b641ae8f53a67622ea85f00306dad3010e2"
+    },
+    {
+      "path": "docs/rev51/R51_A5_RUNTIME_CROSS_STACK_CONSUMER_BINDING.md",
+      "bytes": 4422,
+      "sha256": "750898ed3c62531b910ac5e44beb0ce3e88f32e617d0a42ef55428b3735e8caf",
+      "git_blob": "55bfc6c2d1ddab03631b5a6904122fc7b80e0edc"
+    }
+  ],
+  "binding_results": {
+    "CAPABILITY_REQUIREMENT_BINDING": "PASS",
+    "RESOURCE_INTENT_BINDING": "PASS",
+    "SECURITY_REQUIREMENT_BINDING": "PASS",
+    "CAPABILITY_ATTESTATION_BOUNDARY": "PASS",
+    "CAPABILITY_DRIFT_BOUNDARY": "PASS",
+    "RESOURCE_OWNERSHIP_PROOF_BOUNDARY": "PASS",
+    "CREDENTIAL_CLASS_SEPARATION": "PASS",
+    "WORKER_PRIVILEGE_BOUNDARY": "PASS",
+    "SECRET_PERSISTENCE_BOUNDARY": "PASS"
+  },
+  "validation": {
+    "node_check": "PASS",
+    "targeted_tests": "22/22 PASS",
+    "a5_authoritative_vector_results": "8/8 PASS",
+    "execution_node": "22.16.0",
+    "repository_engine_node": "22.13.0",
+    "evidence_class": "SUPPLEMENTAL_LOCAL_NODE_VERSION_MISMATCH",
+    "workflow_run": 0,
+    "rerun": 0,
+    "dispatch": 0
+  },
+  "invariants": {
+    "TASK_CONTRACT_V1_MUTATION": 0,
+    "FROZEN_27_FIELDS_MUTATION": 0,
+    "INTERFACE_V1_MUTATION": 0,
+    "SHARED_CONTRACT_REDESIGN": 0,
+    "PILOTE_SEMANTIC_REINTERPRETATION": 0,
+    "RUNTIME_OWNED_PROVIDER_ID_EMISSION": 0,
+    "RUNTIME_OWNED_WORKER_ID_EMISSION": 0,
+    "RUNTIME_OWNED_ATTESTATION_ID_EMISSION": 0,
+    "RUNTIME_OWNED_CREDENTIAL_LEASE_ID_EMISSION": 0,
+    "REMOTE_MUTATION": 0,
+    "MAIN_WRITE": 0,
+    "MERGE": 0,
+    "FORCE_PUSH": 0
+  }
+}

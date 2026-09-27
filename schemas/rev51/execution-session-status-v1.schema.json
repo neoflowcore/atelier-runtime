@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atelier.local/schemas/rev51/execution-session-status-v1.schema.json",
+  "title": "EXECUTION_SESSION_STATUS_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "SESSION_ID",
+    "EXECUTION_STATE",
+    "RESOURCE_STATE",
+    "BILLING_STATE",
+    "PROVIDER_OPERATION_STATE",
+    "CHAT_DISCONNECTED",
+    "ANDROID_OFFLINE",
+    "SSH_DISCONNECTED"
+  ],
+  "properties": {
+    "SESSION_ID": {
+      "type": "string",
+      "minLength": 1
+    },
+    "EXECUTION_STATE": {
+      "enum": [
+        "REQUESTED",
+        "READY",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELED",
+        "EXPIRED",
+        "OUTCOME_UNKNOWN"
+      ]
+    },
+    "RESOURCE_STATE": {
+      "enum": [
+        "NOT_ALLOCATED",
+        "ALLOCATED",
+        "CLEANUP_PENDING",
+        "CLEANED",
+        "CLEANUP_FAILED",
+        "UNKNOWN"
+      ]
+    },
+    "BILLING_STATE": {
+      "enum": [
+        "NOT_APPLICABLE",
+        "ACTIVE",
+        "STOP_REQUESTED",
+        "STOPPED",
+        "UNKNOWN"
+      ]
+    },
+    "PROVIDER_OPERATION_STATE": {
+      "enum": [
+        "PENDING",
+        "SUCCEEDED",
+        "FAILED",
+        "OUTCOME_UNKNOWN"
+      ]
+    },
+    "CHAT_DISCONNECTED": {
+      "const": "NO_EFFECT"
+    },
+    "ANDROID_OFFLINE": {
+      "const": "NO_EFFECT"
+    },
+    "SSH_DISCONNECTED": {
+      "const": "NO_EFFECT"
+    }
+  }
+}

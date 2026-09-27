@@ -1,0 +1,53 @@
+{
+  "RESULT_SET_ID": "PILOTE_EXECUTION_INTENT_V1_EXPECTED_RESULT_SET_V1",
+  "RESULT_SET_VERSION": "1.0.0",
+  "VECTOR_SET_ID": "PILOTE_EXECUTION_INTENT_V1_TEST_VECTOR_SET_V1",
+  "CONTRACT_SET_SHA256": "a8b220c92a47306061e9aca1c65077d357b00bda12e9daad4f37215256083f4a",
+  "RESULTS": [
+    {
+      "ID": "V001_VALID_NATIVE_MINIMAL",
+      "OK": true,
+      "ERRORS": []
+    },
+    {
+      "ID": "V002_FORBIDDEN_PROVIDER_ID",
+      "OK": false,
+      "ERRORS": [
+        "INTENT_TOP_LEVEL_FIELDS_MISMATCH",
+        "FORBIDDEN_INFRASTRUCTURE_KEY:$.PROVIDER_ID",
+        "INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V003_FORBIDDEN_SECRET_VALUE",
+      "OK": false,
+      "ERRORS": [
+        "FORBIDDEN_INFRASTRUCTURE_KEY:$.SECURITY_REQUIREMENT.SECRET_VALUE",
+        "INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V004_LEGACY_MODE_DENY",
+      "OK": false,
+      "ERRORS": [
+        "INPUT_MODE_MUST_BE_NATIVE_REV51",
+        "INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V005_CONTRACT_SET_DRIFT_DENY",
+      "OK": false,
+      "ERRORS": [
+        "CONTRACT_SET_REF_MISMATCH",
+        "INTENT_SHA256_MISMATCH"
+      ]
+    },
+    {
+      "ID": "V006_INTENT_TAMPER_DENY",
+      "OK": false,
+      "ERRORS": [
+        "INTENT_SHA256_MISMATCH"
+      ]
+    }
+  ]
+}
