@@ -1,0 +1,6 @@
+import test from "node:test";import assert from "node:assert/strict";import {readFile} from "node:fs/promises";import {validateRev52FinalSealV1} from "../crossstack/rev52/final-seal-v1.mjs";
+const s=JSON.parse(await readFile(new URL("../ATELIER_REV52_FINAL_SEAL_v001.json",import.meta.url),"utf8"));
+test("C52-4 final seal validates all project-wide gates",()=>assert.deepEqual(validateRev52FinalSealV1(s),{ok:true,errors:[]}));
+test("C52-4 binds exact final live run and artifact identities",()=>{assert.equal(s.liveExecutionHead,"150927abecfb435a67a9677ca95d40451e803ff5");assert.equal(s.liveRunId,36408291443);assert.equal(s.liveJobId,108882158968);assert.equal(s.canonicalPreArtifactId,10963885011);assert.equal(s.canonicalFinalArtifactId,10962859066)});
+test("C52-4 zero-human-auth and residue KPIs are closed",()=>{assert.equal(s.AUTH_INTERACTION_COUNT,0);assert.equal(s.THIRD_PARTY_PAID_EXECUTION_NORMAL_PATH,0);assert.equal(s.ACTIVE_PAID_COMPUTE,0);assert.equal(s.ORPHANED_BILLABLE_RESOURCE,0);assert.equal(s.BILLABLE_RESIDUE,0)});
+test("C52-4 final seal does not grant final merge or release authority",()=>{assert.equal(s.finalMergeReleaseAuthorityGranted,false);assert.equal(s.FINAL_MERGE_BOUNDARY,"FINAL_RELEASE_MERGE_AUTHORITY_REQUIRED")});
