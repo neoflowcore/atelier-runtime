@@ -1,0 +1,27 @@
+{
+  "SCHEMA_ID": "PILOTE_RUNTIME_DEPENDENCY_LOCK_V1",
+  "SCHEMA_VERSION": "1",
+  "piloteVersion": "5.2",
+  "runtimeVersion": "5.2",
+  "runtimeHandoffDigest": "eb122a65afc92d589b1af2eb923167cd47d144e1105669493b117249beefcbf8",
+  "runtimeHandoffCarrierHead": "4256c95aa3521bf74c03c2e204a0b9a63d8626e0",
+  "runtimeSourceIdentity": {
+    "head": "785ae47c1abc4363396b0805a2e43783132465bb",
+    "tree": "487e701c880ecc49c5a95ba66f12b1cb2c6074fc"
+  },
+  "runtimeInterfaceVersion": "5.2-FROZEN",
+  "runtimeInterfaceDigest": "d6b22817a194b864611118e36d19bb1fda0eeca6b8a60eda31bec82b5bf622c4",
+  "projectIdentityDigest": "95777a28340ba9d5356776ee33d233411bedccec9701763bf7c80e9b1680247f",
+  "sourceManifestDigest": "5978be277f572766fdc79d4a3ad3b0e0324369487bd0337aef1587a646b7c420",
+  "authoritativeMasterPlanId": "runtime-rev52-master-v019",
+  "masterPlanDigest": "3e8583c1a5d875cfc54c1ae377ad6aba5385de500f3759f1f13cfa812c271ec9",
+  "compatibilityManifestRef": "R52_RUNTIME_INTERFACE_FREEZE_v001.json",
+  "migrationManifestRef": "R52_RUNTIME_INTERFACE_FREEZE_v001.json",
+  "conformanceFixtureManifestRef": "runtime/rev52/longrun-conformance-v1.mjs",
+  "runtimeSourceMutationAllowed": false,
+  "runtimeInterfaceRedefinitionAllowed": false,
+  "runtimeInlinePatchAllowed": false,
+  "providerSpecificImplementationAllowed": false,
+  "dependencyState": "LOCKED",
+  "DEPENDENCY_LOCK_SHA256": "98d9e8f23c2b65c057f5300998255c21e5de9d31d788193a4755aa8d6aad7f02"
+}
