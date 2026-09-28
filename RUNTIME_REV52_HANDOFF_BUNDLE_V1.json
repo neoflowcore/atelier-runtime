@@ -1,0 +1,39 @@
+{
+  "SCHEMA_ID": "RUNTIME_REV52_HANDOFF_BUNDLE_V1",
+  "SCHEMA_VERSION": "1",
+  "runtimeVersion": "5.2",
+  "runtimeSourceIdentity": {
+    "head": "785ae47c1abc4363396b0805a2e43783132465bb",
+    "tree": "487e701c880ecc49c5a95ba66f12b1cb2c6074fc"
+  },
+  "runtimeSourceDigest": "0d626c0cc2974602ae29c950a0a52db624e175aada5ebcb1c0e67f388e84746a",
+  "runtimeInterfaceVersion": "5.2-FROZEN",
+  "runtimeInterfaceDigest": "d6b22817a194b864611118e36d19bb1fda0eeca6b8a60eda31bec82b5bf622c4",
+  "projectIdentityDigest": "95777a28340ba9d5356776ee33d233411bedccec9701763bf7c80e9b1680247f",
+  "sourceManifestDigest": "5978be277f572766fdc79d4a3ad3b0e0324369487bd0337aef1587a646b7c420",
+  "contracts": [
+    "ProjectRunStateV2",
+    "ProjectIdentityInput",
+    "ProjectSourceManifestInput",
+    "NextLegalActionResolver",
+    "AuthEndgameEligibility",
+    "ProviderControlAdapter",
+    "ExecutionSurface",
+    "MutationAuthorityEnvelope",
+    "BillingResidueReceipt",
+    "ContinuationDecision",
+    "EvidenceReceiptCompatibility"
+  ],
+  "compatibilityManifest": "R52_RUNTIME_INTERFACE_FREEZE_v001.json",
+  "migrationManifest": "R52_RUNTIME_INTERFACE_FREEZE_v001.json",
+  "conformanceFixtureManifest": "runtime/rev52/longrun-conformance-v1.mjs",
+  "acceptanceEvidenceRefs": [
+    "github-actions:run:36400956342",
+    "github-actions:run:36401269805"
+  ],
+  "runtimeDevelopmentSealSha256": "9eca75105d511fd910749a7884664fdd89ca181de69f0cde3a449f0f91e10114",
+  "RUNTIME_HANDOFF_BUNDLE": "SEALED",
+  "RUNTIME_TRACK_ENDS_AT_HANDOFF": true,
+  "AUTO_ADVANCE_RUNTIME_TO_PILOTE": false,
+  "handoffDigest": "eb122a65afc92d589b1af2eb923167cd47d144e1105669493b117249beefcbf8"
+}
