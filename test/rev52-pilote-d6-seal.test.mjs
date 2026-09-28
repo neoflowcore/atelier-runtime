@@ -1,0 +1,8 @@
+import test from "node:test";import assert from "node:assert/strict";import {readFile} from "node:fs/promises";
+import {validatePiloteDependentHandoffBundleV1} from "../pilote/rev52/development-seal-handoff-v1.mjs";
+const c=JSON.parse(await readFile(new URL("../P52_DEPENDENT_CONFORMANCE_v001.json",import.meta.url),"utf8"));
+const s=JSON.parse(await readFile(new URL("../P52_PILOTE_DEVELOPMENT_SEAL_v001.json",import.meta.url),"utf8"));
+const h=JSON.parse(await readFile(new URL("../PILOTE_REV52_DEPENDENT_HANDOFF_BUNDLE_V1.json",import.meta.url),"utf8"));
+test("D6 conformance is PASS with zero forbidden behavior",()=>{assert.equal(c.status,"PASS");assert.equal(c.runtimeSourceMutationCount,0);assert.equal(c.providerSpecificLogicCount,0);assert.equal(c.CONFORMANCE_SHA256,"83f2f18ee977cda54400643ef03b625343ff3baf332b8d8f75d75cfe8d439941")});
+test("D6 Pilote Development Seal pins D0-D5 canonical candidate",()=>{assert.equal(s.PILOTE_REV5_2,"SEALED");assert.equal(s.piloteSourceHead,"61ec58e7d5b206068deea6f863d17cdccf7b120c");assert.equal(s.piloteSourceTree,"4ec93f0416ba1d97b34b9519fb91510d47e54ed1");assert.equal(s.canonicalRunId,36406568115);assert.equal(s.PILOTE_RUNTIME_HANDOFF_DIGEST,"PINNED_MATCH");assert.equal(s.PILOTE_RUNTIME_SOURCE_MUTATION_COUNT,0);assert.equal(s.PILOTE_PROVIDER_SPECIFIC_LOGIC,0);assert.equal(s.PILOTE_DEVELOPMENT_SEAL,"PASS")});
+test("D6 dependent handoff is sealed and Track-B terminal",()=>{assert.deepEqual(validatePiloteDependentHandoffBundleV1(h),{ok:true,errors:[]});assert.equal(h.PILOTE_DEPENDENT_HANDOFF_BUNDLE,"SEALED");assert.equal(h.PILOTE_TRACK_ENDS_AT_HANDOFF,true);assert.equal(h.AUTO_ADVANCE_PILOTE_TO_CROSS_STACK,false);assert.equal(h.CROSS_STACK_START_REQUIRES_RUNTIME_AND_PILOTE_SEALED,true)});
