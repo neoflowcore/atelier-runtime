@@ -1,0 +1,7 @@
+import test from "node:test";import assert from "node:assert/strict";import {readFile} from "node:fs/promises";
+import {validateRuntimeInterfaceFreezeV52} from "../runtime/rev52/interface-freeze-v1.mjs";
+const freeze=JSON.parse(await readFile(new URL("../R52_RUNTIME_INTERFACE_FREEZE_v001.json",import.meta.url),"utf8"));
+test("R9 freezes Runtime interface at 5.2 with deterministic digest",()=>{const v=validateRuntimeInterfaceFreezeV52(freeze);assert.deepEqual(v,{ok:true,errors:[]});assert.equal(freeze.RUNTIME_INTERFACE_VERSION,"5.2-FROZEN");assert.match(freeze.RUNTIME_INTERFACE_DIGEST,/^[0-9a-f]{64}$/)});
+test("R9 freeze is bound to R0-R8 canonical PASS candidate",()=>{assert.equal(freeze.qualifiedImplementationHead,"ed72405665841a295519da933105987427b47fee");assert.equal(freeze.qualifiedCanonicalRunId,36400956342)});
+test("R9 exports every required Rev5.2 Runtime interface contract",()=>{const names=new Set(freeze.contracts.map(x=>x.name));for(const n of ["ProjectRunStateV2","ProjectIdentityInput","ProjectSourceManifestInput","NextLegalActionResolver","AuthEndgameEligibility","ProviderControlAdapter","ExecutionSurface","MutationAuthorityEnvelope","BillingResidueReceipt","ContinuationDecision","EvidenceReceiptCompatibility"])assert.equal(names.has(n),true,n)});
+test("R9 backward compatibility has an explicit migration manifest",()=>{assert.equal(freeze.backwardCompatibility,"PASS_WITH_MIGRATION_MANIFEST");assert.ok(freeze.migrationManifest.length>0)});

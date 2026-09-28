@@ -34,7 +34,7 @@ jobs:
 
       - name: Observe P30 GitHub-hosted live acceptance
         id: p30_observe
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'runtime-r51-p8-dependency-lock-cache' }}
         env:
           GH_TOKEN: ${{ github.token }}
           P30_EXECUTION_HEAD: ${{ github.event.pull_request.head.sha }}
@@ -45,7 +45,7 @@ jobs:
           node scripts/rev51/p30-github-live-acceptance.mjs observe R51_P30_GITHUB_LIVE_TRIGGER_v001.json artifacts/rev51/p30-github-live/observation.json
 
       - name: Upload P30 pre-final canonical evidence
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'runtime-r51-p8-dependency-lock-cache' }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: p30-github-live-pre-${{ github.event.pull_request.head.sha }}
@@ -55,7 +55,7 @@ jobs:
 
       - name: Finalize P30 live acceptance after artifact readback
         id: p30_finalize
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'runtime-r51-p8-dependency-lock-cache' }}
         env:
           GH_TOKEN: ${{ github.token }}
           P30_EXECUTION_HEAD: ${{ github.event.pull_request.head.sha }}
@@ -66,12 +66,56 @@ jobs:
           test "${{ steps.p30_observe.outputs.observation_sha256 }}" != ""
 
       - name: Upload P30 final live acceptance evidence
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'runtime-r51-p8-dependency-lock-cache' }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: p30-github-live-final-${{ github.event.pull_request.head.sha }}
           path: |
             artifacts/rev51/p30-github-live/observation.json
             artifacts/rev51/p30-github-live/final-receipt.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Observe C52 global auth and final live qualification
+        id: c52_observe
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'rev52-crossstack-auth-endgame' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          C52_EXECUTION_HEAD: ${{ github.event.pull_request.head.sha }}
+          C52_PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$C52_EXECUTION_HEAD"
+          node scripts/rev52/c52-final-live.mjs observe C52_AUTH_ENDGAME_CLOSURE_PREFLIGHT_v001.json artifacts/rev52/c52-final-live/observation.json
+
+      - name: Upload C52 pre-final canonical evidence
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'rev52-crossstack-auth-endgame' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: c52-final-live-pre-${{ github.event.pull_request.head.sha }}
+          path: artifacts/rev52/c52-final-live/observation.json
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Finalize C52 live acceptance after artifact readback
+        id: c52_finalize
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'rev52-crossstack-auth-endgame' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          C52_EXECUTION_HEAD: ${{ github.event.pull_request.head.sha }}
+          C52_PRE_ARTIFACT_NAME: c52-final-live-pre-${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          node scripts/rev52/c52-final-live.mjs finalize artifacts/rev52/c52-final-live/observation.json artifacts/rev52/c52-final-live/final-receipt.json
+          test "${{ steps.c52_observe.outputs.qualification_sha256 }}" != ""
+
+      - name: Upload C52 final live acceptance evidence
+        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'rev52-crossstack-auth-endgame' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: c52-final-live-final-${{ github.event.pull_request.head.sha }}
+          path: |
+            artifacts/rev52/c52-final-live/observation.json
+            artifacts/rev52/c52-final-live/final-receipt.json
           if-no-files-found: error
           retention-days: 30

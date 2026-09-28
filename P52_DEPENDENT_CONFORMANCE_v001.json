@@ -1,0 +1,25 @@
+{
+  "SCHEMA_ID": "PILOTE_REV52_DEPENDENT_CONFORMANCE_V1",
+  "SCHEMA_VERSION": "1",
+  "runtimeDependencyLockSha256": "98d9e8f23c2b65c057f5300998255c21e5de9d31d788193a4755aa8d6aad7f02",
+  "runtimeHandoffDigest": "eb122a65afc92d589b1af2eb923167cd47d144e1105669493b117249beefcbf8",
+  "runtimeInterfaceDigest": "d6b22817a194b864611118e36d19bb1fda0eeca6b8a60eda31bec82b5bf622c4",
+  "checks": [
+    {"id":"AUTH_RUNTIME_ELIGIBILITY_COMPATIBILITY","status":"PASS","evidenceRef":"github-actions:run:36406568115"},
+    {"id":"CONTINUATION_RESPONSE_GATE_COMPATIBILITY","status":"PASS","evidenceRef":"github-actions:run:36406568115"},
+    {"id":"MUTATION_AUTHORITY_RUNTIME_ENVELOPE_COMPATIBILITY","status":"PASS","evidenceRef":"github-actions:run:36406568115"},
+    {"id":"NEW_CHAT_REATTACH_COMPATIBILITY","status":"PASS","evidenceRef":"github-actions:run:36406568115"},
+    {"id":"PLAN_GRANT_COMPATIBILITY","status":"PASS","evidenceRef":"github-actions:run:36406568115"},
+    {"id":"PROVIDER_INTENT_RUNTIME_ADAPTER_COMPATIBILITY","status":"PASS","evidenceRef":"github-actions:run:36406568115"},
+    {"id":"RECEIPT_EVIDENCE_COMPATIBILITY","status":"PASS","evidenceRef":"github-actions:run:36406568115"},
+    {"id":"RUNTIME_HANDOFF_BIND","status":"PASS","evidenceRef":"github-actions:run:36406568115"},
+    {"id":"SOURCE_PROGRESS_RUNTIME_RESOLVER_COMPATIBILITY","status":"PASS","evidenceRef":"github-actions:run:36406568115"}
+  ],
+  "missingGates": [],
+  "failedGates": [],
+  "runtimeSourceMutationCount": 0,
+  "providerSpecificLogicCount": 0,
+  "credentialBoundLiveAcceptanceRequired": false,
+  "status": "PASS",
+  "CONFORMANCE_SHA256": "83f2f18ee977cda54400643ef03b625343ff3baf332b8d8f75d75cfe8d439941"
+}

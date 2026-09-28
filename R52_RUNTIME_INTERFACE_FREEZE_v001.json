@@ -1,0 +1,29 @@
+{
+  "SCHEMA_ID": "RUNTIME_REV52_INTERFACE_FREEZE_V1",
+  "SCHEMA_VERSION": "1",
+  "RUNTIME_INTERFACE_VERSION": "5.2-FROZEN",
+  "qualifiedImplementationHead": "ed72405665841a295519da933105987427b47fee",
+  "qualifiedCanonicalRunId": 36400956342,
+  "predecessorInterfaceIdentity": "39e686591f169e62416726518d1e6917a8ed3cded43b284e2d3a2216c546548b",
+  "predecessorCompatibilityIdentity": "35cbae1c4a6d42b27a45e5faeba37fe3a86a319c6944a9eb046482dea3e59dec",
+  "contracts": [
+    {"name":"AuthEndgameEligibility","version":"1","bindings":[{"path":"runtime/rev52/source-progress-resolver-v1.mjs","blob":"5f4ba4491a3c8e072ce0f7ab67cbdf9632754b7f"}]},
+    {"name":"BillingResidueReceipt","version":"3","bindings":[{"path":"runtime/rev52/billing-firewall-v3.mjs","blob":"9527cd86c5d39ba1f6f32afd2333aea58cfd51da"}]},
+    {"name":"ContinuationDecision","version":"1","bindings":[{"path":"runtime/rev51/continuation-decision-v1.mjs","blob":"dc7e66add3b32fc99d9493b361c2170f4e760eec"}]},
+    {"name":"EvidenceReceiptCompatibility","version":"1","bindings":[{"path":"runtime/rev51/content-identity-evidence-reuse-v1.mjs","blob":"8b1611f4c1e52c0e6a7a1b7c18729cc62346dded"},{"path":"runtime/rev51/evidence-validity-graph-v1.mjs","blob":"2041238cfd34066399974fa7cd03049363a41a9e"}]},
+    {"name":"ExecutionSurface","version":"1","bindings":[{"path":"runtime/rev52/execution-surface-hot-reattach-v1.mjs","blob":"e5aeb0c54ceafa2966bbff040d6d2867ffaaef44"}]},
+    {"name":"MutationAuthorityEnvelope","version":"1","bindings":[{"path":"runtime/rev52/source-mutation-authority-v1.mjs","blob":"3176b13f953a1449e4ef75d62fd32d5d504db26d"}]},
+    {"name":"NextLegalActionResolver","version":"1","bindings":[{"path":"runtime/rev52/source-progress-resolver-v1.mjs","blob":"5f4ba4491a3c8e072ce0f7ab67cbdf9632754b7f"}]},
+    {"name":"ProjectIdentityInput","version":"1","bindings":[{"path":"runtime/rev51/project-identity-plan-binding-v1.mjs","blob":"ad24e9d5f08fc4b28a566b62aa51fb6b48dd0620"}]},
+    {"name":"ProjectRunStateV2","version":"2","bindings":[{"path":"runtime/rev52/project-run-state-v2.mjs","blob":"8ef98bc8330e8c36b98bbe45f8a5e779c583c2d9"}]},
+    {"name":"ProjectSourceManifestInput","version":"1","bindings":[{"path":"runtime/rev51/project-identity-plan-binding-v1.mjs","blob":"ad24e9d5f08fc4b28a566b62aa51fb6b48dd0620"}]},
+    {"name":"ProviderControlAdapter","version":"1","bindings":[{"path":"runtime/rev52/provider-control-layer-v1.mjs","blob":"1ab7e2e60b9d4450d4384822dc9a22d6d63a9957"}]}
+  ],
+  "backwardCompatibility": "PASS_WITH_MIGRATION_MANIFEST",
+  "migrationManifest": [
+    "legacy NEXT=AUTH/BOUND -> DEFERRED_AUTH_NEXT + full authorized-plan rescan",
+    "Rev5.1 project identity/source manifest remain legacy migration evidence only",
+    "Rev5.1 provider/capability/evidence contracts reused where blob-bound above"
+  ],
+  "RUNTIME_INTERFACE_DIGEST": "d6b22817a194b864611118e36d19bb1fda0eeca6b8a60eda31bec82b5bf622c4"
+}

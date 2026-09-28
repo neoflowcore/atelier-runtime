@@ -1,0 +1,48 @@
+{
+  "SCHEMA_ID": "C52_AUTH_ENDGAME_CLOSURE_PREFLIGHT_V1",
+  "SCHEMA_VERSION": "1",
+  "crossStackSyncSha256": "f23b1828597009ab7882a9ac2d26f333831b51c2935d73f7b54d49eac4fedee7",
+  "authRequirementSet": {
+    "SCHEMA_ID": "PILOTE_AUTH_REQUIREMENT_SET_V1",
+    "SCHEMA_VERSION": "1",
+    "requirements": [
+      {"provider":"github","capability":"actions:read","scope":"neoflowcore/atelier-runtime","phaseId":null,"reason":"canonical run and artifact readback"},
+      {"provider":"github","capability":"contents:read","scope":"neoflowcore/atelier-runtime","phaseId":null,"reason":"source identity validation"},
+      {"provider":"github","capability":"pull_requests:read","scope":"neoflowcore/atelier-runtime","phaseId":null,"reason":"pull request head and target binding"}
+    ],
+    "AUTH_REQUIREMENT_SET_SHA256": "9ac129e36a7adbe420cfcf9661cbc7e9d3cbe1a7313b04dda42449315b5d3fca"
+  },
+  "FINAL_CREDENTIAL_BIND_MANIFEST_V1": {
+    "SCHEMA_ID":"FINAL_CREDENTIAL_BIND_MANIFEST_V1","SCHEMA_VERSION":"1",
+    "requirements":[
+      {"provider":"github","capability":"actions:read","scope":"neoflowcore/atelier-runtime","reason":"canonical run and artifact readback"},
+      {"provider":"github","capability":"contents:read","scope":"neoflowcore/atelier-runtime","reason":"source identity validation"},
+      {"provider":"github","capability":"pull_requests:read","scope":"neoflowcore/atelier-runtime","reason":"pull request head and target binding"}
+    ],
+    "rawSecretChatPath":"DENY","interactionBudget":1,
+    "CREDENTIAL_BIND_MANIFEST_SHA256":"b7c6c0bde2dcd46bca1713e9dc44c06446885181bf9345f2211b00586b78c5fd"
+  },
+  "FINAL_AUTH_BIND_MANIFEST_V1": {
+    "SCHEMA_ID":"FINAL_AUTH_BIND_MANIFEST_V1","SCHEMA_VERSION":"1",
+    "projectIdentityDigest":"95777a28340ba9d5356776ee33d233411bedccec9701763bf7c80e9b1680247f",
+    "credentialBindManifestSha256":"b7c6c0bde2dcd46bca1713e9dc44c06446885181bf9345f2211b00586b78c5fd",
+    "unresolvedRequirementCount":3,"existingNativeDelegatedFederatedAuthReuseFirst":true,
+    "interactiveAuthPromptMaxPerProjectRun":1,"secondAuthPromptNormalPath":0,"partialAuthBindThenDiscoverMore":false,
+    "AUTH_BIND_MANIFEST_SHA256":"d398ebc4601ca1b799f567c1bd9ddca3dda062f0008e8f716ce29fa3658f1a9c"
+  },
+  "transitiveLiveFinalDependencyClosure":{"roots":["final-live-seal"],"closure":["canonical-evidence","final-live-seal","github-actions-read","provider-attestation"]},
+  "minimumAuthoritySet":[
+    {"provider":"github","capability":"actions:read","scope":"neoflowcore/atelier-runtime","reason":"canonical run and artifact readback"},
+    {"provider":"github","capability":"contents:read","scope":"neoflowcore/atelier-runtime","reason":"source identity validation"},
+    {"provider":"github","capability":"pull_requests:read","scope":"neoflowcore/atelier-runtime","reason":"pull request head and target binding"}
+  ],
+  "costEnvelope":{"mode":"EXISTING_REPOSITORY_CI_ENVELOPE","newPaidResourceAllowed":false,"maxNewPaidResourceMilliUsd":0,"runnerBudgetClass":"EXISTING_CI_ENVELOPE"},
+  "cleanupObligations":{"userOwnedProviderResourceCreated":false,"ephemeralCredentialCreatedByProject":false,"platformManagedCredentialExpiryRequired":true,"deleteOrTerminateReadbackRequired":true,"residueScanRequired":true},
+  "runtimePreflightDecision":"ONE_AGGREGATED_AUTH_BOUNDARY",
+  "AUTH_ENDGAME_CLOSURE_PREFLIGHT_REQUIRES_AUTH":false,
+  "AUTH_ENDGAME_CLOSURE_PREFLIGHT_REQUIRES_PROVIDER_MUTATION":false,
+  "AUTH_ENDGAME_CLOSURE_PREFLIGHT_REQUIRES_PAID_COMPUTE":false,
+  "AUTH_BIND_INTERACTION_BUDGET_PER_PROJECT_RUN":1,
+  "errors":[],"status":"PASS",
+  "CLOSURE_PREFLIGHT_SHA256":"aef1386829113c8400de3c6e6dd78baf115ba2f2df7527023c5eb8fd9344b3e5"
+}

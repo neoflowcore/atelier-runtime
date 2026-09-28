@@ -1,0 +1,20 @@
+{
+  "SCHEMA_ID": "PILOTE_REV52_DEPENDENT_HANDOFF_BUNDLE_V1",
+  "SCHEMA_VERSION": "1",
+  "piloteVersion": "5.2",
+  "piloteSourceIdentity": {
+    "head": "61ec58e7d5b206068deea6f863d17cdccf7b120c",
+    "tree": "4ec93f0416ba1d97b34b9519fb91510d47e54ed1"
+  },
+  "runtimeDependencyLockSha256": "98d9e8f23c2b65c057f5300998255c21e5de9d31d788193a4755aa8d6aad7f02",
+  "runtimeHandoffDigest": "eb122a65afc92d589b1af2eb923167cd47d144e1105669493b117249beefcbf8",
+  "runtimeInterfaceDigest": "d6b22817a194b864611118e36d19bb1fda0eeca6b8a60eda31bec82b5bf622c4",
+  "contracts": ["RuntimeDependencyLock","AuthoritativePlanCompiler","MasterPlanDependencyGraph","ProjectRunGrant","PhaseExecutionGrant","SourceProgressPolicy","AuthAuthorityPolicy","ContinuationPolicy","PiloteResponseGate","ProviderNeutralJobIntent","ProviderEvidenceAcceptance","AcceptanceDependencyGraph","DependentConformance"],
+  "acceptanceEvidenceRefs": ["github-actions:run:36406568115","runtime-handoff:eb122a65afc92d589b1af2eb923167cd47d144e1105669493b117249beefcbf8"],
+  "piloteDevelopmentSealSha256": "a1b455c66bbeaa58948eeba38606dc48446d77ff468acb50037337cf8199766d",
+  "PILOTE_DEPENDENT_HANDOFF_BUNDLE": "SEALED",
+  "PILOTE_TRACK_ENDS_AT_HANDOFF": true,
+  "AUTO_ADVANCE_PILOTE_TO_CROSS_STACK": false,
+  "CROSS_STACK_START_REQUIRES_RUNTIME_AND_PILOTE_SEALED": true,
+  "handoffDigest": "46f8b524c81ed109ccdfd22db7a7d092507f32f715bf94204ae4655bf05e5221"
+}

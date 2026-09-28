@@ -1,0 +1,47 @@
+{
+  "SCHEMA_ID": "PROJECT_SOURCE_MANIFEST_V1",
+  "SCHEMA_VERSION": "1",
+  "projectIdentityDigest": "95777a28340ba9d5356776ee33d233411bedccec9701763bf7c80e9b1680247f",
+  "sourceManifestId": "atelier-runtime-rev52-source-manifest",
+  "sourceManifestVersion": "1",
+  "authoritativePlanRefs": [
+    {
+      "planId": "runtime-rev52-master-v019",
+      "exactTitleOrFilename": "ATELIER_RUNTIME_REV52_PILOTE_DEPENDENT_REV52_MASTER_PLAN_v019_V024_FINAL_FULL_CONSOLIDATED_20260928.md",
+      "projectLocalSourceRef": "project:attachment:master-plan-v019",
+      "version": "019",
+      "digest": "3e8583c1a5d875cfc54c1ae377ad6aba5385de500f3759f1f13cfa812c271ec9",
+      "role": "MASTER_PLAN",
+      "precedence": 0
+    },
+    {
+      "planId": "runtime-rev52-track-a-v001",
+      "exactTitleOrFilename": "ATELIER_RUNTIME_REV52_TRACK_A_ONLY_EXECUTION_PLAN_v001_20260928.md",
+      "projectLocalSourceRef": "project:attachment:track-a-v001",
+      "version": "001",
+      "digest": "551474fb480ea0cac7961fac503094740cf4d8f56204aa3f8ca2c4d1ed0b2177",
+      "role": "PHASE_PLAN",
+      "precedence": 1
+    },
+    {
+      "planId": "control-policy-v024",
+      "exactTitleOrFilename": "UNIVERSAL_PROJECT_ONE_SHOT_CONTROL_POLICY_v024_GENERIC_FINAL_SEALED_20260928.md",
+      "projectLocalSourceRef": "project:attachment:control-policy-v024",
+      "version": "024",
+      "digest": "74874548f27bb60ba2c202d482789b1370e701a83b93416255acc3c6fadc9329",
+      "role": "SPEC",
+      "precedence": 2
+    }
+  ],
+  "activeMasterPlanId": "runtime-rev52-master-v019",
+  "activePhasePlanId": "runtime-rev52-track-a-v001",
+  "lastCheckpointId": "r52-r0-bootstrap",
+  "manifestEvidence": [
+    "repository:neoflowcore/atelier-runtime",
+    "branch:runtime-r52-track-a",
+    "base-head:813721a7235d5b96fc4806f8ae9cd8e3e1740e78",
+    "rev51-legacy-identity:9f84671bf806417c39e804e8cc2a91940b13289767e8cfd15830ab064a159e56",
+    "master-plan-audit:PASS"
+  ],
+  "SOURCE_MANIFEST_SHA256": "5978be277f572766fdc79d4a3ad3b0e0324369487bd0337aef1587a646b7c420"
+}
