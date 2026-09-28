@@ -1,0 +1,22 @@
+{
+  "projectIdentityVersion": "1",
+  "projectId": null,
+  "projectSlugOrName": "Ateliere Runtime B",
+  "projectIdentityManifestId": "ATELIER_RUNTIME_B_REV52_PROJECT_IDENTITY_V1",
+  "projectSpecificPlanId": "ATELIER_RUNTIME_REV52_PILOTE_DEPENDENT_REV52_MASTER_PLAN_v019",
+  "repositorySet": [
+    "neoflowcore/atelier-runtime"
+  ],
+  "primaryRepository": "neoflowcore/atelier-runtime",
+  "workspaceRoots": [],
+  "providerTargetSet": [],
+  "identityEvidence": [
+    "current-project:Ateliere Runtime B",
+    "repository:neoflowcore/atelier-runtime",
+    "master-plan:v019:3e8583c1a5d875cfc54c1ae377ad6aba5385de500f3759f1f13cfa812c271ec9",
+    "track-a-plan:v001:551474fb480ea0cac7961fac503094740cf4d8f56204aa3f8ca2c4d1ed0b2177",
+    "control-policy:v024:74874548f27bb60ba2c202d482789b1370e701a83b93416255acc3c6fadc9329"
+  ],
+  "resolvedFrom": "PROJECT_LOCAL_SOURCE",
+  "projectIdentityDigest": "95777a28340ba9d5356776ee33d233411bedccec9701763bf7c80e9b1680247f"
+}
