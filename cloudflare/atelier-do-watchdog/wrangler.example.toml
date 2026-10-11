@@ -1,0 +1,21 @@
+# Example only: copy to wrangler.toml AFTER creating a dedicated D1 database.
+# Never share existing production D1 databases or R2 buckets with this monitor.
+name = "atelier-do-watchdog"
+main = "./worker.mjs"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[vars]
+DO_SCHEDULER_ENABLED = "NO" # staged, fail-closed
+DO_ENABLE_LEASE_CLEANUP = "NO" # staged, fail-closed
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[d1_databases]]
+binding = "DO_WATCHDOG_DB"
+database_name = "atelier-do-watchdog"
+database_id = "REPLACE_WITH_DEDICATED_D1_DATABASE_ID"
+# secrets MUST be added separately, never written to TOML:
+# DIGITALOCEAN_TOKEN and DO_JOURNAL_SHARED_SECRET (>=32 bytes)

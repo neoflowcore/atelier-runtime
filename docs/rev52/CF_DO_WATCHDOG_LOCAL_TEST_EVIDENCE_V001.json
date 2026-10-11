@@ -1,0 +1,53 @@
+{
+  "schema": "ATELIER_CF_DO_WATCHDOG_LOCAL_EVIDENCE_V1",
+  "source": "local-focused-hermetic",
+  "tests": 34,
+  "passed": 34,
+  "failed": 0,
+  "live_deploy": "NOT_RUN",
+  "live_delete": "NOT_RUN",
+  "paid_resource_created": false,
+  "node": "v22.16.0",
+  "files": [
+    {
+      "path": "cloudflare/atelier-do-watchdog/worker.mjs",
+      "sha256": "fbad89e401fe7776cda69f4f5c5235ff9620f0989d3207943dbc706edfa00d3e",
+      "bytes": 7512
+    },
+    {
+      "path": "cloudflare/atelier-do-watchdog/migrations/0001_init.sql",
+      "sha256": "cc28e55254b80ce26ceabd0cae64202223dbd1ea0117f6a9f43c8e965e97d226",
+      "bytes": 595
+    },
+    {
+      "path": "cloudflare/atelier-do-watchdog/wrangler.example.toml",
+      "sha256": "60046a5c3bf18d48b02178ca69f23656e3f03be6ed14ecc84bbd921247e0251e",
+      "bytes": 708
+    },
+    {
+      "path": "runtime/rev52/cloudflare-d1-do-journal-v1.mjs",
+      "sha256": "f7798c4aaefa7218445aed8ab40e2bcc38c116d1260df57c7a75831b217082cb",
+      "bytes": 8109
+    },
+    {
+      "path": "runtime/rev52/cloudflare-remote-do-journal-v1.mjs",
+      "sha256": "57d7d05c90ee3cb4a6b7feeb7d3b52338b3d75e41d80da2014f79c040268013c",
+      "bytes": 2158
+    },
+    {
+      "path": "scripts/rev52/digitalocean-cf-watchdog-preflight-v1.mjs",
+      "sha256": "66c1406a510a9072375d6e178fcc3333d96caad58e81c91fb88cad61603f35b1",
+      "bytes": 1074
+    },
+    {
+      "path": "test/rev52-cloudflare-digitalocean-watchdog-v1.test.mjs",
+      "sha256": "6d789771417f1ed2400204faf4893659593f90366a14f858e0282d014e2b06b0",
+      "bytes": 15040
+    },
+    {
+      "path": "docs/rev52/CF_DO_INDEPENDENT_WATCHDOG_INTEGRATION_V1.md",
+      "sha256": "cf70283b76e83befbd8b323ba899d4b06a2a8a70320d4e34671534714e412b17",
+      "bytes": 10680
+    }
+  ]
+}
