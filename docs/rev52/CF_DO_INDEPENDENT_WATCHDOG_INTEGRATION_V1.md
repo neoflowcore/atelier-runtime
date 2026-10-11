@@ -86,14 +86,14 @@ node --check runtime/rev52/cloudflare-d1-do-journal-v1.mjs
 node --check runtime/rev52/cloudflare-remote-do-journal-v1.mjs
 ```
 
-The new test file uses Node 22's built-in `node:sqlite` to simulate D1 SQL statements; scheduled deletion is **injected** (fake provider/controller), not actual DigitalOcean deletion. Full integration with frozen Runtime modules, Wrangler bundle and real Cloudflare/DigitalOcean OAuth write scopes remains a separate qualification gate.
+The new test file uses Node 22's built-in `node:sqlite` to simulate D1 SQL statements; scheduled deletion is **injected** (fake provider/controller), not actual DigitalOcean deletion. The V2 regression suite also verifies that journal clients cannot claim deletion/closure through the HTTP CAS route and that a CLOSE requires a complete, digest-verified run-specific residue receipt. This verifies the data contract, not the physical accuracy of provider readback. Full integration with frozen Runtime modules, Wrangler bundle and real Cloudflare/DigitalOcean OAuth write scopes remains a separate qualification gate.
 
 ## Gate status
 
 | Gate | Acceptance | Status |
 |---|---|---|
 | G0 | Real connected account inventory and protected snapshot readback | PASS, read-only |
-| G1 | Remote D1 CAS, billing reservation, auth and Cron failures exercised without provider mutations | PASS, 34 hermetic tests |
+| G1 | Remote D1 CAS, billing reservation, auth and Cron failures exercised without provider mutations | PASS, 40 hermetic tests (including V2 closure authorization hardening) |
 | G2 | Dedicated Cloudflare Worker/D1 deployed; cron heartbeat, secrets, GET probes | BLOCKED (read-only Cloudflare OAuth) |
 | G3 | Real independent cleanup-authority and full readback tested | BLOCKED (requires scoped writes and explicit paid rehearsal grant) |
 | G4 | Exact paid compute qualification and final promotion into Runtime registry | NOT AUTHORIZED / NOT RUN |
@@ -104,3 +104,11 @@ The new test file uses Node 22's built-in `node:sqlite` to simulate D1 SQL state
 - Cloudflare D1 Worker bindings: https://developers.cloudflare.com/d1/get-started/
 - Workers Node.js crypto compatibility: https://developers.cloudflare.com/workers/runtime-apis/nodejs/crypto/
 - DigitalOcean API: https://docs.digitalocean.com/reference/api/api-reference/
+
+## V2 focused safety test update (2026-10-11)
+
+- Reproduced a problem missed by the original 34 tests: the D1 CAS store accepted a `CLOSED` record without an authoritative residue readback receipt. It now rejects such transitions and verifies `DO_RESIDUE_READBACK_V1` structure, run identity, zero job-scoped residue, completeness, child scan, delete readback, and its SHA256 digest. The readback is not a provider-signed attestation; a correctly authorized internal controller remains required.
+- The HTTP journal API now rejects transitions into `DELETE_OUTCOME_UNKNOWN`, `VERIFY_ABSENCE`, or `CLOSED`; only the independent Worker/controller, using the D1 binding, may store cleanup terminal evidence. This avoids remote clients claiming closure with a fabricated receipt.
+- Observed by negative test: an expired lease still in `READY` (no create started) remains a budget reservation. This is a deliberate conservative fail-closed limitation in V1, not a claim of automatic retirement. A trusted retirement path with positive zero-owned-resource inventory and CAS concurrency protection is required before paid operations can be production-qualified.
+- End-to-end real-controller integration, cloud bundle build, actual D1 migrations and Cron trigger, and DigitalOcean live deletion remain unverified. **Keep live paid provisioning disabled.**
+- New suite: 40 tests PASS on Node 22.16.0, no provider mutations or CI runs. See `CF_DO_WATCHDOG_TEST_REPORT_V002.md`.

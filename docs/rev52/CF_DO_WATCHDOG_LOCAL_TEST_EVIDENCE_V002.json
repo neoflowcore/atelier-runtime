@@ -1,0 +1,32 @@
+{
+  "SCHEMA_ID": "CF_DO_WATCHDOG_TEST_EVIDENCE_V002",
+  "localNodeVersion": "v22.16.0",
+  "originalBundleSha256": "eb9e0a5beb2e99811f99ac2c0263b030534470a5cc67b7136b2bf7041864bd42",
+  "mockTests": {
+    "original": 34,
+    "added": 6,
+    "total": 40,
+    "pass": 40,
+    "fail": 0
+  },
+  "negativeReproduction": [
+    "D1_ACCEPTED_CLOSED_WITHOUT_RECEIPT",
+    "EXPIRED_READY_RESERVATION_PERSISTS"
+  ],
+  "mitigation": [
+    "REQUIRE_STRUCTURED_DIGEST_VERIFIED_TERMINAL_RECEIPT",
+    "DENY_REMOTE_HTTP_CLEANUP_TRANSITIONS"
+  ],
+  "remainingBlockers": [
+    "UNVERIFIED_LIVE_CLOUD_DEPLOYMENT",
+    "UNVERIFIED_REAL_DO_DELETE",
+    "UNVERIFIED_FULL_REPO_CONTROLLER_INTEGRATION",
+    "NO_SAFE_EXPIRED_READY_RETIREMENT"
+  ],
+  "cloudflareDedicatedWatchdogDeployed": false,
+  "digitalOceanDroplets": 0,
+  "protectedSnapshotId": 246454343,
+  "protectedSnapshotStatus": "available",
+  "paidMutationCount": 0,
+  "providerConfigurationMutationCount": 0
+}

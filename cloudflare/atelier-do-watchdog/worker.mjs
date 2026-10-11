@@ -68,6 +68,11 @@ export function createAtelierDigitalOceanWatchdogWorkerV1({now=Date.now,provider
           const payload=await getBody(request);
           if(!payload||!Number.isSafeInteger(payload.expectedRevision))return publicError('EXPECTED_REVISION_REQUIRED',400);
           // A run may only be admitted while the independent off-VM watchdog has actually heartbeated.
+          // Only the off-VM watchdog may acknowledge deletion/closure. The
+          // remote execution client cannot synthesize an absence receipt by
+          // writing CLOSED directly through the shared journal bearer token.
+          if(['DELETE_OUTCOME_UNKNOWN','VERIFY_ABSENCE','CLOSED'].includes(payload.next?.state))
+            return publicError('CLEANUP_TRANSITION_SERVER_ONLY',403);
           if(payload.expectedRevision===0) {
             const status=await readiness(store,env,now());
             if(!status.ready)return publicError('EXTERNAL_WATCHDOG_NOT_READY',503);

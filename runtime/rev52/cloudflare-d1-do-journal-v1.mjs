@@ -43,6 +43,25 @@ function checkPayload(id, next, prev) {
     throw new Error('DO_D1_DROPLET_BINDING_INVALID');
   const {LEASE_SHA256,...leaseBody}=next.lease;
   if(sha(leaseBody)!==LEASE_SHA256)throw new Error('DO_D1_LEASE_HASH_MISMATCH');
+  // Terminal acceptance requires the authoritative controller's complete,
+  // content-addressed absence and child-resource readback. A state label alone
+  // is not a cleanup receipt (the HTTP boundary further restricts who can close).
+  if(next.state==='CLOSED') {
+    const receipt=next.residueReceipt;
+    if(!receipt || typeof receipt!=='object'||Array.isArray(receipt) ||
+        receipt.SCHEMA_ID!=='DO_RESIDUE_READBACK_V1'||receipt.SCHEMA_VERSION!=='1'||
+        receipt.runId!==id || receipt.jobScopedResidueZero!==true ||
+        receipt.coverageComplete!==true || receipt.childBillableArtifactsScanned!==true ||
+        receipt.deleteOrTerminateReadback!==true || receipt.powerOffEqualsBillingStop!==false ||
+        receipt.accountWideBillableZero!==null ||
+        !['ownedResourceCount','unexpectedChildCount','unexpectedSnapshotCount'].every(k=>receipt[k]===0)||
+        !Number.isSafeInteger(receipt.preservedSnapshotCount)||receipt.preservedSnapshotCount<0 ||
+        !SHA.test(receipt.READBACK_SHA256??'')) throw new Error('DO_D1_CLOSURE_RECEIPT_REQUIRED');
+    const {READBACK_SHA256,...receiptBody}=receipt;
+    if(sha(receiptBody)!==READBACK_SHA256)throw new Error('DO_D1_CLOSURE_RECEIPT_DIGEST_MISMATCH');
+    if(next.closeReason !== (next.artifactVerified===true?'COMPLETED_AND_CLEAN':'ABORTED_AND_CLEAN'))
+      throw new Error('DO_D1_CLOSURE_REASON_MISMATCH');
+  }
   if(prev) {
     if (!TRANSITIONS[prev.state].includes(next.state) ||
         next.lease.LEASE_SHA256!==prev.lease.LEASE_SHA256 ||

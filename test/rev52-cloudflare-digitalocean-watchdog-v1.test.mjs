@@ -132,3 +132,52 @@ test('read-only resource snapshot does not permit snapshot deletion',async()=>{
 });
 
 test('unsafe reconciliation blocks new paid admissions immediately, not after heartbeat TTL',async()=>{const f=fixture();await f.heartbeat();await f.store.cas('run-A',0,initial(),{monthToDateUsageMilliUsd:500});f.unresolved(true);const result=await f.heartbeat();assert.equal(result.ok,false);const health=await(await f.call('/v1/health')).json();assert.equal(health.ready,false);assert.equal(health.watchStatus,'DEGRADED');});
+
+// Provider-independent, extra regression checks for the production terminal contract.
+async function deletionPending(f) {
+  let r=await f.store.cas('run-A',0,initial(),{monthToDateUsageMilliUsd:500});
+  r=await f.store.cas('run-A',1,withState(r,'CREATE_OUTCOME_UNKNOWN',{createAttempts:1}));
+  r=await f.store.cas('run-A',2,withState(r,'BOUND',{dropletId:73}));
+  return f.store.cas('run-A',3,withState(r,'DELETE_OUTCOME_UNKNOWN',{deleteAttempts:1}));
+}
+function signedReceipt(overrides={}) {
+  const body={SCHEMA_ID:'DO_RESIDUE_READBACK_V1',SCHEMA_VERSION:'1',runId:'run-A',
+    jobScopedResidueZero:true,ownedResourceCount:0,unexpectedChildCount:0,unexpectedSnapshotCount:0,
+    preservedSnapshotCount:1,accountWideBillableZero:null,coverageComplete:true,
+    childBillableArtifactsScanned:true,deleteOrTerminateReadback:true,powerOffEqualsBillingStop:false,...overrides};
+  const canonical=x=>x===null||typeof x!=='object'?JSON.stringify(x):Array.isArray(x)?`[${x.map(canonical).join(',')}]`:`{${Object.keys(x).sort().map(k=>`${JSON.stringify(k)}:${canonical(x[k])}`).join(',')}}`;
+  return {...body,READBACK_SHA256:createHash('sha256').update(canonical(body)).digest('hex')};
+}
+test('CLOSED without a complete deletion/residue receipt is rejected',async()=>{
+ const f=fixture(),r=await deletionPending(f);
+ await assert.rejects(f.store.cas('run-A',4,withState(r,'CLOSED',{closeReason:'ABORTED_AND_CLEAN'})),/DO_D1_CLOSURE_RECEIPT_REQUIRED/);
+});
+test('CLOSED with tampered receipt digest is rejected',async()=>{
+ const f=fixture(),r=await deletionPending(f);
+ const receipt=signedReceipt();receipt.READBACK_SHA256='0'.repeat(64);
+ await assert.rejects(f.store.cas('run-A',4,withState(r,'CLOSED',{closeReason:'ABORTED_AND_CLEAN',residueReceipt:receipt})),/DO_D1_CLOSURE_RECEIPT_DIGEST_MISMATCH/);
+});
+test('CLOSED with a residue-positive receipt is rejected even if digest matches',async()=>{
+ const f=fixture(),r=await deletionPending(f),receipt=signedReceipt({unexpectedSnapshotCount:1});
+ await assert.rejects(f.store.cas('run-A',4,withState(r,'CLOSED',{closeReason:'ABORTED_AND_CLEAN',residueReceipt:receipt})),/DO_D1_CLOSURE_RECEIPT_REQUIRED/);
+});
+test('trusted controller can persist a complete validated receipt',async()=>{
+ const f=fixture(),r=await deletionPending(f),receipt=signedReceipt();
+ const closed=await f.store.cas('run-A',4,withState(r,'CLOSED',{closeReason:'ABORTED_AND_CLEAN',residueReceipt:receipt}));
+ assert.equal(closed.state,'CLOSED');assert.equal((await f.store.listActive()).length,0);
+});
+test('HTTP journal client cannot forge a terminal cleanup or delete state',async()=>{
+ const f=fixture();await f.heartbeat();let r=await f.store.cas('run-A',0,initial(),{monthToDateUsageMilliUsd:500});
+ const receipt=signedReceipt();
+ for(const state of ['DELETE_OUTCOME_UNKNOWN','VERIFY_ABSENCE','CLOSED']){
+  const response=await f.call('/v1/runs/run-A/cas','POST',{expectedRevision:r.revision,next:withState(r,state,{residueReceipt:receipt,closeReason:'ABORTED_AND_CLEAN'})});
+  assert.equal(response.status,403);
+ }
+ assert.equal((await f.store.read('run-A')).state,'READY');
+});
+test('expired never-created READY record stays reserved until a separate safe retirement is implemented',async()=>{
+ const f=fixture();await f.heartbeat();await f.store.cas('run-A',0,initial(),{monthToDateUsageMilliUsd:500});
+ f.clock(T0+3700_000);await f.heartbeat();
+ assert.equal((await f.store.read('run-A')).state,'READY');
+ assert.equal((await f.store.listActive()).length,1);
+});
