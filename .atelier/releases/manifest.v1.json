@@ -1,12 +1,34 @@
 {
   "features": [
     {
+      "id": "ci.evidence",
+      "paths": [
+        "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+        ".agents/skills/atelier-dev/scripts/ci_evidence.py"
+      ],
+      "required_capabilities": [
+        "github.read",
+        "script.execute"
+      ]
+    },
+    {
       "id": "knowledge.read",
       "paths": [
         "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md"
       ],
       "required_capabilities": [
         "github.read"
+      ]
+    },
+    {
+      "id": "release.draft",
+      "paths": [
+        "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+        "tools/atelier-skill/prepare_registry.py"
+      ],
+      "required_capabilities": [
+        "github.read",
+        "script.execute"
       ]
     },
     {
@@ -17,6 +39,19 @@
       ],
       "required_capabilities": [
         "github.read",
+        "runtime.execute"
+      ]
+    },
+    {
+      "id": "source.handoff",
+      "paths": [
+        "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+        ".agents/skills/atelier-dev/scripts/execution_protocol.py"
+      ],
+      "required_capabilities": [
+        "github.read",
+        "github.write.cas",
+        "script.execute",
         "runtime.execute"
       ]
     },
@@ -33,6 +68,21 @@
   ],
   "files": [
     {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/ci_evidence.py",
+      "sha256": "045f90d0bc0f43f5cdba42b084425fa85b0a9da3b472563d2b5c9e5d78449707"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/execution_protocol.py",
+      "sha256": "966657e57c6de04b58a8561e94ed3eb89883186949839201b9d9a4c6344b2bf6"
+    },
+    {
+      "kind": "policy",
+      "path": "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+      "sha256": "b771d127d3ea183af9828c0cb374f0df0c11d45df40f56bb6c2f25d9a65c0b70"
+    },
+    {
       "kind": "policy",
       "path": "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md",
       "sha256": "bd239b4a75071451a494d3600c4d69bc2e483cf9a79c0c597558774ca76a799d"
@@ -46,6 +96,11 @@
       "kind": "adapter",
       "path": "tools/atelier-skill/control-bridge.mjs",
       "sha256": "86451f07c3e10c873e27c4724cc0f89dbdfa11723f20e9d21c58117e62aedb29"
+    },
+    {
+      "kind": "adapter",
+      "path": "tools/atelier-skill/prepare_registry.py",
+      "sha256": "ea0ad6d86655b99ca1f86caa01d68939ead7aea6914c30028187dc5ca453dc1c"
     }
   ],
   "id": "6.0.0",

@@ -2,15 +2,104 @@
   "id": "6.0.0",
   "protocol_min": 1,
   "protocol_max": 1,
-  "required_capabilities": ["github.read"],
+  "required_capabilities": [
+    "github.read"
+  ],
   "files": [
-    {"path": "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md", "kind": "policy"},
-    {"path": "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md", "kind": "knowledge"},
-    {"path": "tools/atelier-skill/control-bridge.mjs", "kind": "adapter"}
+    {
+      "path": "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md",
+      "kind": "policy"
+    },
+    {
+      "path": "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md",
+      "kind": "knowledge"
+    },
+    {
+      "path": "tools/atelier-skill/control-bridge.mjs",
+      "kind": "adapter"
+    },
+    {
+      "path": "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+      "kind": "policy"
+    },
+    {
+      "path": ".agents/skills/atelier-dev/scripts/execution_protocol.py",
+      "kind": "adapter"
+    },
+    {
+      "path": ".agents/skills/atelier-dev/scripts/ci_evidence.py",
+      "kind": "adapter"
+    },
+    {
+      "path": "tools/atelier-skill/prepare_registry.py",
+      "kind": "adapter"
+    }
   ],
   "features": [
-    {"id": "knowledge.read", "required_capabilities": ["github.read"], "paths": ["docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md"]},
-    {"id": "runtime.control", "required_capabilities": ["github.read", "runtime.execute"], "paths": ["tools/atelier-skill/control-bridge.mjs", "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"]},
-    {"id": "source.proposal", "required_capabilities": ["github.read", "script.execute"], "paths": ["docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"]}
+    {
+      "id": "knowledge.read",
+      "required_capabilities": [
+        "github.read"
+      ],
+      "paths": [
+        "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md"
+      ]
+    },
+    {
+      "id": "runtime.control",
+      "required_capabilities": [
+        "github.read",
+        "runtime.execute"
+      ],
+      "paths": [
+        "tools/atelier-skill/control-bridge.mjs",
+        "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"
+      ]
+    },
+    {
+      "id": "source.proposal",
+      "required_capabilities": [
+        "github.read",
+        "script.execute"
+      ],
+      "paths": [
+        "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"
+      ]
+    },
+    {
+      "id": "source.handoff",
+      "required_capabilities": [
+        "github.read",
+        "github.write.cas",
+        "script.execute",
+        "runtime.execute"
+      ],
+      "paths": [
+        "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+        ".agents/skills/atelier-dev/scripts/execution_protocol.py"
+      ]
+    },
+    {
+      "id": "ci.evidence",
+      "required_capabilities": [
+        "github.read",
+        "script.execute"
+      ],
+      "paths": [
+        "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+        ".agents/skills/atelier-dev/scripts/ci_evidence.py"
+      ]
+    },
+    {
+      "id": "release.draft",
+      "required_capabilities": [
+        "github.read",
+        "script.execute"
+      ],
+      "paths": [
+        "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+        "tools/atelier-skill/prepare_registry.py"
+      ]
+    }
   ]
 }

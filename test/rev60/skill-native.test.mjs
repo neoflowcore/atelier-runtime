@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { decide, loadFrozenContracts } from "../../tools/atelier-skill/control-bridge.mjs";
 
 const sha = c => c.repeat(64);
@@ -16,8 +17,8 @@ async function fixture() {
 test("Python release resolver, signature and manifest suites", () => {
   const p = spawnSync("python3", ["-m", "unittest", "discover", "-s", "test/rev60", "-p", "test_*.py", "-v"], { encoding: "utf8", env: { ...process.env, PYTHONDONTWRITEBYTECODE: "1" }, timeout: 30000 });
   assert.equal(p.status, 0, `${p.error ?? ""}\n${p.stdout}\n${p.stderr}`);
-  assert.ok(Number(p.stderr.match(/Ran (\d+) tests/)?.[1]) >= 35, p.stderr);
-  for (const name of ["test_same_install_new_release_and_resume_pin", "test_checkpoint_cas", "test_collect_immutable_snapshot", "test_readback_exact_and_unknown"]) assert.match(p.stderr, new RegExp(name));
+  assert.ok(Number(p.stderr.match(/Ran (\d+) tests/)?.[1]) >= 55, p.stderr);
+  for (const name of ["test_same_install_new_release_and_resume_pin", "test_checkpoint_cas", "test_collect_immutable_snapshot", "test_readback_exact_and_unknown", "test_full_handoff_no_authority", "test_git_tree_identity", "test_runtime_binding_drift", "test_exact_evidence_bytes", "test_initial_unsigned_draft"]) assert.match(p.stderr, new RegExp(name));
 });
 
 test("frozen handoff and actual contract execution, not a write grant", async () => {
@@ -55,4 +56,27 @@ test("reject checkpoint drift and missing runtime feature", async () => {
   assert.equal((await decide(f)).reason, "CHECKPOINT_RELEASE_DRIFT");
   delete f.checkpoint; f.selection.enabled_features = [];
   assert.equal((await decide(f)).reason, "RELEASE_OR_CAPABILITY_UNBOUND");
+});
+
+
+test("actual frozen control decision binds native tool handoff", async () => {
+  const c = await loadFrozenContracts();
+  const f = await fixture();
+  const emptyTree = createHash("sha1").update("tree 0\0").digest("hex");
+  f.identity.tree = emptyTree;
+  f.observation.tree = emptyTree;
+  f.proposed.baseTree = emptyTree;
+  f.state = c.state.compileProjectRunStateV2({ ...f.identity, runId: "test-run", runtimeInterfaceVersion: "5.2-FROZEN", currentDevelopmentBranch: f.identity.branch, currentSourceIdentity: { head: f.identity.head, tree: emptyTree } });
+  const decision = await decide(f);
+  assert.equal(decision.status, "ADVISORY_DECISION", decision.reason);
+  const ctx = { project_sha256: f.identity.projectIdentityDigest, plan_sha256: f.identity.authoritativePlanSetDigest, repository: f.identity.repository, branch: f.identity.branch, head: f.identity.head, tree: emptyTree };
+  const original = { context: ctx, grant: { ...ctx, scope: "NON_DESTRUCTIVE_SOURCE_DEVELOPMENT", expires_at: Math.floor(Date.now()/1000)+600, allowed_prefixes: ["src"] }, observation: ctx, operation: "source.commit", force: false, destructive: false, changes: [{path:"src/a.txt",mode:"100644",content:"test"}] };
+  const input = { stage: "prepare", original, fresh_branch: ctx, base_tree: { sha: emptyTree, truncated: false, tree: [] }, control_decision: decision, bound_release: f.selection, action_id: "implement" };
+  const p = spawnSync("python3", [".agents/skills/atelier-dev/scripts/execution_protocol.py"], {input: JSON.stringify(input), encoding: "utf8", env:{...process.env,PYTHONDONTWRITEBYTECODE:"1"}});
+  assert.equal(p.status, 0, p.stderr);
+  const r = JSON.parse(p.stdout);
+  assert.equal(r.status, "ADVISORY_HANDOFF", r.reason);
+  assert.equal(r.request.tool, "create_tree");
+  assert.equal(r.request.arguments.base_tree_sha, emptyTree);
+  assert.equal(r.write_authority, false);
 });
