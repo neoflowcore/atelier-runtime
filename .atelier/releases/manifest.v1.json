@@ -1,0 +1,166 @@
+{
+  "features": [
+    {
+      "handler": "ci.evidence",
+      "id": "ci.evidence",
+      "paths": [
+        "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+        ".agents/skills/atelier-dev/scripts/ci_evidence.py"
+      ],
+      "required_capabilities": [
+        "github.read",
+        "script.execute"
+      ]
+    },
+    {
+      "handler": "knowledge.read",
+      "id": "knowledge.read",
+      "paths": [
+        "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md",
+        "docs/rev60/R60_PREINSTALL_ACCEPTANCE_v001.md"
+      ],
+      "required_capabilities": [
+        "github.read"
+      ]
+    },
+    {
+      "handler": "release.draft",
+      "id": "release.draft",
+      "paths": [
+        "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+        "tools/atelier-skill/prepare_registry.py"
+      ],
+      "required_capabilities": [
+        "github.read",
+        "script.execute"
+      ]
+    },
+    {
+      "handler": "runtime.control",
+      "id": "runtime.control",
+      "paths": [
+        "tools/atelier-skill/control-bridge.mjs",
+        "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"
+      ],
+      "required_capabilities": [
+        "github.read",
+        "runtime.execute"
+      ]
+    },
+    {
+      "handler": "source.handoff",
+      "id": "source.handoff",
+      "paths": [
+        "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+        ".agents/skills/atelier-dev/scripts/execution_protocol.py"
+      ],
+      "required_capabilities": [
+        "github.read",
+        "github.write.cas",
+        "script.execute",
+        "runtime.execute"
+      ]
+    },
+    {
+      "handler": "source.proposal",
+      "id": "source.proposal",
+      "paths": [
+        "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"
+      ],
+      "required_capabilities": [
+        "github.read",
+        "script.execute"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/ci_evidence.py",
+      "sha256": "045f90d0bc0f43f5cdba42b084425fa85b0a9da3b472563d2b5c9e5d78449707"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/execution_protocol.py",
+      "sha256": "7d7778fb9670ee84a5f3aed71822ab85d2d4267bb0f70d21aa2488e571d0998c"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/feature_router.py",
+      "sha256": "70b91bb8224f0b8526ec7b2d5efb10c5272d55f6fec6158df17b3ea02c21943c"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/field_probe.py",
+      "sha256": "b4b4a56d38c8dec804362babfaa1f737ad7f8a6d05c642b7ecd7928a07a6acc5"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/github_snapshot.py",
+      "sha256": "2ecfa9ad9929b7134e818819346cf6ebab9651b0359e2f5ce9ad5f5dd66c125c"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/mutation_guard.py",
+      "sha256": "0c0dee0ac0d317413dbdb2edbd18a0c3cea1fc88567d9f899b9a8bb758f4823f"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/resolve_release.py",
+      "sha256": "e5dd8ab601c500cc377665c58e09e5085c40adc8bf597c538770b6f1b886765c"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/session_state.py",
+      "sha256": "27bbf186838c7f7c4d8a20bea46b30167cea833e67c390c0d86ce881595f0a30"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/surface_policy.py",
+      "sha256": "a4f6e9e9f0000f4de6a71e99f4160868f7de2ff0ec1a306006f79aabfa92d56b"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/verify_registry.py",
+      "sha256": "51b81bb58768394d2261a4465808aa6329157571e6f27ddec4bd7f5f5593e6a9"
+    },
+    {
+      "kind": "policy",
+      "path": "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
+      "sha256": "b771d127d3ea183af9828c0cb374f0df0c11d45df40f56bb6c2f25d9a65c0b70"
+    },
+    {
+      "kind": "policy",
+      "path": "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md",
+      "sha256": "bd239b4a75071451a494d3600c4d69bc2e483cf9a79c0c597558774ca76a799d"
+    },
+    {
+      "kind": "policy",
+      "path": "docs/rev60/R60_PREINSTALL_ACCEPTANCE_v001.md",
+      "sha256": "6da49f2c97f4f738ae9e0e8c7cc9a716a3336ef3cba18758c34432e3c4af2d9b"
+    },
+    {
+      "kind": "knowledge",
+      "path": "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md",
+      "sha256": "25346030d1f2afbd9047b451b6534ce654722417ce71ff898069532dff675e1d"
+    },
+    {
+      "kind": "adapter",
+      "path": "tools/atelier-skill/control-bridge.mjs",
+      "sha256": "86451f07c3e10c873e27c4724cc0f89dbdfa11723f20e9d21c58117e62aedb29"
+    },
+    {
+      "kind": "adapter",
+      "path": "tools/atelier-skill/prepare_registry.py",
+      "sha256": "ea0ad6d86655b99ca1f86caa01d68939ead7aea6914c30028187dc5ca453dc1c"
+    }
+  ],
+  "id": "6.0.0",
+  "protocol_max": 1,
+  "protocol_min": 1,
+  "repository": "neoflowcore/atelier-runtime",
+  "required_capabilities": [
+    "github.read"
+  ],
+  "schema": 1
+}

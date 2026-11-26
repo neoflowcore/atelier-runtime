@@ -1,0 +1,5 @@
+# Rev6.0 development / field acceptance split
+
+User decision 2026-11-26: finish implementation and pre-install tests before installing the Skill. Field installation and actual product-surface qualification follow; defects found then are tracked for Rev6.1. No version bump for incomplete Rev6.0 work. No stable promotion or final merge without separate approval.
+
+Development additions: signed registry verifier (OpenSSL, independently enrolled public key, expiry, monotonic generation), unsigned manifest generator, Rev5.2 advisory control bridge with pinned blobs, Python tests and Node test integration. Production trust enrollment, durable trusted state, live connector snapshot collection, signed stable publication, full execution adapter and installed-skill acceptance remain open. The resolver and bridge do not grant writes. Current registry remains empty. Existing CI automatically discovers Node test files; Python tests run from the new Node suite. Do not claim 100% until every development gate passes; field verification is a separate metric.
