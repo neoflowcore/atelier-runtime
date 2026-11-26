@@ -1,0 +1,59 @@
+{
+  "features": [
+    {
+      "id": "knowledge.read",
+      "paths": [
+        "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md"
+      ],
+      "required_capabilities": [
+        "github.read"
+      ]
+    },
+    {
+      "id": "runtime.control",
+      "paths": [
+        "tools/atelier-skill/control-bridge.mjs",
+        "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"
+      ],
+      "required_capabilities": [
+        "github.read",
+        "runtime.execute"
+      ]
+    },
+    {
+      "id": "source.proposal",
+      "paths": [
+        "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"
+      ],
+      "required_capabilities": [
+        "github.read",
+        "script.execute"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "kind": "policy",
+      "path": "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md",
+      "sha256": "bd239b4a75071451a494d3600c4d69bc2e483cf9a79c0c597558774ca76a799d"
+    },
+    {
+      "kind": "knowledge",
+      "path": "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md",
+      "sha256": "25346030d1f2afbd9047b451b6534ce654722417ce71ff898069532dff675e1d"
+    },
+    {
+      "kind": "adapter",
+      "path": "tools/atelier-skill/control-bridge.mjs",
+      "sha256": "86451f07c3e10c873e27c4724cc0f89dbdfa11723f20e9d21c58117e62aedb29"
+    }
+  ],
+  "id": "6.0.0",
+  "protocol_max": 1,
+  "protocol_min": 1,
+  "repository": "neoflowcore/atelier-runtime",
+  "required_capabilities": [
+    "github.read"
+  ],
+  "schema": 1
+}

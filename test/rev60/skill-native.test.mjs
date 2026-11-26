@@ -16,7 +16,8 @@ async function fixture() {
 test("Python release resolver, signature and manifest suites", () => {
   const p = spawnSync("python3", ["-m", "unittest", "discover", "-s", "test/rev60", "-p", "test_*.py", "-v"], { encoding: "utf8", env: { ...process.env, PYTHONDONTWRITEBYTECODE: "1" }, timeout: 30000 });
   assert.equal(p.status, 0, `${p.error ?? ""}\n${p.stdout}\n${p.stderr}`);
-  assert.match(p.stderr, /Ran 24 tests/);
+  assert.ok(Number(p.stderr.match(/Ran (\d+) tests/)?.[1]) >= 35, p.stderr);
+  for (const name of ["test_same_install_new_release_and_resume_pin", "test_checkpoint_cas", "test_collect_immutable_snapshot", "test_readback_exact_and_unknown"]) assert.match(p.stderr, new RegExp(name));
 });
 
 test("frozen handoff and actual contract execution, not a write grant", async () => {
