@@ -1,6 +1,7 @@
 {
   "features": [
     {
+      "handler": "ci.evidence",
       "id": "ci.evidence",
       "paths": [
         "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
@@ -12,15 +13,18 @@
       ]
     },
     {
+      "handler": "knowledge.read",
       "id": "knowledge.read",
       "paths": [
-        "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md"
+        "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md",
+        "docs/rev60/R60_PREINSTALL_ACCEPTANCE_v001.md"
       ],
       "required_capabilities": [
         "github.read"
       ]
     },
     {
+      "handler": "release.draft",
       "id": "release.draft",
       "paths": [
         "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
@@ -32,6 +36,7 @@
       ]
     },
     {
+      "handler": "runtime.control",
       "id": "runtime.control",
       "paths": [
         "tools/atelier-skill/control-bridge.mjs",
@@ -43,6 +48,7 @@
       ]
     },
     {
+      "handler": "source.handoff",
       "id": "source.handoff",
       "paths": [
         "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
@@ -56,6 +62,7 @@
       ]
     },
     {
+      "handler": "source.proposal",
       "id": "source.proposal",
       "paths": [
         "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"
@@ -75,7 +82,47 @@
     {
       "kind": "adapter",
       "path": ".agents/skills/atelier-dev/scripts/execution_protocol.py",
-      "sha256": "966657e57c6de04b58a8561e94ed3eb89883186949839201b9d9a4c6344b2bf6"
+      "sha256": "7d7778fb9670ee84a5f3aed71822ab85d2d4267bb0f70d21aa2488e571d0998c"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/feature_router.py",
+      "sha256": "70b91bb8224f0b8526ec7b2d5efb10c5272d55f6fec6158df17b3ea02c21943c"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/field_probe.py",
+      "sha256": "b4b4a56d38c8dec804362babfaa1f737ad7f8a6d05c642b7ecd7928a07a6acc5"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/github_snapshot.py",
+      "sha256": "2ecfa9ad9929b7134e818819346cf6ebab9651b0359e2f5ce9ad5f5dd66c125c"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/mutation_guard.py",
+      "sha256": "0c0dee0ac0d317413dbdb2edbd18a0c3cea1fc88567d9f899b9a8bb758f4823f"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/resolve_release.py",
+      "sha256": "e5dd8ab601c500cc377665c58e09e5085c40adc8bf597c538770b6f1b886765c"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/session_state.py",
+      "sha256": "27bbf186838c7f7c4d8a20bea46b30167cea833e67c390c0d86ce881595f0a30"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/surface_policy.py",
+      "sha256": "a4f6e9e9f0000f4de6a71e99f4160868f7de2ff0ec1a306006f79aabfa92d56b"
+    },
+    {
+      "kind": "adapter",
+      "path": ".agents/skills/atelier-dev/scripts/verify_registry.py",
+      "sha256": "51b81bb58768394d2261a4465808aa6329157571e6f27ddec4bd7f5f5593e6a9"
     },
     {
       "kind": "policy",
@@ -86,6 +133,11 @@
       "kind": "policy",
       "path": "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md",
       "sha256": "bd239b4a75071451a494d3600c4d69bc2e483cf9a79c0c597558774ca76a799d"
+    },
+    {
+      "kind": "policy",
+      "path": "docs/rev60/R60_PREINSTALL_ACCEPTANCE_v001.md",
+      "sha256": "6da49f2c97f4f738ae9e0e8c7cc9a716a3336ef3cba18758c34432e3c4af2d9b"
     },
     {
       "kind": "knowledge",

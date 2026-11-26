@@ -9,9 +9,11 @@ from pathlib import Path
 from resolve_release import REPO, blocked, digest, hex_id, resolve, strict_json
 
 
-def verify(data, trust, previous=None, now=None):
+def verify(data, trust, previous=None, now=None, *, expected_channel="stable"):
     try:
         now = int(time.time()) if now is None else now
+        if expected_channel not in {"stable", "field-candidate"} or trust.get("channel", "stable") != expected_channel:
+            return blocked("PUBLISHER_CHANNEL_MISMATCH")
         if trust["repository"] != REPO or not hex_id(trust["key_sha256"], 64):
             return blocked("PUBLISHER_TRUST_NOT_ENROLLED")
         pem = trust["public_key_pem"]
@@ -28,6 +30,8 @@ def verify(data, trust, previous=None, now=None):
         if result.returncode != 0:
             return blocked("REGISTRY_SIGNATURE_INVALID")
         reg = strict_json(text)
+        if reg.get("channel", "stable") != expected_channel:
+            return blocked("REGISTRY_CHANNEL_MISMATCH")
         generation, issued, expires = (reg[k] for k in ("generation", "issued_at", "expires_at"))
         floor = trust["minimum_generation"]
         if any(type(v) is not int for v in (generation, issued, expires, floor, now)) or floor < 1 or generation < floor:
@@ -35,13 +39,13 @@ def verify(data, trust, previous=None, now=None):
         if not 0 < issued <= now < expires or expires - issued > 90 * 86400:
             return blocked("REGISTRY_EXPIRED_OR_FUTURE")
         if previous is not None:
-            if previous["repository"] != REPO or previous["key_sha256"] != trust["key_sha256"] or type(previous["generation"]) is not int or not hex_id(previous["registry_sha256"], 64):
+            if previous.get("channel", "stable") != expected_channel or previous["repository"] != REPO or previous["key_sha256"] != trust["key_sha256"] or type(previous["generation"]) is not int or not hex_id(previous["registry_sha256"], 64):
                 return blocked("REGISTRY_CHECKPOINT_INVALID")
             if generation < previous["generation"] or (generation == previous["generation"] and digest(text) != previous["registry_sha256"]):
                 return blocked("REGISTRY_REPLAY_OR_EQUIVOCATION")
         result = resolve({**data, "trusted_registry": True})
         result["publisher_verified"] = True
-        result["verified_registry_state"] = {"repository": REPO, "key_sha256": trust["key_sha256"], "generation": generation, "registry_sha256": digest(text)}
+        result["verified_registry_state"] = {"repository": REPO, "key_sha256": trust["key_sha256"], "generation": generation, "registry_sha256": digest(text), "channel": expected_channel}
         return result
     except (KeyError, TypeError, ValueError, AttributeError, OSError, subprocess.SubprocessError):
         return blocked("REGISTRY_VERIFICATION_UNAVAILABLE_OR_INVALID")

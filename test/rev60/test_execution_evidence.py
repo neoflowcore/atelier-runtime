@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT / ".agents/skills/atelier-dev/scripts"))
 from execution_protocol import object_sha, flatten_tree, step, runtime_binding
 from ci_evidence import verify
 from mutation_guard import blob, compile_proposal
+from surface_fixture import surface_fixture
 
 
 def tree(files):
@@ -45,7 +46,8 @@ def fixture():
     release = {"id": "6.0.0", "commit": "e" * 40, "manifest_sha256": "e" * 64}
     identity = {"projectIdentityDigest": ctx["project_sha256"], "authoritativePlanSetDigest": ctx["plan_sha256"], **{k: ctx[k] for k in ("repository", "branch", "head", "tree")}}
     decision = {"status": "ADVISORY_DECISION", "identity": identity, "release": release, "writeAuthority": False, "remoteMutationCount": 0, "runtimeInterfaceDigest": "a" * 64, "next": {"decision": "CONTINUE_CREDENTIAL_INDEPENDENT_WORK", "ACTIVE_NEXT": {"id": "implement", "kind": "CODE"}}, "response": {"continueExecution": True}, "authority": {"reusable": True}}
-    data = {"stage": "prepare", "proposal_sha256": proposal["proposal_sha256"], "original": original, "fresh_branch": dict(ctx), "base_tree": b, "candidate_tree": c, "message": "feat: add file", "candidate_commit": {"sha": "d" * 40, "tree": {"sha": c["sha"]}, "parents": [{"sha": ctx["head"]}]}, "cas_capability": "WRITE_VERIFIED", "control_decision": decision, "bound_release": {"status": "BOUND", "publisher_verified": True, "write_authority": False, "release": release}, "action_id": "implement"}
+    data = {"stage": "prepare", "proposal_sha256": proposal["proposal_sha256"], "original": original, "fresh_branch": dict(ctx), "base_tree": b, "candidate_tree": c, "message": "feat: add file", "candidate_commit": {"sha": "d" * 40, "tree": {"sha": c["sha"]}, "parents": [{"sha": ctx["head"]}]}, "cas_capability": "WRITE_VERIFIED", "control_decision": decision, "bound_release": {"status": "BOUND", "publisher_verified": True, "write_authority": False, "release": release, "enabled_features": ["runtime.control", "source.handoff"]}, "action_id": "implement"}
+    data["surface_evidence"] = surface_fixture(ctx["repository"], ctx["branch"], 150)
     data["handoff_sha256"] = runtime_binding(data, proposal)
     return data
 

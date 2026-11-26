@@ -37,7 +37,12 @@ def prepare(root, spec):
         name = feature["id"]
         if not isinstance(name, str) or not name or name in seen or not unique_strings(feature["paths"]) or not set(feature["paths"]) <= paths or not unique_strings(feature["required_capabilities"]):
             raise ValueError("INVALID_FEATURE")
-        features.append({k: feature[k] for k in ("id", "paths", "required_capabilities")})
+        result = {k: feature[k] for k in ("id", "paths", "required_capabilities")}
+        if "handler" in feature:
+            if not isinstance(feature["handler"], str) or not feature["handler"]:
+                raise ValueError("INVALID_FEATURE_HANDLER")
+            result["handler"] = feature["handler"]
+        features.append(result)
         seen.add(name)
     if not files or not features:
         raise ValueError("EMPTY_RELEASE")

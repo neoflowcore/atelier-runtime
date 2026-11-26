@@ -4,6 +4,7 @@ import json
 import sys
 from resolve_release import blocked, hex_id, safe_path, strict_json, digest
 from mutation_guard import canonical, compile_proposal
+from surface_policy import evaluate
 
 
 def object_sha(kind, raw):
@@ -49,7 +50,7 @@ def runtime_binding(data, proposal):
     release = decision["release"]
     if decision.get("status") != "ADVISORY_DECISION" or decision.get("writeAuthority") is not False or decision.get("remoteMutationCount") != 0 or not hex_id(decision.get("runtimeInterfaceDigest"), 64) or any(identity[k] != p[v] for k, v in pairs.items()) or not isinstance(release["id"], str) or not hex_id(release["commit"], 40) or not hex_id(release["manifest_sha256"], 64):
         raise ValueError("RUNTIME_BINDING_INVALID")
-    if bound.get("status") != "BOUND" or bound.get("publisher_verified") is not True or bound.get("write_authority") is not False or any(release[k] != bound["release"][k] for k in ("id", "commit", "manifest_sha256")):
+    if bound.get("status") != "BOUND" or bound.get("publisher_verified") is not True or bound.get("write_authority") is not False or not {"runtime.control", "source.handoff"} <= set(bound["enabled_features"]) or any(release[k] != bound["release"][k] for k in ("id", "commit", "manifest_sha256")):
         raise ValueError("RELEASE_BINDING_MISMATCH")
     if decision["authority"].get("reusable") is not True or decision["response"].get("continueExecution") is not True or decision["next"].get("decision") != "CONTINUE_CREDENTIAL_INDEPENDENT_WORK" or decision["next"]["ACTIVE_NEXT"]["id"] != data["action_id"] or decision["next"]["ACTIVE_NEXT"]["kind"] not in {"SOURCE", "CODE", "TEST", "DOCS", "CONFIG", "SPEC"}:
         raise ValueError("RUNTIME_ACTION_NOT_ELIGIBLE")
@@ -71,6 +72,12 @@ def step(data, now=None):
         if stage != "prepare" and data.get("handoff_sha256") != handoff_sha:
             return blocked("RUNTIME_HANDOFF_DRIFT")
         repo, branch = p["repository"], p["branch"]
+        if stage != "ref_readback":
+            surface = evaluate(data["surface_evidence"], now)
+            if surface["status"] != "SURFACE_PRECONDITIONS_OBSERVED":
+                return surface
+            if surface["repository"] != repo or surface["branch"] != branch:
+                return blocked("SURFACE_TARGET_MISMATCH")
         fresh = data["fresh_branch"]
         if fresh["repository"] != repo or fresh["branch"] != branch:
             return blocked("BRANCH_IDENTITY_MISMATCH")
@@ -118,9 +125,38 @@ def step(data, now=None):
         return blocked("INVALID_EXECUTION_OBSERVATION")
 
 
+def reconcile_only(data):
+    """Reconcile after an expired grant without requesting or repeating any write."""
+    try:
+        p = data["proposal"]
+        sha = data["proposal_sha256"]
+        if not hex_id(sha, 64) or digest(canonical(p)) != sha or not hex_id(data["handoff_sha256"], 64):
+            return blocked("PROPOSAL_OR_HANDOFF_INVALID")
+        if not hex_id(p["base_head"], 40) or not hex_id(p["base_tree"], 40) or not isinstance(p["files"], dict) or not p["files"] or any(not safe_path(path) or not hex_id(h, 40) for path, h in p["files"].items()):
+            return blocked("PROPOSAL_INVALID")
+        base = flatten_tree(data["base_tree"], p["base_tree"])
+        tree = data["candidate_tree"]
+        if flatten_tree(tree, tree["sha"]) != {**base, **{path: ("100644", h) for path, h in p["files"].items()}}:
+            return blocked("CANDIDATE_TREE_DELTA_MISMATCH")
+        commit = data["candidate_commit"]
+        if not hex_id(commit["sha"], 40) or commit["tree"]["sha"] != tree["sha"] or [x["sha"] for x in commit["parents"]] != [p["base_head"]]:
+            return blocked("CANDIDATE_COMMIT_MISMATCH")
+        fresh = data["fresh_branch"]
+        if fresh["repository"] != p["repository"] or fresh["branch"] != p["branch"]:
+            return blocked("BRANCH_IDENTITY_MISMATCH")
+        if fresh["head"] == commit["sha"] and fresh["tree"] == tree["sha"]:
+            return {"status": "REMOTE_EFFECT_VERIFIED", "repository": p["repository"], "branch": p["branch"], "base_head": p["base_head"], "head": fresh["head"], "tree": fresh["tree"], "proposal_sha256": sha, "handoff_sha256": data["handoff_sha256"], "write_authority": False}
+        if fresh["head"] == p["base_head"] and fresh["tree"] == p["base_tree"]:
+            return blocked("BASE_OBSERVED_RECOMPILE_REQUIRED")
+        return blocked("OUTCOME_UNKNOWN_RECONCILE_REQUIRED")
+    except (KeyError, TypeError, ValueError, AttributeError):
+        return blocked("INVALID_RECONCILIATION_OBSERVATION")
+
+
 if __name__ == "__main__":
     try:
-        result = step(strict_json(sys.stdin.read()))
+        data = strict_json(sys.stdin.read())
+        result = reconcile_only(data) if data.get("mode") == "reconcile_only" else step(data)
     except (ValueError, TypeError, AttributeError):
         result = blocked("INVALID_INPUT")
     print(json.dumps(result, sort_keys=True))

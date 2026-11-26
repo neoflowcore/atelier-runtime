@@ -33,6 +33,42 @@
     {
       "path": "tools/atelier-skill/prepare_registry.py",
       "kind": "adapter"
+    },
+    {
+      "path": "docs/rev60/R60_PREINSTALL_ACCEPTANCE_v001.md",
+      "kind": "policy"
+    },
+    {
+      "path": ".agents/skills/atelier-dev/scripts/feature_router.py",
+      "kind": "adapter"
+    },
+    {
+      "path": ".agents/skills/atelier-dev/scripts/field_probe.py",
+      "kind": "adapter"
+    },
+    {
+      "path": ".agents/skills/atelier-dev/scripts/github_snapshot.py",
+      "kind": "adapter"
+    },
+    {
+      "path": ".agents/skills/atelier-dev/scripts/mutation_guard.py",
+      "kind": "adapter"
+    },
+    {
+      "path": ".agents/skills/atelier-dev/scripts/resolve_release.py",
+      "kind": "adapter"
+    },
+    {
+      "path": ".agents/skills/atelier-dev/scripts/session_state.py",
+      "kind": "adapter"
+    },
+    {
+      "path": ".agents/skills/atelier-dev/scripts/surface_policy.py",
+      "kind": "adapter"
+    },
+    {
+      "path": ".agents/skills/atelier-dev/scripts/verify_registry.py",
+      "kind": "adapter"
     }
   ],
   "features": [
@@ -42,8 +78,10 @@
         "github.read"
       ],
       "paths": [
-        "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md"
-      ]
+        "docs/rev60/R60_SKILL_NATIVE_MASTER_PLAN_v002.md",
+        "docs/rev60/R60_PREINSTALL_ACCEPTANCE_v001.md"
+      ],
+      "handler": "knowledge.read"
     },
     {
       "id": "runtime.control",
@@ -54,7 +92,8 @@
       "paths": [
         "tools/atelier-skill/control-bridge.mjs",
         "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"
-      ]
+      ],
+      "handler": "runtime.control"
     },
     {
       "id": "source.proposal",
@@ -64,7 +103,8 @@
       ],
       "paths": [
         "docs/rev60/R60_NATIVE_ADAPTER_PROTOCOL_v001.md"
-      ]
+      ],
+      "handler": "source.proposal"
     },
     {
       "id": "source.handoff",
@@ -77,7 +117,8 @@
       "paths": [
         "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
         ".agents/skills/atelier-dev/scripts/execution_protocol.py"
-      ]
+      ],
+      "handler": "source.handoff"
     },
     {
       "id": "ci.evidence",
@@ -88,7 +129,8 @@
       "paths": [
         "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
         ".agents/skills/atelier-dev/scripts/ci_evidence.py"
-      ]
+      ],
+      "handler": "ci.evidence"
     },
     {
       "id": "release.draft",
@@ -99,7 +141,8 @@
       "paths": [
         "docs/rev60/R60_EXECUTION_EVIDENCE_PROTOCOL_v001.md",
         "tools/atelier-skill/prepare_registry.py"
-      ]
+      ],
+      "handler": "release.draft"
     }
   ]
 }

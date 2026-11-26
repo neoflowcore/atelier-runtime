@@ -7,6 +7,7 @@ import stat
 import subprocess
 import sys
 from pathlib import Path
+from contextlib import closing
 from resolve_release import REPO, blocked, digest, hex_id, strict_json
 from verify_registry import verify
 
@@ -44,7 +45,7 @@ def enroll(directory, pem, expected_fingerprint, minimum_generation):
     if not pem.startswith("-----BEGIN PUBLIC KEY-----") or subprocess.run(["openssl", "pkey", "-pubin", "-noout"], input=pem.encode(), capture_output=True, timeout=10).returncode:
         raise ValueError("PUBLIC_KEY_INVALID")
     trust = {"repository": REPO, "public_key_pem": pem, "key_sha256": expected_fingerprint, "minimum_generation": minimum_generation}
-    with connect(directory, create=True) as db:
+    with closing(connect(directory, create=True)) as db, db:
         db.execute("BEGIN IMMEDIATE")
         db.execute("CREATE TABLE metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
         db.execute("CREATE TABLE runs (id TEXT PRIMARY KEY, value TEXT NOT NULL)")
@@ -72,7 +73,7 @@ def project_context(ctx):
 def bind(directory, snapshot, context, resume=False, now=None):
     try:
         ctx = project_context(context)
-        with connect(directory) as db:
+        with closing(connect(directory)) as db, db:
             db.execute("BEGIN IMMEDIATE")
             trust = get(db, "metadata", "trust")
             previous = get(db, "metadata", "registry")
@@ -106,7 +107,7 @@ def advance(directory, context, expected_revision, receipt):
     """Record an already observed effect; caller must independently verify evidence."""
     try:
         ctx = project_context(context)
-        with connect(directory) as db:
+        with closing(connect(directory)) as db, db:
             db.execute("BEGIN IMMEDIATE")
             run = get(db, "runs", ctx["run_id"])
             if run is None or run["context"] != ctx or type(expected_revision) is not int or run["revision"] != expected_revision:
