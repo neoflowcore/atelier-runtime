@@ -1,0 +1,4 @@
+interface:
+  display_name: "Atelier Dev"
+  short_description: "GitHub-backed Atelier development and verification"
+  default_prompt: "Inspect the bound project and resume the next authorized Atelier development phase."
